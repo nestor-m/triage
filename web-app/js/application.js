@@ -7,3 +7,5 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+
+/*Comentario de prueba*/
