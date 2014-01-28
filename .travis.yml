@@ -1,3 +1,4 @@
 language: groovy
 jdk:
   - openjdk6
+script: ./grailsw
