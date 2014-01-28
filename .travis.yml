@@ -1,4 +1,5 @@
 language: groovy
 jdk:
   - openjdk6
-script: ./grailsw
+script: ./grailsw refresh-dependencies
+     && ./grailsw test-app
