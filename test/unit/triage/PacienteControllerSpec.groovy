@@ -1,4 +1,4 @@
-package todo
+package triage
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(UtilController)
-class UtilControllerSpec extends Specification {
+@TestFor(PacienteController)
+class PacienteControllerSpec extends Specification {
 
     def setup() {
     }
@@ -16,5 +16,7 @@ class UtilControllerSpec extends Specification {
     }
 
     void "test something"() {
+		when: "hola" == "hola"
+		then: "yo" == "yo"
     }
 }
