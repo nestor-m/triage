@@ -1,40 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Triage</title>
 
-    <!-- Bootstrap -->
-     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- define angular app -->
+<html ng-app="triageApp">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+  <!-- SPELLS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+  <script src="js/script.js"></script>
+</head>
 
-      <div class="page-header" style="text-align: center">
-        <h1>Triage</h1>
+<!-- define angular controller -->
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Hospital Oñativia</a>
       </div>
 
-      <p style="text-align: center">
-        <a type="button" class="btn btn-lg btn-success" href="paciente_ingreso_previo_adultos.html">Adultos</a>
-      </p>
-      <p style="text-align: center">
-        <a type="button" class="btn btn-lg btn-primary" href="paciente_ingreso_previo_pediatricos.html">Pediátricos</a>
-      </p>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a href="#datos_maestros"><i class="fa fa-shield"></i> Datos Maestros</a></li>
+        <li><a href="#reportes"><i class="fa fa-comment"></i> Estadísticas</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div data-ng-view></div>
+    
+  </div>
+  
+  <footer class="text-center">
+    TIP Muñoz-Tejeda
+  </footer>
+  
+</body>
 
-
-  </body>
 </html>
+
+	

@@ -3,12 +3,16 @@ package triage
 
 
 import static org.springframework.http.HttpStatus.*
+
+import java.net.Authenticator.RequestorType;
+
+import grails.converters.JSON
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class PersonaController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -23,6 +27,26 @@ class PersonaController {
         respond new Persona(params)
     }
 
+	
+	def ajaxSave() {
+		def persona = new Persona(
+			nombre : request.JSON.nombre,
+			apellido : request.JSON.apellido,
+//			fechaNac : request.JSON.fechaNac,
+			dni : request.JSON.dni,
+			direccion : request.JSON.direccion,
+			telefono : request.JSON.telefono,
+			obraSocial : request.JSON.obraSocial,
+			nroAfiliado : request.JSON.nroAfiliado
+		).save( failOnError : true )
+
+		ajaxList()
+	}
+	
+	def ajaxList() {
+		render Persona.findAll( "from Persona p" ) as JSON
+	}
+	
     @Transactional
     def save(Persona personaInstance) {
         if (personaInstance == null) {
