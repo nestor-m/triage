@@ -10,8 +10,11 @@ class Persona {
 	int telefono
 	String obraSocial
 	int nroAfiliado
+	
+
+    static hasMany = [pacientes : Paciente]    
 
     static constraints = {
-		dni blank: false
+		apellido blank: false
     }
 }
