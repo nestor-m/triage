@@ -5,7 +5,7 @@ class Persona {
     int dni
 	String nombre
 	String apellido
-	Date fechaDeNacimiento
+	String fechaDeNacimiento
 	String direccion
 	int telefono
 	String obraSocial
