@@ -4,50 +4,81 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 	triageApp.config(function($routeProvider) {
 		$routeProvider
 
-			// route for the home page
 			.when('/', {
-				templateUrl : 'inicio.html', 
-				controller  : 'mainController'
+				templateUrl : 'inicio.html'
 			})
 			
 			.when('/datos_maestros', {
-				templateUrl : 'inicio.html', 
-				controller  : 'mainController'
+				templateUrl : 'inicio.html'
 			})
 			
 			.when('/reportes', {
-				templateUrl : 'inicio.html', 
-				controller  : 'mainController'
+				templateUrl : 'inicio.html'
 			})
 
-			// route for the about page
 			.when('/paciente_ingreso_previo_adultos', {
-				templateUrl : 'paciente_ingreso_previo_adultos.html',
-				controller  : 'aboutController'
+				templateUrl : 'paciente_ingreso_previo_adultos.html'
 			})
 
-			// route for the contact page
 			.when('/paciente_ingreso_previo_pediatricos', {
-				templateUrl : 'paciente_ingreso_previo_pediatricos.html',
-				controller  : 'contactController'
+				templateUrl : 'paciente_ingreso_previo_pediatricos.html'
+			})
+			.when('/atras_ing_pediatra', {
+				templateUrl : 'inicio.html'
+			})
+			.when('/atras_ing_adulto', {
+				templateUrl : 'inicio.html'
+			})
+			.when('/lista_pacientes', {
+				templateUrl : 'lista_pacientes.html',
+				controller  : 'personaController'
 			})
 			.when('/ingreso_form', {
 				templateUrl : 'ingreso_form.html',
-//				controller  : 'contactController'
+				controller  : 'personaController'
 			});
 		
 	});
 
-	// create the controller and inject Angular's $scope
-	triageApp.controller('mainController', function($scope) {
-		// create a message to display in our view
-		$scope.message = 'Everyone come and see how good I look!';
-	});
+	triageApp.controller('personaController', function($scope, $routeParams, $http) {
 
-	triageApp.controller('aboutController', function($scope) {
-		$scope.message = 'Look! I am an about page.';
-	});
 
-	triageApp.controller('contactController', function($scope) {
-		$scope.message = 'Contact us! JK. This is just a demo.';
+	    // load all todos, copying to the "todos" list on success
+	    $scope.loadPersonas = function() {
+	        $http.get("persona/ajaxList").success( function( data ) {
+	            $scope.personas = data
+	        })
+	    }
+
+	    // save a new todo, based on the "description" property
+	    $scope.addPersona = function() {
+	        $http.post(
+	            "persona/ajaxSave",
+	            {
+	                nombre : $scope.nombre,
+	                apellido : $scope.apellido,
+	                fechaDeNacimiento : $scope.fechaDeNacimiento,
+	                dni : $scope.dni,
+	                direccion : $scope.direccion,
+	                telefono : $scope.telefono,
+	                obraSocial : $scope.obraSocial,
+	                nroAfiliado : $scope.nroAfiliado
+	            }
+	        ).success( function( data ) {
+	            $scope.personas = data
+	            $scope.nombre = ""
+	            $scope.apellido = ""
+	            $scope.fechaDeNacimiento = ""
+	            $scope.dni = 0
+	            $scope.direccion = ""
+	            $scope.telefono = 0
+	            $scope.obraSocial = ""
+	            $scope.nroAfiliado = ""
+	        })
+	    }
+
+	    $scope.loadPersonas()
 	});
+	
+	
+	

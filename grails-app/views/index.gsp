@@ -14,10 +14,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
   <script src="js/script.js"></script>
+<%--  <script src="js/application.js"></script>--%>
 </head>
 
 <!-- define angular controller -->
-<body ng-controller="mainController">
+<body> 
+<%-- ng-controller="mainController">--%>
 
   <nav class="navbar navbar-default">
     <div class="container">
