@@ -24,12 +24,7 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 			.when('/paciente_ingreso_previo_pediatricos', {
 				templateUrl : 'paciente_ingreso_previo_pediatricos.html'
 			})
-			.when('/atras_ing_pediatra', {
-				templateUrl : 'inicio.html'
-			})
-			.when('/atras_ing_adulto', {
-				templateUrl : 'inicio.html'
-			})
+			
 			.when('/lista_pacientes', {
 				templateUrl : 'lista_pacientes.html',
 				controller  : 'personaController'
@@ -43,14 +38,14 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 
 	triageApp.controller('personaController', function($scope, $routeParams, $http) {
 
-
+	
+	    $scope.personas = [];
 	    // load all todos, copying to the "todos" list on success
-	    $scope.loadPersonas = function() {
+	  $scope.loadPersonas = function() {
 	        $http.get("persona/ajaxList").success( function( data ) {
 	            $scope.personas = data
 	        })
 	    }
-
 	    // save a new todo, based on the "description" property
 	    $scope.addPersona = function() {
 	        $http.post(
@@ -76,10 +71,9 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 	            $scope.obraSocial = ""
 	            $scope.nroAfiliado = ""
 	        })
+	        
 	    }
-
 	    $scope.loadPersonas()
+	   
 	});
-	
-	
 	
