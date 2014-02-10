@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list persona">
 			
-				<g:if test="${personaInstance?.dni}">
-				<li class="fieldcontain">
-					<span id="dni-label" class="property-label"><g:message code="persona.dni.label" default="Dni" /></span>
-					
-						<span class="property-value" aria-labelledby="dni-label"><g:fieldValue bean="${personaInstance}" field="dni"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${personaInstance?.apellido}">
 				<li class="fieldcontain">
 					<span id="apellido-label" class="property-label"><g:message code="persona.apellido.label" default="Apellido" /></span>
@@ -50,11 +41,20 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${personaInstance?.dni}">
+				<li class="fieldcontain">
+					<span id="dni-label" class="property-label"><g:message code="persona.dni.label" default="Dni" /></span>
+					
+						<span class="property-value" aria-labelledby="dni-label"><g:fieldValue bean="${personaInstance}" field="dni"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${personaInstance?.fechaDeNacimiento}">
 				<li class="fieldcontain">
 					<span id="fechaDeNacimiento-label" class="property-label"><g:message code="persona.fechaDeNacimiento.label" default="Fecha De Nacimiento" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:formatDate date="${personaInstance?.fechaDeNacimiento}" /></span>
+						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:fieldValue bean="${personaInstance}" field="fechaDeNacimiento"/></span>
 					
 				</li>
 				</g:if>
@@ -82,6 +82,17 @@
 					<span id="obraSocial-label" class="property-label"><g:message code="persona.obraSocial.label" default="Obra Social" /></span>
 					
 						<span class="property-value" aria-labelledby="obraSocial-label"><g:fieldValue bean="${personaInstance}" field="obraSocial"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${personaInstance?.pacientes}">
+				<li class="fieldcontain">
+					<span id="pacientes-label" class="property-label"><g:message code="persona.pacientes.label" default="Pacientes" /></span>
+					
+						<g:each in="${personaInstance.pacientes}" var="p">
+						<span class="property-value" aria-labelledby="pacientes-label"><g:link controller="paciente" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>
