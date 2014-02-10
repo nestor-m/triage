@@ -54,7 +54,7 @@
 				<li class="fieldcontain">
 					<span id="fechaDeNacimiento-label" class="property-label"><g:message code="persona.fechaDeNacimiento.label" default="Fecha De Nacimiento" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:formatDate date="${personaInstance?.fechaDeNacimiento}" /></span>
+						<span class="property-value" aria-labelledby="fechaDeNacimiento-label"><g:fieldValue bean="${personaInstance}" field="fechaDeNacimiento"/></span>
 					
 				</li>
 				</g:if>
