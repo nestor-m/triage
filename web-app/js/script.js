@@ -13,7 +13,7 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 			})
 			
 			.when('/reportes', {
-				templateUrl : 'ingreso_form.html',
+				templateUrl : 'lista_pacientes.html',
 				controller  : 'personaController'
 			})
 
