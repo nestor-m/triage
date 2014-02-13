@@ -46,7 +46,7 @@ class PersonaController {
 	def ajaxList() {
 		render Persona.findAll( "from Persona p" ) as JSON
 	}
-	
+			
     @Transactional
     def save(Persona personaInstance) {
         if (personaInstance == null) {

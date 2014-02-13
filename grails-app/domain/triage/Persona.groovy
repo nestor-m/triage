@@ -16,5 +16,6 @@ class Persona {
 
     static constraints = {
 		apellido blank: false
+		nombre blank:false
     }
 }
