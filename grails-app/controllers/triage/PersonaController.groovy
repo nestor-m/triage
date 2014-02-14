@@ -9,7 +9,7 @@ import java.net.Authenticator.RequestorType;
 import grails.converters.JSON
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
+@Transactional //(readOnly = true) esto me hizo romperme la cabeza durante unas cuantas horas :(
 class PersonaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST"]
@@ -27,7 +27,7 @@ class PersonaController {
         respond new Persona(params)
     }
 
-	
+	@Transactional
 	def ajaxSave() {
 		def persona = new Persona(
 			nombre : request.JSON.nombre,
@@ -39,8 +39,13 @@ class PersonaController {
 			obraSocial : request.JSON.obraSocial,
 			nroAfiliado : request.JSON.nroAfiliado
 		).save( failOnError : true )
-
-		ajaxList()
+		
+		new Paciente(
+			persona : persona,
+			fechaHoraIngreso: new Date()
+			).save( failOnError : true )
+			
+		//this.ajaxList()
 	}
 	
 	def ajaxList() {
