@@ -13,41 +13,57 @@
         <h1>Ingreso paciente</h1>
       </div>
 
-<form ng-submit="addPersona()" class="form-horizontal" role="form" action="#lista_pacientes">
-  <div class="form-group">
+<form name="ingreso_form" ng-submit="addPersona()" class="form-horizontal" role="form" action="#lista_pacientes">
+
+  <div class="form-group"  >
     <label class="col-sm-4 control-label">DNI</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="dni">
+      <input type="text" name="dni" class="form-control" ng-model="dni" >
     </div>
   </div>
-  <div class="form-group">
+  
+  
+  <div class="form-group" ng-class="{'has-error': ingreso_form.nombre.$invalid}">
     <label class="col-sm-4 control-label">Nombre</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="nombre">
+      <input type="text" name="nombre" required class="form-control" ng-model="nombre" required>
     </div>
+    <span class="help-block" 
+         ng-show="ingreso_form.nombre.$invalid">Campo obligatorio</span>
   </div>
-  <div class="form-group">
+  
+  
+  <div class="form-group" ng-class="{'has-error': ingreso_form.apellido.$invalid}">
     <label class="col-sm-4 control-label">Apellido</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="apellido">
+      <input type="text" name="apellido" class="form-control" ng-model="apellido" required>
     </div>
+    <span class="help-block" 
+         ng-show="ingreso_form.apellido.$invalid">Campo obligatorio</span>
   </div>
-  <div class="form-group">
+  
+  
+  <div class="form-group" ng-class="{'has-error': ingreso_form.fechaNac.$error}">
     <label class="col-sm-4 control-label">Fecha de nacimiento</label>
     <div class="col-sm-5">
-      <input type="number" class="form-control" ng-model="fechaDeNacimiento" ng-maxlength=6>
+      <input type="date" name="fechaNac" class="form-control" ng-model="fechaDeNacimiento"  required>
     </div>
+    <span class="help-block" 
+         ng-show="ingreso_form.fechaNac.$error.required">Campo obligatorio</span>   
   </div>
+  
+  
   <div class="form-group">
     <label class="col-sm-4 control-label">Dirección</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" ng-model="direccion">
     </div>
   </div>
+  
   <div class="form-group">
     <label class="col-sm-4 control-label">Teléfono</label>
     <div class="col-sm-5">
-      <input type="number" class="form-control" ng-model="telefono">
+      <input type="text" class="form-control" ng-model="telefono">
     </div>
   </div>
   <div class="form-group">
@@ -56,10 +72,11 @@
       <input type="text" class="form-control" ng-model="obraSocial">
     </div>
   </div>
+  
   <div class="form-group">
     <label class="col-sm-4 control-label">Nro afiliado</label>
     <div class="col-sm-5">
-      <input type="number" class="form-control" ng-model="nroAfiliado">
+      <input type="text" class="form-control" ng-model="nroAfiliado">
     </div>
   </div>
 
