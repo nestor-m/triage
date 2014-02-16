@@ -43,13 +43,13 @@
   </div>
   
   
-  <div class="form-group" ng-class="{'has-error': ingreso_form.fechaNac.$error}">
+  <div class="form-group" ng-class="{'has-error': ingreso_form.fechaNac.$invalid}">
     <label class="col-sm-4 control-label">Fecha de nacimiento</label>
     <div class="col-sm-5">
       <input type="date" name="fechaNac" class="form-control" ng-model="fechaDeNacimiento"  required>
     </div>
     <span class="help-block" 
-         ng-show="ingreso_form.fechaNac.$error.required">Campo obligatorio</span>   
+         ng-show="ingreso_form.fechaNac.$invalid">Campo obligatorio</span>   
   </div>
   
   
@@ -81,13 +81,21 @@
   </div>
 
     <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-10">
-
-    <p style="text-align: center">
-    <input type="submit" class="btn btn-default" value="Aceptar"  />
-      </p>
-    </div>
-  </div>
+	    <div class="col-sm-offset-4 col-sm-10">
+	    	<p style="text-align: center">
+	    	<input type="submit" class="btn btn-default" value="Aceptar"  />
+	     	 </p>
+	    </div>
+ 	 </div>
+ 	 
+ 	  <div class="form-group">
+	    <div class="col-sm-offset-4 col-sm-10">
+	    	<p style="text-align: center">
+	    	<input type="button" class="btn btn-default" value="Volver"  href="#"/>
+	     	 </p>
+	    </div>
+ 	 </div>
+ 	 
 </form>
 
 
