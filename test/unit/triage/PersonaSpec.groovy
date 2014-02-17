@@ -10,6 +10,7 @@ import spock.lang.Specification
 class PersonaSpec extends Specification {
 
     def setup() {
+		
     }
 
     def cleanup() {
@@ -17,4 +18,6 @@ class PersonaSpec extends Specification {
 
     void "test something"() {
     }
+	
+
 }

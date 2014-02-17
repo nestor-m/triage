@@ -1,6 +1,5 @@
 var triageApp = angular.module('triageApp', ['ngRoute']);
 
-	// configure our routes
 	triageApp.config(function($routeProvider) {
 		$routeProvider
 
@@ -40,13 +39,11 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 
 	
 	    $scope.personas = [];
-	    // load all todos, copying to the "todos" list on success
 	  $scope.loadPersonas = function() {
 	        $http.get("persona/ajaxList").success( function( data ) {
 	            $scope.personas = data
 	        })
 	    }
-	    // save a new todo, based on the "description" property
 	    $scope.addPersona = function() {
 	        $http.post(
 	            "persona/ajaxSave",
