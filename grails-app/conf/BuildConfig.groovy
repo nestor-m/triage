@@ -41,9 +41,11 @@ grails.project.dependency.resolution = {
         grailsCentral()
         mavenCentral()
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
-        //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+		
+		//DESCOMENTO LAS SIGUIENTES 2 LINEAS PARA FUNCTIONAL TESTING
+        mavenRepo "http://repository.codehaus.org"
+        mavenRepo "http://repository.jboss.com/maven2/"
     }
 
     dependencies {
@@ -78,5 +80,8 @@ grails.project.dependency.resolution = {
         //HEROKU PLUGIN
         //compile ':heroku:1.0.1'
         //compile ':cloud-support:1.0.8'
+		
+		//AGREGO DEPENDENCIA PARA FUNCTIONAL TESTING
+		compile ":functional-test:2.0.M2"
     }
 }

@@ -22,29 +22,29 @@
         <h1>Ingreso paciente</h1>
       </div>
 
-<form ng-submit="addPersona()" class="form-horizontal" role="form" action="#lista_pacientes">
+<form ng-submit="addPersona()" class="form-horizontal" role="form" action="#lista_pacientes" id="ingreso_form">
   <div class="form-group">
     <label class="col-sm-4 control-label">DNI</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="dni">
+      <input type="text" class="form-control" ng-model="dni" id="dni">
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-4 control-label">Nombre</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="nombre">
+      <input type="text" class="form-control" ng-model="nombre" id="nombre">
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-4 control-label">Apellido</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="apellido">
+      <input type="text" class="form-control" ng-model="apellido" id="apellido">
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-4 control-label">Fecha de nacimiento</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="fechaDeNacimiento">
+      <input type="text" class="form-control" ng-model="fechaDeNacimiento" id="fechaDeNacimiento">
     </div>
   </div>
   <div class="form-group">
@@ -81,7 +81,7 @@
     <div class="col-sm-offset-4 col-sm-10">
 
     <p style="text-align: center">
-    <input type="submit" class="btn btn-default" value="Aceptar"  />
+    <input type="submit" class="btn btn-default" value="Aceptar"  id="submit"/>
       </p>
     </div>
   </div>
