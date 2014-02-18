@@ -13,13 +13,13 @@ class PersonaControllerSpec extends Specification {
         assert params != null
         params["nombre"] = 'unNombre'
 		params["apellido"] = 'unApellido'
-		params["fechaDeNacimiento"] = '21/03/1987'
+		params["fechaDeNacimiento"] = new Date("1987/03/21")
     }
 	
 	def populateValidJSONParams() {
 		request.JSON.nombre = 'unNombre'
 		request.JSON.apellido = 'unApellido'
-		request.JSON.fechaDeNacimiento = '21/03/1987'
+		request.JSON.fechaDeNacimiento = "1987-03-21"
 	}
 
     void "Test the index action returns the correct model"() {
@@ -165,6 +165,19 @@ class PersonaControllerSpec extends Specification {
 		when:"Creo una persona e intento persistirla"
 		    request.JSON.nombre = 'unNombre'
 		    request.JSON.apellido = 'unApellido'
+			shouldFail(NullPointerException){
+				controller.ajaxSave()
+			}
+
+		then:"No se persiste ni la persona ni el paciente"
+			Persona.count() == 0
+			Paciente.count() == 0
+	}
+	
+	void "Testeo que una persona no se persite si la fecha de nacimiento es futura"(){
+		when:"Creo una persona e intento persistirla"
+			populateValidJSONParams()
+			request.JSON.fechaDeNacimiento = "2030-02-19"
 			shouldFail(grails.validation.ValidationException){
 				controller.ajaxSave()
 			}

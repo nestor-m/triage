@@ -32,7 +32,7 @@ class PersonaController {
 		def persona = new Persona(
 			nombre : request.JSON.nombre,
 			apellido : request.JSON.apellido,
-			fechaDeNacimiento : request.JSON.fechaDeNacimiento,
+			fechaDeNacimiento : new Date(request.JSON.fechaDeNacimiento.replaceAll("-","/")),
 			dni : request.JSON.dni,
 			direccion : request.JSON.direccion,
 			telefono : request.JSON.telefono,

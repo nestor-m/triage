@@ -5,7 +5,7 @@ class Persona {
     String dni 
 	String nombre
 	String apellido
-	String fechaDeNacimiento
+	Date fechaDeNacimiento
 	String direccion 
 	String telefono 
 	String obraSocial 
@@ -21,5 +21,8 @@ class Persona {
 		telefono nullable: true
 		obraSocial nullable: true
 		nroAfiliado nullable: true 
+		fechaDeNacimiento(validator: { val, obj ->
+			val < new Date()
+		})
     }
 }

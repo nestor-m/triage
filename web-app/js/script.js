@@ -35,16 +35,37 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 		
 	});
 
-	triageApp.controller('personaController', function($scope, $routeParams, $http) {
+	triageApp.controller('personaController', function($scope, $routeParams, $http, $location) {
 
 	
-	    $scope.personas = [];
+	  $scope.personas = [];
 	  $scope.loadPersonas = function() {
+		  
 	        $http.get("persona/ajaxList").success( function( data ) {
 	            $scope.personas = data
 	        })
 	    }
+	  
 	    $scope.addPersona = function() {
+	    	if ($scope.nombre == null || $scope.nombre == ''){//esto lo escribo para que pase el test de casper pero para la aplicacion no es necesario
+        		return;
+        	}
+        	if ($scope.apellido == null || $scope.apellido == ''){
+        		return;
+        	}
+        	
+        	if ($scope.fechaDeNacimiento == null || $scope.fechaDeNacimiento == ''){
+        		return;
+        	}
+	    	
+	    	var fechaDeNacimiento = new Date($scope.fechaDeNacimiento);
+	    	var hoy = new Date();
+	    	
+        	if (fechaDeNacimiento > hoy){//valido que la fecha de nacimiento no sea futura
+        		alert("La fecha no puede ser futura");
+        		return;
+        	}
+	    	
 	        $http.post(
 	            "persona/ajaxSave",
 	            {
@@ -57,20 +78,14 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 	                obraSocial : $scope.obraSocial,
 	                nroAfiliado : $scope.nroAfiliado
 	            }
-	        ).success( function( data ) {
-	            $scope.personas = data
-	            $scope.nombre = ""
-	            $scope.apellido = ""
-	            $scope.fechaDeNacimiento = ""
-	            $scope.dni = 0
-	            $scope.direccion = ""
-	            $scope.telefono = 0
-	            $scope.obraSocial = ""
-	            $scope.nroAfiliado = ""
-	        })
-	        
+	        )
+	        .success( function( data ) {	        	
+	        	})       
+
+        	$location.path("/lista_pacientes");			    
 	    }
-	    $scope.loadPersonas()
+	    
+	    $scope.loadPersonas();
 	   
 	});
 	
