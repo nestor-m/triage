@@ -38,13 +38,27 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 	triageApp.controller('personaController', function($scope, $routeParams, $http) {
 
 	
-	    $scope.personas = [];
+	  $scope.personas = [];
 	  $scope.loadPersonas = function() {
 	        $http.get("persona/ajaxList").success( function( data ) {
 	            $scope.personas = data
 	        })
 	    }
 	    $scope.addPersona = function() {
+//	    	if ($scope.nombre == null){
+//        		alert("El campo nombre es obligatorio");
+//        		return false;
+//        	}
+//        	if ($scope.apellido == null){
+//        		alert("El campo apellido es obligatorio");
+//        		return false;
+//        	} 
+//        	if ($scope.fechaDeNacimiento == null){
+//        		alert("El campo fecha de nacimiento es obligatorio");
+//        		return false;
+//        	}
+        	
+	    	
 	        $http.post(
 	            "persona/ajaxSave",
 	            {
@@ -57,18 +71,20 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 	                obraSocial : $scope.obraSocial,
 	                nroAfiliado : $scope.nroAfiliado
 	            }
-	        ).success( function( data ) {
-	            $scope.personas = data
-	            $scope.nombre = ""
-	            $scope.apellido = ""
-	            $scope.fechaDeNacimiento = ""
-	            $scope.dni = 0
-	            $scope.direccion = ""
-	            $scope.telefono = 0
-	            $scope.obraSocial = ""
-	            $scope.nroAfiliado = ""
-	        })
-	        
+	        )
+	        .success( function( data ) {
+	            $scope.personas = data;
+	            $scope.nombre = "";
+	            $scope.apellido = "";
+	            $scope.fechaDeNacimiento = "";
+	            $scope.dni = 0;
+	            $scope.direccion = "";
+	            $scope.telefono = 0;
+	            $scope.obraSocial = "";
+	            $scope.nroAfiliado = "";
+	        	})
+	        	
+	       
 	    }
 	    $scope.loadPersonas()
 	   

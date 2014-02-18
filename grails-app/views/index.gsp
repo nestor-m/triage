@@ -14,6 +14,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/parsley.js"></script>
 </head>
 
 <!-- define angular controller -->
