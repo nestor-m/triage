@@ -47,7 +47,7 @@ action="#lista_pacientes">
   <div class="form-group" >
     <label class="col-sm-4 control-label">Fecha de nacimiento</label>
     <div class="col-sm-5">
-      <input type="date" name="fechaNac" class="form-control" ng-model="fechaDeNacimiento" required>
+      <input type="date" name="fechaNac" class="form-control" ng-model="fechaDeNacimiento" required max="02-18-2014">
     </div>
     <span class="error" ng-show="ingreso_form.fechaNac.$error.required">
           Campo obligatorio</span><br>

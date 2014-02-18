@@ -5,10 +5,10 @@ class Paciente {
 	Date fechaHoraIngreso
 	Date fechaHoraAtencion
 	
-	int presionArterial
-	int pulso
-	int frecuenciaRespiratoria
-	int temperatura
+	Integer presionArterial
+	Integer pulso
+	Integer frecuenciaRespiratoria
+	Integer temperatura
 
     static belongsTo = [persona : Persona]
 	static hasMany = [sintomas : Sintoma]

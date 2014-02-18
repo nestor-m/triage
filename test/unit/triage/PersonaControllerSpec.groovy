@@ -160,4 +160,17 @@ class PersonaControllerSpec extends Specification {
 			Persona.count() == 1
 			Paciente.count() == 1
 	}
+	
+	void "Testeo que una persona no se persite sin fecha de nacimiento"(){
+		when:"Creo una persona e intento persistirla"
+		    request.JSON.nombre = 'unNombre'
+		    request.JSON.apellido = 'unApellido'
+			shouldFail(grails.validation.ValidationException){
+				controller.ajaxSave()
+			}
+
+		then:"No se persiste ni la persona ni el paciente"
+			Persona.count() == 0
+			Paciente.count() == 0
+	}
 }
