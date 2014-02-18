@@ -22,7 +22,7 @@ class PacienteControllerSpec extends Specification {
 	    	def persona = new Persona(
 				nombre : "nestor",
 				apellido : "muñoz",
-				fechaDeNacimiento : "21/03/1987"
+				fechaDeNacimiento : new Date()
 				).save( failOnError : true )
 
 		and: "Creo un paciente con esa persona asociada y la persisto"
