@@ -10,7 +10,7 @@ import grails.converters.JSON
 
 class BuscadorController {
 	
-	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST"]
+	static allowedMethods = [ajaxList: "GET", ajaxSeleccionarPersona: "POST", ajaxCrearNuevaPersona: "POST"]
 
     def index() { }
 	
@@ -46,8 +46,14 @@ class BuscadorController {
 		render resultados as JSON
 		
 		return resultados
-		
-//		render Persona.findAll( "from Persona p" ) as JSON
+	}
+	
+	def ajaxSeleccionarPersona(){
 		
 	}
+	
+	def ajaxCrearNuevaPersona(){
+		
+	}
+	
 }

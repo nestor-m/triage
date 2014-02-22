@@ -1,6 +1,5 @@
 package triage
 
-import org.hibernate.validator.constraints.Length;
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
@@ -96,4 +95,59 @@ class BuscadorControllerSpec extends Specification {
 			resultados[0].apellido == "Perez"
 			resultados.size() == 1
 	}
+	
+	
+	void "Testear que si los campos de busqueda estan vacios, no devuelvo nada"(){
+		when: "no completo ningun campo de busqueda y presiono buscar"
+			def resultados = controller.ajaxList()
+			
+		then: "no recibo resultados"
+			resultados.size() == 0
+	}
+	
+	
+	void "Testeo que al buscar un apellido recibo todas las personas con el mismo" (){
+		when: "guardo 4 personas, y 3 tienen el mismo apellido"
+		def persona1 = new Persona(
+			nombre : "Juan",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "34071823"
+		)
+		persona1.save()
+		def persona2 = new Persona(
+			nombre : "Martin",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "35167277"
+		)
+		persona2.save()
+		def persona3 = new Persona(
+			nombre : "Mariela",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1990/02/02"),
+			dni : "38961823"
+		)
+		persona3.save()
+		def persona4 = new Persona(
+			nombre : "Luis",
+			apellido : "Gomez",
+			fechaDeNacimiento : new Date("1980/08/02"),
+			dni : "652987"
+		)
+		persona4.save()
+		
+		request.JSON.apellido = "Perez"
+		def resultados = controller.ajaxList()
+		
+		then: "encuentro 3 personas"
+			resultados.size() == 3
+			resultados[0].apellido == "Perez"
+			resultados[1].apellido == "Perez"
+			resultados[2].apellido == "Perez"
+	}
+	
+	
+	
+	
 }
