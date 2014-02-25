@@ -1,10 +1,14 @@
-var triageApp = angular.module('triageApp', ['ngRoute']);
+var app = angular.module('triageApp', ['ngGrid']);
 
-	triageApp.config(function($routeProvider) {
+	app.config(function($routeProvider) {
 		$routeProvider
 
 			.when('/', {
 				templateUrl : 'inicio.html'
+			})
+			
+			.when('/busqueda', {
+				templateUrl : 'busqueda_paciente.html'
 			})
 			
 			.when('/datos_maestros', {
@@ -34,8 +38,9 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 			});
 		
 	});
+	
 
-	triageApp.controller('personaController', function($scope, $routeParams, $http, $location) {
+	app.controller('personaController', function($scope, $routeParams, $http, $location) {
 
 	
 	  $scope.personas = [];
@@ -62,7 +67,7 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 	    	var hoy = new Date();
 	    	
         	if (fechaDeNacimiento > hoy){//valido que la fecha de nacimiento no sea futura
-        		alert("La fecha no puede ser futura");
+        		alert("La fecha no puede ser futura","Error de validación");
         		return;
         	}
 	    	
@@ -88,4 +93,111 @@ var triageApp = angular.module('triageApp', ['ngRoute']);
 	    $scope.loadPersonas();
 	   
 	});
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	app.controller('busquedaControllerrrrrrrrrrrrrrrr', function($scope) {
+	    $scope.myData = [{nombre: "Moroni", DNI: 123456, nacimiento: "21/03/1987", direccion: "Calle 146 nro 3025"},
+	                     {nombre: "Tiancum", DNI: 123456, nacimiento: "21/03/1987", direccion: "Calle 146 nro 3025"},
+	                     {nombre: "Jacob", DNI: 123456, nacimiento: "21/03/1987", direccion: "Calle 146 nro 3025"}]
+	    $scope.ingresarPersona = '<button id="editBtn" type="button" class="btn btn-primary" ng-click="edit(row)" >Ingresar</button> '
+	    $scope.gridOptions = { data: 'myData',
+	    columnDefs: [{field:'nombre', displayName:'Nombre'}, {field:'DNI', displayName:'DNI'}, {field:'nacimiento', displayName:'Fecha de nacimiento'},
+	                 {field:'direccion', displayName:'Direccion'},{cellTemplate:$scope.ingresarPersona}]};
+	});
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	app.controller('busquedaController', function($scope, $http) {
+		
+	    $scope.filterOptions = {
+	        filterText: "",
+	        useExternalFilter: true
+	    }; 
+	    $scope.totalServerItems = 0;
+	    $scope.pagingOptions = {
+	        pageSizes: [2, 5, 10],
+	        pageSize: 2,
+	        currentPage: 1
+	    };	
+	    $scope.setPagingData = function(data, page, pageSize){	
+	        var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+	        $scope.myData = pagedData;
+	        $scope.totalServerItems = data.length;
+	        if (!$scope.$$phase) {
+	            $scope.$apply();
+	        }
+	    };
+	    $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+	        setTimeout(function () {
+	            var data;
+	            if (searchText) {
+	                var ft = searchText.toLowerCase();
+	                $http.get('persona/ajaxList').success(function (largeLoad) {		
+	                    data = largeLoad.filter(function(item) {
+	                        return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+	                    });
+	                    $scope.setPagingData(data,page,pageSize);
+	                });            
+	            } else {
+	                $http.get('persona/ajaxList').success(function (largeLoad) {
+	                    $scope.setPagingData(largeLoad,page,pageSize);
+	                });
+	            }
+	        }, 100);
+	    };
+		
+	    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+		
+	    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+	        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+	          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+	        }
+	    }, true);
+	    $scope.$watch('filterOptions', function (newVal, oldVal) {
+	        if (newVal !== oldVal) {
+	          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+	        }
+	    }, true);
+	    
+	    $scope.ingresarPersona = '<button id="editBtn" type="button" class="btn btn-primary" ng-click="edit(row)" >Ingresar</button> '
+		
+	    $scope.gridOptions = {
+	        data: 'myData',
+	        enablePaging: true,
+			showFooter: true,
+	        totalServerItems: 'totalServerItems',
+	        pagingOptions: $scope.pagingOptions,
+	        filterOptions: $scope.filterOptions,
+		    columnDefs: [{field:'id',visible:false},{field:'nombre', displayName:'Nombre'}, {field:'dni', displayName:'DNI'}, {field:'fechaDeNacimiento', displayName:'Fecha de nacimiento'},
+		                 {field:'direccion', displayName:'Direccion'},{cellTemplate:$scope.ingresarPersona}]
+	    };
+	    
+		$scope.buscarPersona = function () {
+			alert($scope.dnib);
+			alert($scope.nombreb);
+			alert($scope.apellidob);
+			alert($scope.fechaDeNacimientob);
+			
+	        setTimeout(function () {
+	            var data;
+	            if (searchText) {
+	                var ft = searchText.toLowerCase();
+	                $http.get('persona/ajaxList').success(function (largeLoad) {		
+	                    data = largeLoad.filter(function(item) {
+	                        return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+	                    });
+	                    $scope.setPagingData(data,page,pageSize);
+	                });            
+	            } else {
+	                $http.get('persona/ajaxList').success(function (largeLoad) {
+	                    $scope.setPagingData(largeLoad,page,pageSize);
+	                });
+	            }
+	        }, 100);
+			
+			
+			//$scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage,'111111');
+	    };
+	    
+	});
+
 	

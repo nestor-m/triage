@@ -8,13 +8,19 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
   
+  <link rel="stylesheet" type="text/css" href="css/ng-grid.css" /> 
+  <link rel="stylesheet" href="css/style.css"/> 
+  
   <!-- SPELLS -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+<%--  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>--%>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
-
-  <script src="js/parsley.js"></script>
+  
+      <script type="text/javascript" src="lib/angular.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>
+  
+  <script type="text/javascript" src="js/ng-grid-2.0.7.min.js"></script>
 
 
   <%--BOOTSTRAP LOCAL--%>
@@ -29,7 +35,7 @@
 <%--ANGULARJS APP--%>
  <script src="js/script.js"></script>
 </head>
-<body> 
+<body ng-controller="busquedaController"> 
 
 
   <nav class="navbar navbar-default">
@@ -53,6 +59,7 @@
     <div data-ng-view></div>
     
   </div>
+  
   
   <footer class="text-center">
     TIP Muñoz-Tejeda

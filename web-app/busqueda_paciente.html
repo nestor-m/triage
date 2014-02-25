@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Triage - Busqueda de pacientes</title>
+  </head>
+  
+  <body>
+
+      <div class="page-header" style="text-align:center">
+        <h3>Busqueda de pacientes</h3>
+      </div>
+
+      <form name="busqueda_form" class="form-horizontal" ng-submit="buscarPersona()" style="text-align:center" role="form">
+        <div class="form-group">
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label">DNI</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="dnib" ng-model="dnib">
+                </div>
+                <label class="col-sm-1 control-label">Nombre</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="nombreb" ng-model="nombreb">
+                </div>
+           </div>
+        </div>
+        <div class="form-group">
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label">Fecha de nacimiento</label>
+                <div class="col-sm-2">
+                  <input type="date" name="fechaDeNacimientob" class="form-control" ng-model="fechaDeNacimientob">
+                </div>
+                <label class="col-sm-1 control-label">Apellido</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="apellidob" ng-model="apellidob">
+                </div>
+           </div>
+        </div>
+        <div class="form-group">
+              <input type="submit" class="btn btn-default" value="Buscar"/>
+        </div>
+     </form>
+     
+     <div class="gridStyle" ng-grid="gridOptions"> </div>
+     
+     <div style="text-align:left">
+         <a type="button" name="ingreso_paciente" class="btn btn-lg btn-success" href="#ingreso_form">Ingresar nueva persona</a>
+     </div>
+     
+        
+  </body>
+</html>
