@@ -12,7 +12,8 @@ import grails.transaction.Transactional
 @Transactional //(readOnly = true) esto me hizo romperme la cabeza durante unas cuantas horas :(
 class PersonaController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
+								ajaxBuscar: "GET", ajaxSeleccionarPersona: "POST", ajaxCrearNuevaPersona: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -51,6 +52,55 @@ class PersonaController {
 	def ajaxList() {
 		render Persona.findAll( "from Persona p" ) as JSON
 	}
+	
+	
+	
+	/*al seleccionar a la persona, crear paciente nuevo*/
+	def ajaxBuscar() {
+		def query = Persona.where {
+			nombre != null
+		}
+		
+		if (request.JSON.dni != '' && request.JSON.dni != null){
+			query = query.where {
+				dni == request.JSON.dni
+			}
+		}
+		if (request.JSON.nombre != '' && request.JSON.nombre != null){
+			query = query.where {
+				nombre == request.JSON.nombre
+			}
+		}
+		if (request.JSON.apellido != '' && request.JSON.apellido != null){
+			query = query.where {
+				apellido == request.JSON.apellido
+			}
+		}
+		if (request.JSON.fechaDeNacimiento  != '' && request.JSON.fechaDeNacimiento  != null){
+			query = query.where {
+				fechaDeNacimiento == request.JSON.fechaDeNacimiento
+			}
+		}
+		
+		def resultados = query.list();
+		
+		render resultados as JSON
+		
+		return resultados
+	}
+	
+	def ajaxSeleccionarPersona(){
+		
+	}
+	
+	def ajaxCrearNuevaPersona(){
+		
+	}
+	
+	
+	
+	
+	
 			
     @Transactional
     def save(Persona personaInstance) {

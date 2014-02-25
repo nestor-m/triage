@@ -14,7 +14,7 @@
       </div>
 
 
-<form name="ingreso_form"  class="form-horizontal" role="form" ng-submit="addPersona()">
+<form name="ingreso_form"  class="form-horizontal" role="form" ng-submit="addPersona()" novalidate>
 		
 
   <div class="form-group" >
@@ -30,8 +30,8 @@
     <div class="col-sm-5">
       <input type="text" name="nombre"  class="form-control" ng-model="nombre" required>
     </div>
-<!--      <span class="error" ng-show="ingreso_form.nombre.$error.required"> -->
-<!--           Campo obligatorio</span><br> -->
+     <span class="error" ng-show="ingreso_form.nombre.$error.required">
+          Campo obligatorio</span><br>
   </div>
   
   
@@ -40,8 +40,8 @@
     <div class="col-sm-5">
       <input type="text" name="apellido" class="form-control" ng-model="apellido" required >
     </div>
-<!--     <span class="error" ng-show="ingreso_form.apellido.$error.required"> -->
-<!--           Campo obligatorio</span><br> -->
+    <span class="error" ng-show="ingreso_form.apellido.$error.required">
+          Campo obligatorio</span><br>
   </div>
   
   
@@ -51,8 +51,8 @@
 
       <input type="date" name="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento" required>
     </div>
-<!--     <span class="error" ng-show="ingreso_form.fechaNac.$error.required"> -->
-<!--           Campo obligatorio</span><br> -->
+    <span class="error" ng-show="ingreso_form.fechaDeNacimiento.$error.required">
+          Campo obligatorio</span><br>
   </div>
   
   

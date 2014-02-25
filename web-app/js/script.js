@@ -53,13 +53,16 @@ var app = angular.module('triageApp', ['ngGrid']);
 	  
 	    $scope.addPersona = function() {
 	    	if ($scope.nombre == null || $scope.nombre == ''){//esto lo escribo para que pase el test de casper pero para la aplicacion no es necesario
+        		alert("Nombre es un campo obligatorio"); 
         		return;
         	}
         	if ($scope.apellido == null || $scope.apellido == ''){
+        		alert ("Apellido es un campo obligatorio");
         		return;
         	}
         	
         	if ($scope.fechaDeNacimiento == null || $scope.fechaDeNacimiento == ''){
+        		alert ("Fecha de nacimiento es un campo obligatorio");
         		return;
         	}
 	    	
