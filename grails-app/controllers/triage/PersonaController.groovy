@@ -13,7 +13,7 @@ import grails.transaction.Transactional
 class PersonaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
-								ajaxBuscar: "GET", ajaxSeleccionarPersona: "POST", ajaxCrearNuevaPersona: "POST"]
+								ajaxBuscar: "POST", ajaxSeleccionarPersona: "POST", ajaxCrearNuevaPersona: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -78,7 +78,7 @@ class PersonaController {
 		}
 		if (request.JSON.fechaDeNacimiento  != '' && request.JSON.fechaDeNacimiento  != null){
 			query = query.where {
-				fechaDeNacimiento == request.JSON.fechaDeNacimiento
+				fechaDeNacimiento == new Date(request.JSON.fechaDeNacimiento.replaceAll("-","/"))
 			}
 		}
 		

@@ -7,22 +7,22 @@
     <title>Triage - Busqueda de pacientes</title>
   </head>
   
-  <body>
+  <body ng-controller="busquedaController">
 
       <div class="page-header" style="text-align:center">
         <h3>Busqueda de pacientes</h3>
       </div>
 
-      <form name="busqueda_form" class="form-horizontal" ng-submit="buscarPersona()" style="text-align:center" role="form">
+      <form name="busqueda_form" class="form-horizontal" ng-submit="buscarPersona()" style="text-align:center" role="form" ng-controller="busquedaController">
         <div class="form-group">
             <div class="controls form-inline">
                 <label class="col-sm-4 control-label">DNI</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="dnib" ng-model="dnib">
+                  <input type="text" class="form-control" name="dni" ng-model="dni">
                 </div>
                 <label class="col-sm-1 control-label">Nombre</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="nombreb" ng-model="nombreb">
+                  <input type="text" class="form-control" name="nombre" ng-model="nombre">
                 </div>
            </div>
         </div>
@@ -30,11 +30,11 @@
             <div class="controls form-inline">
                 <label class="col-sm-4 control-label">Fecha de nacimiento</label>
                 <div class="col-sm-2">
-                  <input type="date" name="fechaDeNacimientob" class="form-control" ng-model="fechaDeNacimientob">
+                  <input type="date" name="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento">
                 </div>
                 <label class="col-sm-1 control-label">Apellido</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="apellidob" ng-model="apellidob">
+                  <input type="text" class="form-control" name="apellido" ng-model="apellido">
                 </div>
            </div>
         </div>

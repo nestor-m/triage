@@ -98,17 +98,7 @@ var app = angular.module('triageApp', ['ngGrid']);
 	});
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	app.controller('busquedaControllerrrrrrrrrrrrrrrr', function($scope) {
-	    $scope.myData = [{nombre: "Moroni", DNI: 123456, nacimiento: "21/03/1987", direccion: "Calle 146 nro 3025"},
-	                     {nombre: "Tiancum", DNI: 123456, nacimiento: "21/03/1987", direccion: "Calle 146 nro 3025"},
-	                     {nombre: "Jacob", DNI: 123456, nacimiento: "21/03/1987", direccion: "Calle 146 nro 3025"}]
-	    $scope.ingresarPersona = '<button id="editBtn" type="button" class="btn btn-primary" ng-click="edit(row)" >Ingresar</button> '
-	    $scope.gridOptions = { data: 'myData',
-	    columnDefs: [{field:'nombre', displayName:'Nombre'}, {field:'DNI', displayName:'DNI'}, {field:'nacimiento', displayName:'Fecha de nacimiento'},
-	                 {field:'direccion', displayName:'Direccion'},{cellTemplate:$scope.ingresarPersona}]};
-	});
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	app.controller('busquedaController', function($scope, $http) {
 		
 	    $scope.filterOptions = {
@@ -130,21 +120,18 @@ var app = angular.module('triageApp', ['ngGrid']);
 	        }
 	    };
 	    $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-	        setTimeout(function () {
-	            var data;
-	            if (searchText) {
-	                var ft = searchText.toLowerCase();
-	                $http.get('persona/ajaxList').success(function (largeLoad) {		
-	                    data = largeLoad.filter(function(item) {
-	                        return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
-	                    });
-	                    $scope.setPagingData(data,page,pageSize);
-	                });            
-	            } else {
-	                $http.get('persona/ajaxList').success(function (largeLoad) {
-	                    $scope.setPagingData(largeLoad,page,pageSize);
-	                });
-	            }
+	        setTimeout(function () {	            
+	            $http.post('persona/ajaxBuscar',
+	            {
+	                nombre : $scope.nombre,
+	                apellido : $scope.apellido,
+	                fechaDeNacimiento : $scope.fechaDeNacimiento,
+	                dni : $scope.dni
+	            })
+	            .success(function(data){
+	            	$scope.setPagingData(data,page,pageSize);
+	            })
+	            
 	        }, 100);
 	    };
 		
@@ -174,31 +161,8 @@ var app = angular.module('triageApp', ['ngGrid']);
 		                 {field:'direccion', displayName:'Direccion'},{cellTemplate:$scope.ingresarPersona}]
 	    };
 	    
-		$scope.buscarPersona = function () {
-			alert($scope.dnib);
-			alert($scope.nombreb);
-			alert($scope.apellidob);
-			alert($scope.fechaDeNacimientob);
-			
-	        setTimeout(function () {
-	            var data;
-	            if (searchText) {
-	                var ft = searchText.toLowerCase();
-	                $http.get('persona/ajaxList').success(function (largeLoad) {		
-	                    data = largeLoad.filter(function(item) {
-	                        return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
-	                    });
-	                    $scope.setPagingData(data,page,pageSize);
-	                });            
-	            } else {
-	                $http.get('persona/ajaxList').success(function (largeLoad) {
-	                    $scope.setPagingData(largeLoad,page,pageSize);
-	                });
-	            }
-	        }, 100);
-			
-			
-			//$scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage,'111111');
+		$scope.buscarPersona = function () {	
+			$scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
 	    };
 	    
 	});
