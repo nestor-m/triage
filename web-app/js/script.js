@@ -74,7 +74,7 @@ app.controller('personaController', function($scope, $routeParams, $http,
 			}).success(function(data) {
 
 			})
-			$location.path("/lista_pacientes");
+			$location.path("/");
 		} else {
 			$scope.ingreso_form.submitted = true;
 			console.log($scope.ingreso_form.fechaNacFutura);
