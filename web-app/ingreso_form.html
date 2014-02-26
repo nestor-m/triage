@@ -1,104 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Triage adultos - Ingreso paciente - Paciente previo</title>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triage adultos - Ingreso paciente - Paciente previo</title>
 
-  </head>
-  <body ng-controller="personaController">
+</head>
+<body ng-controller="personaController">
 
-      <div class="page-header" style="text-align: center">
-        <h1>Ingreso paciente</h1>
-      </div>
+	<div class="page-header" style="text-align: center">
+		<h1>Ingreso paciente</h1>
+	</div>
 
 
-<form name="ingreso_form"  class="form-horizontal" role="form" ng-submit="addPersona()" novalidate>
+	<form name="ingreso_form" class="form-horizontal" role="form"
+		ng-submit="addPersona()" novalidate>
+
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">DNI</label>
+			<div class="col-sm-5">
+				<input type="text" name="dni" class="form-control" ng-model="dni">
+			</div>
+		</div>
+
+
+		<div class="form-group"
+			ng-class="{'has-error': ingreso_form.nombre.$error.required}">
+			<label class="col-sm-4 control-label">Nombre</label>
+			<div class="col-sm-5">
+				<input id="nombre" type="text" name="nombre" class="form-control"
+					ng-model="nombre" required>
+			</div>
+			<div class="error"
+				ng-show="ingreso_form.nombre.$invalid && ingreso_form.submitted">
+				<small class="error" ng-show="ingreso_form.nombre.$error.required">
+					El nombre es requerido </small>
+			</div>
+			<span class="error" ng-show="ingreso_form.nombre.$error.required">
+				*</span><br>
+		</div>
+
+
+		<div class="form-group"
+			ng-class="{'has-error': ingreso_form.apellido.$error.required}">
+			<label class="col-sm-4 control-label">Apellido</label>
+			<div class="col-sm-5">
+				<input type="text" name="apellido" class="form-control"
+					ng-model="apellido" required>
+			</div>
+			<div class="error"
+				ng-show="ingreso_form.apellido.$invalid && ingreso_form.submitted"
+				>
+				<small class="error" ng-show="ingreso_form.apellido.$error.required">
+					El apellido es requerido </small>
+			</div>
+			<span class="error" ng-show="ingreso_form.apellido.$error.required">
+				*</span><br>
+		</div>
+
+
+		<div class="form-group"
+			ng-class="{'has-error': ingreso_form.fechaDeNacimiento.$error.required}">
+			<label class="col-sm-4 control-label">Fecha de nacimiento</label>
+			<div class="col-sm-5">
+
+				<input type="date" name="fechaDeNacimiento" class="form-control"
+					ng-model="fechaDeNacimiento" required>
+			</div>
+			<div class="error"
+				ng-show="ingreso_form.fechaDeNacimiento.$invalid && ingreso_form.submitted">
+				<small class="error"
+					ng-show="ingreso_form.fechaDeNacimiento.$error.required">
+					La fecha de nacimiento es requerida  </small>
+			</div>
+			
+			<div class="error"
+				ng-show="ingreso_form.fechaNacFutura">
+				<small class="error"> 
+					La fecha de	nacimiento no puede ser futura </small>
+			</div>
 		
-
-  <div class="form-group" >
-    <label class="col-sm-4 control-label">DNI</label>
-    <div class="col-sm-5">
-      <input type="text" name="dni" class="form-control" ng-model="dni" >
-    </div>
-  </div>
-  
-  
-  <div class="form-group">
-    <label class="col-sm-4 control-label">Nombre</label>
-    <div class="col-sm-5">
-      <input type="text" name="nombre"  class="form-control" ng-model="nombre" required>
-    </div>
-     <span class="error" ng-show="ingreso_form.nombre.$error.required">
-          Campo obligatorio</span><br>
-  </div>
-  
-  
-  <div class="form-group" >
-    <label class="col-sm-4 control-label">Apellido</label>
-    <div class="col-sm-5">
-      <input type="text" name="apellido" class="form-control" ng-model="apellido" required >
-    </div>
-    <span class="error" ng-show="ingreso_form.apellido.$error.required">
-          Campo obligatorio</span><br>
-  </div>
-  
-  
-  <div class="form-group" >
-    <label class="col-sm-4 control-label">Fecha de nacimiento</label>
-    <div class="col-sm-5">
-
-      <input type="date" name="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento" required>
-    </div>
-    <span class="error" ng-show="ingreso_form.fechaDeNacimiento.$error.required">
-          Campo obligatorio</span><br>
-  </div>
-  
-  
-  <div class="form-group">
-    <label class="col-sm-4 control-label">Dirección</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="direccion" >
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label class="col-sm-4 control-label">Teléfono</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="telefono">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-4 control-label">Obra social</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" name="obraSocial" ng-model="obraSocial">
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label class="col-sm-4 control-label">Nro afiliado</label>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" ng-model="nroAfiliado">
-    </div>
-  </div>
-
-    <div class="form-group">
-
-	    <div class="col-sm-offset-4 col-sm-10">
-			 
-	    	<p style="text-align: center">
-	    	<input type="submit" class="btn btn-default" value="Aceptar" />
-	     	 </p>
-	     	 <p style="text-align: center">
-       			 <a type="button" class="btn btn-default" href="#">Atrás</a>
-      		</p>
-	    </div>
- 	 </div>
- 	 
- 
-</form>
+			<span class="error"
+				ng-show="ingreso_form.fechaDeNacimiento.$error.required">*</span><br>
+		</div>
 
 
-  </body>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Dirección</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="direccion">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Teléfono</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="telefono">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Obra social</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" name="obraSocial"
+					ng-model="obraSocial">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Nro afiliado</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" ng-model="nroAfiliado">
+			</div>
+		</div>
+
+		<div class="form-group">
+
+			<div class="col-sm-offset-4 col-sm-10">
+
+				<p style="text-align: center">
+					<!-- 	    	<input type="submit" class="btn btn-default" value="Aceptar" /> -->
+					<button type="submit" class="btn btn-default">Aceptar</button>
+				</p>
+				<p style="text-align: center">
+					<a type="button" class="btn btn-default" href="#">Atrás</a>
+				</p>
+			</div>
+		</div>
+
+
+	</form>
+
+
+</body>
 </html>
