@@ -48,7 +48,8 @@ grails.controllers.defaultScope = 'singleton'
 grails {
     views {
         gsp {
-            encoding = 'UTF-8'
+//            encoding = 'UTF-8'
+			encoding = 'ISO-8859-1'
             htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
             codecs {
                 expression = 'html' // escapes values inside ${}
