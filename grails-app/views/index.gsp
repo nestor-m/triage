@@ -21,7 +21,9 @@
     <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>
   
   <script type="text/javascript" src="js/ng-grid-2.0.7.min.js"></script>
-
+	<style type="text/css">
+		@charset "ISO-8859-1";
+	</style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
   <%--BOOTSTRAP LOCAL--%>
 <%--  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
