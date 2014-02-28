@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Triage - Busqueda de pacientes</title>
-  </head>
-  
-  <body ng-controller="busquedaController">
 
       <div class="page-header" style="text-align:center">
-        <h3>Busqueda de pacientes</h3>
+        <h3>Búsqueda de pacientes</h3>
       </div>
 
-      <form name="busqueda_form" class="form-horizontal" ng-submit="buscarPersona()" style="text-align:center" role="form" ng-controller="busquedaController">
+      <form name="busqueda_form" class="form-horizontal" ng-submit="buscarPersona()" style="text-align:center" role="form">
         <div class="form-group">
             <div class="controls form-inline">
                 <label class="col-sm-4 control-label">DNI</label>
@@ -45,10 +35,9 @@
      
      <div class="gridStyle" ng-grid="gridOptions"> </div>
      
-     <div style="text-align:left">
-         <a type="button" name="ingreso_paciente" class="btn btn-lg btn-success" href="#ingreso_form">Ingresar nueva persona</a>
-     </div>
+     <br/>
      
-        
-  </body>
-</html>
+     <div style="text-align:left">
+         <a type="button" name="ingreso_paciente" class="btn btn-lg btn-success col-sm-offset-1" href="#ingreso_form">Ingresar nueva persona</a>
+     </div>
+

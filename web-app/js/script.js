@@ -8,7 +8,8 @@ app.config(function($routeProvider) {
 	})
 
 	.when('/busqueda', {
-		templateUrl : 'busqueda_paciente.html'
+		templateUrl : 'busqueda_paciente.html',
+		controller : 'busquedaController'
 	})
 
 	.when('/datos_maestros', {
@@ -41,8 +42,8 @@ app.config(function($routeProvider) {
 app.controller('personaController', function($scope, $routeParams, $http,
 		$location) {
 
-//	$scope.ingreso_form.submitted = false;
-//	$scope.ingreso_form.fechaNacFutura = false;
+	// $scope.ingreso_form.submitted = false;
+	// $scope.ingreso_form.fechaNacFutura = false;
 	$scope.personas = [];
 	$scope.loadPersonas = function() {
 
@@ -55,9 +56,8 @@ app.controller('personaController', function($scope, $routeParams, $http,
 		var fecNac = new Date($scope.fechaDeNacimiento);
 		var hoy = new Date();
 		if (fecNac > hoy) {
-			$scope.ingreso_form.fechaNacFutura = true;	
-		}
-		else {
+			$scope.ingreso_form.fechaNacFutura = true;
+		} else {
 			$scope.ingreso_form.fechaNacFutura = false;
 		}
 
@@ -86,23 +86,21 @@ app.controller('personaController', function($scope, $routeParams, $http,
 
 });
 
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app
 		.controller(
 				'busquedaController',
 				function($scope, $http) {
 
-					$scope.filterOptions = {
-						filterText : "",
-						useExternalFilter : true
-					};
 					$scope.totalServerItems = 0;
+
 					$scope.pagingOptions = {
-						pageSizes : [ 2, 5, 10 ],
+						pageSizes : [ 2, 3, 4 ],
 						pageSize : 2,
 						currentPage : 1
 					};
+
 					$scope.setPagingData = function(data, page, pageSize) {
 						var pagedData = data.slice((page - 1) * pageSize, page
 								* pageSize);
@@ -112,8 +110,8 @@ app
 							$scope.$apply();
 						}
 					};
-					$scope.getPagedDataAsync = function(pageSize, page,
-							searchText) {
+					
+					$scope.getPagedDataAsync = function(pageSize, page) {
 						setTimeout(function() {
 							$http.post('persona/ajaxBuscar', {
 								nombre : $scope.nombre,
@@ -130,33 +128,31 @@ app
 					$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 							$scope.pagingOptions.currentPage);
 
-					$scope.$watch('pagingOptions', function(newVal, oldVal) {
-						if (newVal !== oldVal
-								&& newVal.currentPage !== oldVal.currentPage) {
-							$scope.getPagedDataAsync(
-									$scope.pagingOptions.pageSize,
-									$scope.pagingOptions.currentPage,
-									$scope.filterOptions.filterText);
-						}
-					}, true);
-					$scope.$watch('filterOptions', function(newVal, oldVal) {
-						if (newVal !== oldVal) {
-							$scope.getPagedDataAsync(
-									$scope.pagingOptions.pageSize,
-									$scope.pagingOptions.currentPage,
-									$scope.filterOptions.filterText);
-						}
-					}, true);
+					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" >Ingresar</button>'
+					$scope.ingresarPaciente = function(row){
+						alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
+								+ "\nDNI: " + row.entity.dni 
+								+ "\nFecha de nacimiento: " + new Date(row.entity.fechaDeNacimiento).toDateString());
+					}
 
-					$scope.ingresarPersona = '<button id="editBtn" type="button" class="btn btn-primary" ng-click="edit(row)" >Ingresar</button> '
+					$scope.buscarPersona = function() {
+						$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+								$scope.pagingOptions.currentPage);
+					};
+					
+				    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+				        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+				          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+				        }
+				    }, true);
 
 					$scope.gridOptions = {
 						data : 'myData',
 						enablePaging : true,
 						showFooter : true,
+						enableColumnResize : true,
 						totalServerItems : 'totalServerItems',
 						pagingOptions : $scope.pagingOptions,
-						filterOptions : $scope.filterOptions,
 						columnDefs : [ {
 							field : 'id',
 							visible : false
@@ -164,22 +160,23 @@ app
 							field : 'nombre',
 							displayName : 'Nombre'
 						}, {
+							field : 'apellido',
+							displayName : 'Apellido'
+						}, {
 							field : 'dni',
 							displayName : 'DNI'
 						}, {
 							field : 'fechaDeNacimiento',
-							displayName : 'Fecha de nacimiento'
+							displayName : 'Fecha de nacimiento',
+							cellFilter : 'date:\'dd/MM/yyyy\'',
+							width : 160
 						}, {
 							field : 'direccion',
-							displayName : 'Direccion'
+							displayName : 'Dirección',
+							width : 170
 						}, {
-							cellTemplate : $scope.ingresarPersona
+							cellTemplate : $scope.botonIngresar
 						} ]
-					};
-
-					$scope.buscarPersona = function() {
-						$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-								$scope.pagingOptions.currentPage);
 					};
 
 				});

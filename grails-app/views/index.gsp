@@ -35,7 +35,7 @@
 <%--ANGULARJS APP--%>
  <script src="js/script.js"></script>
 </head>
-<body ng-controller="busquedaController"> 
+<body> 
 
 
   <nav class="navbar navbar-default">
