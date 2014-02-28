@@ -2,7 +2,7 @@
 
 <!-- define angular app -->
 <html ng-app="triageApp">
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
   <!-- SCROLLS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
@@ -21,7 +21,6 @@
     <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>
   
   <script type="text/javascript" src="js/ng-grid-2.0.7.min.js"></script>
-
 
   <%--BOOTSTRAP LOCAL--%>
 <%--  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
