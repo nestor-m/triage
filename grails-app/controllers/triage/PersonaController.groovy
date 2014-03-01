@@ -71,9 +71,9 @@ class PersonaController {
 			if (request.JSON.fechaDeNacimiento  != '' && request.JSON.fechaDeNacimiento  != null){
 				eq("fechaDeNacimiento",new Date(request.JSON.fechaDeNacimiento.replaceAll("-","/")))
 			}
-		}
-		
-		render resultado as JSON
+		}		
+		render resultado as JSON		
+		return resultado
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////
 		//CON WHERE reemplaze el where por el criteria para poder hacer un like en el query

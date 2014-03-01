@@ -354,4 +354,123 @@ class PersonaControllerSpec extends Specification {
 			def resultados = controller.ajaxBuscar()
 			resultados.size() == 1
 	}
+	
+	void "Testear que cuando busco por fecha de nacimiento, encuentro las personas correspondientes"() {
+		when: "guardo 4 personas"
+		def persona1 = new Persona(
+			nombre : "Juan",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "34071823"
+		)
+		persona1.save()
+		def persona2 = new Persona(
+			nombre : "Martin",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "35167277"
+		)
+		persona2.save()
+		def persona3 = new Persona(
+			nombre : "Mariela",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1990/02/02"),
+			dni : "38961823"
+		)
+		persona3.save()
+		def persona4 = new Persona(
+			nombre : "Luis",
+			apellido : "Gomez",
+			fechaDeNacimiento : new Date("1980/08/02"),
+			dni : "652987"
+		)
+		persona4.save()
+		request.JSON.fechaDeNacimiento = "1987-02-02"
+		
+		then: "busco por fecha de nacimiento y encuentro dos personas"
+			
+			def resultados = controller.ajaxBuscar()
+			resultados.size() == 2
+	}
+	
+	void "Testear que cuando ingreso las primeras letras de un nombre encuentro las personas correspondientes"() {
+		when: "guardo 4 personas"
+		def persona1 = new Persona(
+			nombre : "Juan",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "34071823"
+		)
+		persona1.save()
+		def persona2 = new Persona(
+			nombre : "Martin",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "35167277"
+		)
+		persona2.save()
+		def persona3 = new Persona(
+			nombre : "Mariela",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1990/02/02"),
+			dni : "38961823"
+		)
+		persona3.save()
+		def persona4 = new Persona(
+			nombre : "Luis",
+			apellido : "Gomez",
+			fechaDeNacimiento : new Date("1980/08/02"),
+			dni : "652987"
+		)
+		persona4.save()
+		request.JSON.nombre = "mar"
+		
+		then: "busco por las primeras letras del nombre y encuentro las personas correspondientes"
+			
+			def resultados = controller.ajaxBuscar()
+			resultados.size() == 2
+			resultados[0].nombre == "Martin" | resultados[0].nombre == "Mariela"
+			resultados[1].nombre == "Martin" | resultados[1].nombre == "Mariela"
+	}
+	
+	void "Testear que cuando ingreso los primeros numeros del DNI encuentro las personas correspondientes"() {
+		when: "guardo 4 personas"
+		def persona1 = new Persona(
+			nombre : "Juan",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "34071823"
+		)
+		persona1.save()
+		def persona2 = new Persona(
+			nombre : "Martin",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1987/02/02"),
+			dni : "35167277"
+		)
+		persona2.save()
+		def persona3 = new Persona(
+			nombre : "Mariela",
+			apellido : "Perez",
+			fechaDeNacimiento : new Date("1990/02/02"),
+			dni : "38961823"
+		)
+		persona3.save()
+		def persona4 = new Persona(
+			nombre : "Luis",
+			apellido : "Gomez",
+			fechaDeNacimiento : new Date("1980/08/02"),
+			dni : "652987"
+		)
+		persona4.save()
+		request.JSON.dni = "3"
+		
+		then: "busco por los primeros numeros del DNI y encuentro las personas correspondientes"
+			
+			def resultados = controller.ajaxBuscar()
+			resultados.size() == 3
+			resultados[0].nombre == "Martin" | resultados[0].nombre == "Mariela" | resultados[0].nombre == "Juan"
+			resultados[1].nombre == "Martin" | resultados[1].nombre == "Mariela" | resultados[1].nombre == "Juan"
+			resultados[2].nombre == "Martin" | resultados[2].nombre == "Mariela" | resultados[2].nombre == "Juan"
+	}
 }
