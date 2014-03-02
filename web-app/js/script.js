@@ -96,8 +96,8 @@ app
 					$scope.totalServerItems = 0;
 
 					$scope.pagingOptions = {
-						pageSizes : [ 2, 3, 4 ],
-						pageSize : 2,
+						pageSizes : [ 10, 20, 30 ],
+						pageSize : 10,
 						currentPage : 1
 					};
 
@@ -128,7 +128,7 @@ app
 					$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 							$scope.pagingOptions.currentPage);
 
-					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" >Ingresar</button>'
+					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
 					$scope.ingresarPaciente = function(row){
 						alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
 								+ "\nDNI: " + row.entity.dni 

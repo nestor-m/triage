@@ -1,6 +1,6 @@
 package triage
 
-class Persona {
+class Persona implements Serializable{
 
     String dni 
 	String nombre
@@ -25,4 +25,8 @@ class Persona {
 			val < new Date()
 		})
     }
+	
+	static mapping = {
+		id composite: ['nombre','apellido','fechaDeNacimiento']
+	}
 }
