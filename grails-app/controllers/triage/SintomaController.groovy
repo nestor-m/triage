@@ -6,7 +6,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.converters.JSON
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
+@Transactional//(readOnly = true)
 class SintomaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",

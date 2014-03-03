@@ -8,5 +8,8 @@ class Sintoma {
 	
 
     static constraints = {
+		nombre blank:false
+		prioridad blank:false
+		tipoDeSintoma blank: false 
     }
 }

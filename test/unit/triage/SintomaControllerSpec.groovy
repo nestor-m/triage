@@ -12,7 +12,9 @@ class SintomaControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["nombre"] = 'palidez'
+		params["prioridad"]  = Prioridad.UNO
+		params["tipoDeSintoma"] = TipoDeSintoma.IMPRESION_INICIAL
     }
 
     void "Test the index action returns the correct model"() {
