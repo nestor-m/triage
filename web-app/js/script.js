@@ -180,3 +180,23 @@ app
 					};
 
 				});
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+app.controller('impresionVisualController', function($scope, $routeParams, $http,
+		$location) {
+
+	
+	$scope.sintomas = [];
+	$scope.loadSintomas = function() {
+
+		$http.get("sintoma/ajaxListVisuales").success(function(data) {
+			$scope.sintomas = data
+		})
+	}
+
+	
+	$scope.loadSintomas();
+
+});
