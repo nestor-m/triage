@@ -1,6 +1,6 @@
 package triage
 
-class Persona implements Serializable{
+class Persona { //implements Serializable{
 
     String dni 
 	String nombre
@@ -22,11 +22,12 @@ class Persona implements Serializable{
 		obraSocial nullable: true
 		nroAfiliado nullable: true 
 		fechaDeNacimiento(validator: { val, obj ->
-			val < new Date()
+			val < new Date()//validacion para que la fecha de nacimiento no sea futura
 		})
     }
 	
-	static mapping = {
-		id composite: ['nombre','apellido','fechaDeNacimiento']
-	}
+	//PK = nombre + apellido + fechaDeNacimiento
+//	static mapping = {
+//		id composite: ['nombre','apellido','fechaDeNacimiento']
+//	}
 }

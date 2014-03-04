@@ -72,7 +72,7 @@ app.controller('personaController', function($scope, $routeParams, $http,
 				obraSocial : $scope.obraSocial,
 				nroAfiliado : $scope.nroAfiliado
 			}).success(function(data) {
-
+				//data.id //para obtener el id del paciente creado
 			})
 			$location.path("/");
 		} else {
@@ -124,15 +124,24 @@ app
 
 						}, 100);
 					};
+					
+//					$scope.getPagedDataAsync = function(pageSize, page) {
+//						$http.post('sintoma/cargarImpresionInicial',[{nombre:'nestor'},{nombre:'gabriel'},{nombre:'muñoz'}]);
+//						
+//					};
 
 					$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 							$scope.pagingOptions.currentPage);
 
 					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
-					$scope.ingresarPaciente = function(row){
-						alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
-								+ "\nDNI: " + row.entity.dni 
-								+ "\nFecha de nacimiento: " + new Date(row.entity.fechaDeNacimiento).toDateString());
+//					$scope.ingresarPaciente = function(row){
+//						alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
+//								+ "\nDNI: " + row.entity.dni 
+//								+ "\nFecha de nacimiento: " + new Date(row.entity.fechaDeNacimiento).toDateString());
+						
+						$http.post("paciente/cargarPaciente",row.entity).success(function(data){//envia todos los datos de la persona (row.entity) pero con el id alcanza 
+							//data //JSON del nuevo paciente creado
+						});
 					}
 
 					$scope.buscarPersona = function() {
