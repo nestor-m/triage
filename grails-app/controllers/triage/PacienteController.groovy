@@ -3,12 +3,48 @@ package triage
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class PacienteController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"
+		,cargarPaciente: "POST"
+		,cargarImpresionInicial: "POST"]
+	
+	/**seleccion de paciente del listado de busqueda
+	 * 
+	 * @return el JSON del paciente
+	 */
+	@Transactional
+	def cargarPaciente(){
+		Persona persona = Persona.get(request.JSON.id)
+		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date()).save( failOnError : true )
+		render paciente as JSON //retorna el paciente como JSON
+	}
+	
+	/**submit de la impresion inicial
+	 * 
+	 * @return el JSON del paciente
+	 */
+	@Transactional
+	def cargarImpresionInicial(){
+		Paciente paciente = Paciente.get(request.JSON.id)//recupero al paciente por el id				
+		//me llega la lista de sintomas cargados en la impresion de inicial
+		request.JSON.sintomas.each {
+			paciente.addToSintomas(Sintoma.findByNombreAndTipoDeSintoma(it.nombre,TipoDeSintoma.findByNombre("IMPRESION INICIAL")))//agrego los sintomas al paciente
+		}
+		
+		paciente.save()
+		
+		if(paciente.esPrioridadUno()){
+			paciente.prioridad = Prioridad.UNO
+			paciente.save(flush: true)//flush:true significa que hace el commit a la base inmediatamente
+			//render Prioridad.UNO as JSON //{"enumType":"triage.Prioridad","name":"UNO"}
+		}
+		render paciente as JSON
+	}
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

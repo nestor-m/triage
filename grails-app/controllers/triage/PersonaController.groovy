@@ -41,21 +41,17 @@ class PersonaController {
 			nroAfiliado : request.JSON.nroAfiliado
 		).save( failOnError : true )
 		
-		new Paciente(
-			persona : persona,
-			fechaHoraIngreso: new Date()
-			).save( failOnError : true )
-			
-		//this.ajaxList()
+		Paciente paciente = new Paciente(persona : persona,fechaHoraIngreso: new Date()).save( failOnError : true )
+		render paciente as JSON //retorna el paciente como JSON
 	}
 	
 	def ajaxList() {
 		render Persona.findAll( "from Persona p" ) as JSON
 	}
 	
-	
-	
-	/*al seleccionar a la persona, crear paciente nuevo*/
+	/**submit del formulario del listado de busqueda de pacientes
+	 *  
+	 */
 	def ajaxBuscar() {		
 	//CON CRITERIA		
 		List resultado = Persona.withCriteria {
@@ -107,7 +103,6 @@ class PersonaController {
 //		render resultados as JSON
 //
 //		return resultados
-		
 	}
 	
 	def ajaxSeleccionarPersona(){

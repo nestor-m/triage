@@ -1,6 +1,6 @@
 package triage;
 
-public enum TipoDeSintoma {
+public enum TipoDeSintomaEnum {
 	IMPRESION_INICIAL,
 	TRAUMA,
 	ABDOMINALES_GASTROINTESTINALES,

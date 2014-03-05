@@ -14,7 +14,7 @@ class SintomaControllerSpec extends Specification {
         // TODO: Populate valid properties like...
         params["nombre"] = 'palidez'
 		params["prioridad"]  = Prioridad.UNO
-		params["tipoDeSintoma"] = TipoDeSintoma.IMPRESION_INICIAL
+		params["tipoDeSintoma"] = new TipoDeSintoma(nombre:"IMPRESION INICIAL") //TipoDeSintoma.IMPRESION_INICIAL
     }
 
     void "Test the index action returns the correct model"() {
