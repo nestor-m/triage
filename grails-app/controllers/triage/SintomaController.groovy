@@ -10,11 +10,21 @@ import grails.transaction.Transactional
 class SintomaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",
-		ajaxListVisuales: "GET", ajaxList: "GET"]
+		ajaxListVisuales: "GET", ajaxList: "GET", ajaxSave: "POST"]
    
    
    def ajaxListVisuales() {
 	   render Sintoma.findAll( "from Sintoma s" ) as JSON
+   }
+   
+   
+   @Transactional
+   def ajaxSave(){
+	   def Sintoma = new Sintoma(
+		   nombre: request.JSON.nombre,
+		   prioridad: request.JSON.prioridad,
+		   tipoDeSintoma: request.JSON.tipoDeSintoma
+		   ). save(failOnError: true)
    }
 	
     def index(Integer max) {

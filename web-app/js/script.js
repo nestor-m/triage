@@ -1,4 +1,4 @@
-var app = angular.module('triageApp', [ 'ngGrid' ]);
+var app = angular.module('triageApp', [ 'ngGrid']);
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -13,7 +13,7 @@ app.config(function($routeProvider) {
 	})
 
 	.when('/datos_maestros', {
-		templateUrl : 'inicio.html'
+		templateUrl : 'impresion_visual.html'
 	})
 
 	.when('/reportes', {
@@ -42,8 +42,7 @@ app.config(function($routeProvider) {
 app.controller('personaController', function($scope, $routeParams, $http,
 		$location) {
 
-	// $scope.ingreso_form.submitted = false;
-	// $scope.ingreso_form.fechaNacFutura = false;
+	
 	$scope.personas = [];
 	$scope.loadPersonas = function() {
 
