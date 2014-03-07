@@ -1,4 +1,4 @@
-var app = angular.module('triageApp', [ 'ngGrid' ]);
+var app = angular.module('app', [ 'ngGrid']);
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -13,7 +13,8 @@ app.config(function($routeProvider) {
 	})
 
 	.when('/datos_maestros', {
-		templateUrl : 'inicio.html'
+		templateUrl : 'impresion_visual.html',
+		controller : 'impresionVisualController'
 	})
 
 	.when('/reportes', {
@@ -42,8 +43,7 @@ app.config(function($routeProvider) {
 app.controller('personaController', function($scope, $routeParams, $http,
 		$location) {
 
-	// $scope.ingreso_form.submitted = false;
-	// $scope.ingreso_form.fechaNacFutura = false;
+	
 	$scope.personas = [];
 	$scope.loadPersonas = function() {
 
@@ -135,14 +135,14 @@ app
 
 					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
 					$scope.ingresarPaciente = function(row){
-						alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
+					alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
 								+ "\nDNI: " + row.entity.dni 
 								+ "\nFecha de nacimiento: " + new Date(row.entity.fechaDeNacimiento).toDateString());
 						
 						$http.post("paciente/cargarPaciente",row.entity).success(function(data){//envia todos los datos de la persona (row.entity) pero con el id alcanza 
 							//data //JSON del nuevo paciente creado
 						});
-					}
+				   }
 
 					$scope.buscarPersona = function() {
 						$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
@@ -196,16 +196,14 @@ app
 app.controller('impresionVisualController', function($scope, $routeParams, $http,
 		$location) {
 
-	
 	$scope.sintomas = [];
 	$scope.loadSintomas = function() {
 
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
-			$scope.sintomas = data
+			$scope.sintomas = data;
+			console.log($scope.sintomas);
 		})
 	}
 
-	
 	$scope.loadSintomas();
-
 });

@@ -1,3 +1,5 @@
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+
 import triage.Persona
 import triage.Sintoma
 import triage.TipoDeSintoma
@@ -12,8 +14,12 @@ class BootStrap {
 		def impresionInicial = new TipoDeSintoma(nombre:"IMPRESION INICIAL")
 		impresionInicial.save()
 		
+		def muscular = new TipoDeSintoma(nombre: "DOLOR MUSCULAR")
+		muscular.save()
+		
 		new Sintoma(nombre:"DOLOR SEVERO",prioridad: Prioridad.UNO,tipoDeSintoma: impresionInicial).save()
 		new Sintoma(nombre:"DESHIDRATACION",prioridad: Prioridad.DOS,tipoDeSintoma: impresionInicial).save()
+		new Sintoma(nombre:"CONTRACTURA", prioridad: Prioridad.TRES, tipoDeSintoma: muscular).save()
     }
 	
     def destroy = {

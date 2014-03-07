@@ -12,5 +12,5 @@ class TipoDeSintoma {
 	
 //	static mapping = {
 //		id name: 'nombre' //PK //esto no andaba bien, lo reemplaze con el unique en nombre
-//	}
+
 }

@@ -24,8 +24,18 @@ class SintomaController {
 //			   eq('nombre', 'IMPRESION INICIAL')
 //		   }
 //	   }
-	   
+
 	   render query.list() as JSON
+   }
+   
+   
+   @Transactional
+   def ajaxSave(){
+	   def Sintoma = new Sintoma(
+		   nombre: request.JSON.nombre,
+		   prioridad: request.JSON.prioridad,
+		   tipoDeSintoma: request.JSON.tipoDeSintoma
+		   ). save(failOnError: true)
    }
 	
     def index(Integer max) {

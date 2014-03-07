@@ -1,0 +1,29 @@
+
+
+
+
+<div class="page-header" style="text-align: center">
+		<h4>Impresión Visual</h4>
+		<h3>Marque los síntomas que presenta
+			el paciente</h3>
+</div>
+
+
+<label ng-repeat="sintoma in sintomas">
+  <input type="checkbox" checklist-model="sintomas" checklist-value="sintoma"> {{sintoma.nombre}}
+</label>
+
+
+
+<!-- <table class="table table-hover"> -->
+<!--         <tr> -->
+<!--         <td>sintoma </td> -->
+ 
+<!--         </tr> -->
+<!--         <tr ng-repeat="sintoma in sintomas"> -->
+<!--                <td><label for="{{ sintoma.nombre }}">{{ sintoma.nombre }}</label></td> -->
+               
+<!--         </tr> -->
+<!--     </table> -->
+	
+	
