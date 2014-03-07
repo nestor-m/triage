@@ -201,7 +201,6 @@ app.controller('impresionVisualController', function($scope, $routeParams, $http
 
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
 			$scope.sintomas = data;
-			console.log($scope.sintomas);
 		})
 	}
 
