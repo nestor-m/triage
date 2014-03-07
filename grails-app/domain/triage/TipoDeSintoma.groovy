@@ -10,7 +10,7 @@ class TipoDeSintoma {
 		nombre blank:false
     }
 	
-	static mapping = {
-		id name: 'nombre' //PK
-	}
+//	static mapping = {
+//		id name: 'nombre' //PK
+//	}
 }

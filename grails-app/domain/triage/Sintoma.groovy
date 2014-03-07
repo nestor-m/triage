@@ -4,6 +4,7 @@ class Sintoma implements Serializable{
 	
 	String nombre
 	Prioridad prioridad
+	TipoDeSintoma tipoDeSintoma
 	
 	static belongsTo = [tipoDeSintoma : TipoDeSintoma]	
 

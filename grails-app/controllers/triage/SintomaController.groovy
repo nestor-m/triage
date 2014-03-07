@@ -13,13 +13,15 @@ class SintomaController {
 		ajaxListVisuales: "GET"]
    
    def ajaxListVisuales() {
-	   def query = Sintoma.where{
-		   tipoDeSintoma.nombre == "IMPRESION INICIAL"
-	   }
-   
-	   //render Sintoma.findAll( "from Sintoma s" ) as JSON
+	   //TODO: aquí cambiar por el id del tipo de síntoma!
 	   
-	   render query.list() as JSON
+	   
+//	   def query = Sintoma.where{
+//		   tipoDeSintoma == new TipoDeSintoma(id: 1, nombre: "IMPRESION INICIAL")
+//	   }
+//	   render query.list() as JSON
+	   
+	   render Sintoma.findAll( "from Sintoma s where tipoDeSintoma = 1" ) as JSON
    }
    
    

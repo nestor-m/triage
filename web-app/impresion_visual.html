@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Triage - Impresion Inicial</title>
 
-</head>
 
-<body ng-controller="impresionVisualController">
 
 
 <div class="page-header" style="text-align: center">
@@ -19,10 +10,20 @@
 
 
 <label ng-repeat="sintoma in sintomas">
-  <input type="checkbox" checklist-model="sintomas" checklist-value="sintoma.id"> {{sintoma.nombre}}
+  <input type="checkbox" checklist-model="sintomas" checklist-value="sintoma"> {{sintoma.nombre}}
 </label>
 
+
+
+<!-- <table class="table table-hover"> -->
+<!--         <tr> -->
+<!--         <td>sintoma </td> -->
+ 
+<!--         </tr> -->
+<!--         <tr ng-repeat="sintoma in sintomas"> -->
+<!--                <td><label for="{{ sintoma.nombre }}">{{ sintoma.nombre }}</label></td> -->
+               
+<!--         </tr> -->
+<!--     </table> -->
 	
 	
-</body>
-</html>
