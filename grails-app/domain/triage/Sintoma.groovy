@@ -9,12 +9,10 @@ class Sintoma implements Serializable{
 	static belongsTo = [tipoDeSintoma : TipoDeSintoma]	
 
     static constraints = {
-		nombre blank:false
-		prioridad blank:false
-		tipoDeSintoma blank: false 
+		nombre unique: 'tipoDeSintoma'//nombre + tipo de sintoma son unicos
     }
 	
-	static mapping = {
-		id composite: ['nombre','tipoDeSintoma'] //PK
-	}
+//	static mapping = {
+//		id composite: ['nombre','tipoDeSintoma'] //PK // Esto no andaba bien, lo reemplaze por: nombre unique: 'tipoDeSintoma'
+//	}
 }
