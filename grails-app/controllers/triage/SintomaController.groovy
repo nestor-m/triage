@@ -17,7 +17,13 @@ class SintomaController {
 		   tipoDeSintoma.nombre == "IMPRESION INICIAL"
 	   }
    
-	   //render Sintoma.findAll( "from Sintoma s" ) as JSON
+	   //CON CRITERIA
+//	   def criteria = Sintoma.createCriteria()
+//	   def results = criteria.list {
+//		   tipoDeSintoma {
+//			   eq('nombre', 'IMPRESION INICIAL')
+//		   }
+//	   }
 	   
 	   render query.list() as JSON
    }
