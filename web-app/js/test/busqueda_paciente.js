@@ -78,15 +78,15 @@ casper.test.begin('Ingreso cuatro pacientes y luego filtro el listado', 9, funct
     casper.wait(1000); //espero un segundo para que me de tiempo a filtrar el listado
     
     casper.then(function(){
-    	test.assertTextExists('Perez','Encontre el apellido de Juan Perez');
+    	test.assertTextExists('PEREZ','Encontre el apellido de Juan Perez');
     });
     
     casper.then(function(){
-    	test.assertTextExists('Garcia','Encontre el apellido de Juan Garcia');
+    	test.assertTextExists('GARCIA','Encontre el apellido de Juan Garcia');
     });
     
     casper.then(function(){
-    	test.assertTextDoesntExist('Gonzalez','Gonzalez es filtrado')
+    	test.assertTextDoesntExist('GONZALEZ','Gonzalez es filtrado')
     });
     
     casper.thenOpen('http://localhost:8080/triage/#/busqueda', function() {
@@ -98,15 +98,15 @@ casper.test.begin('Ingreso cuatro pacientes y luego filtro el listado', 9, funct
     casper.wait(1000); //espero un segundo para que me de tiempo a filtrar el listado
     
     casper.then(function(){
-    	test.assertTextExists('Juan','Encontre el nombre de Juan Garcia');
+    	test.assertTextExists('JUAN','Encontre el nombre de Juan Garcia');
     });
     
     casper.then(function(){
-    	test.assertTextExists('Carlos','Encontre el apellido de Carlos Garcia');
+    	test.assertTextExists('CARLOS','Encontre el apellido de Carlos Garcia');
     });
     
     casper.then(function(){
-    	test.assertTextDoesntExist('Perez','Perez es filtrado')
+    	test.assertTextDoesntExist('PEREZ','Perez es filtrado')
     });
     
     casper.thenOpen('http://localhost:8080/triage/#/busqueda', function() {
@@ -118,15 +118,15 @@ casper.test.begin('Ingreso cuatro pacientes y luego filtro el listado', 9, funct
     casper.wait(1000); //espero un segundo para que me de tiempo a filtrar el listado
     
     casper.then(function(){
-    	test.assertTextExists('Juan','Encontre el nombre de Juan Perez');
+    	test.assertTextExists('JUAN','Encontre el nombre de Juan Perez');
     });
     
     casper.then(function(){
-    	test.assertTextExists('Perez','Encontre el apellido de Juan Perez');
+    	test.assertTextExists('PEREZ','Encontre el apellido de Juan Perez');
     });
     
     casper.then(function(){
-    	test.assertTextDoesntExist('Garcia','Garcia es filtrado')
+    	test.assertTextDoesntExist('GARCIA','Garcia es filtrado')
     });
 
     casper.run(function() {
