@@ -2,7 +2,7 @@ package triage
 
 class Paciente {
 	
-	Date fechaHoraIngreso
+	Date fechaHoraIngreso = new Date()
 	Date fechaHoraAtencion
 	
 	Integer presionArterial

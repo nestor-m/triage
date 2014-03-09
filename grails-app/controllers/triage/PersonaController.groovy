@@ -28,6 +28,10 @@ class PersonaController {
         respond new Persona(params)
     }
 
+	/**
+	 * Submit del formulario de alta de persona
+	 * @return
+	 */
 	@Transactional
 	def ajaxSave() {
 		def persona = new Persona(
@@ -41,7 +45,7 @@ class PersonaController {
 			nroAfiliado : request.JSON.nroAfiliado
 		).save( failOnError : true )
 		
-		Paciente paciente = new Paciente(persona : persona,fechaHoraIngreso: new Date()).save( failOnError : true )
+		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date()).save( failOnError : true )
 		render paciente as JSON //retorna el paciente como JSON
 	}
 	

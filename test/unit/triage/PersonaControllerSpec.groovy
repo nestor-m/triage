@@ -187,7 +187,6 @@ class PersonaControllerSpec extends Specification {
 			Paciente.count() == 0
 	}
 	
-	
 	void "Testear que encuentro a todas las personas con un determinado nombre"() {
 		when: "guardo dos personas y busco una persona que se llama Juan"
 			def persona1 = new Persona(
@@ -238,7 +237,6 @@ class PersonaControllerSpec extends Specification {
 			resultados.size() == 2
 	}
 	
-	
 	void "Testear que encuentro solo una persona con determinado nombre y apellido"() {
 		when: "guardo dos personas llamadas Juan pero con apellido distinto"
 			def persona1 = new Persona(
@@ -265,7 +263,6 @@ class PersonaControllerSpec extends Specification {
 			resultados.size() == 1
 	}
 	
-	
 	void "Testear que si los campos de busqueda estan vacios, no devuelvo nada"(){
 		when: "no completo ningun campo de busqueda y presiono buscar"
 			def resultados = controller.ajaxBuscar()
@@ -273,7 +270,6 @@ class PersonaControllerSpec extends Specification {
 		then: "no recibo resultados"
 			resultados.size() == 0
 	}
-	
 	
 	void "Testeo que al buscar un apellido recibo todas las personas con el mismo" (){
 		when: "guardo 4 personas, y 3 tienen el mismo apellido"
@@ -315,7 +311,6 @@ class PersonaControllerSpec extends Specification {
 			resultados[1].apellido == "Perez"
 			resultados[2].apellido == "Perez"
 	}
-	
 	
 	void "Testear que cuando busco por DNI, encuentro las personas correspondientes"() {
 		when: "guardo 4 personas"

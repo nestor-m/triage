@@ -20,7 +20,7 @@ class PacienteController {
 	@Transactional
 	def cargarPaciente(){
 		Persona persona = Persona.get(request.JSON.id)
-		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date()).save( failOnError : true )
+		Paciente paciente = new Paciente(persona: persona).save( failOnError : true )
 		render paciente as JSON //retorna el paciente como JSON
 	}
 	
@@ -30,10 +30,11 @@ class PacienteController {
 	 */
 	@Transactional
 	def cargarImpresionInicial(){
-		Paciente paciente = Paciente.get(request.JSON.id)//recupero al paciente por el id				
-		//me llega la lista de sintomas cargados en la impresion de inicial
+		Paciente paciente = Paciente.get(request.JSON.id)//recupero al paciente por el id
+		TipoDeSintoma impresionInicial = TipoDeSintoma.findByNombre("IMPRESION INICIAL")//recupero el tipo de sintoma impresion inicial
+		//me llega la lista de sintomas cargados en la impresion de inicial		
 		request.JSON.sintomas.each {
-			paciente.addToSintomas(Sintoma.findByNombreAndTipoDeSintoma(it.nombre,TipoDeSintoma.findByNombre("IMPRESION INICIAL")))//agrego los sintomas al paciente
+			paciente.addToSintomas(Sintoma.findByNombreAndTipoDeSintoma(it.nombre,impresionInicial))//agrego los sintomas al paciente
 		}
 		
 		paciente.save()
