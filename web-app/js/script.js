@@ -39,6 +39,10 @@ app.config(function($routeProvider) {
 		templateUrl : 'prioridad1.html'
 	})
 	
+	.when('/prioridad2', {
+		templateUrl : 'prioridad2.html'
+	})
+	
 	.when('/lista_pacientes', {
 		templateUrl : 'lista_pacientes.html',
 		controller : 'personaController'
@@ -100,7 +104,7 @@ app.controller('personaController', function($scope, $routeParams, $http,
 app
 		.controller(
 				'busquedaController',
-				function($scope, $http) {
+				function($scope, $http, $location) {
 
 					$scope.totalServerItems = 0;
 
@@ -144,13 +148,14 @@ app
 
 					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
 					$scope.ingresarPaciente = function(row){
-					alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
-								+ "\nDNI: " + row.entity.dni 
-								+ "\nFecha de nacimiento: " + new Date(row.entity.fechaDeNacimiento).toDateString());
+//					alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
+//								+ "\nDNI: " + row.entity.dni 
+//								+ "\nFecha de nacimiento: " + new Date(row.entity.fechaDeNacimiento).toDateString());
 						
 						$http.post("paciente/cargarPaciente",row.entity).success(function(data){//envia todos los datos de la persona (row.entity) pero con el id alcanza 
 							//data //JSON del nuevo paciente creado
 						});
+						$location.path("/impresion_visual");
 				   }
 
 					$scope.buscarPersona = function() {
@@ -218,14 +223,19 @@ app.controller('impresionVisualController', function($scope, $routeParams, $http
 	}
 	
 	$scope.cargarImpresionInicial = function() {
-		console.log($scope.paciente.sintomas);
 		$http.post("paciente/cargarImpresionInicial", {
 			id : 1, //aca falta decidir de donde traeremos el paciente
 			sintomas: $scope.paciente.sintomas
 		}).success(function(data) {
-			//data.id //para obtener el id del paciente creado
+			//en data viene el paciente
+			if (data.prioridad.name == "UNO"){
+				$location.path("/prioridad1");
+			}		
+			else {
+				//finalizo x ahora
+				$location.path("/prioridad2");
+			}
 		})
-//		$location.path("/"); //me voy a la prox pantalla
 	}
 
 	$scope.loadSintomas();

@@ -17,9 +17,9 @@ class BootStrap {
 		def muscular = new TipoDeSintoma(nombre: "DOLOR MUSCULAR")
 		muscular.save()
 		
-		new Sintoma(nombre:"DOLOR SEVERO",prioridad: Prioridad.UNO,tipoDeSintoma: impresionInicial).save()
-		new Sintoma(nombre:"DESHIDRATACION",prioridad: Prioridad.DOS,tipoDeSintoma: impresionInicial).save()
-		new Sintoma(nombre:"CONTRACTURA", prioridad: Prioridad.TRES, tipoDeSintoma: muscular).save()
+		new Sintoma(nombre:"DOLOR SEVERO (p1)",prioridad: Prioridad.UNO,tipoDeSintoma: impresionInicial).save()
+		new Sintoma(nombre:"DESHIDRATACION (p2)",prioridad: Prioridad.DOS,tipoDeSintoma: impresionInicial).save()
+		new Sintoma(nombre:"CONTRACTURA (p3)", prioridad: Prioridad.TRES, tipoDeSintoma: muscular).save()
     }
 	
     def destroy = {
