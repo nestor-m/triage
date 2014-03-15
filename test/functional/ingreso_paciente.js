@@ -9,7 +9,7 @@ casper.test.begin('Lleno el formulario correctamente', 2, function suite(test) {
     });
 
     casper.then(function() {
-    	test.assertEquals("http://localhost:8080/triage/#/", this.getCurrentUrl());
+    	test.assertEquals("http://localhost:8080/triage/#/impresion_visual", this.getCurrentUrl());
     });
 
     casper.run(function() {

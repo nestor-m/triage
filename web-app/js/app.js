@@ -46,9 +46,16 @@ app.config(function($routeProvider) {
 	.when('/lista_pacientes', {
 		templateUrl : 'lista_pacientes.html',
 		controller : 'personaController'
-	}).when('/ingreso_form', {
+	})
+	
+	.when('/ingreso_form', {
 		templateUrl : 'ingreso_form.html',
 		controller : 'personaController'
+	})
+	
+	.when('/carga_sintomas', {
+		templateUrl : 'carga_sintomas.html',
+		controller : 'cargaSintomasController'
 	});
 
 });
@@ -99,12 +106,9 @@ app.controller('personaController', function($scope, $routeParams, $http,
 
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**********************************************************************************************************/
 
-app
-		.controller(
-				'busquedaController',
-				function($scope, $http, $location) {
+app.controller('busquedaController',function($scope, $http, $location) {
 
 					$scope.totalServerItems = 0;
 
@@ -156,7 +160,7 @@ app
 							//data //JSON del nuevo paciente creado
 						});
 						$location.path("/impresion_visual");
-				   }
+				   };
 
 					$scope.buscarPersona = function() {
 						$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
@@ -198,14 +202,15 @@ app
 							displayName : 'Dirección',
 							width : 170
 						}, {
-							cellTemplate : $scope.botonIngresar
+							cellTemplate : $scope.botonIngresar,
+							width : 70
 						} ]
 					};
 
 				});
 
 
-////////////////////////////////////////////////////////////////////////////////////////////
+/**********************************************************************************************************/
 
 app.controller('impresionVisualController', function($scope, $routeParams, $http,
 		$location) {
@@ -228,7 +233,7 @@ app.controller('impresionVisualController', function($scope, $routeParams, $http
 			sintomas: $scope.paciente.sintomas
 		}).success(function(data) {
 			//en data viene el paciente
-			if (data.prioridad.name == "UNO"){
+			if (data.prioridad != null && data.prioridad.name == "UNO"){
 				$location.path("/prioridad1");
 			}		
 			else {
@@ -241,8 +246,92 @@ app.controller('impresionVisualController', function($scope, $routeParams, $http
 	$scope.loadSintomas();
 });
 
+/**********************************************************************************************************/
 
+app.controller('cargaSintomasController',function($scope, $http, $location) {
+	
+	$scope.sintomas = [];
+	
+	$scope.borrarSintoma = function (sintoma){
+		var i = $scope.sintomas.indexOf(sintoma);
+		if (i > -1) {
+			$scope.sintomas.splice(i, 1);
+		}
+	};
 
+	$scope.totalServerItems = 0;
+
+	$scope.pagingOptions = {
+		pageSizes : [ 10, 20, 30 ],
+		pageSize : 10,
+		currentPage : 1
+	};
+
+	$scope.setPagingData = function(data, page, pageSize) {
+		var pagedData = data.slice((page - 1) * pageSize, page
+				* pageSize);
+		$scope.myData = pagedData;
+		$scope.totalServerItems = data.length;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	};
+	
+	$scope.getPagedDataAsync = function(pageSize, page) {
+		setTimeout(function() {
+			$http.post('sintoma/traerSintomas', {
+				sintoma : $scope.sintoma,
+				tipoDeSintoma : $scope.tipoDeSintoma,
+			}).success(function(data) {
+				$scope.setPagingData(data, page, pageSize);
+			})
+
+		}, 100);
+	};
+
+	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+			$scope.pagingOptions.currentPage);
+
+	$scope.botonAgregar = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>'
+		
+	$scope.agregarSintoma = function(row){
+		$scope.sintomas.push(row.entity.nombre);
+    };
+
+	$scope.filtrarListadoDeSintomas = function() {
+		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+				$scope.pagingOptions.currentPage);
+	};
+	
+    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+        }
+    }, true);
+
+	$scope.gridOptions = {
+		data : 'myData',
+		enablePaging : true,
+		showFooter : true,
+		enableColumnResize : true,
+		totalServerItems : 'totalServerItems',
+		pagingOptions : $scope.pagingOptions,
+		columnDefs : [ {
+			field : 'id',
+			visible : false
+		}, {
+			field : 'nombre',
+			displayName : 'Sintoma'
+		}, {
+			field : 'tipoDeSintoma',
+			displayName : 'Tipo de sintoma'
+		}, {
+			cellTemplate : $scope.botonAgregar,
+			width : 70
+		} ]
+	};
+
+});
 
 
 

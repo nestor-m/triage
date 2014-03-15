@@ -1,0 +1,44 @@
+<title>Ingreso de síntomas</title>
+<body>
+      <div class="page-header" style="text-align:center">
+        <h3>Ingreso de síntomas</h3>
+      </div>
+  <div class="row">
+   <div class="col-md-9">
+      <form name="busqueda_form" class="form-horizontal" ng-submit="filtrarListadoDeSintomas()" style="text-align:center" role="form">
+        <div class="form-group">
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label">Síntoma</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="sintoma" ng-model="sintoma">
+                </div>
+                <label class="col-sm-1 control-label">Tipo de síntoma</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="tipoDeSintoma" ng-model="tipoDeSintoma">
+                </div>
+           </div>
+        </div>
+        <div class="form-group">
+              <input type="submit" class="btn btn-default" value="Buscar"/>
+        </div>
+     </form>
+     
+     <div class="gridStyle" ng-grid="gridOptions"> </div>
+     
+     <br/>
+     
+     <div style="text-align:left">
+         <a type="button" name="botonIngresoPaciente" class="btn btn-lg btn-success col-sm-offset-1" href="#ingreso_form">Aceptar</a>
+     </div>
+     
+    </div>
+    
+    <div class="col-md-3">
+      <p>Síntomas agregados</p>
+      <ul >
+        <li class="animate-repeat" ng-repeat="sintoma in sintomas" ng-mouseover="borrar=true" ng-mouseleave="borrar=false" ng-init="borrar=false">
+          {{sintoma}} <a ng-click="borrarSintoma(sintoma)" ng-show="borrar">borrar</a>
+        </li>
+    </div>
+   </div>
+</body>
