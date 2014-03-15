@@ -5,7 +5,8 @@ casper.test.begin('Primeros pasos en Triage', 3, function suite(test) {
 
     casper.then(function() {
          this.click('a[type="button"][name="adultos"]');
-         test.assertEquals("http://localhost:8080/triage/#/paciente_ingreso_previo_adultos", this.getCurrentUrl());
+         test.assertEquals("http://localhost:8080/triage/#/paciente_ingreso_previo_adultos", 
+        		 this.getCurrentUrl(), 'Llego a la pantalla de opciones de adulto');
     });
 
     casper.then(function() {
