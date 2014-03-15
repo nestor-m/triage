@@ -202,6 +202,24 @@ class PacienteControllerSpec extends Specification {
 			response.json.prioridad.name == "UNO"
 	}
 	
+	/*tengo que ver cómo cargar un sintoma en el JSON*/
+	void "Test cargar sintomas"(){
+		when: "Cargo una nueva persona y un paciente asociado"
+			Paciente paciente = this.cargarPaciente()
+			
+		and: "Creo un JSON con el sintoma y se lo cargo al paciente"
+			this.cargarSintomas();
+			request.JSON = new JSONObject('{"id":1,"sintomas":[' +
+													 '{"nombre":"CONTRACTURA",'+
+													  'prioridad: {"enumType":"triage.Prioridad","name":"TRES"},'+
+													 'tipoDeSintoma : {nombre: "DOLOR MUSCULAR"}}'+
+													 ']}')
+			controller.cargarSintomas()
+		
+		then: "Verifico que el sintoma se haya cargado correctamente"
+			paciente.sintomas.size() == 1
+	}
+	
 	public static void main(String[] args){
 		println new Date()-1;//ayer
 	} 

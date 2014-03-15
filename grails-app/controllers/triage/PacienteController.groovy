@@ -11,7 +11,8 @@ class PacienteController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"
 		,cargarPaciente: "POST"
-		,cargarImpresionInicial: "POST"]
+		,cargarImpresionInicial: "POST"
+		,cargarSintomas: "POST"]
 	
 	/**seleccion de paciente del listado de busqueda
 	 * 
@@ -47,6 +48,24 @@ class PacienteController {
 		render paciente as JSON
 	}
 
+	
+	@Transactional
+	def cargarSintomas(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		request.JSON.sintomas.each {
+			paciente.addToSintomas(it)
+		}
+		
+		paciente.save()
+		
+		if (paciente.esPrioridadUno()){
+			paciente.prioridad = Prioridad.UNO
+			paciente.save(flush.true)
+		}
+		
+		render paciente as JSON
+	}
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Paciente.list(params), model:[pacienteInstanceCount: Paciente.count()]

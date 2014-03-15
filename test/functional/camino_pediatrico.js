@@ -9,8 +9,8 @@ casper.test.begin('Primeros pasos en Triage', 3, function suite(test) {
     });
 
     casper.then(function() {
-         this.click('a[type="button"][name="ingreso_paciente"]');
-         test.assertEquals("http://localhost:8080/triage/#/ingreso_form", this.getCurrentUrl());
+         this.click('a[type="button"][name="busqueda_paciente"]');
+         test.assertEquals("http://localhost:8080/triage/#/busqueda", this.getCurrentUrl());
     });
 
     casper.run(function() {
