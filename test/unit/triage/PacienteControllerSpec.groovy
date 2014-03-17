@@ -1,5 +1,6 @@
 package triage
 
+import grails.converters.JSON
 import grails.test.mixin.*
 import org.codehaus.groovy.grails.web.json.JSONObject
 import spock.lang.Specification
@@ -89,7 +90,7 @@ class PacienteControllerSpec extends Specification {
 			
 		then: "La respuesta json es la esperada"
 			response.json.id == 1
-			response.json.persona.id == 1
+			response.json.nombre == "unNombre"
 	}
 	
 	List cargarSintomas(){
@@ -153,36 +154,15 @@ class PacienteControllerSpec extends Specification {
 			Paciente paciente = this.cargarPaciente()
 			
 		and: "Creo un JSON con los sintomas y se los cargo al paciente"
-			this.cargarSintomas();
-			request.JSON = new JSONObject('{"id":1,"sintomas":[' +
-													 '{"nombre":"DESHIDRATACION"}'+
-													 ',{"nombre":"DOLOR SEVERO"}'+
-													 ']}')			
+			List sintomas = this.cargarSintomas();
+
+			request.JSON.id = 1
+			request.JSON.sintomas = [sintomas[0],sintomas[1]]
+			
 			controller.cargarImpresionInicial()
 		
 		then: "Verifico que los sintomas se hayan cargado correctamente"
 			paciente.sintomas.size() == 2
-	}
-	
-	void "Test cargar impresion inicial con un sintoma que no es de impresion inicial"(){
-		when: "Cargo una nueva persona y un paciente asociado"
-			Paciente paciente = this.cargarPaciente()
-			
-		and: "Creo un JSON con los sintomas y se los cargo al paciente"
-			this.cargarSintomas();
-			request.JSON = new JSONObject('{"id":1,"sintomas":[' +
-													 '{"nombre":"DESHIDRATACION"}'+
-													 ',{"nombre":"DOLOR SEVERO"}'+
-													 ',{"nombre":"CONTRACTURA"}'+
-													 ']}')
-			shouldFail(groovy.lang.MissingMethodException){
-				controller.cargarImpresionInicial()
-			}			
-		
-		then: "Verifico que se hayan cargado los sintomas correspondientes"
-			paciente.sintomas.size() == 2
-			paciente.sintomas[0].nombre == "DESHIDRATACION"
-			paciente.sintomas[1].nombre == "DOLOR SEVERO"
 	}
 	
 	void "Test cargar impresion inicial con sintoma de priorida uno"(){
@@ -190,11 +170,11 @@ class PacienteControllerSpec extends Specification {
 			Paciente paciente = this.cargarPaciente()
 			
 		and: "Creo un JSON con los sintomas y se los cargo al paciente"
-			this.cargarSintomas();
-			request.JSON = new JSONObject('{"id":1,"sintomas":[' +
-													 '{"nombre":"DESHIDRATACION"}'+
-													 ',{"nombre":"DOLOR SEVERO"}'+
-													 ']}')
+			List sintomas = this.cargarSintomas();
+
+			request.JSON.id = 1
+			request.JSON.sintomas = sintomas
+			
 			controller.cargarImpresionInicial()
 		
 		then: "Verifico que los sintomas se hayan cargado correctamente"
@@ -209,11 +189,14 @@ class PacienteControllerSpec extends Specification {
 			
 		and: "Creo un JSON con el sintoma y se lo cargo al paciente"
 			this.cargarSintomas();
-			request.JSON = new JSONObject('{"id":1,"sintomas":[' +
-													 '{"nombre":"CONTRACTURA",'+
-													  'prioridad: {"enumType":"triage.Prioridad","name":"TRES"},'+
-													 'tipoDeSintoma : {nombre: "DOLOR MUSCULAR"}}'+
-													 ']}')
+//			request.JSON = new JSONObject('{"id":1,"sintomas":[' +
+//													 '{"nombre":"CONTRACTURA",'+
+//													  'prioridad: {"enumType":"triage.Prioridad","name":"TRES"},'+
+//													 'tipoDeSintoma : {nombre: "DOLOR MUSCULAR"}}'+
+//													 ']}')
+			request.JSON.id = 1
+			request.JSON.sintomas = [Sintoma.get(1)]
+			
 			controller.cargarSintomas()
 		
 		then: "Verifico que el sintoma se haya cargado correctamente"

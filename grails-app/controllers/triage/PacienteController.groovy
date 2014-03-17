@@ -22,7 +22,13 @@ class PacienteController {
 	def cargarPaciente(){
 		Persona persona = Persona.get(request.JSON.id)
 		Paciente paciente = new Paciente(persona: persona).save( failOnError : true )
-		render paciente as JSON //retorna el paciente como JSON
+		
+		request.JSON.id = paciente.id
+		request.JSON.nombre = persona.nombre
+		request.JSON.apellido = persona.apellido
+		request.JSON.fechaDeNacimiento = persona.fechaDeNacimiento.getDateString()
+		 
+		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
 	
 	/**submit de la impresion inicial
@@ -32,10 +38,9 @@ class PacienteController {
 	@Transactional
 	def cargarImpresionInicial(){
 		Paciente paciente = Paciente.get(request.JSON.id)//recupero al paciente por el id
-		TipoDeSintoma impresionInicial = TipoDeSintoma.findByNombre("IMPRESION INICIAL")//recupero el tipo de sintoma impresion inicial
 		//me llega la lista de sintomas cargados en la impresion de inicial		
 		request.JSON.sintomas.each {
-			paciente.addToSintomas(Sintoma.findByNombreAndTipoDeSintoma(it.nombre,impresionInicial))//agrego los sintomas al paciente
+			paciente.addToSintomas(Sintoma.get(it.id))
 		}
 		
 		paciente.save()
@@ -43,7 +48,6 @@ class PacienteController {
 		if(paciente.esPrioridadUno()){
 			paciente.prioridad = Prioridad.UNO
 			paciente.save(flush: true)//flush:true significa que hace el commit a la base inmediatamente
-			//render Prioridad.UNO as JSON //{"enumType":"triage.Prioridad","name":"UNO"}
 		}
 		render paciente as JSON
 	}
@@ -60,7 +64,7 @@ class PacienteController {
 		
 		if (paciente.esPrioridadUno()){
 			paciente.prioridad = Prioridad.UNO
-			paciente.save(flush.true)
+			paciente.save(flush:true)
 		}
 		
 		render paciente as JSON

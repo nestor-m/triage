@@ -14,7 +14,7 @@
                 <td><label for="{{ persona.dni }}">{{ persona.dni }}</label></td>
                 <td><label for="{{ persona.apellido }}">{{ persona.apellido }}</label></td>
                 <td><label for="{{ persona.nombre }}">{{ persona.nombre }}</label></td>
-                <td><label for="{{ persona.fechaDeNacimiento }}">{{ persona.fechaDeNacimiento }}</label></td>
+                <td><label for="{{ persona.fechaDeNacimiento }}">{{ persona.fechaDeNacimiento | date:'dd/MM/yyyy'}}</label></td>
                 <td><label for="{{ persona.direccion }}">{{ persona.direccion }}</label></td>
                 <td><label for="{{ persona.telefono }}">{{ persona.telefono }}</label></td>
                 <td><label for="{{ persona.obraSocial }}">{{ persona.obraSocial }}</label></td>

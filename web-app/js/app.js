@@ -1,4 +1,4 @@
-var app = angular.module('app', [ 'ngGrid', 'checklist-model']);
+var app = angular.module('app', [ 'ngGrid', 'checklist-model', 'ngCookies']);
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -60,8 +60,25 @@ app.config(function($routeProvider) {
 
 });
 
-app.controller('personaController', function($scope, $routeParams, $http,
-		$location) {
+/*****************************************************************************************/
+//Este servicio no se usa, pero lo dejo para tenerlo de ejemplo. Se puede usar para pasar data entre controllers pero se pierde la info 
+//al refrescar la pagina, por eso opte po $cookieStore
+//Para usarlo en un controller hay que pasarlo por parametro, ej:
+//app.controller('personaController', function($scope, $http,	$location, pacienteActualService){...});
+app.service('pacienteActualService', function() {
+
+	  this.setPaciente = function(unPaciente) {
+		  this.paciente = unPaciente;
+	  };
+	  
+	  this.getPaciente = function(){
+	      return this.paciente;
+	  };
+	});
+
+/*****************************************************************************************/
+
+app.controller('personaController', function($scope, $http,	$location, pacienteActualService, $cookieStore) {
 
 	
 	$scope.personas = [];
@@ -92,9 +109,10 @@ app.controller('personaController', function($scope, $routeParams, $http,
 				obraSocial : $scope.obraSocial,
 				nroAfiliado : $scope.nroAfiliado
 			}).success(function(data) {
-				//data.id //para obtener el id del paciente creado
+				$cookieStore.put('pacienteActual',data); //me guardo el paciente
+				$location.path("/impresion_visual");
 			})
-			$location.path("/impresion_visual");
+			
 		} else {
 			$scope.ingreso_form.submitted = true;
 			console.log($scope.ingreso_form.fechaNacFutura);
@@ -141,25 +159,18 @@ app.controller('busquedaController',function($scope, $http, $location) {
 
 						}, 100);
 					};
-					
-//					$scope.getPagedDataAsync = function(pageSize, page) {
-//						$http.post('sintoma/cargarImpresionInicial',[{nombre:'nestor'},{nombre:'gabriel'},{nombre:'muñoz'}]);
-//						
-//					};
 
 					$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 							$scope.pagingOptions.currentPage);
 
 					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
-					$scope.ingresarPaciente = function(row){
-//					alert("Se ingreso al paciente " + row.entity.nombre + " " + row.entity.apellido 
-//								+ "\nDNI: " + row.entity.dni 
-//								+ "\nFecha de nacimiento: " + new Date(row.entity.fechaDeNacimiento).toDateString());
-						
-						$http.post("paciente/cargarPaciente",row.entity).success(function(data){//envia todos los datos de la persona (row.entity) pero con el id alcanza 
-							//data //JSON del nuevo paciente creado
+					$scope.ingresarPaciente = function(row){						
+						$http.post("paciente/cargarPaciente",row.entity)
+						  .success(function(data){//envia todos los datos de la persona (row.entity) pero con el id alcanza 
+							app.pacienteActual = data; //me guardo el paciente
+							$location.path("/impresion_visual");
 						});
-						$location.path("/impresion_visual");
+						
 				   };
 
 					$scope.buscarPersona = function() {
@@ -212,16 +223,17 @@ app.controller('busquedaController',function($scope, $http, $location) {
 
 /**********************************************************************************************************/
 
-app.controller('impresionVisualController', function($scope, $routeParams, $http,
-		$location) {
+app.controller('impresionVisualController', function($scope, $http, $location, $cookieStore) {
+	
+	$scope.pacienteActual = $cookieStore.get('pacienteActual');
 
 	$scope.sintomas = [];
 	$scope.loadSintomas = function() {
-
+		
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
 			$scope.sintomas = data;
-		})
-	}
+		});
+	};
 	
 	$scope.paciente = {
 			sintomas: []
@@ -229,7 +241,7 @@ app.controller('impresionVisualController', function($scope, $routeParams, $http
 	
 	$scope.cargarImpresionInicial = function() {
 		$http.post("paciente/cargarImpresionInicial", {
-			id : 1, //aca falta decidir de donde traeremos el paciente
+			id : $scope.pacienteActual.id,
 			sintomas: $scope.paciente.sintomas
 		}).success(function(data) {
 			//en data viene el paciente
@@ -240,8 +252,8 @@ app.controller('impresionVisualController', function($scope, $routeParams, $http
 				//finalizo x ahora
 				$location.path("/prioridad2");
 			}
-		})
-	}
+		});
+	};
 
 	$scope.loadSintomas();
 });
@@ -352,7 +364,7 @@ app.controller('cargaSintomasController',function($scope, $http, $location) {
 
 
 
-////////////////checklistmodel
+/*************************checklistmodel*****************************/
 
 /**
  * Checklist-model

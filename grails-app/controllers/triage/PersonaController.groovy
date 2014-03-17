@@ -6,6 +6,8 @@ import static org.springframework.http.HttpStatus.*
 
 import java.net.Authenticator.RequestorType;
 
+import org.codehaus.groovy.grails.web.json.JSONObject;
+
 import grails.converters.JSON
 import grails.transaction.Transactional
 
@@ -43,10 +45,17 @@ class PersonaController {
 			telefono : request.JSON.telefono,
 			obraSocial : request.JSON.obraSocial,
 			nroAfiliado : request.JSON.nroAfiliado
-		).save( failOnError : true )
+		).save( failOnError : true, flush:true )
 		
 		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date()).save( failOnError : true )
-		render paciente as JSON //retorna el paciente como JSON
+		
+		
+		request.JSON.id = paciente.id
+		request.JSON.nombre = persona.nombre
+		request.JSON.apellido = persona.apellido
+		request.JSON.fechaDeNacimiento = persona.fechaDeNacimiento.getDateString()
+		 
+		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
 	
 	def ajaxList() {
