@@ -53,6 +53,11 @@ app.config(function($routeProvider) {
 		controller : 'personaController'
 	})
 	
+	.when('/paciente_ingresado', {
+		templateUrl : 'paciente_ingresado.html',
+		controller : 'pacienteIngresadoController'
+	})
+	
 	.when('/carga_sintomas', {
 		templateUrl : 'carga_sintomas.html',
 		controller : 'cargaSintomasController'
@@ -62,10 +67,11 @@ app.config(function($routeProvider) {
 
 /*****************************************************************************************/
 //Este servicio no se usa, pero lo dejo para tenerlo de ejemplo. Se puede usar para pasar data entre controllers pero se pierde la info 
-//al refrescar la pagina, por eso opte po $cookieStore
+//al refrescar la pagina, por eso opte por $cookieStore
 //Para usarlo en un controller hay que pasarlo por parametro, ej:
 //app.controller('personaController', function($scope, $http,	$location, pacienteActualService){...});
-app.service('pacienteActualService', function() {
+
+/*app.service('pacienteActualService', function() {
 
 	  this.setPaciente = function(unPaciente) {
 		  this.paciente = unPaciente;
@@ -74,11 +80,11 @@ app.service('pacienteActualService', function() {
 	  this.getPaciente = function(){
 	      return this.paciente;
 	  };
-	});
+	});*/
 
 /*****************************************************************************************/
 
-app.controller('personaController', function($scope, $http,	$location, pacienteActualService, $cookieStore) {
+app.controller('personaController', function($scope, $http,	$location, $cookieStore) {
 
 	
 	$scope.personas = [];
@@ -110,7 +116,7 @@ app.controller('personaController', function($scope, $http,	$location, pacienteA
 				nroAfiliado : $scope.nroAfiliado
 			}).success(function(data) {
 				$cookieStore.put('pacienteActual',data); //me guardo el paciente
-				$location.path("/impresion_visual");
+				$location.path("/paciente_ingresado");
 			})
 			
 		} else {
@@ -126,7 +132,7 @@ app.controller('personaController', function($scope, $http,	$location, pacienteA
 
 /**********************************************************************************************************/
 
-app.controller('busquedaController',function($scope, $http, $location) {
+app.controller('busquedaController',function($scope, $http, $location, $cookieStore) {
 
 					$scope.totalServerItems = 0;
 
@@ -167,8 +173,8 @@ app.controller('busquedaController',function($scope, $http, $location) {
 					$scope.ingresarPaciente = function(row){						
 						$http.post("paciente/cargarPaciente",row.entity)
 						  .success(function(data){//envia todos los datos de la persona (row.entity) pero con el id alcanza 
-							app.pacienteActual = data; //me guardo el paciente
-							$location.path("/impresion_visual");
+							$cookieStore.put('pacienteActual',data); //me guardo el paciente
+							$location.path("/paciente_ingresado");
 						});
 						
 				   };
@@ -260,7 +266,9 @@ app.controller('impresionVisualController', function($scope, $http, $location, $
 
 /**********************************************************************************************************/
 
-app.controller('cargaSintomasController',function($scope, $http, $location) {
+app.controller('cargaSintomasController',function($scope, $http, $location, $cookieStore) {
+	
+	$scope.pacienteActual = $cookieStore.get('pacienteActual');
 	
 	$scope.sintomas = [];
 	
@@ -268,7 +276,7 @@ app.controller('cargaSintomasController',function($scope, $http, $location) {
 		var i = $scope.sintomas.indexOf(sintoma);
 		if (i > -1) {
 			$scope.sintomas.splice(i, 1);
-		}
+		}		
 	};
 
 	$scope.totalServerItems = 0;
@@ -307,7 +315,16 @@ app.controller('cargaSintomasController',function($scope, $http, $location) {
 	$scope.botonAgregar = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>'
 		
 	$scope.agregarSintoma = function(row){
-		$scope.sintomas.push(row.entity.nombre);
+		var repetido = false;
+		for(var i=0;i<$scope.sintomas.length;i++){
+			if($scope.sintomas[i].id == row.entity.id){
+				repetido = true;
+				break;
+			}
+		}
+		if(!repetido){
+			$scope.sintomas.push(row.entity);
+		}
     };
 
 	$scope.filtrarListadoDeSintomas = function() {
@@ -344,8 +361,11 @@ app.controller('cargaSintomasController',function($scope, $http, $location) {
 	};
 
 });
-
-
+/*********************************************************************************************/
+app.controller('pacienteIngresadoController', function($scope, $http, $location, $cookieStore) {
+	$scope.pacienteActual = $cookieStore.get('pacienteActual');
+});
+/*********************************************************************************************/
 
 
 

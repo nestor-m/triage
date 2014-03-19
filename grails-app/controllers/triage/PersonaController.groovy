@@ -54,6 +54,7 @@ class PersonaController {
 		request.JSON.nombre = persona.nombre
 		request.JSON.apellido = persona.apellido
 		request.JSON.fechaDeNacimiento = persona.fechaDeNacimiento.getDateString()
+		request.JSON.DNI = persona.dni
 		 
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
