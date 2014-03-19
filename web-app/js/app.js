@@ -250,7 +250,7 @@ app.controller('impresionVisualController', function($scope, $http, $location, $
 			}		
 			else {
 				//finalizo x ahora
-				$location.path("/prioridad2");
+				$location.path("/carga_sintomas");
 			}
 		});
 	};
