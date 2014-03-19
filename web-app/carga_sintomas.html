@@ -1,8 +1,18 @@
 <title>Ingreso de s&iacute;ntomas</title>
 <body>
-      <div class="page-header" style="text-align:center">
-        <h3>Ingreso de s&iacute;ntomas</h3>
-      </div>
+
+  <div class="row">
+  	  <div class="col-md-2" style="text-align:center">
+	    <label>Paciente ingresado:</label>
+	    <p>{{pacienteActual.nombre}} {{pacienteActual.apellido}} </p>
+	    <p>{{pacienteActual.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
+	    <p>{{pacienteActual.DNI}}</p>
+	  </div>
+	  <div class="page-header col-md-8" style="text-align: center">
+		<h3>Ingreso de s&iacute;ntomas</h3>
+	  </div>
+  </div>
+
   <div class="row">
    <div class="col-md-9">
       <form name="busqueda_form" class="form-horizontal" ng-submit="filtrarListadoDeSintomas()" style="text-align:center" role="form">
@@ -35,10 +45,11 @@
     
     <div class="col-md-3">
       <p>Síntomas agregados</p>
-      <ul >
+      <ul>
         <li class="animate-repeat" ng-repeat="sintoma in sintomas" ng-mouseover="borrar=true" ng-mouseleave="borrar=false" ng-init="borrar=false">
-          {{sintoma}} <a ng-click="borrarSintoma(sintoma)" ng-show="borrar">borrar</a>
+          {{sintoma.nombre}} <a ng-click="borrarSintoma(sintoma)" ng-show="borrar">borrar</a>
         </li>
+      </ul>
     </div>
    </div>
 </body>
