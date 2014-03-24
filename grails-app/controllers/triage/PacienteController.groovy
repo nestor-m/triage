@@ -49,8 +49,30 @@ class PacienteController {
 		if(paciente.esPrioridadUno()){
 			paciente.prioridad = Prioridad.UNO
 			paciente.save(flush: true)//flush:true significa que hace el commit a la base inmediatamente
+			request.JSON.prioridad = "UNO"
 		}
-		render paciente as JSON
+		
+		request.JSON.nombre = paciente.persona.nombre
+		request.JSON.apellido = paciente.persona.apellido
+		request.JSON.fechaDeNacimiento = paciente.persona.fechaDeNacimiento.getDateString()
+		request.JSON.dni = paciente.persona.dni
+		request.JSON.direccion = paciente.persona.direccion
+		request.JSON.telefono = paciente.persona.telefono
+		request.JSON.obraSocial = paciente.persona.obraSocial
+		request.JSON.nroAfiliado = paciente.persona.nroAfiliado
+		
+		String sintomas = ""		
+		paciente.sintomas.each{
+			if(sintomas.size() > 0){
+				sintomas += "; "
+			}
+			sintomas += it.nombre
+		}
+		
+		request.JSON.sintomas = sintomas
+		request.JSON.fecha = paciente.fechaHoraIngreso.getDateTimeString()
+		
+		render request.JSON
 	}
 
 	
