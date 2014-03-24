@@ -80,9 +80,9 @@ class PacienteController {
 	@Transactional
 	def cargarSignosVitales(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		paciente.presionArterial = request.JSON.presion_arterial
+		paciente.presionArterial = request.JSON.presionArterial
 		paciente.pulso = request.JSON.pulso
-		paciente.frecuenciaRespiratoria = request.JSON.frecuencia_respiratoria
+		paciente.frecuenciaRespiratoria = request.JSON.frecuenciaRespiratoria
 		paciente.temperatura = request.JSON.temperatura
 		
 		paciente.save(failOnError:true)

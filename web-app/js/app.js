@@ -379,24 +379,23 @@ app.controller('prioridad1Controller', function($scope, $location, $cookieStore)
 });
 
 
-
+/*********************************************************************************************/
 app.controller('signosVitalesController', function($scope, $http, $location, $cookieStore) {
 	
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
 	
-	$scope.addSignosVitales = function($scope, $http, $location, $cookieStore) {
-		
+	
+	$scope.cargarSignosVitales = function() {
+			
 			$http.post("paciente/cargarSignosVitales", {
 				id : $scope.pacienteActual.id,
-				presionArterial : $scope.presion_arterial,
+				presionArterial : $scope.presion,
 				pulso : $scope.pulso,
-				frecuenciaRespiratoria : $scope.frecuencia_respiratoria,
+				frecuenciaRespiratoria : $scope.frecuencia,
 				temperatura : $scope.temperatura
 			}).success(function(data) {
-				$cookieStore.put('pacienteActual',data); //me guardo el paciente
 				$location.path("/paciente_ingresado");
 			})
-			
 		
 	}
 	
