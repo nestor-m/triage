@@ -25,7 +25,7 @@ Pruebas unitarias de Grails:
 Pruebas funcionales con Casper:
 
 -Ir al directorio donde se hizo la descarga de la aplicación.
--Ingresar en web-app/js/test
+-Ingresar en test/functional
 -Correr cada test por separado utilizando Casper (casper test archivo.js)
 
 

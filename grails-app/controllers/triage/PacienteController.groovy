@@ -13,7 +13,8 @@ class PacienteController {
 		,cargarPaciente: "POST"
 		,cargarImpresionInicial: "POST"
 		,cargarSintomas: "POST"
-		,cargarSignosVitales: "POST"]
+		,cargarSignosVitales: "POST"
+		,cargarSintomas: "POST"]
 	
 	/**seleccion de paciente del listado de busqueda
 	 * 
@@ -33,20 +34,19 @@ class PacienteController {
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
 	
-	/**submit de la impresion inicial
-	 * 
-	 * @return el JSON del paciente
-	 */
-	@Transactional
-	def cargarImpresionInicial(){
-		Paciente paciente = Paciente.get(request.JSON.id)//recupero al paciente por el id
-		//me llega la lista de sintomas cargados en la impresion de inicial		
-		request.JSON.sintomas.each {
-			paciente.addToSintomas(Sintoma.get(it.id))
-		}
-		
-		paciente.save()
-		
+//	@Transactional
+//	def cargarSintomas(){
+//		Paciente paciente = Paciente.get(request.JSON.id)
+//		request.JSON.sintomas.each {
+//			paciente.addToSintomas(Sintoma.get(it.id))
+//		}
+//		
+//		paciente.save()
+//		
+//		this.enviarRespuesta(paciente)
+//	}
+	
+	def enviarRespuesta(Paciente paciente){
 		if(paciente.esPrioridadUno()){
 			paciente.prioridad = Prioridad.UNO
 			paciente.save(flush: true)//flush:true significa que hace el commit a la base inmediatamente
@@ -62,7 +62,7 @@ class PacienteController {
 		request.JSON.obraSocial = paciente.persona.obraSocial
 		request.JSON.nroAfiliado = paciente.persona.nroAfiliado
 		
-		String sintomas = ""		
+		String sintomas = ""
 		paciente.sintomas.each{
 			if(sintomas.size() > 0){
 				sintomas += "; "

@@ -253,7 +253,7 @@ app.controller('impresionVisualController', function($scope, $http, $location, $
 	}
 	
 	$scope.cargarImpresionInicial = function() {
-		$http.post("paciente/cargarImpresionInicial", {
+		$http.post("paciente/cargarSintomas", {
 			id : $scope.pacienteActual.id,
 			sintomas: $scope.paciente.sintomas
 		}).success(function(data) {
@@ -367,7 +367,20 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 			width : 70
 		} ]
 	};
-
+	
+	$scope.enviarSintomas = function(){
+		$http.post('paciente/cargarSintomas',{
+			id: $scope.pacienteActual.id,
+			sintomas: $scope.sintomas
+		}).success(function(data){
+			if (data.prioridad != null && data.prioridad == "UNO"){
+				$cookieStore.put('datosPaciente',data);
+				$location.path("/prioridad1");
+			}else{
+				alert('NO ES PRIORIDAD UNO =)');
+			}		
+		});		
+	};
 });
 /*********************************************************************************************/
 app.controller('pacienteIngresadoController', function($scope, $cookieStore) {
