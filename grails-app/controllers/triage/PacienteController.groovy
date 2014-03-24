@@ -12,7 +12,8 @@ class PacienteController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"
 		,cargarPaciente: "POST"
 		,cargarImpresionInicial: "POST"
-		,cargarSintomas: "POST"]
+		,cargarSintomas: "POST"
+		,cargarSignosVitales: "POST"]
 	
 	/**seleccion de paciente del listado de busqueda
 	 * 
@@ -53,6 +54,17 @@ class PacienteController {
 		render paciente as JSON
 	}
 
+	
+	@Transactional
+	def cargarSignosVitales(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		paciente.presionArterial = request.JSON.presion_arterial
+		paciente.pulso = request.JSON.pulso
+		paciente.frecuenciaRespiratoria = request.JSON.frecuencia_respiratoria
+		paciente.temperatura = request.JSON.temperatura
+		
+		paciente.save(failOnError:true)
+	}
 	
 	@Transactional
 	def cargarSintomas(){

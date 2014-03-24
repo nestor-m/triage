@@ -58,6 +58,11 @@ app.config(function($routeProvider) {
 		controller : 'pacienteIngresadoController'
 	})
 	
+	.when('/signos_vitales', {
+		templateUrl : 'signos_vitales.html',
+		controller : 'signosVitalesController'
+	})
+	
 	.when('/carga_sintomas', {
 		templateUrl : 'carga_sintomas.html',
 		controller : 'cargaSintomasController'
@@ -255,7 +260,7 @@ app.controller('impresionVisualController', function($scope, $http, $location, $
 				$location.path("/prioridad1");
 			}		
 			else {
-				//finalizo x ahora
+				//sigo con la carga
 				$location.path("/carga_sintomas");
 			}
 		});
@@ -370,7 +375,27 @@ app.controller('pacienteIngresadoController', function($scope, $http, $location,
 
 
 
-
+app.controller('signosVitalesController', function($scope, $http, $location, $cookieStore) {
+	
+	$scope.pacienteActual = $cookieStore.get('pacienteActual');
+	
+	$scope.addSignosVitales = function($scope, $http, $location, $cookieStore) {
+		
+			$http.post("paciente/cargarSignosVitales", {
+				id : $scope.pacienteActual.id,
+				presionArterial : $scope.presion_arterial,
+				pulso : $scope.pulso,
+				frecuenciaRespiratoria : $scope.frecuencia_respiratoria,
+				temperatura : $scope.temperatura
+			}).success(function(data) {
+				$cookieStore.put('pacienteActual',data); //me guardo el paciente
+				$location.path("/paciente_ingresado");
+			})
+			
+		
+	}
+	
+});
 
 
 
