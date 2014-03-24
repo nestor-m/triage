@@ -36,7 +36,8 @@ app.config(function($routeProvider) {
 	})
 
 	.when('/prioridad1', {
-		templateUrl : 'prioridad1.html'
+		templateUrl : 'prioridad1.html',
+		controller: 'prioridad1Controller'
 	})
 	
 	.when('/prioridad2', {
@@ -175,6 +176,7 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 							$scope.pagingOptions.currentPage);
 
 					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
+						
 					$scope.ingresarPaciente = function(row){						
 						$http.post("paciente/cargarPaciente",row.entity)
 						  .success(function(data){//envia todos los datos de la persona (row.entity) pero con el id alcanza 
@@ -256,7 +258,8 @@ app.controller('impresionVisualController', function($scope, $http, $location, $
 			sintomas: $scope.paciente.sintomas
 		}).success(function(data) {
 			//en data viene el paciente
-			if (data.prioridad != null && data.prioridad.name == "UNO"){
+			if (data.prioridad != null && data.prioridad == "UNO"){
+				$cookieStore.put('datosPaciente',data);
 				$location.path("/prioridad1");
 			}		
 			else {
@@ -367,11 +370,13 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 
 });
 /*********************************************************************************************/
-app.controller('pacienteIngresadoController', function($scope, $http, $location, $cookieStore) {
+app.controller('pacienteIngresadoController', function($scope, $cookieStore) {
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
 });
 /*********************************************************************************************/
-
+app.controller('prioridad1Controller', function($scope, $location, $cookieStore){
+	$scope.paciente = $cookieStore.get('datosPaciente');	
+});
 
 
 

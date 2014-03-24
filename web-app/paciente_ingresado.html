@@ -4,7 +4,7 @@
   <div class="row">
   	  <div class="col-md-2" style="text-align:center">
 	    <label>Paciente ingresado:</label>
-	    <p>{{pacienteActual.nombre}} {{pacienteActual.apellido}} </p>
+	    <p id="nombreApellido">{{pacienteActual.nombre}} {{pacienteActual.apellido}}</p>
 	    <p>{{pacienteActual.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
 	    <p>{{pacienteActual.DNI}}</p>
 	  </div>
@@ -14,7 +14,7 @@
   </div>
 
       <p style="text-align: center">
-        <a type="button" name="impresion_inicial" class="btn btn-lg btn-success" style="width:200px" href="#impresion_visual">Impresi&oacute;n inicial</a>
+        <a type="button" name="impresion_inicial" id="impresion_inicial" class="btn btn-lg btn-success" style="width:200px" href="#impresion_visual">Impresi&oacute;n inicial</a>
       </p>
       <p style="text-align: center">
         <a type="button" name="carga_sintomas" class="btn btn-lg btn-success" style="width:200px" href="#carga_sintomas">Ingresar s&iacute;ntomas</a>

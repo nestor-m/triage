@@ -24,15 +24,25 @@ casper.test.begin('Testeo que al ingresar un sintoma de p1, me lleva a la pantal
        }, true);
    });
    
+   casper.wait(1000);//Espero un segundo para que se carque el paciente y me redirija a la pantalla de paciente ingresado
+   
    casper.then(function() {
-	   //testeo que llego a la pantalla de impresión visual
+       test.assertEquals("http://localhost:8080/triage/#/paciente_ingresado", 
+    		   	this.getCurrentUrl(), 'Llego a la pantalla de paciente ingresado');
+  });
+   
+   casper.then(function() {
+	   this.click('a[type="button"][name="impresion_inicial"]');
        test.assertEquals("http://localhost:8080/triage/#/impresion_visual", 
     		   	this.getCurrentUrl(), 'Llego a la pantalla de impresion visual');
   });
+   
+   casper.wait(1000);//Espero que se carguen los sintomas de impresion inicial
 
    casper.then(function() {
 	   //input o checkbox no funcionan 
-	   this.clickLabel(' DOLOR SEVERO (p1) ', 'input');
+	   this.clickLabel('DOLOR SEVERO (p1)', 'label');
+	   //this.click('#DOLOR SEVERO (p1)');
 	});
    
    casper.then(function() {
