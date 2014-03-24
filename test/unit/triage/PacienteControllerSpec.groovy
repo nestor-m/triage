@@ -159,7 +159,7 @@ class PacienteControllerSpec extends Specification {
 			request.JSON.id = 1
 			request.JSON.sintomas = [sintomas[0],sintomas[1]]
 			
-			controller.cargarImpresionInicial()
+			controller.cargarSintomas()
 		
 		then: "Verifico que los sintomas se hayan cargado correctamente"
 			paciente.sintomas.size() == 2
@@ -175,7 +175,7 @@ class PacienteControllerSpec extends Specification {
 			request.JSON.id = 1
 			request.JSON.sintomas = sintomas
 			
-			controller.cargarImpresionInicial()
+			controller.cargarSintomas()
 		
 		then: "Verifico que los sintomas se hayan cargado correctamente"
 			paciente.prioridad == Prioridad.UNO
