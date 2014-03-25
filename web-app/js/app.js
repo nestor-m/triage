@@ -407,7 +407,13 @@ app.controller('signosVitalesController', function($scope, $http, $location, $co
 				frecuenciaRespiratoria : $scope.frecuencia,
 				temperatura : $scope.temperatura
 			}).success(function(data) {
-				$location.path("/paciente_ingresado");
+				console.log(data);
+				if (data.prioridad != null && data.prioridad == "UNO"){
+					$cookieStore.put('datosPaciente',data);
+					$location.path("/prioridad1");
+				}else{
+					$location.path("/paciente_ingresado");
+				}
 			})
 		
 	}

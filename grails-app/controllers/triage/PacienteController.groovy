@@ -85,7 +85,14 @@ class PacienteController {
 		paciente.frecuenciaRespiratoria = request.JSON.frecuenciaRespiratoria
 		paciente.temperatura = request.JSON.temperatura
 		
-		paciente.save(failOnError:true)
+		paciente.save()
+		
+		if (paciente.esPrioridadUno()){
+			paciente.prioridad = Prioridad.UNO
+			paciente.save(flush:true)
+		}
+		
+		render paciente as JSON
 	}
 	
 	@Transactional

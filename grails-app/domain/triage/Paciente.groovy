@@ -46,6 +46,14 @@ class Paciente {
 			}
 		}
 		
+		if ((pulso < 40 || pulso > 150) ||
+				 (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 ) || 
+				 (temperatura < 35 || temperatura > 40)){
+			this.prioridad = Prioridad.UNO
+			this.save()
+			return Prioridad.UNO 
+		}
+		
 		this.prioridad = Prioridad.TRES
 		this.save()
 		return Prioridad.TRES
