@@ -1,0 +1,110 @@
+
+<title>Signos Vitales</title>
+
+<div class="row">
+	<div class="col-md-2" style="text-align: center">
+		<label>Paciente ingresado:</label>
+		<p>{{pacienteActual.nombre}} {{pacienteActual.apellido}}</p>
+		<p>{{pacienteActual.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
+		<p>{{pacienteActual.DNI}}</p>
+	</div>
+	<div class="page-header col-md-8" style="text-align: center">
+		<h3>Ingreso de signos vitales</h3>
+	</div>
+</div>
+
+<body ng-controller="signosVitalesController">
+	<form name="signos_vitales_form" class="form-horizontal" role="form"
+		ng-submit="cargarSignosVitales()" novalidate>
+
+
+		<div class="form-group"
+			ng-class="{'has-error': signos_vitales_form.presion.$error.required}">
+			<label class="col-sm-4 control-label">Presión Arterial</label>
+			<div class="col-sm-5">
+				<input type="number" name="presion" class="form-control"
+					ng-model="presion" required>
+			</div>
+			<div class="error" ng-show="signos_vitales_form.presion.$invalid">
+				<small class="error"
+					ng-show="signos_vitales_form.presion.$error.required"> La
+					presión arterial es requerida </small>
+			</div>
+			<span class="error"
+				ng-show="signos_vitales_form.presion.$error.required"> *</span><br>
+		</div>
+
+
+		<div class="form-group"
+			ng-class="{'has-error': signos_vitales_form.pulso.$error.required}">
+			<label class="col-sm-4 control-label">Pulso</label>
+			<div class="col-sm-5">
+				<input id="pulso" type="number" name="pulso" class="form-control"
+					ng-model="pulso" required>
+			</div>
+			<div class="error" ng-show="signos_vitales_form.pulso.$invalid">
+				<small class="error"
+					ng-show="signos_vitales_form.pulso.$error.required"> El
+					pulso es requerido </small>
+			</div>
+			<span class="error"
+				ng-show="signos_vitales_form.pulso.$error.required"> *</span><br>
+		</div>
+
+
+		<div class="form-group"
+			ng-class="{'has-error': signos_vitales_form.frecuencia.$error.required}">
+			<label class="col-sm-4 control-label">Frecuencia Respiratoria</label>
+			<div class="col-sm-5">
+				<input type="number" name="frecuencia" class="form-control"
+					ng-model="frecuencia" required>
+			</div>
+			<div class="error" ng-show="signos_vitales_form.frecuencia.$invalid">
+				<small class="error"
+					ng-show="signos_vitales_form.frecuencia.$error.required">
+					La frecuencia respiratoria es requerida </small>
+			</div>
+			<span class="error"
+				ng-show="signos_vitales_form.frecuencia.$error.required"> *</span><br>
+		</div>
+
+
+		<div class="form-group"
+			ng-class="{'has-error': signos_vitales_form.temperatura.$error.required}">
+			<label class="col-sm-4 control-label">Temperatura</label>
+			<div class="col-sm-5">
+
+				<input type="number" name="temperatura" class="form-control"
+					ng-model="temperatura" required>
+			</div>
+			<div class="error" ng-show="signos_vitales_form.temperatura.$invalid">
+				<small class="error"
+					ng-show="signos_vitales_form.temperatura.$error.required">
+					La temperatura es requerida </small>
+			</div>
+
+
+
+			<span class="error"
+				ng-show="signos_vitales_form.temperatura.$error.required">*</span><br>
+		</div>
+
+
+		<div class="form-group">
+
+			<div class="col-sm-offset-4 col-sm-10">
+
+				<p style="text-align: center">
+					<input type="submit" class="btn btn-default" value="Aceptar" />
+					<!-- 					<button type="submit" class="btn btn-default">Aceptar</button> -->
+				</p>
+				<p style="text-align: center">
+					<a type="button" class="btn btn-default" href="#">Atrás</a>
+				</p>
+			</div>
+		</div>
+
+
+	</form>
+
+</body>

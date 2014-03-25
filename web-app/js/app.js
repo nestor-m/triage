@@ -59,6 +59,11 @@ app.config(function($routeProvider) {
 		controller : 'pacienteIngresadoController'
 	})
 	
+	.when('/signos_vitales', {
+		templateUrl : 'signos_vitales.html',
+		controller : 'signosVitalesController'
+	})
+	
 	.when('/carga_sintomas', {
 		templateUrl : 'carga_sintomas.html',
 		controller : 'cargaSintomasController'
@@ -258,8 +263,8 @@ app.controller('impresionVisualController', function($scope, $http, $location, $
 				$location.path("/prioridad1");
 			}		
 			else {
-				//finalizo x ahora
-				$location.path("/prioridad2");
+				//sigo con la carga
+				$location.path("/carga_sintomas");
 			}
 		});
 	};
@@ -387,8 +392,33 @@ app.controller('prioridad1Controller', function($scope, $location, $cookieStore)
 });
 
 
-
-
+/*********************************************************************************************/
+app.controller('signosVitalesController', function($scope, $http, $location, $cookieStore) {
+	
+	$scope.pacienteActual = $cookieStore.get('pacienteActual');
+	
+	
+	$scope.cargarSignosVitales = function() {
+			
+			$http.post("paciente/cargarSignosVitales", {
+				id : $scope.pacienteActual.id,
+				presionArterial : $scope.presion,
+				pulso : $scope.pulso,
+				frecuenciaRespiratoria : $scope.frecuencia,
+				temperatura : $scope.temperatura
+			}).success(function(data) {
+				console.log(data);
+				if (data.prioridad != null && data.prioridad == "UNO"){
+					$cookieStore.put('datosPaciente',data);
+					$location.path("/prioridad1");
+				}else{
+					$location.path("/paciente_ingresado");
+				}
+			})
+		
+	}
+	
+});
 
 
 

@@ -11,6 +11,9 @@ class PacienteController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"
 		,cargarPaciente: "POST"
+		,cargarImpresionInicial: "POST"
+		,cargarSintomas: "POST"
+		,cargarSignosVitales: "POST"
 		,cargarSintomas: "POST"]
 	
 	/**seleccion de paciente del listado de busqueda
@@ -31,17 +34,17 @@ class PacienteController {
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
 	
-	@Transactional
-	def cargarSintomas(){
-		Paciente paciente = Paciente.get(request.JSON.id)
-		request.JSON.sintomas.each {
-			paciente.addToSintomas(Sintoma.get(it.id))
-		}
-		
-		paciente.save()
-		
-		this.enviarRespuesta(paciente)
-	}
+//	@Transactional
+//	def cargarSintomas(){
+//		Paciente paciente = Paciente.get(request.JSON.id)
+//		request.JSON.sintomas.each {
+//			paciente.addToSintomas(Sintoma.get(it.id))
+//		}
+//		
+//		paciente.save()
+//		
+//		this.enviarRespuesta(paciente)
+//	}
 	
 	def enviarRespuesta(Paciente paciente){
 		if(paciente.esPrioridadUno()){
@@ -71,6 +74,42 @@ class PacienteController {
 		request.JSON.fecha = paciente.fechaHoraIngreso.getDateTimeString()
 		
 		render request.JSON
+	}
+
+	
+	@Transactional
+	def cargarSignosVitales(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		paciente.presionArterial = request.JSON.presionArterial
+		paciente.pulso = request.JSON.pulso
+		paciente.frecuenciaRespiratoria = request.JSON.frecuenciaRespiratoria
+		paciente.temperatura = request.JSON.temperatura
+		
+		paciente.save()
+		
+		if (paciente.esPrioridadUno()){
+			paciente.prioridad = Prioridad.UNO
+			paciente.save(flush:true)
+		}
+		
+		render paciente as JSON
+	}
+	
+	@Transactional
+	def cargarSintomas(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		request.JSON.sintomas.each {
+			paciente.addToSintomas(it)
+		}
+		
+		paciente.save()
+		
+		if (paciente.esPrioridadUno()){
+			paciente.prioridad = Prioridad.UNO
+			paciente.save(flush:true)
+		}
+		
+		render paciente as JSON
 	}
 	
     def index(Integer max) {
