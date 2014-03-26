@@ -34,17 +34,17 @@ class PacienteController {
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
 	
-//	@Transactional
-//	def cargarSintomas(){
-//		Paciente paciente = Paciente.get(request.JSON.id)
-//		request.JSON.sintomas.each {
-//			paciente.addToSintomas(Sintoma.get(it.id))
-//		}
-//		
-//		paciente.save()
-//		
-//		this.enviarRespuesta(paciente)
-//	}
+	@Transactional
+	def cargarSintomas(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		request.JSON.sintomas.each {
+			paciente.addToSintomas(Sintoma.get(it.id))
+		}
+		
+		paciente.save()
+		
+		this.enviarRespuesta(paciente)
+	}
 	
 	def enviarRespuesta(Paciente paciente){
 		if(paciente.esPrioridadUno()){
@@ -92,25 +92,25 @@ class PacienteController {
 			paciente.save(flush:true)
 		}
 		
-		render paciente as JSON
+		this.enviarRespuesta(paciente)
 	}
 	
-	@Transactional
-	def cargarSintomas(){
-		Paciente paciente = Paciente.get(request.JSON.id)
-		request.JSON.sintomas.each {
-			paciente.addToSintomas(it)
-		}
-		
-		paciente.save()
-		
-		if (paciente.esPrioridadUno()){
-			paciente.prioridad = Prioridad.UNO
-			paciente.save(flush:true)
-		}
-		
-		render paciente as JSON
-	}
+//	@Transactional
+//	def cargarSintomas(){
+//		Paciente paciente = Paciente.get(request.JSON.id)
+//		request.JSON.sintomas.each {
+//			paciente.addToSintomas(it)
+//		}
+//		
+//		paciente.save()
+//		
+//		if (paciente.esPrioridadUno()){
+//			paciente.prioridad = Prioridad.UNO
+//			paciente.save(flush:true)
+//		}
+//	
+//		render paciente as JSON
+//	}
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
