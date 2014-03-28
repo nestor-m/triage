@@ -1,9 +1,13 @@
-package triage
+package integration
 
-import grails.converters.JSON
 import grails.test.mixin.*
-import org.codehaus.groovy.grails.web.json.JSONObject
 import spock.lang.Specification
+import triage.Paciente
+import triage.PacienteController
+import triage.Persona
+import triage.Prioridad
+import triage.Sintoma
+import triage.TipoDeSintoma
 
 
 /**

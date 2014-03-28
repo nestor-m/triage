@@ -1,9 +1,13 @@
-package triage
+package integration
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
+import triage.Prioridad
+import triage.Sintoma
+import triage.SintomaController
+import triage.TipoDeSintoma
 
 @TestFor(SintomaController)
 @Mock(Sintoma)

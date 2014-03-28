@@ -1,9 +1,12 @@
-package triage
+package integration
 
 
 
 import grails.test.mixin.*
 import spock.lang.*
+import triage.Paciente
+import triage.Persona
+import triage.PersonaController
 
 @TestFor(PersonaController)
 @Mock([Persona,Paciente])
