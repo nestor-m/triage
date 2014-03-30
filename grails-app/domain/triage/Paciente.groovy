@@ -46,9 +46,9 @@ class Paciente {
 			}
 		}
 
-		if ((pulso < 40 || pulso > 150) ||
-		(frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 ) ||
-		(temperatura < 35 || temperatura > 40)){
+		if ((pulso != null && (pulso < 40 || pulso > 150)) ||
+				(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
+				(temperatura != null && (temperatura < 35 || temperatura > 40))){
 			this.prioridad = Prioridad.UNO
 			this.save()
 			return Prioridad.UNO
@@ -65,9 +65,9 @@ class Paciente {
 				return true
 			}
 		}
-		if ((pulso < 40 || pulso > 150) ||
-				(frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 ) ||
-				(temperatura < 35 || temperatura > 40)){
+		if ((pulso != null && (pulso < 40 || pulso > 150)) ||
+				(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
+				(temperatura != null && (temperatura < 35 || temperatura > 40))){
 			return true
 		}
 		return false

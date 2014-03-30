@@ -61,6 +61,7 @@ class PacienteController {
 		request.JSON.telefono = paciente.persona.telefono
 		request.JSON.obraSocial = paciente.persona.obraSocial
 		request.JSON.nroAfiliado = paciente.persona.nroAfiliado
+		request.JSON.sint = paciente.pulso < 40;
 		
 		String sintomas = ""
 		paciente.sintomas.each{

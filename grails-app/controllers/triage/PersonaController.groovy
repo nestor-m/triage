@@ -85,38 +85,7 @@ class PersonaController {
 		render resultado as JSON		
 		return resultado
 		
-		//////////////////////////////////////////////////////////////////////////////////////////////
-		//CON WHERE reemplaze el where por el criteria para poder hacer un like en el query
-//		def query = Persona.where {
-//			nombre != null
-//		}
-//
-//		if (request.JSON.dni != '' && request.JSON.dni != null){
-//			query = query.where {
-//				dni =~ request.JSON.dni
-//			}
-//		}
-//		if (request.JSON.nombre != '' && request.JSON.nombre != null){
-//			query = query.where {
-//				nombre =~ request.JSON.nombre //=~ significa q es case insensitive
-//			}
-//		}
-//		if (request.JSON.apellido != '' && request.JSON.apellido != null){
-//			query = query.where {
-//				apellido =~ request.JSON.apellido
-//			}
-//		}
-//		if (request.JSON.fechaDeNacimiento  != '' && request.JSON.fechaDeNacimiento  != null){
-//			query = query.where {
-//				fechaDeNacimiento == new Date(request.JSON.fechaDeNacimiento.replaceAll("-","/"))
-//			}
-//		}
-//
-//		def resultados = query.list();
-//
-//		render resultados as JSON
-//
-//		return resultados
+
 	}
 	
 	def ajaxSeleccionarPersona(){
