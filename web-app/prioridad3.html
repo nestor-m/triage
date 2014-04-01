@@ -1,15 +1,15 @@
-<title>PRIORIDAD 1</title>
+<title>PRIORIDAD 3</title>
 <body>
 
-  <div class="container">
-	<div class="panel panel-danger">
-		<div class="panel-heading">
-			<h1 class="panel-title" style="text-align: center">PRIORIDAD 1</h1>
-		</div>
+<div class="container">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+			<h1 class="panel-title" style="text-align: center">
+			PRIORIDAD 3</h1></div>
 			
-		<div class="panel-body"style="text-align: center">
-			<h3>INGRESAR SIN DEMORA</h3>
-			<h4>Nivel I II</h4>
+			<div class="panel-body"style="text-align: center">
+			<h3>Atención en consultorios externos</h3>
+			<h4>Nivel IV V</h4>
 			<br/>
 			<p id="nombreYApellido">Nombre y apellido: {{paciente.nombre}} {{paciente.apellido}}</p>
 			<p ng-show="paciente.dni != null">DNI: {{paciente.dni}}</p>
@@ -20,8 +20,8 @@
 			<p ng-show="paciente.nroAfiliado != null">Nro afiliado: {{paciente.nroAfiliado}}</p>
 			<p id="sintomas">Motivo de ingreso: {{paciente.sintomas}}</p>
 			<p>Fecha y hora: {{paciente.fecha | date:'dd/MM/yyyy HH:mm'}}</p>
-		</div>
-	</div>
-  </div>
+			</div>
+			</div>
+			</div>
 			
 </body>

@@ -9,6 +9,17 @@
 			
 			<div class="panel-body"style="text-align: center">
 			<h3>Atendido dentro de la próxima 1/2 hora</h3>
+			<h4>Nivel III</h4>
+			<br/>
+			<p id="nombreYApellido">Nombre y apellido: {{paciente.nombre}} {{paciente.apellido}}</p>
+			<p ng-show="paciente.dni != null">DNI: {{paciente.dni}}</p>
+			<p>Fecha de nacimiento: {{paciente.fechaDeNacimiento}}</p>
+			<p ng-show="paciente.direccion != null">Direcci&oacute;n: {{paciente.direccion}}</p>
+			<p ng-show="paciente.telefono != null">Tel&eacute;fono: {{paciente.telefono}}</p>
+			<p ng-show="paciente.obraSocial != null">Obra social: {{paciente.obraSocial}}</p>
+			<p ng-show="paciente.nroAfiliado != null">Nro afiliado: {{paciente.nroAfiliado}}</p>
+			<p id="sintomas">Motivo de ingreso: {{paciente.sintomas}}</p>
+			<p>Fecha y hora: {{paciente.fecha | date:'dd/MM/yyyy HH:mm'}}</p>
 			</div>
 			</div>
 			</div>

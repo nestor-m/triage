@@ -21,7 +21,11 @@
   <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>  
   <script type="text/javascript" src="lib/ng-grid-2.0.7.min.js"></script>
 
+
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+
+  <script type="text/javascript" src="lib/checklist-model.js"></script>
+  <script type="text/javascript" src="lib/bootbox.min.js"></script>
   
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js"></script>
 

@@ -41,7 +41,13 @@ app.config(function($routeProvider) {
 	})
 	
 	.when('/prioridad2', {
-		templateUrl : 'prioridad2.html'
+		templateUrl : 'prioridad2.html',
+		controller: 'prioridad2Controller'
+	})
+	
+	.when('/prioridad3', {
+		templateUrl : 'prioridad3.html',
+		controller: 'prioridad3Controller'
 	})
 	
 	.when('/lista_pacientes', {
@@ -320,6 +326,7 @@ app.controller('impresionVisualController', function($scope, $http, $location, $
 		}).success(function(data) {
 			//en data viene el paciente
 			if (data.prioridad != null && data.prioridad == "UNO"){
+				console.log(data);
 				$cookieStore.put('datosPaciente',data);
 				$location.path("/prioridad1");
 			}		
@@ -452,6 +459,18 @@ app.controller('prioridad1Controller', function($scope, $location, $cookieStore)
 	$scope.paciente = $cookieStore.get('datosPaciente');	
 });
 
+/*********************************************************************************************/
+app.controller('prioridad2Controller', function($scope, $location, $cookieStore){
+	$scope.paciente = $cookieStore.get('datosPaciente');	
+});
+
+/*********************************************************************************************/
+app.controller('prioridad3Controller', function($scope, $location, $cookieStore){
+	$scope.paciente = $cookieStore.get('datosPaciente');	
+});
+
+
+
 
 /*********************************************************************************************/
 app.controller('signosVitalesController', function($scope, $http, $location, $cookieStore) {
@@ -468,7 +487,6 @@ app.controller('signosVitalesController', function($scope, $http, $location, $co
 				frecuenciaRespiratoria : $scope.frecuencia,
 				temperatura : $scope.temperatura
 			}).success(function(data) {
-				console.log(data);
 				if (data.prioridad != null && data.prioridad == "UNO"){
 					$cookieStore.put('datosPaciente',data);
 					$location.path("/prioridad1");
@@ -486,111 +504,3 @@ app.controller('signosVitalesController', function($scope, $http, $location, $co
 
 
 
-
-
-
-
-
-
-
-/*************************checklistmodel*****************************/
-
-/**
- * Checklist-model
- * AngularJS directive for list of checkboxes
- */
-
-angular.module('checklist-model', [])
-.directive('checklistModel', ['$parse', '$compile', function($parse, $compile) {
-  // contains
-  function contains(arr, item) {
-    if (angular.isArray(arr)) {
-      for (var i = 0; i < arr.length; i++) {
-        if (angular.equals(arr[i], item)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  // add
-  function add(arr, item) {
-    arr = angular.isArray(arr) ? arr : [];
-    for (var i = 0; i < arr.length; i++) {
-      if (angular.equals(arr[i], item)) {
-        return arr;
-      }
-    }    
-    arr.push(item);
-    return arr;
-  }  
-
-  // remove
-  function remove(arr, item) {
-    if (angular.isArray(arr)) {
-      for (var i = 0; i < arr.length; i++) {
-        if (angular.equals(arr[i], item)) {
-          arr.splice(i, 1);
-          break;
-        }
-      }
-    }
-    return arr;
-  }
-
-  // http://stackoverflow.com/a/19228302/1458162
-  function postLinkFn(scope, elem, attrs) {
-    // compile with `ng-model` pointing to `checked`
-    $compile(elem)(scope);
-
-    // getter / setter for original model
-    var getter = $parse(attrs.checklistModel);
-    var setter = getter.assign;
-
-    // value added to list
-    var value = $parse(attrs.checklistValue)(scope.$parent);
-
-    // watch UI checked change
-    scope.$watch('checked', function(newValue, oldValue) {
-      if (newValue === oldValue) { 
-        return;
-      } 
-      var current = getter(scope.$parent);
-      if (newValue === true) {
-        setter(scope.$parent, add(current, value));
-      } else {
-        setter(scope.$parent, remove(current, value));
-      }
-    });
-
-    // watch original model change
-    scope.$parent.$watch(attrs.checklistModel, function(newArr, oldArr) {
-      scope.checked = contains(newArr, value);
-    }, true);
-  }
-
-  return {
-    restrict: 'A',
-    priority: 1000,
-    terminal: true,
-    scope: true,
-    compile: function(tElement, tAttrs) {
-      if (tElement[0].tagName !== 'INPUT' || !tElement.attr('type', 'checkbox')) {
-        throw 'checklist-model should be applied to `input[type="checkbox"]`.';
-      }
-
-      if (!tAttrs.checklistValue) {
-        throw 'You should provide `checklist-value`.';
-      }
-
-      // exclude recursion
-      tElement.removeAttr('checklist-model');
-      
-      // local scope var storing individual checkbox model
-      tElement.attr('ng-model', 'checked');
-
-      return postLinkFn;
-    }
-  };
-}]);
