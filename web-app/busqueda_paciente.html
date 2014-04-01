@@ -1,44 +1,74 @@
 <title>B&uacute;squeda de pacientes</title>
 <body>
       <div class="page-header" style="text-align:center">
-        <h3>B&uacute;squeda de pacientes</h3>
+        <h4 style="font-weight: bold;">B&uacute;squeda e ingreso de pacientes</h4>
       </div>
 
-      <form name="busqueda_form" class="form-horizontal" ng-submit="buscarPersona()" style="text-align:center" role="form">
+      <form name="busqueda_form" class="form-horizontal" style="text-align:center" role="form">
         <div class="form-group">
             <div class="controls form-inline">
                 <label class="col-sm-4 control-label">DNI</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="dni" ng-model="dni">
+                  <input type="text" class="form-control" name="dni" ng-model="dni" ng-blur="buscarPersona()"/>
                 </div>
-                <label class="col-sm-1 control-label">Nombre</label>
-                <div class="col-sm-2">
-                  <input type="text" class="form-control" name="nombre" ng-model="nombre">
+                <label class="col-sm-1 control-label">Apellido</label>
+                <div class="col-sm-2" ng-class="{'has-error': busqueda_form.apellido.$invalid}">
+                  <input type="text" class="form-control" name="apellido" ng-model="apellido" ng-blur="buscarPersona()"/>
                 </div>
+                <span ng-show="busqueda_form.apellido.$invalid" style="float:left; color:red;">*</span> 
            </div>
         </div>
         <div class="form-group">
             <div class="controls form-inline">
                 <label class="col-sm-4 control-label">Fecha de nacimiento</label>
+                <div class="col-sm-2" ng-class="{'has-error': busqueda_form.fechaDeNacimiento.$invalid}">
+                  <div fecha-con-maximo></div>
+                </div>                
+                <span ng-show="busqueda_form.fechaDeNacimiento.$invalid" style="color:red; float:left">*</span>                
+
+                <label class="col-sm-1 control-label">Nombre</label>
+                <div class="col-sm-2" ng-class="{'has-error': busqueda_form.nombre.$invalid}">
+                  <input type="text" class="form-control" name="nombre" ng-model="nombre" ng-blur="buscarPersona()"//>                  
+                </div>                
+                <span ng-show="busqueda_form.nombre.$invalid" style="float:left; color:red;">*</span>            
+            </div>
+           </div>
+        </div>
+        <div class="form-group">
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label">Tel&eacute;fono</label>
                 <div class="col-sm-2">
-                  <input type="date" name="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento">
+                  <input type="text" name="telefono" class="form-control" ng-model="telefono">
                 </div>
-                <label class="col-sm-1 control-label">Apellido</label>
+                <label class="col-sm-1 control-label">Obra social</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="apellido" ng-model="apellido">
+                  <input type="text" class="form-control" name="obraSocial" ng-model="obraSocial">
                 </div>
            </div>
         </div>
         <div class="form-group">
-              <input type="submit" class="btn btn-default" value="Buscar" id="buscar"/>
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label">Direcci&oacute;n</label>
+                <div class="col-sm-2">
+                  <input type="text" name="direccion" class="form-control" ng-model="direccion">
+                </div>
+                <label class="col-sm-1 control-label">Nro afiliado</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="nroAfiliado" ng-model="nroAfiliado">
+                </div>
+           </div>
+        </div>
+        <div class="form-group">
+            <div class="controls form-inline">
+                <div class="col-sm-1 col-sm-offset-5">
+                  <input type="button" class="btn btn-primary" value="Buscar" id="buscar" ng-click="buscarPersona()"/>
+                </div>
+                <div class="col-sm-2">
+                  <input type="button" name="botonIngresoPaciente" class="btn btn-success col-sm-offset-5" value="Ingresar nuevo paciente" ng-click="agregarPersona()"/>
+                </div>
+           </div>
         </div>
      </form>
      
      <div class="gridStyle" ng-grid="gridOptions"> </div>
-     
-     <br/>
-     
-     <div style="text-align:left">
-         <a type="button" name="botonIngresoPaciente" class="btn btn-lg btn-success col-sm-offset-1" href="#ingreso_form">Ingresar nuevo paciente</a>
-     </div>
 </body>
