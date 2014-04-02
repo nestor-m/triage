@@ -3,12 +3,12 @@ var app = angular.module('app', [ 'ngRoute','ngGrid', 'checklist-model', 'ngCook
 app.config(function($routeProvider) {
 	$routeProvider
 
-	.when('/', {
+	/*.when('/', {
 		templateUrl : 'inicio.html'
-	})
+	})*/
 
-	.when('/busqueda', {
-		templateUrl : 'busqueda_paciente.html',
+	.when('/', {
+		templateUrl : 'busqueda_ingreso_paciente.html',
 		controller : 'busquedaController'
 	})
 
@@ -96,7 +96,7 @@ app.config(function($routeProvider) {
 
 /*****************************************************************************************/
 
-app.controller('personaController', function($scope, $http,	$location, $cookieStore) {
+app.controller('personaController', function($scope, $http) {
 
 	
 	$scope.personas = [];
@@ -105,37 +105,6 @@ app.controller('personaController', function($scope, $http,	$location, $cookieSt
 		$http.get("persona/ajaxList").success(function(data) {
 			$scope.personas = data
 		})
-	}
-
-	$scope.addPersona = function() {
-		var fecNac = new Date($scope.fechaDeNacimiento);
-		var hoy = new Date();
-		if (fecNac > hoy) {
-			$scope.ingreso_form.fechaNacFutura = true;
-		} else {
-			$scope.ingreso_form.fechaNacFutura = false;
-		}
-
-		if ($scope.ingreso_form.$valid && !$scope.ingreso_form.fechaNacFutura) {
-			$http.post("persona/ajaxSave", {
-				nombre : $scope.nombre,
-				apellido : $scope.apellido,
-				fechaDeNacimiento : $scope.fechaDeNacimiento,
-				dni : $scope.dni,
-				direccion : $scope.direccion,
-				telefono : $scope.telefono,
-				obraSocial : $scope.obraSocial,
-				nroAfiliado : $scope.nroAfiliado
-			}).success(function(data) {
-				$cookieStore.put('pacienteActual',data); //me guardo el paciente
-				$location.path("/paciente_ingresado");
-			})
-			
-		} else {
-			$scope.ingreso_form.submitted = true;
-			console.log($scope.ingreso_form.fechaNacFutura);
-			console.log(fecNac);
-		}
 	}
 
 	$scope.loadPersonas();
@@ -182,9 +151,6 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 						}, 100);
 					};
 
-					$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-							$scope.pagingOptions.currentPage);
-
 					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
 						
 					$scope.ingresarPaciente = function(row){						
@@ -197,8 +163,13 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 				   };
 
 					$scope.buscarPersona = function() {
-						$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-								$scope.pagingOptions.currentPage);
+						//este if es necesario por el ng-blur
+						if($scope.nombre!=null && $scope.nombre!="" || 
+							  $scope.apellido!=null && $scope.apellido!="" ||
+							  $scope.fechaDeNacimiento!=null && $scope.fechaDeNacimiento!="" || 
+							  $scope.dni!=null && $scope.dni!=""){							
+							$scope.getPagedDataAsync($scope.pagingOptions.pageSize,$scope.pagingOptions.currentPage);							
+						}
 					};
 					
 				    $scope.$watch('pagingOptions', function (newVal, oldVal) {
@@ -245,7 +216,9 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 
 	$scope.agregarPersona = function() {
 		//validacion
-		if($scope.nombre == null || $scope.nombre ==""){
+		//Ahora no es necesaria esta validacion porque directamente desabilito el boton si hay algun campo incompleto
+		//pero lo dejo por las dudas
+		/*if($scope.nombre == null || $scope.nombre ==""){
 			$scope.busqueda_form.nombre.$setValidity("valido", false);
 		}else{
 			$scope.busqueda_form.nombre.$setValidity("valido", true);
@@ -264,9 +237,9 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 		}
 
 		if($scope.nombre == null || $scope.apellido == null || $scope.fechaDeNacimiento == null){
-			alert("Nombre, Apellido y Fecha de nacimiento son requeridos para ingresar un nuevo paciente");
+			alert("Nombre, Apellido y Fecha de nacimiento son requeridos para ingresar un nuevo paciente");			
 			return;
-		}
+		}*/
 
 		//request
 		$http.post("persona/ajaxSave", {
@@ -284,7 +257,7 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 		});
 	};
 });
-/****************************/
+
 //Directiva para ponerle un tope al date input
 app.directive('fechaConMaximo',function(){
 	var hoy = new Date();
@@ -295,7 +268,7 @@ app.directive('fechaConMaximo',function(){
 	dia = dia<10 ? '0'+dia : dia;
 	var fechaMaxima = hoy.getFullYear() + "-" + mes + "-" + dia;
 	return {
-		template: '<input type="date" name="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento"'+ 
+		template: '<input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento"'+ 
 		'ng-blur="buscarPersona()" max="'+fechaMaxima+'"/>'
 	}
 });

@@ -36,6 +36,11 @@ class PersonaController {
 	 */
 	@Transactional
 	def ajaxSave() {
+		//validacion para request desde herramientas como curl
+		if(request.JSON.nombre == null && request.JSON.apellido && request.JSON.fechaDeNacimiento){
+			return
+		}
+
 		def persona = new Persona(
 			nombre : request.JSON.nombre.toUpperCase(),
 			apellido : request.JSON.apellido.toUpperCase(),
@@ -67,7 +72,7 @@ class PersonaController {
 	 *  
 	 */
 	def ajaxBuscar() {		
-	//CON CRITERIA		
+	//CON CRITERIA				
 		List resultado = Persona.withCriteria {
 			if (request.JSON.dni != '' && request.JSON.dni != null){
 				ilike("dni",request.JSON.dni+"%") //ilike es un like case insensitive 
@@ -84,8 +89,6 @@ class PersonaController {
 		}		
 		render resultado as JSON		
 		return resultado
-		
-
 	}	
 			
 }

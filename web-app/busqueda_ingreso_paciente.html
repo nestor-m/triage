@@ -1,4 +1,4 @@
-<title>B&uacute;squeda de pacientes</title>
+<title>B&uacute;squeda e ingreso de pacientes</title>
 <body>
       <div class="page-header" style="text-align:center">
         <h4 style="font-weight: bold;">B&uacute;squeda e ingreso de pacientes</h4>
@@ -61,10 +61,10 @@
         <div class="form-group">
             <div class="controls form-inline">
                 <div class="col-sm-1 col-sm-offset-5">
-                  <input type="button" class="btn btn-primary" value="Buscar" id="buscar" ng-click="buscarPersona()"/>
+                  <input type="button" name="botonBuscar" class="btn btn-primary" value="Buscar" id="botonBuscar" ng-click="buscarPersona()" ng-disabled="(nombre==null || nombre =='') && (apellido==null || apellido =='') && (dni==null || dni =='') && (fechaDeNacimiento==null || fechaDeNacimiento =='')"/>
                 </div>
-                <div class="col-sm-2">
-                  <input type="button" name="botonIngresoPaciente" class="btn btn-success col-sm-offset-5" value="Ingresar nuevo paciente" ng-click="agregarPersona()"/>
+                <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Nombre, Apellido y Fecha de nacimiento son requeridos para ingresar un nuevo paciente">
+                  <input type="button" name="botonIngresoPaciente" class="btn btn-success col-sm-offset-5" value="Ingresar nuevo paciente" ng-click="agregarPersona()"  ng-disabled="nombre==null || nombre =='' || apellido==null || apellido =='' || fechaDeNacimiento==null || fechaDeNacimiento ==''"/>
                 </div>
            </div>
         </div>
