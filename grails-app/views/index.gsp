@@ -22,6 +22,7 @@
   <script type="text/javascript" src="lib/ng-grid-2.0.7.min.js"></script>
    <script type="text/javascript" src="lib/checklist-model.js"></script>
    <script type="text/javascript" src="lib/bootbox.min.js"></script>
+   <script src="http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js"></script>
    
   
   

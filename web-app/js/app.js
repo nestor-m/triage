@@ -415,8 +415,10 @@ app.controller('prioridad3Controller', function($scope, $location, $cookieStore)
 app.controller('signosVitalesController', function($scope, $http, $location, $cookieStore) {
 	
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
-	
-	
+	$scope.pulsos = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+	$scope.frecuencias = [9,10,11,12,13,14,15,16,17,18];
+	$scope.temperaturas = [30,31,32,33,34,35,36,37,38,39,40,41];
+	$scope.presiones = [1110, 1112, 117];
 	$scope.cargarSignosVitales = function() {
 			
 			$http.post("paciente/cargarSignosVitales", {
@@ -430,6 +432,7 @@ app.controller('signosVitalesController', function($scope, $http, $location, $co
 					$cookieStore.put('datosPaciente',data);
 					$location.path("/prioridad1");
 				}else{
+					console.log($scope.pulsos);
 					$location.path("/paciente_ingresado");
 				}
 			})

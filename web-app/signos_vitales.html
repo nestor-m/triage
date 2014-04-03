@@ -22,8 +22,10 @@
 			ng-class="{'has-error': signos_vitales_form.presion.$error.required}">
 			<label class="col-sm-4 control-label">Presión Arterial</label>
 			<div class="col-sm-5">
-				<input type="number" name="presion" class="form-control"
-					ng-model="presion" required>
+				<select ng-model="presion" id="presion"
+					ng-options="o as o for o in presiones" class="input-large">
+					<option value="">-- Seleccionar --</option>
+				</select>
 			</div>
 			<div class="error" ng-show="signos_vitales_form.presion.$invalid">
 				<small class="error"
@@ -39,8 +41,10 @@
 			ng-class="{'has-error': signos_vitales_form.pulso.$error.required}">
 			<label class="col-sm-4 control-label">Pulso</label>
 			<div class="col-sm-5">
-				<input id="pulso" type="number" name="pulso" class="form-control"
-					ng-model="pulso" required>
+				<select ng-model="pulso" id="pulso"
+					ng-options="o as o for o in pulsos" class="input-large">
+					<option value="">-- Seleccionar --</option>
+				</select>
 			</div>
 			<div class="error" ng-show="signos_vitales_form.pulso.$invalid">
 				<small class="error"
@@ -56,8 +60,10 @@
 			ng-class="{'has-error': signos_vitales_form.frecuencia.$error.required}">
 			<label class="col-sm-4 control-label">Frecuencia Respiratoria</label>
 			<div class="col-sm-5">
-				<input type="number" name="frecuencia" class="form-control"
-					ng-model="frecuencia" required>
+				<select ng-model="frecuencia" id="frecuencia"
+					ng-options="o as o for o in frecuencias" class="input-large">
+					<option value="">-- Seleccionar --</option>
+				</select>
 			</div>
 			<div class="error" ng-show="signos_vitales_form.frecuencia.$invalid">
 				<small class="error"
@@ -73,9 +79,10 @@
 			ng-class="{'has-error': signos_vitales_form.temperatura.$error.required}">
 			<label class="col-sm-4 control-label">Temperatura</label>
 			<div class="col-sm-5">
-
-				<input type="number" name="temperatura" class="form-control"
-					ng-model="temperatura" required>
+				<select ng-model="temperatura" id="temperatura"
+					ng-options="o as o for o in temperaturas" class="input-large">
+					<option value="">-- Seleccionar --</option>
+				</select>
 			</div>
 			<div class="error" ng-show="signos_vitales_form.temperatura.$invalid">
 				<small class="error"
