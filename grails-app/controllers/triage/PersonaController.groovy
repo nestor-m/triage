@@ -15,7 +15,7 @@ import grails.transaction.Transactional
 class PersonaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
-								ajaxBuscar: "POST", ajaxSeleccionarPersona: "POST", ajaxCrearNuevaPersona: "POST"]
+								ajaxBuscar: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -36,6 +36,11 @@ class PersonaController {
 	 */
 	@Transactional
 	def ajaxSave() {
+		//validacion para request desde herramientas como curl
+		if(request.JSON.nombre == null && request.JSON.apellido && request.JSON.fechaDeNacimiento){
+			return
+		}
+
 		def persona = new Persona(
 			nombre : request.JSON.nombre.toUpperCase(),
 			apellido : request.JSON.apellido.toUpperCase(),
@@ -67,7 +72,7 @@ class PersonaController {
 	 *  
 	 */
 	def ajaxBuscar() {		
-	//CON CRITERIA		
+	//CON CRITERIA				
 		List resultado = Persona.withCriteria {
 			if (request.JSON.dni != '' && request.JSON.dni != null){
 				ilike("dni",request.JSON.dni+"%") //ilike es un like case insensitive 
@@ -84,99 +89,6 @@ class PersonaController {
 		}		
 		render resultado as JSON		
 		return resultado
-		
-
-	}
-	
-	def ajaxSeleccionarPersona(){
-		
-	}
-	
-	def ajaxCrearNuevaPersona(){
-		
-	}
-	
-	
-	
-	
-	
+	}	
 			
-    @Transactional
-    def save(Persona personaInstance) {
-        if (personaInstance == null) {
-            notFound()
-            return
-        }
-
-        if (personaInstance.hasErrors()) {
-            respond personaInstance.errors, view:'create'
-            return
-        }
-
-        personaInstance.save flush:true
-
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'personaInstance.label', default: 'Persona'), personaInstance.id])
-                redirect personaInstance
-            }
-            '*' { respond personaInstance, [status: CREATED] }
-        }
-    }
-
-    def edit(Persona personaInstance) {
-        respond personaInstance
-    }
-
-    @Transactional
-    def update(Persona personaInstance) {
-        if (personaInstance == null) {
-            notFound()
-            return
-        }
-
-        if (personaInstance.hasErrors()) {
-            respond personaInstance.errors, view:'edit'
-            return
-        }
-
-        personaInstance.save flush:true
-
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.id])
-                redirect personaInstance
-            }
-            '*'{ respond personaInstance, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def delete(Persona personaInstance) {
-
-        if (personaInstance == null) {
-            notFound()
-            return
-        }
-
-        personaInstance.delete flush:true
-
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Persona.label', default: 'Persona'), personaInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'personaInstance.label', default: 'Persona'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }
 }

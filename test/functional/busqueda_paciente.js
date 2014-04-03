@@ -1,16 +1,6 @@
-casper.test.begin('Voy hacia la pantalla de busqueda de paciente', 7, function suite(test) {
-    casper.start("http://localhost:8080/triage", function() {
-        test.assertTitle("Triage", "el titulo es Triage, ok");
-    });
-
-    casper.then(function() {
-         this.click('a[type="button"][name="adultos"]');
-         test.assertEquals("http://localhost:8080/triage/#/paciente_ingreso_previo_adultos", this.getCurrentUrl(),"La url es correcta");
-    });
-
-    casper.then(function() {
-         this.click('a[type="button"][name="busqueda_paciente"]');
-         test.assertEquals("http://localhost:8080/triage/#/busqueda", this.getCurrentUrl(),"La url es correcta");
+casper.test.begin('Voy hacia la pantalla de busqueda de paciente', 5, function suite(test) {
+    casper.start("http://localhost:8080/triage/", function() {
+        test.assertTitle("Búsqueda e ingreso de pacientes", "el titulo es Búsqueda e ingreso de pacientes");
     });
     
     casper.then(function(){
@@ -36,43 +26,48 @@ casper.test.begin('Voy hacia la pantalla de busqueda de paciente', 7, function s
 
 
 casper.test.begin('Ingreso cuatro pacientes y luego filtro el listado', 9, function suite(test) {
-    casper.start("http://localhost:8080/triage/#/ingreso_form", function() {
-        this.fill('form[name="ingreso_form"]', {
+    casper.start("http://localhost:8080/triage/", function() {
+        this.fill('form[name="busqueda_form"]', {
             'nombre':    'Juan',
             'apellido':    'Perez',
             'fechaDeNacimiento' : '1987-03-21'
-        }, true);
+        });
+        this.click('input[name="botonIngresoPaciente"]');
     });
     
-    casper.thenOpen('http://localhost:8080/triage/#/ingreso_form', function() {
-        this.fill('form[name="ingreso_form"]', {
+    casper.thenOpen('http://localhost:8080/triage/', function() {
+        this.fill('form[name="busqueda_form"]', {
             'nombre':    'Roberto',
             'apellido':    'Gonzalez',
             'fechaDeNacimiento' : '1988-04-22',
             'dni' : '33688677'
-        }, true);
+        });
+        this.click('input[name="botonIngresoPaciente"]');
     });
     
-    casper.thenOpen('http://localhost:8080/triage/#/ingreso_form', function() {
-        this.fill('form[name="ingreso_form"]', {
+    casper.thenOpen('http://localhost:8080/triage/', function() {
+        this.fill('form[name="busqueda_form"]', {
             'nombre':    'Carlos',
             'apellido':    'Garcia',
             'fechaDeNacimiento' : '1987-01-01'
-        }, true);
+        });
+        this.click('input[name="botonIngresoPaciente"]');
     });
     
-    casper.thenOpen('http://localhost:8080/triage/#/ingreso_form', function() {
-        this.fill('form[name="ingreso_form"]', {
+    casper.thenOpen('http://localhost:8080/triage/', function() {
+        this.fill('form[name="busqueda_form"]', {
             'nombre':    'Juan',
             'apellido':    'Garcia',
             'fechaDeNacimiento' : '1985-04-18'
-        }, true);
+        });
+        this.click('input[name="botonIngresoPaciente"]');
     });
 
-    casper.thenOpen('http://localhost:8080/triage/#/busqueda', function() {
+    casper.thenOpen('http://localhost:8080/triage/', function() {
         this.fill('form[name="busqueda_form"]', {
             'nombre':    'juan',
-        }, true);
+        });
+        this.click('input[name="botonBuscar"]');
     });
     
     casper.wait(1000); //espero un segundo para que me de tiempo a filtrar el listado
@@ -89,10 +84,11 @@ casper.test.begin('Ingreso cuatro pacientes y luego filtro el listado', 9, funct
     	test.assertTextDoesntExist('GONZALEZ','Gonzalez es filtrado')
     });
     
-    casper.thenOpen('http://localhost:8080/triage/#/busqueda', function() {
+    casper.thenOpen('http://localhost:8080/triage/', function() {
         this.fill('form[name="busqueda_form"]', {
             'apellido':'gar',
-        }, true);
+        });
+        this.click('input[name="botonBuscar"]');
     });
     
     casper.wait(1000); //espero un segundo para que me de tiempo a filtrar el listado
@@ -109,11 +105,13 @@ casper.test.begin('Ingreso cuatro pacientes y luego filtro el listado', 9, funct
     	test.assertTextDoesntExist('PEREZ','Perez es filtrado')
     });
     
-    casper.thenOpen('http://localhost:8080/triage/#/busqueda', function() {
+    casper.thenOpen('http://localhost:8080/triage/', function() {
         this.fill('form[name="busqueda_form"]', {
             'fechaDeNacimiento':'1987-03-21',
-        }, true);
+        });
+        this.click('input[name="botonBuscar"]');
     });
+
     
     casper.wait(1000); //espero un segundo para que me de tiempo a filtrar el listado
     
@@ -133,30 +131,3 @@ casper.test.begin('Ingreso cuatro pacientes y luego filtro el listado', 9, funct
         test.done();
     });	
 });
-
-
-casper.test.begin('Voy hacia la pantalla de busqueda de paciente y apreto Ingresar nuevo paciente', 2, function suite(test) {
-    casper.start("http://localhost:8080/triage/#/busqueda", function() {
-    	this.click('a[type="button"][name="botonIngresoPaciente"]');
-    	test.assertEquals("http://localhost:8080/triage/#/ingreso_form", this.getCurrentUrl(),"la url es la correcta");
-    });
-    
-    casper.then(function(){
-    	test.assertTextExists('Ingreso paciente','Encontre el texto "Ingreso paciente"');
-    });
-
-    casper.run(function() {
-        test.done();
-    });
-});
-
-
-//Me falta testear cuando se apreta un boton del listado pero parece que casper no ve los botones dentro del listado :(
-
-
-
-
-
-
-
-

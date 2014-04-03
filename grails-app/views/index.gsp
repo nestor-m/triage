@@ -15,17 +15,15 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <%--  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>--%>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+
   
-  <script type="text/javascript" src="lib/angular.js"></script>
+  <script type="text/javascript" src="lib/angular-1.2.15.js"></script>
   <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>  
   <script type="text/javascript" src="lib/ng-grid-2.0.7.min.js"></script>
    <script type="text/javascript" src="lib/checklist-model.js"></script>
    <script type="text/javascript" src="lib/bootbox.min.js"></script>
    <script src="http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js"></script>
-   
-  
-  
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js"></script>
 
   <%--BOOTSTRAP LOCAL--%>
@@ -42,7 +40,7 @@
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Hospital Oñativia</a>
+        <a class="navbar-brand" href="#">Triage - Hospital Oñativia</a>
       </div>
 
       <ul class="nav navbar-nav navbar-right">

@@ -1,14 +1,14 @@
-var app = angular.module('app', [ 'ngGrid', 'checklist-model', 'ngCookies']);
+var app = angular.module('app', [ 'ngRoute','ngGrid', 'checklist-model', 'ngCookies']);
 
 app.config(function($routeProvider) {
 	$routeProvider
 
-	.when('/', {
+	/*.when('/', {
 		templateUrl : 'inicio.html'
-	})
+	})*/
 
-	.when('/busqueda', {
-		templateUrl : 'busqueda_paciente.html',
+	.when('/', {
+		templateUrl : 'busqueda_ingreso_paciente.html',
 		controller : 'busquedaController'
 	})
 
@@ -96,7 +96,7 @@ app.config(function($routeProvider) {
 
 /*****************************************************************************************/
 
-app.controller('personaController', function($scope, $http,	$location, $cookieStore) {
+app.controller('personaController', function($scope, $http) {
 
 	
 	$scope.personas = [];
@@ -107,50 +107,23 @@ app.controller('personaController', function($scope, $http,	$location, $cookieSt
 		})
 	}
 
-	$scope.addPersona = function() {
-		var fecNac = new Date($scope.fechaDeNacimiento);
-		var hoy = new Date();
-		if (fecNac > hoy) {
-			$scope.ingreso_form.fechaNacFutura = true;
-		} else {
-			$scope.ingreso_form.fechaNacFutura = false;
-		}
-
-		if ($scope.ingreso_form.$valid && !$scope.ingreso_form.fechaNacFutura) {
-			$http.post("persona/ajaxSave", {
-				nombre : $scope.nombre,
-				apellido : $scope.apellido,
-				fechaDeNacimiento : $scope.fechaDeNacimiento,
-				dni : $scope.dni,
-				direccion : $scope.direccion,
-				telefono : $scope.telefono,
-				obraSocial : $scope.obraSocial,
-				nroAfiliado : $scope.nroAfiliado
-			}).success(function(data) {
-				$cookieStore.put('pacienteActual',data); //me guardo el paciente
-				$location.path("/paciente_ingresado");
-			})
-			
-		} else {
-			$scope.ingreso_form.submitted = true;
-			console.log($scope.ingreso_form.fechaNacFutura);
-			console.log(fecNac);
-		}
-	}
-
 	$scope.loadPersonas();
 
 });
 
 /**********************************************************************************************************/
 
-app.controller('busquedaController',function($scope, $http, $location, $cookieStore) {
+app.controller('busquedaController',function($scope, $http, $location, $cookieStore/*,$locale*/) {
+
+	//$locale.id = "es-ar";
+	
+	/*Busqueda de paciente*/
 
 					$scope.totalServerItems = 0;
 
 					$scope.pagingOptions = {
-						pageSizes : [ 10, 20, 30 ],
-						pageSize : 10,
+						pageSizes : [ 3, 6, 9 ],
+						pageSize : 3,
 						currentPage : 1
 					};
 
@@ -178,9 +151,6 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 						}, 100);
 					};
 
-					$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-							$scope.pagingOptions.currentPage);
-
 					$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
 						
 					$scope.ingresarPaciente = function(row){						
@@ -193,8 +163,13 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 				   };
 
 					$scope.buscarPersona = function() {
-						$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-								$scope.pagingOptions.currentPage);
+						//este if es necesario por el ng-blur
+						if($scope.nombre!=null && $scope.nombre!="" || 
+							  $scope.apellido!=null && $scope.apellido!="" ||
+							  $scope.fechaDeNacimiento!=null && $scope.fechaDeNacimiento!="" || 
+							  $scope.dni!=null && $scope.dni!=""){							
+							$scope.getPagedDataAsync($scope.pagingOptions.pageSize,$scope.pagingOptions.currentPage);							
+						}
 					};
 					
 				    $scope.$watch('pagingOptions', function (newVal, oldVal) {
@@ -236,8 +211,67 @@ app.controller('busquedaController',function($scope, $http, $location, $cookieSt
 							width : 70
 						} ]
 					};
+					
+	/*Alta de paciente*/
 
-				});
+	$scope.agregarPersona = function() {
+		//validacion
+		//Ahora no es necesaria esta validacion porque directamente desabilito el boton si hay algun campo incompleto
+		//pero lo dejo por las dudas
+		/*if($scope.nombre == null || $scope.nombre ==""){
+			$scope.busqueda_form.nombre.$setValidity("valido", false);
+		}else{
+			$scope.busqueda_form.nombre.$setValidity("valido", true);
+		}
+
+		if($scope.apellido == null || $scope.apellido ==""){
+			$scope.busqueda_form.apellido.$setValidity("valido", false);
+		}else{
+			$scope.busqueda_form.apellido.$setValidity("valido", true);
+		}
+
+		if($scope.fechaDeNacimiento == null){
+			$scope.busqueda_form.fechaDeNacimiento.$setValidity("valido", false);
+		}else{
+			$scope.busqueda_form.fechaDeNacimiento.$setValidity("valido", true);
+		}
+
+		if($scope.nombre == null || $scope.apellido == null || $scope.fechaDeNacimiento == null){
+			alert("Nombre, Apellido y Fecha de nacimiento son requeridos para ingresar un nuevo paciente");			
+			return;
+		}*/
+
+		//request
+		$http.post("persona/ajaxSave", {
+			nombre : $scope.nombre,
+			apellido : $scope.apellido,
+			fechaDeNacimiento : $scope.fechaDeNacimiento,
+			dni : $scope.dni,
+			direccion : $scope.direccion,
+			telefono : $scope.telefono,
+			obraSocial : $scope.obraSocial,
+			nroAfiliado : $scope.nroAfiliado
+		}).success(function(data) {
+			$cookieStore.put('pacienteActual',data); //me guardo el paciente
+			$location.path("/paciente_ingresado");
+		});
+	};
+});
+
+//Directiva para ponerle un tope al date input
+app.directive('fechaConMaximo',function(){
+	var hoy = new Date();
+	//si mes o dia < 10 le agrego un cero adelante para que el max me lo tome bien
+	var mes = hoy.getMonth()+1;
+	mes = mes<10 ? '0'+mes : mes;
+	var dia = hoy.getDate();
+	dia = dia<10 ? '0'+dia : dia;
+	var fechaMaxima = hoy.getFullYear() + "-" + mes + "-" + dia;
+	return {
+		template: '<input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento"'+ 
+		'ng-blur="buscarPersona()" max="'+fechaMaxima+'"/>'
+	}
+});
 
 
 /**********************************************************************************************************/
