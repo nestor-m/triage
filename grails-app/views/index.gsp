@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
   
-  <link rel="stylesheet" type="text/css" href="css/ng-grid.css" /> 
+  <link rel="stylesheet" type="text/css" href="css/ng-grid.css" />
+  <link rel="stylesheet" type="text/css" href="css/dropdown.css" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/page.css" />      
   <link rel="stylesheet" href="css/style.css"/> 
   
   <!-- SPELLS -->
@@ -22,6 +25,7 @@
   <script type="text/javascript" src="lib/ng-grid-2.0.7.min.js"></script>
    <script type="text/javascript" src="lib/checklist-model.js"></script>
    <script type="text/javascript" src="lib/bootbox.min.js"></script>
+    <script type="text/javascript" src="lib/angular-dropdowns.js"></script>
    <script src="http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js"></script>

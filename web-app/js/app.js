@@ -1,4 +1,4 @@
-var app = angular.module('app', [ 'ngRoute','ngGrid', 'checklist-model', 'ngCookies']);
+var app = angular.module('app', [ 'ngRoute','ngGrid', 'checklist-model', 'ngCookies', 'ngDropdowns']);
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -453,12 +453,15 @@ app.controller('signosVitalesController', function($scope, $http, $location, $co
 	$scope.frecuencias = [9,10,11,12,13,14,15,16,17,18];
 	$scope.temperaturas = [30,31,32,33,34,35,36,37,38,39,40,41];
 	$scope.presiones = [1110, 1112, 117];
+	
+	
+	
 	$scope.cargarSignosVitales = function() {
 			
 			$http.post("paciente/cargarSignosVitales", {
 				id : $scope.pacienteActual.id,
 				presionArterial : $scope.presion,
-				pulso : $scope.pulso,
+				pulso : $scope.pulso,	
 				frecuenciaRespiratoria : $scope.frecuencia,
 				temperatura : $scope.temperatura
 			}).success(function(data) {
@@ -466,7 +469,6 @@ app.controller('signosVitalesController', function($scope, $http, $location, $co
 					$cookieStore.put('datosPaciente',data);
 					$location.path("/prioridad1");
 				}else{
-					console.log($scope.pulsos);
 					$location.path("/paciente_ingresado");
 				}
 			})
