@@ -21,7 +21,7 @@
 
   
   <script type="text/javascript" src="lib/angular-1.2.15.js"></script>
-  <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>  
+<%--  <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>  --%>
   <script type="text/javascript" src="lib/ng-grid-2.0.7.min.js"></script>
    <script type="text/javascript" src="lib/checklist-model.js"></script>
    <script type="text/javascript" src="lib/bootbox.min.js"></script>
