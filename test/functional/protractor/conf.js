@@ -1,4 +1,6 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['busquedaIngresoPaciente.js']
+  //specs: ['cargaSintomasTest.js']
+  //specs: ['busquedaIngresoPacienteTest.js','cargaSintomasTest.js']
+  specs: ['./*']//corre todos los archivos de la carpeta
 }

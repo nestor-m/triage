@@ -9,27 +9,27 @@
 	    <p>{{pacienteActual.DNI}}</p>
 	  </div>
 	  <div class="page-header col-md-8" style="text-align: center">
-		<h3>Ingreso de s&iacute;ntomas</h3>
+		<h2><b>Ingreso de s&iacute;ntomas</b></h2>
 	  </div>
   </div>
 
   <div class="row">
    <div class="col-md-9">
-      <form name="busqueda_form" class="form-horizontal" ng-submit="filtrarListadoDeSintomas()" style="text-align:center" role="form">
+      <form name="busqueda_form" class="form-horizontal" style="text-align:center" role="form">
         <div class="form-group">
             <div class="controls form-inline">
-                <label class="col-sm-4 control-label">S&iacute;ntoma</label>
+                <label class="col-sm-3 control-label">S&iacute;ntoma</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="sintoma" ng-model="sintoma">
+                  <input type="text" class="form-control" name="sintoma" ng-model="sintoma" ng-blur="filtrarListadoDeSintomas()"/>
                 </div>
-                <label class="col-sm-1 control-label">Tipo de s&iacute;ntoma</label>
+                <label class="col-sm-2 control-label">Discriminante</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="tipoDeSintoma" ng-model="tipoDeSintoma">
+                  <input type="text" class="form-control" name="discriminante" ng-model="discriminante" ng-blur="filtrarListadoDeSintomas()"/>
                 </div>
            </div>
         </div>
         <div class="form-group">
-              <input type="submit" class="btn btn-default" value="Buscar"/>
+              <input type="button" class="btn btn-primary" value="Buscar" id="buscar" ng-click="filtrarListadoDeSintomas()"/>
         </div>
      </form>
      
@@ -38,7 +38,7 @@
      <br/>
      
      <div style="text-align:left">
-         <a type="button" name="botonIngresoPaciente" class="btn btn-lg btn-success col-sm-offset-1" ng-click="enviarSintomas()">Aceptar</a>
+         <input type="button" id="botonAceptar" class="btn btn-lg btn-success col-sm-offset-1" ng-click="enviarSintomas()" value="Aceptar" ng-disabled="sintomas.length==0"/>
      </div>
      
     </div>
@@ -47,9 +47,12 @@
       <p>Síntomas agregados</p>
       <ul>
         <li class="animate-repeat" ng-repeat="sintoma in sintomas" ng-mouseover="borrar=true" ng-mouseleave="borrar=false" ng-init="borrar=false">
-          {{sintoma.nombre}} <a ng-click="borrarSintoma(sintoma)" ng-show="borrar">borrar</a>
+          {{sintoma.nombre}} <a id="borrar_{{$index}}" ng-click="borrarSintoma(sintoma)" ng-show="borrar">borrar</a>
         </li>
       </ul>
     </div>
    </div>
+   <script type="text/javascript">
+
+   </script>
 </body>

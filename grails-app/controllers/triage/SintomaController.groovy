@@ -21,14 +21,15 @@ class SintomaController {
 		String sintoma = request.JSON.sintoma
 		String tipoDeSintoma = request.JSON.tipoDeSintoma
 		
-		List sintomas = Sintoma.executeQuery("select s.id,s.nombre,t.nombre from Sintoma s, TipoDeSintoma t where s.tipoDeSintoma = t.id " +
+		List sintomas = Sintoma.executeQuery("select s.id,s.nombre,t.nombre,s.prioridad from Sintoma s, TipoDeSintoma t where s.tipoDeSintoma = t.id " +
 			                                  (sintoma != null ? "and s.nombre like '" + sintoma.toUpperCase() + "%'" : ' ') + 
 											  (tipoDeSintoma != null ? "and t.nombre like '" + tipoDeSintoma.toUpperCase() + "%'" : ''))
 		List resultado = new ArrayList()
 		for(s in sintomas){
 			resultado.add(new JSONObject('{"id":' + s[0] +
 				                         ',"nombre":"' + s[1] + '"' +
-										 ',"tipoDeSintoma":"' + s[2] + '"}'))			
+										 ',"tipoDeSintoma":"' + s[2] + '"' +
+										 ',"prioridad":"' + s[3] + '"}'))			
 		}
 		
 		render resultado as JSON

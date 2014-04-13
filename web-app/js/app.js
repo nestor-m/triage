@@ -331,8 +331,8 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 	$scope.totalServerItems = 0;
 
 	$scope.pagingOptions = {
-		pageSizes : [ 10, 20, 30 ],
-		pageSize : 10,
+		pageSizes : [ 3, 6, 9 ],
+		pageSize : 3,
 		currentPage : 1
 	};
 
@@ -350,7 +350,7 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 		setTimeout(function() {
 			$http.post('sintoma/traerSintomas', {
 				sintoma : $scope.sintoma,
-				tipoDeSintoma : $scope.tipoDeSintoma,
+				tipoDeSintoma : $scope.discriminante,
 			}).success(function(data) {
 				$scope.setPagingData(data, page, pageSize);
 			})
@@ -361,9 +361,20 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 			$scope.pagingOptions.currentPage);
 
-	$scope.botonAgregar = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>'
+	$scope.botonAgregarSintoma = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>'
 		
 	$scope.agregarSintoma = function(row){
+		//primero chequeo si es un sintoma de PRIORIDAD 1
+		if(row.entity.prioridad == "UNO"){
+			bootbox.confirm("¿Está seguro que desea ingresar el síntoma?<br>" + row.entity.nombre,function(confirma){
+				if(confirma){
+					$scope.sintomas.push(row.entity);
+					$scope.enviarSintomas();
+				}
+			});
+			return;
+		}
+
 		var repetido = false;
 		for(var i=0;i<$scope.sintomas.length;i++){
 			if($scope.sintomas[i].id == row.entity.id){
@@ -402,9 +413,9 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 			displayName : 'Sintoma'
 		}, {
 			field : 'tipoDeSintoma',
-			displayName : 'Tipo de sintoma'
+			displayName : 'Discriminante'
 		}, {
-			cellTemplate : $scope.botonAgregar,
+			cellTemplate : $scope.botonAgregarSintoma,
 			width : 70
 		} ]
 	};
@@ -418,7 +429,8 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 				$cookieStore.put('datosPaciente',data);
 				$location.path("/prioridad1");
 			}else{
-				alert('NO ES PRIORIDAD UNO =)');
+				//TODO: mostrar mensaje que diga "sintomas cargados con exito"
+				$location.path("/paciente_ingresado");
 			}		
 		});		
 	};

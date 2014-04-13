@@ -21,7 +21,7 @@
 
   
   <script type="text/javascript" src="lib/angular-1.2.15.js"></script>
-  <script type="text/javascript" src="lib/jquery-1.9.1.js"></script>  
+<%--<script type="text/javascript" src="lib/jquery-1.9.1.js"></script>  esto lo comento xq no andaba bootbox, ademas no se xq habia 2 versiones de jquery =S --%>
   <script type="text/javascript" src="lib/ng-grid-2.0.7.min.js"></script>
    <script type="text/javascript" src="lib/checklist-model.js"></script>
    <script type="text/javascript" src="lib/bootbox.min.js"></script>
@@ -48,7 +48,7 @@
       </div>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+        <li><a id="inicio" href="#"><i class="fa fa-home"></i> Inicio</a></li>
         <li><a href="#datos_maestros"><i class="fa fa-shield"></i> Datos Maestros</a></li>
         <li><a href="#reportes"><i class="fa fa-comment"></i> Estadísticas</a></li>
       </ul>
