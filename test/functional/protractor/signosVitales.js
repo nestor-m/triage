@@ -27,6 +27,10 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 	  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/signos_vitales');
   });
   
+  it('selecciono el pulso en 10', function() {
+	
+})
+  
   
   
 });

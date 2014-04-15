@@ -326,7 +326,6 @@ app.controller('impresionVisualController', function($scope, $http, $location,
 		}).success(function(data) {
 			// en data viene el paciente
 			if (data.prioridad != null && data.prioridad == "UNO") {
-				console.log(data);
 				$cookieStore.put('datosPaciente', data);
 				$location.path("/prioridad1");
 			} else {
@@ -336,7 +335,22 @@ app.controller('impresionVisualController', function($scope, $http, $location,
 		});
 	};
 
-	$scope.loadSintomas();
+		$scope.loadSintomas();
+	
+	
+	$scope.esPrioridadUno = function(sintoma){
+			if (sintoma.prioridad.name == "UNO"){
+				bootbox.confirm(
+						"¿Está seguro que desea ingresar el síntoma?",
+						function(confirma) {
+							if (confirma) {
+								$scope.cargarImpresionInicial();
+							}
+					})
+			}
+		
+	}
+	
 });
 
 /** ******************************************************************************************************* */
@@ -390,7 +404,7 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 	$scope.botonAgregarSintoma = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>'
 		
 	$scope.agregarSintoma = function(row){
-		//primero chequeo si es un sintoma de PRIORIDAD 1
+		// primero chequeo si es un sintoma de PRIORIDAD 1
 		if(row.entity.prioridad == "UNO"){
 			bootbox.confirm("¿Está seguro que desea ingresar el síntoma?<br>" + row.entity.nombre,function(confirma){
 				if(confirma){
@@ -455,7 +469,7 @@ app.controller('cargaSintomasController',function($scope, $http, $location, $coo
 				$cookieStore.put('datosPaciente',data);
 				$location.path("/prioridad1");
 			}else{
-				//TODO: mostrar mensaje que diga "sintomas cargados con exito"
+				// TODO: mostrar mensaje que diga "sintomas cargados con exito"
 				$location.path("/paciente_ingresado");
 			}		
 		});		
@@ -485,7 +499,9 @@ app.controller('prioridad3Controller',
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
 
-/** ****************************************************************************************** */
+/** *********************************************************************Ingreso de signos vitales
+
+********************* */
 app.controller('signosVitalesController', function($scope, $http, $location,
 		$cookieStore) {
 
@@ -513,29 +529,22 @@ app.controller('signosVitalesController', function($scope, $http, $location,
 			}
 		})
 
-	}
+	};
 
 	$scope.esPrioridadUno = function() {
-		$http.post("paciente/cargarSignosVitales", {
-			id : $scope.pacienteActual.id,
-			presionArterial : $scope.presion,
-			pulso : $scope.pulso,
-			frecuenciaRespiratoria : $scope.frecuencia,
-			temperatura : $scope.temperatura
-		}).success(
-				function(data) {
-					if (data.prioridad != null && data.prioridad == "UNO") {
-						$cookieStore.put('datosPaciente', data);
-						// $location.path("/prioridad1");
-						bootbox.confirm(
-								"¿Está seguro que desea ingresar el síntoma?",
-								function(confirma) {
-									if (confirma) {
-										$location.path("/prioridad1");
-									}
-								});
-					}
+
+		if (($scope.pulso != null && ($scope.pulso < 40 || $scope.pulso > 150)) ||
+				($scope.frecuencia != null && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
+				($scope.temperatura != null && ($scope.temperatura < 35 || $scope.temperatura > 40))){
+				bootbox.confirm(
+					"¿Está seguro que desea ingresar el síntoma?",
+					function(confirma) {
+						if (confirma) {
+							$scope.cargarSignosVitales();
+						}
 				})
+	
+			}
 	}
 
 });
