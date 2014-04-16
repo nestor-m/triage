@@ -15,7 +15,8 @@ class PacienteController {
 		,cargarSintomas: "POST"
 		,cargarSignosVitales: "POST"
 		,cargarSintomas: "POST"
-		,getSintomasVisuales: "POST"]
+		,getSintomasVisuales: "POST"
+		,getSignosVitales: "POST"]
 	
 	/**seleccion de paciente del listado de busqueda
 	 * 
@@ -49,6 +50,20 @@ class PacienteController {
 		render sintomasVisuales as JSON
 	}
 	
+	/**
+	 * Este método sirve para enviar por JSON
+	 * los signos vitales ya cargados del paciente
+	 * @return
+	 */
+	def getSignosVitales(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		request.JSON.presion = paciente.presionArterial
+		request.JSON.temperatura = paciente.temperatura
+		request.JSON.pulso = paciente.pulso
+		request.JSON.frecuencia = paciente.frecuenciaRespiratoria
+		
+		render request.JSON
+	}
 	
 	@Transactional
 	def cargarSintomas(){

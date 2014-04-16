@@ -309,7 +309,7 @@ app.controller('impresionVisualController', function($scope, $http, $location,
 	$scope.sintomas = [];
 	
 	$scope.paciente = {
-			sintomas : $scope.sintomasCargados
+			sintomas : []
 		}
 	
 	$scope.loadSintomas = function() {
