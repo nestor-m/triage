@@ -14,7 +14,8 @@ class PacienteController {
 		,cargarImpresionInicial: "POST"
 		,cargarSintomas: "POST"
 		,cargarSignosVitales: "POST"
-		,cargarSintomas: "POST"]
+		,cargarSintomas: "POST"
+		,getSintomasVisuales: "POST"]
 	
 	/**seleccion de paciente del listado de busqueda
 	 * 
@@ -33,6 +34,21 @@ class PacienteController {
 		 
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
+	
+	/**
+	 * Este método sirve para enviar por JSON todos los síntomas visuales
+	 * del paciente marcados.
+	 * @return
+	 */
+	def getSintomasVisuales(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		List sintomasVisuales = new ArrayList()
+		for (s in paciente.sintomas) {
+			sintomasVisuales.add(s)
+		}
+		render sintomasVisuales as JSON
+	}
+	
 	
 	@Transactional
 	def cargarSintomas(){
@@ -61,7 +77,7 @@ class PacienteController {
 		request.JSON.telefono = paciente.persona.telefono
 		request.JSON.obraSocial = paciente.persona.obraSocial
 		request.JSON.nroAfiliado = paciente.persona.nroAfiliado
-		request.JSON.sint = paciente.pulso < 40;
+//		request.JSON.sint = paciente.pulso < 40;
 		
 		String sintomas = ""
 		paciente.sintomas.each{

@@ -23,7 +23,7 @@
 					ng-submit="cargarImpresionInicial()" style="text-align: center"
 					role="form">
 					<label ng-repeat="sintoma in sintomas">
-					 <input	type="checkbox"	 checklist-model="paciente.sintomas"	checklist-value="sintoma" 
+					 <input	type="checkbox"	 checklist-model="paciente.sintomas" checklist-value="sintoma" 
 					 	ng-click="esPrioridadUno(sintoma)"/>
 					  {{sintoma.nombre}}
 					</label>

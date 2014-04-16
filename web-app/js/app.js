@@ -306,18 +306,24 @@ app.controller('impresionVisualController', function($scope, $http, $location,
 		$cookieStore) {
 
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
-
 	$scope.sintomas = [];
+	
+	$scope.paciente = {
+			sintomas : $scope.sintomasCargados
+		}
+	
 	$scope.loadSintomas = function() {
-
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
 			$scope.sintomas = data;
-		});
+		});	
+		$http.post("paciente/getSintomasVisuales", {
+			id : $scope.pacienteActual.id
+		}).success(function(data) {
+			$scope.paciente.sintomas = data;
+		})
 	};
 
-	$scope.paciente = {
-		sintomas : []
-	}
+
 
 	$scope.cargarImpresionInicial = function() {
 		$http.post("paciente/cargarSintomas", {
@@ -330,7 +336,7 @@ app.controller('impresionVisualController', function($scope, $http, $location,
 				$location.path("/prioridad1");
 			} else {
 				// sigo con la carga
-				$location.path("/carga_sintomas");
+				$location.path("/paciente_ingresado");
 			}
 		});
 	};
