@@ -57,10 +57,10 @@ class PacienteController {
 	 */
 	def getSignosVitales(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		request.JSON.presion = paciente.presionArterial
-		request.JSON.temperatura = paciente.temperatura
-		request.JSON.pulso = paciente.pulso
-		request.JSON.frecuencia = paciente.frecuenciaRespiratoria
+		if (paciente.presionArterial != null) request.JSON.presion = paciente.presionArterial
+		if (paciente.temperatura != null) request.JSON.temperatura = paciente.temperatura
+		if (paciente.pulso != null) request.JSON.pulso = paciente.pulso
+		if (paciente.frecuenciaRespiratoria != null) request.JSON.frecuencia = paciente.frecuenciaRespiratoria
 		
 		render request.JSON
 	}
@@ -112,10 +112,10 @@ class PacienteController {
 	@Transactional
 	def cargarSignosVitales(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		paciente.presionArterial = request.JSON.presionArterial
-		paciente.pulso = request.JSON.pulso
-		paciente.frecuenciaRespiratoria = request.JSON.frecuenciaRespiratoria
-		paciente.temperatura = request.JSON.temperatura
+		if (request.JSON.presionArterial != null) paciente.presionArterial = request.JSON.presionArterial
+		if (request.JSON.pulso != null) paciente.pulso = request.JSON.pulso
+		if (request.JSON.frecuenciaRespiratoria != null) paciente.frecuenciaRespiratoria = request.JSON.frecuenciaRespiratoria
+		if (request.JSON.temperatura != null) paciente.temperatura = request.JSON.temperatura
 		
 		paciente.save()
 		

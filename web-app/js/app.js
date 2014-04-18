@@ -518,6 +518,20 @@ app.controller('signosVitalesController', function($scope, $http, $location,
 	$scope.temperaturas = [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ];
 	$scope.presiones = [ 1110, 1112, 117 ];
 
+	
+	$scope.loadSignosVitales = function(){
+		$http.post("paciente/getSignosVitales", {
+			id : $scope.pacienteActual.id
+		}).success(function(data){
+			$scope.pulso = data.pulso;
+			$scope.temperatura = data.temperatura;
+			$scope.presion = data.presion;
+			$scope.frecuencia = data.frecuencia;
+		})
+	}
+	
+	$scope.loadSignosVitales();
+	
 	$scope.cargarSignosVitales = function() {
 
 		$http.post("paciente/cargarSignosVitales", {
@@ -536,6 +550,9 @@ app.controller('signosVitalesController', function($scope, $http, $location,
 		})
 
 	};
+	
+	
+
 
 	$scope.esPrioridadUno = function() {
 
