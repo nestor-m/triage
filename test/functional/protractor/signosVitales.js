@@ -1,35 +1,76 @@
 describe('Test pantalla de ingreso de signos vitales', function() {
 
-  it('el titulo debe ser "Búsqueda e ingreso de pacientes"', function() {
-    browser.get('http://localhost:8080/triage/');
-
-    browser.sleep(500);
-
-    expect($$('.page-header h4').get(0).getText()).toBe('Búsqueda e ingreso de pacientes');    
-  });
-
-
-  it('filtro por "nestor" e ingreso el paciente NESTOR MUÑOZ', function() {
-  	element(by.model('nombre')).sendKeys('nestor');
-    element(by.buttonText('Buscar')).click();
-    browser.sleep(500);
-    element(by.buttonText('Ingresar')).click();
-    browser.sleep(500);
-    expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
-    var nombre = element(by.binding('pacienteActual.nombre'));
-    expect(nombre.getText()).toBe('NESTOR MUÑOZ');
-  });
-  
-  
-  it('ingreso a la pantalla de signos vitales', function(){
-	  element(by.id('signos_vitales')).click();
-	  browser.sleep(500);
-	  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/signos_vitales');
-  });
-  
-  it('selecciono el pulso en 10', function() {
 	
-})
+	
+	
+	  beforeEach(function() {
+	      browser.get('http://localhost:8080/triage/');  
+	      element(by.model('nombre')).sendKeys('nestor');
+	      element(by.id("botonBuscar")).click();
+	      browser.waitForAngular();
+	      element(by.buttonText('Ingresar')).click();
+	      browser.waitForAngular();
+
+	      element(by.id('signos_vitales')).click();;
+	  });
+
+  
+  it('chequeo que los sintomas ingresados sean los mismos cuando vuelvo a la pantalla', function() {
+	  
+	  /*Método encontrado en internet para seleccionar items en un dropdown*/
+	  var selectDropdownbyNum = function ( element, optionNum ) {
+		    if (optionNum){
+		      var options = element.findElements(by.tagName('option'))   
+		        .then(function(options){
+		          options[optionNum].click();
+		        });
+		    }
+		  };
+		  var selectPulso = selectDropdownbyNum(element(by.id('pulso')), 8);
+		  var selectPresion = selectDropdownbyNum(element(by.id('presion')), 2);
+		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 8);
+		  var selectFrecuencia = selectDropdownbyNum(element(by.id('frecuencia')), 7);
+		  browser.sleep(500);
+		  //Salgo de la pantalla
+		  element(by.buttonText('Aceptar')).click();
+		  //Entro a la pantalla de paciente ingresado con todas las opciones
+		  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
+		  //Vuelvo a la lista de signos vitales..
+		  element(by.id('signos_vitales')).click();
+		  browser.sleep(500);
+		  //Yo sé qué elegí en cada opción...
+		  expect(element(by.selectedOption('pulso')).getText()).toEqual('80');
+		  expect(element(by.selectedOption('presion')).getText()).toEqual('1112');
+		  expect(element(by.selectedOption('temperatura')).getText()).toEqual('37');
+		  expect(element(by.selectedOption('frecuencia')).getText()).toEqual('15');		  
+  });
+  
+  
+  it('TEST que temperatura 33 es p1', function(){
+	  var selectDropdownbyNum = function ( element, optionNum ) {
+		    if (optionNum){
+		      var options = element.findElements(by.tagName('option'))   
+		        .then(function(options){
+		          options[optionNum].click();
+		        });
+		    }
+		  };
+		  
+		  expect($('.bootbox').isPresent()).toBe(false);//el pedido de confirmacion no exite
+		  //selecciono la temperatura en 33
+		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 4);
+		  browser.sleep(500);
+		  expect($('.bootbox').isPresent()).toBe(true);//aparece el pedido de confirmacion
+		  
+		  var botonOK = $$('.modal-footer button').get(1);
+		    botonOK.click();//confirmo
+		    browser.waitForAngular();
+
+		    expect(browser.getTitle()).toBe('PRIORIDAD 1');
+		    browser.sleep(500);
+  });
+  
+
   
   
   
