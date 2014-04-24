@@ -24,11 +24,32 @@ describe('Test pantalla de ingreso de impresion visual', function() {
 		browser.sleep(500);
 		
 		//ingreso nuevamente a la impresion visual
-		element(by.id('impresion_inicial')).click()
+		element(by.id('impresion_inicial')).click();
 		browser.sleep(500);
+		
+		
+		var sintomas2 = element.all(by.repeater('sintoma in sintomas'));
+//		 expect(sintomas2.get(0).evaluate()).toBe(true);
 		
 		
 	})
 	
+	
+	it ('Test que al ingresar un síntoma de prioridad 1 se muestra la pantalla de confirmación y luego la pantalla de p1', function(){
+		var sintomas = element.all(by.repeater('sintoma in sintomas'));
+		//se que el primero del arreglo es deshidratacion de p2
+		expect(sintomas.get(1).getText()).toBe('DOLOR SEVERO (p1)');
+		sintomas.get(1).click();
+		
+		 expect($('.bootbox').isPresent()).toBe(true);//aparece el pedido de confirmacion
+		  
+		  var botonOK = $$('.modal-footer button').get(1);
+		    botonOK.click();//confirmo
+		    browser.waitForAngular();
+
+		    expect(browser.getTitle()).toBe('PRIORIDAD 1');
+		    browser.sleep(500);
+		
+	})
 	
 })
