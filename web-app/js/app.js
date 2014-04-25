@@ -70,6 +70,10 @@ app.config(function($routeProvider) {
 		templateUrl : 'signos_vitales.html',
 		controller : 'signosVitalesController'
 	})
+	
+	.when('/pacientes_espera', {
+		templateUrl : 'pacientes_espera.html'
+	})
 
 	.when('/carga_sintomas', {
 		templateUrl : 'carga_sintomas.html',

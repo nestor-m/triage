@@ -127,6 +127,16 @@ class PacienteController {
 		this.enviarRespuesta(paciente)
 	}
 	
+	def ajaxBuscarNoFinalizados() {
+		//CON CRITERIA
+			List resultado = Paciente.withCriteria {
+					eq("finalizado",false)
+			}
+			render resultado as JSON
+			return resultado
+		}
+	
+	
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

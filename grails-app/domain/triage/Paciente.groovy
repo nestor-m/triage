@@ -9,6 +9,7 @@ class Paciente {
 	Integer pulso
 	Integer frecuenciaRespiratoria
 	Integer temperatura
+	Boolean finalizado
 
 	Prioridad prioridad
 
@@ -23,6 +24,7 @@ class Paciente {
 		temperatura nullable: true
 		sintomas nullable: true
 		prioridad nullable: true
+		finalizado nullable: true
 	}
 
 	/**
