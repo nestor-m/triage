@@ -3,6 +3,6 @@ exports.config = {
   //specs: ['cargaSintomasTest.js']
   //specs: ['busquedaIngresoPacienteTest.js','cargaSintomasTest.js']
 //  specs : ['signosVitales.js']
-  specs: ['impresionVisual.js']
-//  specs: ['./*']//corre todos los archivos de la carpeta
+  //specs: ['impresionVisual.js']
+  specs: ['./*']//corre todos los archivos de la carpeta
 }
