@@ -7,7 +7,8 @@ describe('Test pantalla de ingreso de impresion visual', function() {
 	      browser.waitForAngular();
 	      element(by.buttonText('Ingresar')).click();
 	      browser.waitForAngular();
-	      element(by.id('impresion_inicial')).click();
+	      //element(by.id('impresion_inicial')).click(); //esto no hace falta porque al ingresar un paciente dirige 
+	                                                     //a la pantalla de impresion visual
 	  });
 	
 	
@@ -20,11 +21,11 @@ describe('Test pantalla de ingreso de impresion visual', function() {
 		browser.sleep(500);
 		
 		//vuelvo a la pantalla de paciente ingresado
-		element(by.buttonText('Continuar')).click();
+		element(by.buttonText('Aceptar')).click();
 		browser.sleep(500);
 		
 		//ingreso nuevamente a la impresion visual
-		element(by.id('impresion_inicial')).click();
+		element(by.id('impresion_visual')).click();
 		browser.sleep(500);
 		
 		

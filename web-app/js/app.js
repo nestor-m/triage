@@ -628,9 +628,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 		}
     };
 
-	$scope.filtrarListadoDeSintomas = function(sintoma,discriminante) {
-		//$scope.sintoma = sintoma;
-		$scope.discriminante = discriminante;
+	$scope.filtrarListadoDeSintomas = function() {
 		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 				$scope.pagingOptions.currentPage);
 	};
