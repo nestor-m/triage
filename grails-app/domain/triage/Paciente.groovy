@@ -28,17 +28,19 @@ class Paciente {
 	}
 
 	/**
-	 * Obtiene la prioridad del paciente a partir de sus sintomas
-	 * @return Prioridad
+	 * Obtiene la prioridad del paciente a partir de sus sintomas.
+	 * No puede retornar Prioridad.UNO porque si es prioridad uno 
+	 * el proceso no deberia llegar a llamar este metodo
+	 * @return Prioridad.DOS o Prioridad.TRES
 	 */
 	Prioridad calcularPrioridad(){
-		for(sintoma in sintomas){
+		/*for(sintoma in sintomas){
 			if(sintoma.prioridad == Prioridad.UNO){
 				this.prioridad = Prioridad.UNO
 				this.save()
 				return Prioridad.UNO
 			}
-		}
+		}*/
 
 		for(sintoma in sintomas){
 			if(sintoma.prioridad == Prioridad.DOS){
@@ -48,13 +50,13 @@ class Paciente {
 			}
 		}
 
-		if ((pulso != null && (pulso < 40 || pulso > 150)) ||
+		/*if ((pulso != null && (pulso < 40 || pulso > 150)) ||
 				(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
 				(temperatura != null && (temperatura < 35 || temperatura > 40))){
 			this.prioridad = Prioridad.UNO
 			this.save()
 			return Prioridad.UNO
-		}
+		}*/
 
 		this.prioridad = Prioridad.TRES
 		this.save()

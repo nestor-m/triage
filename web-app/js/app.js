@@ -489,20 +489,31 @@ app
 app.controller('pacienteIngresadoController', function($scope, $cookieStore, $http, $location) {
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
 
-	$scope.pantalla = 'carga_sintomas.html';
-
 	$scope.salir = function(){
 		$cookieStore.remove('pacienteActual');
 		$scope.pacienteActual = null;
 		$location.path("/");
-	}
+	};
+
+	$scope.finalizarTriage = function(){
+		$http.post("paciente/calcularPrioridad",{
+			id : $scope.pacienteActual.id
+		}).success(function(data){
+			bootbox.alert("Triage finalizado con éxito<br>" + "Paciente " +$scope.pacienteActual.nombre + " " +
+				$scope.pacienteActual.apellido + "<br>" +
+				"PRIORIDAD " + data.prioridad);
+			//TODO: aca deberia comenzar a contar el tiempo de espera
+			$scope.salir();
+		});
+
+	};
 
 	/*IMPRESION VISUAL*/
 	$scope.sintomasImpresionVisual = [];
 	
 	$scope.paciente = {
 			sintomas : []
-		}
+		};
 	
 	$scope.loadSintomas = function() {
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
@@ -512,7 +523,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			id : $scope.pacienteActual.id
 		}).success(function(data) {
 			$scope.paciente.sintomas = data;
-		})
+		});
 	};
 
 
@@ -546,7 +557,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 					})
 			}
 		
-	}
+	};
 
 	/*INGRESO DE SINTOMAS*/
 	$scope.sintomas = [];
@@ -591,7 +602,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 			$scope.pagingOptions.currentPage);
 
-	$scope.botonAgregarSintoma = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>'
+	$scope.botonAgregarSintoma = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>';
 		
 	$scope.agregarSintoma = function(row){
 		// primero chequeo si es un sintoma de PRIORIDAD 1
