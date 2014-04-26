@@ -1,26 +1,33 @@
-    <title>Paciente ingresado</title>
- <body>
-  
-  <div class="row">
-  	  <div class="col-md-2" style="text-align:center">
-	    <label>Paciente ingresado:</label>
+<div class="row">
+  <div class="col-md-2" style="border-right: solid #E4E3E3; border-width:1px;">
+    <div style="text-align:center">
+	    <label>Paciente:</label>
 	    <p id="nombreApellido">{{pacienteActual.nombre}} {{pacienteActual.apellido}}</p>
 	    <p>{{pacienteActual.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
 	    <p>{{pacienteActual.DNI}}</p>
 	  </div>
-	  <div class="page-header col-md-8" style="text-align: center">
-		<h1>Triage</h1>
-	  </div>
+
+    </br>
+    </br>
+
+      <p style="text-align: center">
+        <a type="button" name="impresion_inicial" id="impresion_inicial" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='impresion_visual.html'">Impresi&oacute;n visual</a>
+      </p>
+      <p style="text-align: center">
+        <a type="button" name="carga_sintomas" id="cargaSintomas" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='carga_sintomas.html'">S&iacute;ntomas</a>
+      </p>
+      <p style="text-align: center">
+        <a type="button" name="signos_vitales" id="signos_vitales" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='signos_vitales.html'">Signos vitales</a>
+      </p>
+      </br>
+	    </br>
+	    <p style="text-align: center">
+        <a type="button" name="signos_vitales" id="signos_vitales" class="btn btn-sm btn-primary" style="width:120px" ng-click="salir()">Salir</a>
+      </p>      
+
   </div>
 
-      <p style="text-align: center">
-        <a type="button" name="impresion_inicial" id="impresion_inicial" class="btn btn-lg btn-success" style="width:200px" href="#impresion_visual">Impresi&oacute;n inicial</a>
-      </p>
-      <p style="text-align: center">
-        <a type="button" name="carga_sintomas" id="cargaSintomas" class="btn btn-lg btn-success" style="width:200px" href="#carga_sintomas">Ingresar s&iacute;ntomas</a>
-      </p>
-      <p style="text-align: center">
-        <a type="button" name="signos_vitales" id="signos_vitales" class="btn btn-lg btn-success" style="width:200px" href="#signos_vitales">Control signos vitales</a>
-      </p>
-
- </body>
+  <div class="col-md-10">
+  		<div ng-include="pantalla"></div>
+  </div>    
+</div>

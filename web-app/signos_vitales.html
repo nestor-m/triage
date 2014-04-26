@@ -1,19 +1,11 @@
 
 <title>Signos Vitales</title>
 
-<div class="row">
-	<div class="col-md-2" style="text-align: center">
-		<label>Paciente ingresado:</label>
-		<p>{{pacienteActual.nombre}} {{pacienteActual.apellido}}</p>
-		<p>{{pacienteActual.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
-		<p>{{pacienteActual.DNI}}</p>
-	</div>
-	<div class="page-header col-md-8" style="text-align: center">
+<body ng-controller="signosVitalesController">
+	<div class="page-header" style="text-align: center">
 		<h3>Ingreso de signos vitales</h3>
 	</div>
-</div>
 
-<body ng-controller="signosVitalesController">
 	<form name="signos_vitales_form" class="form-horizontal" role="form"
 		ng-submit="cargarSignosVitales()" novalidate>
 
@@ -21,7 +13,7 @@
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Presión Arterial</label>
 			<div class="col-sm-5">
-				<select ng-model="presion" id="presion" name="presion"
+				<select ng-model="$parent.presion" id="presion" name="presion"
 					ng-options="o as o for o in presiones" class="form-control" required 
 						ng-click="esPrioridadUno()">
 					<option value="">-- Seleccionar --</option>
@@ -36,7 +28,7 @@
 <!-- 			ng-class="{'has-error': signos_vitales_form.pulso.$error.required}"> -->
 			<label class="col-sm-4 control-label">Pulso</label>
 			<div class="col-sm-5">
-				<select ng-model="pulso" id="pulso" name="pulso"
+				<select ng-model="$parent.pulso" id="pulso" name="pulso"
 					ng-options="o as o for o in pulsos" class="form-control" required
 					ng-click="esPrioridadUno()">
 					<option value="">-- Seleccionar --</option>
@@ -51,7 +43,7 @@
 <!-- 			ng-class="{'has-error': signos_vitales_form.frecuencia.$error.required}"> -->
 			<label class="col-sm-4 control-label">Frecuencia Respiratoria</label>
 			<div class="col-sm-5">
-				<select ng-model="frecuencia" id="frecuencia" name="frecuencia"
+				<select ng-model="$parent.frecuencia" id="frecuencia" name="frecuencia"
 					ng-options="o as o for o in frecuencias" class="form-control" required
 					ng-click="esPrioridadUno()">
 					<option value="">-- Seleccionar --</option>
@@ -67,7 +59,7 @@
 <!-- 			ng-class="{'has-error': signos_vitales_form.temperatura.$error.required}"> -->
 			<label class="col-sm-4 control-label">Temperatura</label>
 			<div class="col-sm-5">
-				<select ng-model="temperatura" id="temperatura" name="temperatura"
+				<select ng-model="$parent.temperatura" id="temperatura" name="temperatura"
 					ng-options="o as o for o in temperaturas" class="form-control" required
 					ng-click="esPrioridadUno()">
 					<option value="">-- Seleccionar --</option>
@@ -83,11 +75,8 @@
 			<div class="col-sm-offset-4 col-sm-10">
 
 				<p style="text-align: center">
-					<input type="submit" class="btn btn-default" value="Aceptar" />
+					<input type="submit" class="btn btn-success" value="Aceptar" />
 					<!-- 					<button type="submit" class="btn btn-default">Aceptar</button> -->
-				</p>
-				<p style="text-align: center">
-					<a type="button" class="btn btn-default" href="#paciente_ingresado">Atrás</a>
 				</p>
 			</div>
 		</div>

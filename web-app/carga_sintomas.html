@@ -1,16 +1,7 @@
 <title>Ingreso de s&iacute;ntomas</title>
 <body>
-
-  <div class="row">
-  	  <div class="col-md-2" style="text-align:center">
-	    <label>Paciente ingresado:</label>
-	    <p>{{pacienteActual.nombre}} {{pacienteActual.apellido}} </p>
-	    <p>{{pacienteActual.fechaDeNacimiento | date:'dd/MM/yyyy'}}</p>
-	    <p>{{pacienteActual.DNI}}</p>
-	  </div>
-	  <div class="page-header col-md-8" style="text-align: center">
-		<h2><b>Ingreso de s&iacute;ntomas</b></h2>
-	  </div>
+  <div class="page-header" style="text-align: center">
+    <h3>Ingreso de s&iacute;ntomas</h3>
   </div>
 
   <div class="row">
@@ -20,11 +11,11 @@
             <div class="controls form-inline">
                 <label class="col-sm-3 control-label">S&iacute;ntoma</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="sintoma" ng-model="sintoma" ng-blur="filtrarListadoDeSintomas()"/>
+                  <input type="text" class="form-control" name="sintoma" ng-model="$parent.sintoma" ng-blur="filtrarListadoDeSintomas()"/>
                 </div>
                 <label class="col-sm-2 control-label">Discriminante</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="discriminante" ng-model="discriminante" ng-blur="filtrarListadoDeSintomas()"/>
+                  <input type="text" class="form-control" name="discriminante" ng-model="$parent.discriminante" ng-blur="filtrarListadoDeSintomas()"/>
                 </div>
            </div>
         </div>
@@ -37,8 +28,8 @@
      
      <br/>
      
-     <div style="text-align:left">
-         <input type="button" id="botonAceptar" class="btn btn-lg btn-success col-sm-offset-1" ng-click="enviarSintomas()" value="Aceptar" ng-disabled="sintomas.length==0"/>
+     <div style="text-align:right">
+         <input type="button" id="botonAceptar" class="btn btn-success col-sm-offset-1" ng-click="enviarSintomas()" value="Aceptar" ng-disabled="sintomas.length==0"/>
      </div>
      
     </div>
