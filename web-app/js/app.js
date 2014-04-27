@@ -72,7 +72,8 @@ app.config(function($routeProvider) {
 	})*/
 	
 	.when('/pacientes_espera', {
-		templateUrl : 'pacientes_espera.html'
+		templateUrl : 'pacientes_espera.html',
+		controller : 'pacientesEsperaController'
 	})
 
 	/*.when('/carga_sintomas', {
@@ -736,11 +737,95 @@ app.controller('prioridad2Controller',
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
 
+
+
+
+
 /** ****************************************************************************************** */
 app.controller('prioridad3Controller',
 		function($scope, $location, $cookieStore) {
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
+
+
+/** ****************************************************************************************** */
+app.controller('pacientesEsperaController',
+		function($scope, $location, $cookieStore) {
+	
+		$scope.paciente = $cookieStore.get('datosPaciente');
+	
+		$scope.botonTriage = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
+		$scope.botonFinalizar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
+			
+			
+			$scope.totalServerItems = 0;
+
+		$scope.pagingOptions = {
+			pageSizes : [ 3, 6, 9 ],
+			pageSize : 3,
+			currentPage : 1
+		};
+
+		$scope.setPagingData = function(data, page, pageSize) {
+			var pagedData = data.slice((page - 1) * pageSize, page
+					* pageSize);
+			$scope.myData = pagedData;
+			$scope.totalServerItems = data.length;
+			if (!$scope.$$phase) {
+				$scope.$apply();
+			}
+		};
+
+		$scope.getPagedDataAsync = function(pageSize, page) {
+			setTimeout(function() {
+				$http.post('paciente/ajaxBuscarNoFinalizados', {
+					nombre : $scope.nombre,
+					apellido : $scope.apellido,
+					fechaDeNacimiento : $scope.fechaDeNacimiento,
+					dni : $scope.dni
+				}).success(function(data) {
+					$scope.setPagingData(data, page, pageSize);
+				})
+
+			}, 100);
+		};
+	
+		$scope.gridOptions = {
+				data : 'myData',
+				enablePaging : true,
+				showFooter : true,
+				enableColumnResize : true,
+				totalServerItems : 'totalServerItems',
+				pagingOptions : $scope.pagingOptions,
+				columnDefs : [ {
+					field : 'id',
+					visible : false
+				}, {
+					field : 'nombre',
+					displayName : 'Nombre'
+				}, {
+					field : 'apellido',
+					displayName : 'Apellido'
+				}, {
+					field : 'dni',
+					displayName : 'DNI'
+				}, {
+					field : 'fechaDeNacimiento',
+					displayName : 'Fecha de nacimiento',
+					cellFilter : 'date:\'dd/MM/yyyy\'',
+					width : 160
+				},  {
+					cellTemplate : $scope.botonTriage,
+					width : 70
+				}
+				, {
+					cellTemplate : $scope.botonFinalizar,
+					width : 70
+				}]
+			};
+	
+		});
+
 
 /** *********************************************************************Ingreso de signos vitales
 

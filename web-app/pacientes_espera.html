@@ -1,12 +1,50 @@
 <title>Pacientes en espera</title>
 <body>
-      <div class="page-header" style="text-align:center">
-        <h4 style="font-weight: bold;">B&uacute;squeda e ingreso de pacientes en espera</h4>
-      </div>
-      
-      
-      
-      
-      
-      </body>
-      
+	<div class="page-header" style="text-align: center">
+		<h4 style="font-weight: bold;">B&uacute;squeda e ingreso de
+			pacientes en espera</h4>
+	</div>
+
+
+	<form name="busqueda_form" class="form-horizontal"
+		style="text-align: center" role="form">
+		<div class="form-group">
+			<div class="controls form-inline">
+				<label class="col-sm-4 control-label">DNI</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" name="dni" ng-model="dni"
+						ng-blur="buscarPersonaEnEspera()" />
+				</div>
+				<label class="col-sm-1 control-label">Apellido</label>
+				<div class="col-sm-2"
+					ng-class="{'has-error': busqueda_form.apellido.$invalid}">
+					<input type="text" class="form-control" name="apellido"
+						ng-model="apellido" ng-blur="buscarPersonaEnEspera()" />
+				</div>
+				<span ng-show="busqueda_form.apellido.$invalid"
+					style="float: left; color: red;">*</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="controls form-inline">
+				<label class="col-sm-4 control-label">Fecha de nacimiento</label>
+				<div class="col-sm-2"
+					ng-class="{'has-error': busqueda_form.fechaDeNacimiento.$invalid}">
+					<div fecha-con-maximo></div>
+				</div>
+				<span ng-show="busqueda_form.fechaDeNacimiento.$invalid"
+					style="color: red; float: left">*</span> <label
+					class="col-sm-1 control-label">Nombre</label>
+				<div class="col-sm-2"
+					ng-class="{'has-error': busqueda_form.nombre.$invalid}">
+					<input type="text" class="form-control" name="nombre"
+						ng-model="nombre" ng-blur="buscarPersonaEnEspera()" //>
+				</div>
+				<span ng-show="busqueda_form.nombre.$invalid"
+					style="float: left; color: red;">*</span>
+			</div>
+		</div>
+	</form>
+
+	<div class="gridStyle" ng-grid="gridOptions"></div>
+</body>
