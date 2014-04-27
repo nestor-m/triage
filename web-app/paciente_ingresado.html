@@ -7,27 +7,31 @@
 	    <p>{{pacienteActual.DNI}}</p>
 	  </div>
 
-    </br>
-    </br>
+    <br>
+    <br>
 
       <p style="text-align: center">
-        <a type="button" name="impresion_inicial" id="impresion_inicial" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='impresion_visual.html'">Impresi&oacute;n visual</a>
+        <input type="button" name="impresion_visual" id="impresion_visual" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='impresion_visual.html'" ng-disabled="pantalla=='impresion_visual.html'" value='Impresi&oacute;n visual'/>
       </p>
       <p style="text-align: center">
-        <a type="button" name="carga_sintomas" id="cargaSintomas" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='carga_sintomas.html'">S&iacute;ntomas</a>
+        <input type="button" name="carga_sintomas" id="cargaSintomas" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='carga_sintomas.html'" ng-disabled="pantalla=='carga_sintomas.html'" value='S&iacute;ntomas'/>
       </p>
       <p style="text-align: center">
-        <a type="button" name="signos_vitales" id="signos_vitales" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='signos_vitales.html'">Signos vitales</a>
+        <input type="button" name="signos_vitales" id="signos_vitales" class="btn btn-sm btn-success" style="width:120px" ng-click="pantalla='signos_vitales.html'" ng-disabled="pantalla=='signos_vitales.html'" value='Signos vitales'/>
       </p>
-      </br>
-	    </br>
+      <br>
+	    <br>
 	    <p style="text-align: center">
-        <a type="button" name="signos_vitales" id="signos_vitales" class="btn btn-sm btn-primary" style="width:120px" ng-click="salir()">Salir</a>
-      </p>      
+        <input type="button" id="salir" class="btn btn-sm btn-primary" style="width:120px" ng-click="salir()" value='Salir'/>
+      </p> 
+      <br>     
+      <p style="text-align: center">
+        <input type="button" id="finalizarTriage" class="btn btn-sm btn-warning" style="width:120px" ng-click="finalizarTriage()" value='Finalizar Triage'/>
+      </p> 
 
   </div>
 
   <div class="col-md-10">
-  		<div ng-include="pantalla"></div>
+  		<div ng-include="pantalla" ng-init="pantalla='impresion_visual.html'"></div>
   </div>    
 </div>

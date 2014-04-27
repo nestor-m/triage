@@ -38,7 +38,7 @@ describe('Test pantalla de búsqueda e ingreso de pacientes', function() {
     element(by.buttonText('Buscar')).click();
     browser.waitForAngular();
     element(by.buttonText('Ingresar')).click();
-   browser.waitForAngular();
+    browser.waitForAngular();
     expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
     var nombre = element(by.binding('pacienteActual.nombre'));
     expect(nombre.getText()).toBe('NESTOR MUÑOZ');

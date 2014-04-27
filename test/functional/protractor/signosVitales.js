@@ -33,16 +33,20 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		  browser.sleep(500);
 		  //Salgo de la pantalla
 		  element(by.buttonText('Aceptar')).click();
+		  browser.waitForAngular();
+		  element(by.buttonText('OK')).click();//mensaje de carga exitosa
 		  //Entro a la pantalla de paciente ingresado con todas las opciones
 		  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
+		  element(by.id('impresion_visual')).click();
+		  browser.waitForAngular();
 		  //Vuelvo a la lista de signos vitales..
 		  element(by.id('signos_vitales')).click();
 		  browser.sleep(500);
 		  //Yo sé qué elegí en cada opción...
-		  expect(element(by.selectedOption('pulso')).getText()).toEqual('80');
-		  expect(element(by.selectedOption('presion')).getText()).toEqual('1112');
-		  expect(element(by.selectedOption('temperatura')).getText()).toEqual('37');
-		  expect(element(by.selectedOption('frecuencia')).getText()).toEqual('15');		  
+		  expect(element(by.selectedOption('$parent.pulso')).getText()).toEqual('80');
+		  expect(element(by.selectedOption('$parent.presion')).getText()).toEqual('1112');
+		  expect(element(by.selectedOption('$parent.temperatura')).getText()).toEqual('37');
+		  expect(element(by.selectedOption('$parent.frecuencia')).getText()).toEqual('15');		  
   });
   
   

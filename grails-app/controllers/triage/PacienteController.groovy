@@ -16,7 +16,17 @@ class PacienteController {
 		,cargarSignosVitales: "POST"
 		,cargarSintomas: "POST"
 		,getSintomasVisuales: "POST"
-		,getSignosVitales: "POST"]
+		,getSignosVitales: "POST"
+		,calcularPrioridad: "POST"]
+
+	/*calcula la prioridad (DOS o TRES) y responde un JSON
+	*/
+	def calcularPrioridad(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		Prioridad prioridad = paciente.calcularPrioridad();
+		request.JSON.prioridad = prioridad
+		render request.JSON
+	}
 	
 	/**seleccion de paciente del listado de busqueda
 	 * 

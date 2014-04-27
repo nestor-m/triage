@@ -22,7 +22,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
   });
 
   it('filtro por sintoma',function(){
-    element(by.model('sintoma')).sendKeys('d');//ingreso la letra d
+    element(by.id('sintoma')).sendKeys('d');//ingreso la letra d
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
     expect(element.all(by.buttonText('Agregar')).count()).toBe(2);//deben quedar dos botones 'Agregar' correspondientes a los sintomas “DOLOR SEVERO” y “DESHIDRATACION” 
@@ -36,7 +36,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
   });
 
   it('filtro por discriminante',function(){
-    element(by.model('discriminante')).sendKeys('dolor');//ingreso "dolor"
+    element(by.id('discriminante')).sendKeys('dolor');//ingreso "dolor"
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
     expect(element.all(by.buttonText('Agregar')).count()).toBe(1);//debe quedar un boton 'Agregar' correspondiente al sintoma “CONTRACTURA” 
@@ -48,7 +48,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
   });
 
   it('filtro por sintoma incorrectamente',function(){
-    element(by.model('sintoma')).sendKeys('    aaaaaaaaaaa');//ingreso '    aaaaaaaaaaa'
+    element(by.id('sintoma')).sendKeys('    aaaaaaaaaaa');//ingreso '    aaaaaaaaaaa'
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
     expect(element(by.buttonText('Agregar')).isPresent()).toBe(false);//no encuentro ningun boton en el listado, es decir, el listado no arrojo ningun resultado
@@ -56,7 +56,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
   //TEST CARGA DE SINTOMAS
   it('Cargo el sintoma DESHIDRATACION y CONTRACTURA',function(){
-    var sintomaTextInput = element(by.model('sintoma'));
+    var sintomaTextInput = element(by.id('sintoma'));
     //filtro el listado por el sintoma deshidratacion
     sintomaTextInput.sendKeys('deshidratacion');
     element(by.id('buscar')).click();//presiono buscar
@@ -81,7 +81,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
   it('Test visibilidad del boton borrar del sintoma cargado',function(){
     //filtro el listado por el sintoma contractura
-    element(by.model('sintoma')).sendKeys('contractura');
+    element(by.id('sintoma')).sendKeys('contractura');
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
 
@@ -96,7 +96,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
   it('Test borrar sintoma cargado',function(){
     //filtro el listado por el sintoma deshidratacion
-    element(by.model('sintoma')).sendKeys('deshidratacion');
+    element(by.id('sintoma')).sendKeys('deshidratacion');
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
 
@@ -111,7 +111,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
   it('El mismo sintoma no se puede agregar 2 veces',function(){
     //filtro el listado por el sintoma contractura
-    element(by.model('sintoma')).sendKeys('contractura');
+    element(by.id('sintoma')).sendKeys('contractura');
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
 
@@ -122,7 +122,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
   });
 
   it('Cargo dos sintomas con exito',function(){
-    var sintomaTextInput = element(by.model('sintoma'));
+    var sintomaTextInput = element(by.id('sintoma'));
 
     //filtro el listado por el sintoma deshidratacion
     sintomaTextInput.sendKeys('deshidratacion');
@@ -142,12 +142,13 @@ describe('Test pantalla de ingreso de sintomas', function() {
     element(by.id('botonAceptar')).click();//presiono Aceptar
     browser.waitForAngular();
 
-    expect(browser.getTitle()).toBe('Paciente ingresado');
+    var dialogo = $('.bootbox').$('.modal-dialog').$('.modal-content').$('.modal-body').$('.bootbox-body');
+    expect(dialogo.getText()).toBe('Síntomas cargados con éxito');//aparece el mensaje de carga exitosa
   });
 
   it('Test pedido de confirmacion si se carga sintoma de prioridad uno',function(){
     //filtro el listado por el sintoma dolor severo
-    element(by.model('sintoma')).sendKeys('dolor severo');
+    element(by.id('sintoma')).sendKeys('dolor severo');
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
 
@@ -160,7 +161,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
   it('Test cancelo la carga del sintoma de prioridad uno',function(){
     //filtro el listado por el sintoma dolor severo
-    element(by.model('sintoma')).sendKeys('dolor severo');
+    element(by.id('sintoma')).sendKeys('dolor severo');
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
 
@@ -175,7 +176,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
   it('Test cargo y confirmo sintoma de prioridad uno',function(){
     //filtro el listado por el sintoma dolor severo
-    element(by.model('sintoma')).sendKeys('dolor severo');
+    element(by.id('sintoma')).sendKeys('dolor severo');
     element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
 
