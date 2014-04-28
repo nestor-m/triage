@@ -20,8 +20,10 @@ class SintomaController {
 	def traerSintomas() {
 		String sintoma = request.JSON.sintoma
 		String tipoDeSintoma = request.JSON.tipoDeSintoma
+		String prioridad = request.JSON.esAdulto?"prioridadAdulto":"prioridadPediatrico"
+
 		
-		List sintomas = Sintoma.executeQuery("select s.id,s.nombre,t.nombre,s.prioridad from Sintoma s, TipoDeSintoma t where s.tipoDeSintoma = t.id " +
+		List sintomas = Sintoma.executeQuery("select s.id,s.nombre,t.nombre,s."+prioridad+" from Sintoma s, TipoDeSintoma t where s.tipoDeSintoma = t.id " +
 			                                  (sintoma != null ? "and s.nombre like '" + sintoma.toUpperCase() + "%'" : ' ') + 
 											  (tipoDeSintoma != null ? "and t.nombre like '" + tipoDeSintoma.toUpperCase() + "%'" : ''))
 		List resultado = new ArrayList()

@@ -104,11 +104,11 @@ class PacienteControllerSpec extends Specification {
 		def muscular = new TipoDeSintoma(nombre: "DOLOR MUSCULAR")
 		muscular.save()
 		
-		Sintoma dolorSevero = new Sintoma(nombre:"DOLOR SEVERO",prioridad: Prioridad.UNO,tipoDeSintoma: impresionInicial)
+		Sintoma dolorSevero = new Sintoma(nombre:"DOLOR SEVERO",prioridadAdulto: Prioridad.UNO,prioridadPediatrico: Prioridad.UNO,tipoDeSintoma: impresionInicial)
 		dolorSevero.save()
-		Sintoma deshidratacion = new Sintoma(nombre:"DESHIDRATACION",prioridad: Prioridad.DOS,tipoDeSintoma: impresionInicial)
+		Sintoma deshidratacion = new Sintoma(nombre:"DESHIDRATACION",prioridadAdulto: Prioridad.DOS,prioridadPediatrico: Prioridad.DOS,tipoDeSintoma: impresionInicial)
 		deshidratacion.save()
-		Sintoma contractura = new Sintoma(nombre:"CONTRACTURA", prioridad: Prioridad.TRES, tipoDeSintoma: muscular)
+		Sintoma contractura = new Sintoma(nombre:"CONTRACTURA", prioridadAdulto: Prioridad.TRES,prioridadPediatrico: Prioridad.TRES, tipoDeSintoma: muscular)
 		contractura.save()
 		
 		return [dolorSevero,deshidratacion,contractura]

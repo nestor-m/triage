@@ -34,41 +34,46 @@ class Paciente {
 	 * @return Prioridad.DOS o Prioridad.TRES
 	 */
 	Prioridad calcularPrioridad(){
-		/*for(sintoma in sintomas){
-			if(sintoma.prioridad == Prioridad.UNO){
-				this.prioridad = Prioridad.UNO
-				this.save()
-				return Prioridad.UNO
-			}
-		}*/
-
+		Boolean esAdulto = persona.esAdulto()
 		for(sintoma in sintomas){
-			if(sintoma.prioridad == Prioridad.DOS){
-				this.prioridad = Prioridad.DOS
-				this.save()
-				return Prioridad.DOS
+			if(esAdulto){//si es adulto miro las prioridades para adulto
+				if(sintoma.prioridadAdulto == Prioridad.DOS){
+					this.prioridad = Prioridad.DOS
+					this.save()
+					return Prioridad.DOS
+				}
+			}else{//si es ninio miro las prioridades para ninio
+				if(sintoma.prioridadPediatrico == Prioridad.DOS){
+					this.prioridad = Prioridad.DOS
+					this.save()
+					return Prioridad.DOS
+				}
 			}
-		}
 
-		/*if ((pulso != null && (pulso < 40 || pulso > 150)) ||
-				(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
-				(temperatura != null && (temperatura < 35 || temperatura > 40))){
-			this.prioridad = Prioridad.UNO
-			this.save()
-			return Prioridad.UNO
-		}*/
+		}
 
 		this.prioridad = Prioridad.TRES
 		this.save()
 		return Prioridad.TRES
 	}
 
-	boolean esPrioridadUno(){
+	Boolean esPrioridadUno(){
+		Boolean esAdulto = persona.esAdulto()
 		for(sintoma in sintomas){
-			if(sintoma.prioridad == Prioridad.UNO){
-				return true
+			if(esAdulto){//si es adulto miro las prioridades para adulto
+				if(sintoma.prioridadAdulto == Prioridad.UNO){
+					return true
+				}
+			}else{//si es ninio miro las prioridades para ninio
+				if(sintoma.prioridadPediatrico == Prioridad.UNO){
+					return true
+				}
 			}
 		}
+
+		//TODO: falta la logica para signos vitales en pediatricos
+
+		
 		if ((pulso != null && (pulso < 40 || pulso > 150)) ||
 				(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
 				(temperatura != null && (temperatura < 35 || temperatura > 40))){

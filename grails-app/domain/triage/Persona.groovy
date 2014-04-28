@@ -30,4 +30,14 @@ class Persona { //implements Serializable{
 //	static mapping = {
 //		id composite: ['nombre','apellido','fechaDeNacimiento']
 //	}
+
+	Boolean esAdulto(){
+		return getEdad() > 14 //a partir de los 15 anios una persona es considerada adulta para el triage
+	}
+
+	int getEdad(){
+		int edad = (new Date() - fechaDeNacimiento) / 365 //la resta de date retorna la cantidad de dias, dividido 365 retorna la cantidad de anios
+		return edad
+	}
+
 }

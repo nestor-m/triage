@@ -9,8 +9,7 @@ import grails.transaction.Transactional
 @Transactional //(readOnly = true)
 class PacienteController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"
-		,cargarPaciente: "POST"
+    static allowedMethods = [cargarPaciente: "POST"
 		,cargarImpresionInicial: "POST"
 		,cargarSintomas: "POST"
 		,cargarSignosVitales: "POST"
@@ -42,6 +41,7 @@ class PacienteController {
 		request.JSON.apellido = persona.apellido
 		request.JSON.fechaDeNacimiento = persona.fechaDeNacimiento.getDateString()
 		request.JSON.DNI = persona.dni
+		request.JSON.esAdulto = persona.esAdulto()
 		 
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
@@ -145,20 +145,5 @@ class PacienteController {
 			render resultado as JSON
 			return resultado
 		}
-	
-	
-	
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Paciente.list(params), model:[pacienteInstanceCount: Paciente.count()]
-    }
-
-    def show(Paciente pacienteInstance) {
-        respond pacienteInstance
-    }
-
-    def create() {
-        respond new Paciente(params)
-    }
 
 }

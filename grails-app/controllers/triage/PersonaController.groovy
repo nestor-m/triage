@@ -11,24 +11,10 @@ import org.codehaus.groovy.grails.web.json.JSONObject;
 import grails.converters.JSON
 import grails.transaction.Transactional
 
-@Transactional //(readOnly = true) esto me hizo romperme la cabeza durante unas cuantas horas :(
+@Transactional //(readOnly = true) esto me hizo romper la cabeza durante unas cuantas horas :(
 class PersonaController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
-								ajaxBuscar: "POST"]
-
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
-    }
-
-    def show(Persona personaInstance) {
-        respond personaInstance
-    }
-
-    def create() {
-        respond new Persona(params)
-    }
+    static allowedMethods = [ajaxList: "GET", ajaxSave: "POST",	ajaxBuscar: "POST"]
 
 	/**
 	 * Submit del formulario de alta de persona
@@ -60,6 +46,7 @@ class PersonaController {
 		request.JSON.apellido = persona.apellido
 		request.JSON.fechaDeNacimiento = persona.fechaDeNacimiento.getDateString()
 		request.JSON.DNI = persona.dni
+		request.JSON.esAdulto = persona.esAdulto()
 		 
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
