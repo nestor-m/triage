@@ -303,7 +303,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			sintomas : []
 		};
 	
-	$scope.loadSintomas = function() {
+	$scope.traerSintomasImpresionVisual = function() {
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
 			$scope.sintomasImpresionVisual = data;
 		});	
@@ -329,8 +329,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 		});
 	};
 
-	$scope.loadSintomas();
-	
+	$scope.traerSintomasImpresionVisual();	
 	
 	$scope.esPrioridadUnoImpresionVisual = function(sintoma){
 		var confirmar = function(){
@@ -347,7 +346,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			if (sintoma.prioridadAdulto.name == "UNO"){
 				confirmar();
 			}
-		}else{//es ninio
+		}else{//es pediatrico
 			if (sintoma.prioridadPediatrico.name == "UNO"){
 				confirmar();
 			}
@@ -476,27 +475,29 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			140, 150 ];
 	$scope.frecuencias = [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ];
 	$scope.temperaturas = [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ];
-	$scope.presiones = [ 1110, 1112, 117 ];
-
+	$scope.sistoles = [ 1110, 1112, 117 ];
+	$scope.diastoles = [ 1110, 1112, 117 ,118];
 	
-	$scope.loadSignosVitales = function(){
+	$scope.recuperarSignosVitales = function(){
 		$http.post("paciente/getSignosVitales", {
 			id : $scope.pacienteActual.id
 		}).success(function(data){
 			$scope.pulso = data.pulso;
 			$scope.temperatura = data.temperatura;
-			$scope.presion = data.presion;
+			$scope.sistole = data.sistole;
+			$scope.diastole = data.diastole;
 			$scope.frecuencia = data.frecuencia;
 		})
 	}
 	
-	$scope.loadSignosVitales();
+	$scope.recuperarSignosVitales();
 	
-	$scope.cargarSignosVitales = function() {
+	$scope.enviarSignosVitales = function() {
 
 		$http.post("paciente/cargarSignosVitales", {
 			id : $scope.pacienteActual.id,
-			presionArterial : $scope.presion,
+			sistole : $scope.sistole,
+			diastole : $scope.diastole,
 			pulso : $scope.pulso,
 			frecuenciaRespiratoria : $scope.frecuencia,
 			temperatura : $scope.temperatura
@@ -511,22 +512,55 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 
 	};
 
-	$scope.esPrioridadUno = function() {
-
-		if (($scope.pulso != null && ($scope.pulso < 40 || $scope.pulso > 150)) ||
-				($scope.frecuencia != null && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
-				($scope.temperatura != null && ($scope.temperatura < 35 || $scope.temperatura > 40))){
-				bootbox.confirm(
-					"¿Está seguro que desea ingresar el síntoma?",
-					function(confirma) {
-						if (confirma) {
-							$scope.cargarSignosVitales();
-						}
-				})
-	
+	$scope.esPrioridadUno = function(modelo,label) {
+		if($scope.pacienteActual.esAdulto){
+			$scope.chequearSignosVitalesAdulto(modelo,label)
+		}else{//es pediatrico
+			switch($scope.pacienteActual.categoriaPediatrico){
+				case 'recienNacido':
+  					$scope.chequearSignosVitalesRecienNacido(modelo,label)
+  					break;
+				case 'menorDe3Anios':
+  					$scope.chequearSignosVitalesMenorDe3Anios(modelo,label)
+  					break;
+  				case 'mayorDe3Anios':
+  					$scope.chequearSignosVitalesMayorDe3Anios(modelo,label)
 			}
+		}
 	};
 
+	$scope.chequearSignosVitalesAdulto = function(modelo,label){
+		if (($scope.pulso != '' && ($scope.pulso < 40 || $scope.pulso > 150)) ||
+				($scope.frecuencia != '' && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
+				($scope.temperatura != '' && ($scope.temperatura < 35 || $scope.temperatura > 40))){
+
+			$scope.mostrarMensajeDeConfirmacion(modelo,label);
+		}
+	};
+
+	$scope.chequearSignosVitalesRecienNacido = function(modelo,label){
+		alert('chequearSignosVitalesRecienNacido');
+	};
+
+	$scope.chequearSignosVitalesMenorDe3Anios = function(modelo,label){
+		alert('chequearSignosVitalesMenorDe3Anios');
+	};
+
+	$scope.chequearSignosVitalesMayorDe3Anios = function(modelo,label){
+		alert('chequearSignosVitalesMayorDe3Anios');
+	};
+
+	$scope.mostrarMensajeDeConfirmacion = function(modelo,label){
+		bootbox.confirm("¿Está seguro que desea ingresar el siguiente valor? <br>" + label + ": " + $scope[modelo],
+			function(confirma) {						
+				if (confirma) {
+					$scope.enviarSignosVitales();
+				}else{
+					$scope[modelo] = '';//vacio el campo
+					$scope.$apply();//actualizo la vista
+				}
+			});	
+	};
 });
 
 /** ****************************************************************************************** */

@@ -35,21 +35,21 @@ class Paciente {
 	 */
 	Prioridad calcularPrioridad(){
 		Boolean esAdulto = persona.esAdulto()
+		def confirmarPrioridadDos = {
+			this.prioridad = Prioridad.DOS
+			this.save()
+			return Prioridad.DOS
+		}
 		for(sintoma in sintomas){
 			if(esAdulto){//si es adulto miro las prioridades para adulto
 				if(sintoma.prioridadAdulto == Prioridad.DOS){
-					this.prioridad = Prioridad.DOS
-					this.save()
-					return Prioridad.DOS
+					confirmarPrioridadDos()
 				}
 			}else{//si es ninio miro las prioridades para ninio
 				if(sintoma.prioridadPediatrico == Prioridad.DOS){
-					this.prioridad = Prioridad.DOS
-					this.save()
-					return Prioridad.DOS
+					confirmarPrioridadDos()
 				}
 			}
-
 		}
 
 		this.prioridad = Prioridad.TRES
