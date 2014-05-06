@@ -15,7 +15,7 @@ import grails.transaction.Transactional
 class PersonaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
-								ajaxBuscar: "POST"]
+								ajaxBuscar: "POST", ajaxBuscarNoFinalizados: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -52,7 +52,7 @@ class PersonaController {
 			nroAfiliado : request.JSON.nroAfiliado
 		).save( failOnError : true, flush:true )
 		
-		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date()).save( failOnError : true )
+		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date(), finalizado: false).save( failOnError : true )
 		
 		
 		request.JSON.id = paciente.id
@@ -88,7 +88,10 @@ class PersonaController {
 			}
 		}		
 		render resultado as JSON		
-		return resultado
+		return resultado	
 	}	
+	
+
+	
 			
 }

@@ -66,6 +66,11 @@ app.config(function($routeProvider) {
 		controller : 'pacienteIngresadoController'
 	})
 
+	.when('/finalizar_paciente', {
+		templateUrl : 'finalizar_paciente.html',
+		controller : 'finalizarPacienteController'
+	})
+	
 /*	.when('/signos_vitales', {
 		templateUrl : 'signos_vitales.html',
 		controller : 'signosVitalesController'
@@ -81,6 +86,9 @@ app.config(function($routeProvider) {
 		controller : 'cargaSintomasController'
 	})*/;
 });
+
+
+
 
 /** ************************************************************************************** */
 // Este servicio no se usa, pero lo dejo para tenerlo de ejemplo. Se puede usar
@@ -759,16 +767,48 @@ app.controller('prioridad3Controller',
 
 /** ****************************************************************************************** */
 app.controller('pacientesEsperaController',
-		function($scope, $location, $cookieStore) {
+		function($scope, $location, $cookieStore, $http) {
 	
-		$scope.paciente = $cookieStore.get('datosPaciente');
 	
-		$scope.botonTriage = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
-		$scope.botonFinalizar = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Ingresar</button>'
+		$scope.botonTriage = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Triage</button>'
+		$scope.botonFinalizar = '<button type="button" class="btn btn-primary btn-xs" ng-click="finalizarPaciente(row)" name="botonFinalizarPaciente">Finalizar</button>'
 			
 			
-			$scope.totalServerItems = 0;
+		$scope.totalServerItems = 0;
 
+		
+		$scope.ingresarPaciente = function(row) {
+			$http.post("paciente/cargarPacienteEnEspera", row.entity)
+					.success(function(data) {// envia todos los
+												// datos de la
+												// persona
+												// (row.entity) pero
+												// con el id alcanza
+						$cookieStore.put('pacienteActual', data); // me
+																	// guardo
+																	// el
+																	// paciente
+						$location.path("/paciente_ingresado");
+					});
+
+		};
+		
+		$scope.finalizarPaciente = function(row){
+			$http.post("paciente/cargarPacienteEnEspera", row.entity)
+			.success(function(data) {// envia todos los
+										// datos de la
+										// persona
+										// (row.entity) pero
+										// con el id alcanza
+				$cookieStore.put('pacienteActual', data); // me
+															// guardo
+															// el
+															// paciente
+				$location.path("/finalizar_paciente");
+			});
+		}
+		
+		
 		$scope.pagingOptions = {
 			pageSizes : [ 3, 6, 9 ],
 			pageSize : 3,
@@ -789,9 +829,7 @@ app.controller('pacientesEsperaController',
 			setTimeout(function() {
 				$http.post('paciente/ajaxBuscarNoFinalizados', {
 					nombre : $scope.nombre,
-					apellido : $scope.apellido,
-					fechaDeNacimiento : $scope.fechaDeNacimiento,
-					dni : $scope.dni
+					apellido : $scope.apellido
 				}).success(function(data) {
 					$scope.setPagingData(data, page, pageSize);
 				})
@@ -799,6 +837,31 @@ app.controller('pacientesEsperaController',
 			}, 100);
 		};
 	
+		
+		$scope.$watch('pagingOptions', function(newVal, oldVal) {
+			if (newVal !== oldVal
+					&& newVal.currentPage !== oldVal.currentPage) {
+				$scope.getPagedDataAsync(
+						$scope.pagingOptions.pageSize,
+						$scope.pagingOptions.currentPage);
+			}
+		}, true);
+		
+		$scope.buscarPersona = function() {
+			// este if es necesario por el ng-blur
+			if ($scope.nombre != null && $scope.nombre != ""
+				|| $scope.apellido != null
+					&& $scope.apellido != ""
+					|| $scope.fechaDeNacimiento != null
+					&& $scope.fechaDeNacimiento != ""
+					|| $scope.dni != null && $scope.dni != "") {
+				$scope.getPagedDataAsync(
+						$scope.pagingOptions.pageSize,
+						$scope.pagingOptions.currentPage);
+			}
+		};
+		
+		
 		$scope.gridOptions = {
 				data : 'myData',
 				enablePaging : true,
@@ -813,15 +876,16 @@ app.controller('pacientesEsperaController',
 					field : 'nombre',
 					displayName : 'Nombre'
 				}, {
-					field : 'apellido',
-					displayName : 'Apellido'
+					field : 'edad',
+					displayName : 'Edad',
+					width : 160
 				}, {
-					field : 'dni',
-					displayName : 'DNI'
+					field : 'demora',
+					displayName : 'Espera',
+					width : 160
 				}, {
-					field : 'fechaDeNacimiento',
-					displayName : 'Fecha de nacimiento',
-					cellFilter : 'date:\'dd/MM/yyyy\'',
+					field : 'prioridad',
+					displayName : 'Prioridad',
 					width : 160
 				},  {
 					cellTemplate : $scope.botonTriage,
@@ -834,6 +898,24 @@ app.controller('pacientesEsperaController',
 			};
 	
 		});
+/** ***************************** FINALIZAR PACIENTE ********************************************* */
+app.controller('finalizarPacienteController',
+		function($scope, $location, $cookieStore, $http) {
+		
+	$scope.paciente = $cookieStore.get('pacienteActual');
+	
+	$scope.finalizarTriage = function(){
+		$http.post("paciente/calcularPrioridad",{
+			id : $scope.paciente.id
+		}).success(function(data){
+			$scope.prioridad = data.prioridad;
+		});
+	};
+	$scope.finalizarTriage();
+	console.log($scope.paciente);
+	
+});
+
 
 
 /** *********************************************************************Ingreso de signos vitales

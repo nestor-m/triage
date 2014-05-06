@@ -34,13 +34,7 @@ class Paciente {
 	 * @return Prioridad.DOS o Prioridad.TRES
 	 */
 	Prioridad calcularPrioridad(){
-		/*for(sintoma in sintomas){
-			if(sintoma.prioridad == Prioridad.UNO){
-				this.prioridad = Prioridad.UNO
-				this.save()
-				return Prioridad.UNO
-			}
-		}*/
+		
 
 		for(sintoma in sintomas){
 			if(sintoma.prioridad == Prioridad.DOS){
@@ -49,14 +43,6 @@ class Paciente {
 				return Prioridad.DOS
 			}
 		}
-
-		/*if ((pulso != null && (pulso < 40 || pulso > 150)) ||
-				(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
-				(temperatura != null && (temperatura < 35 || temperatura > 40))){
-			this.prioridad = Prioridad.UNO
-			this.save()
-			return Prioridad.UNO
-		}*/
 
 		this.prioridad = Prioridad.TRES
 		this.save()
@@ -77,6 +63,8 @@ class Paciente {
 		return false
 	}
 
+	
+
 	/**
 	 * Retorna el tiempo de espera entre el ingreso y la atencion
 	 * @return String
@@ -90,4 +78,14 @@ class Paciente {
 			duration.minutes>0 ? duration.minutes + "minutos": ""
 		}
 	}
+	
+	String tiempoEspera(){
+		use(groovy.time.TimeCategory) {
+			Date ahora = new Date()
+			def duration = ahora - this.fechaHoraIngreso
+			return 	duration
+		}
+	}
+	
+	
 }

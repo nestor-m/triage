@@ -10,40 +10,31 @@
 		style="text-align: center" role="form">
 		<div class="form-group">
 			<div class="controls form-inline">
-				<label class="col-sm-4 control-label">DNI</label>
+				<label class="col-sm-4 control-label">Nombre</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" name="dni" ng-model="dni"
-						ng-blur="buscarPersonaEnEspera()" />
+					<input type="text" class="form-control" name="nombre" ng-model="nombre"
+						ng-blur="buscarPersona()" />
 				</div>
 				<label class="col-sm-1 control-label">Apellido</label>
 				<div class="col-sm-2"
 					ng-class="{'has-error': busqueda_form.apellido.$invalid}">
 					<input type="text" class="form-control" name="apellido"
-						ng-model="apellido" ng-blur="buscarPersonaEnEspera()" />
+						ng-model="apellido" ng-blur="buscarPersona()" />
 				</div>
 				<span ng-show="busqueda_form.apellido.$invalid"
 					style="float: left; color: red;">*</span>
 			</div>
 		</div>
-		<div class="form-group">
-			<div class="controls form-inline">
-				<label class="col-sm-4 control-label">Fecha de nacimiento</label>
-				<div class="col-sm-2"
-					ng-class="{'has-error': busqueda_form.fechaDeNacimiento.$invalid}">
-					<div fecha-con-maximo></div>
-				</div>
-				<span ng-show="busqueda_form.fechaDeNacimiento.$invalid"
-					style="color: red; float: left">*</span> <label
-					class="col-sm-1 control-label">Nombre</label>
-				<div class="col-sm-2"
-					ng-class="{'has-error': busqueda_form.nombre.$invalid}">
-					<input type="text" class="form-control" name="nombre"
-						ng-model="nombre" ng-blur="buscarPersonaEnEspera()" //>
-				</div>
-				<span ng-show="busqueda_form.nombre.$invalid"
-					style="float: left; color: red;">*</span>
-			</div>
-		</div>
+
+		
+		 <div class="form-group">
+            <div class="controls form-inline">
+                <div class="col-sm-1 col-sm-offset-5">
+                  <input type="button" name="botonBuscar" class="btn btn-primary" value="Buscar" id="botonBuscar" ng-click="buscarPersona()" ng-disabled="(nombre==null || nombre =='') && (apellido==null || apellido =='') && (dni==null || dni =='') && (fechaDeNacimiento==null || fechaDeNacimiento =='')"/>
+                </div>
+           </div>
+        </div>
+		
 	</form>
 
 	<div class="gridStyle" ng-grid="gridOptions"></div>
