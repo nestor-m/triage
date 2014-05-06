@@ -242,36 +242,6 @@ app
 					/* Alta de paciente */
 
 					$scope.agregarPersona = function() {
-						// validacion
-						// Ahora no es necesaria esta validacion porque
-						// directamente desabilito el boton si hay algun campo
-						// incompleto
-						// pero lo dejo por las dudas
-						/*
-						 * if($scope.nombre == null || $scope.nombre ==""){
-						 * $scope.busqueda_form.nombre.$setValidity("valido",
-						 * false); }else{
-						 * $scope.busqueda_form.nombre.$setValidity("valido",
-						 * true); }
-						 * 
-						 * if($scope.apellido == null || $scope.apellido ==""){
-						 * $scope.busqueda_form.apellido.$setValidity("valido",
-						 * false); }else{
-						 * $scope.busqueda_form.apellido.$setValidity("valido",
-						 * true); }
-						 * 
-						 * if($scope.fechaDeNacimiento == null){
-						 * $scope.busqueda_form.fechaDeNacimiento.$setValidity("valido",
-						 * false); }else{
-						 * $scope.busqueda_form.fechaDeNacimiento.$setValidity("valido",
-						 * true); }
-						 * 
-						 * if($scope.nombre == null || $scope.apellido == null ||
-						 * $scope.fechaDeNacimiento == null){ alert("Nombre,
-						 * Apellido y Fecha de nacimiento son requeridos para
-						 * ingresar un nuevo paciente"); return; }
-						 */
-
 						// request
 						$http.post("persona/ajaxSave", {
 							nombre : $scope.nombre,
@@ -312,188 +282,6 @@ app
 					}
 				});
 
-/** ******************************************************************************************************* */
-
-/*app.controller('impresionVisualController', function($scope, $http, $location,
-		$cookieStore) {
-
-	$scope.pacienteActual = $cookieStore.get('pacienteActual');
-	$scope.sintomas = [];
-	
-	$scope.paciente = {
-			sintomas : []
-		}
-	
-	$scope.loadSintomas = function() {
-		$http.get("sintoma/ajaxListVisuales").success(function(data) {
-			$scope.sintomas = data;
-		});	
-		$http.post("paciente/getSintomasVisuales", {
-			id : $scope.pacienteActual.id
-		}).success(function(data) {
-			$scope.paciente.sintomas = data;
-		})
-	};
-
-
-
-	$scope.cargarImpresionInicial = function() {
-		$http.post("paciente/cargarSintomas", {
-			id : $scope.pacienteActual.id,
-			sintomas : $scope.paciente.sintomas
-		}).success(function(data) {
-			// en data viene el paciente
-			if (data.prioridad != null && data.prioridad == "UNO") {
-				$cookieStore.put('datosPaciente', data);
-				$location.path("/prioridad1");
-			} else {
-				// sigo con la carga
-				$location.path("/paciente_ingresado");
-			}
-		});
-	};
-
-		$scope.loadSintomas();
-	
-	
-	$scope.esPrioridadUno = function(sintoma){
-			if (sintoma.prioridad.name == "UNO"){
-				bootbox.confirm(
-						"¿Está seguro que desea ingresar el síntoma?",
-						function(confirma) {
-							if (confirma) {
-								$scope.cargarImpresionInicial();
-							}
-					})
-			}
-		
-	}
-	
-});*/
-
-/** ******************************************************************************************************* */
-
-/*app.controller('cargaSintomasController',function($scope, $http, $location, $cookieStore) {
-
-	$scope.pacienteActual = $cookieStore.get('pacienteActual');
-
-	$scope.sintomas = [];
-
-	$scope.borrarSintoma = function(sintoma) {
-		var i = $scope.sintomas.indexOf(sintoma);
-		if (i > -1) {
-			$scope.sintomas.splice(i, 1);
-		}
-	};
-
-	$scope.totalServerItems = 0;
-
-	$scope.pagingOptions = {
-		pageSizes : [ 3, 6, 9 ],
-		pageSize : 3,
-		currentPage : 1
-	};
-
-	$scope.setPagingData = function(data, page, pageSize) {
-		var pagedData = data.slice((page - 1) * pageSize, page
-				* pageSize);
-		$scope.myData = pagedData;
-		$scope.totalServerItems = data.length;
-		if (!$scope.$$phase) {
-			$scope.$apply();
-		}
-	};
-	
-	$scope.getPagedDataAsync = function(pageSize, page) {
-		setTimeout(function() {
-			$http.post('sintoma/traerSintomas', {
-				sintoma : $scope.sintoma,
-				tipoDeSintoma : $scope.discriminante,
-			}).success(function(data) {
-				$scope.setPagingData(data, page, pageSize);
-			})
-
-		}, 100);
-	};
-
-	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-			$scope.pagingOptions.currentPage);
-
-	$scope.botonAgregarSintoma = '<button type="button" class="btn btn-primary btn-xs" ng-click="agregarSintoma(row)" name="botonAgregarSintoma">Agregar</button>'
-		
-	$scope.agregarSintoma = function(row){
-		// primero chequeo si es un sintoma de PRIORIDAD 1
-		if(row.entity.prioridad == "UNO"){
-			bootbox.confirm("¿Está seguro que desea ingresar el síntoma?<br>" + row.entity.nombre,function(confirma){
-				if(confirma){
-					$scope.sintomas.push(row.entity);
-					$scope.enviarSintomas();
-				}
-			});
-			return;
-		}
-
-		var repetido = false;
-		for(var i=0;i<$scope.sintomas.length;i++){
-			if($scope.sintomas[i].id == row.entity.id){
-				repetido = true;
-				break;
-			}
-		}
-		if(!repetido){
-			$scope.sintomas.push(row.entity);
-		}
-    };
-
-	$scope.filtrarListadoDeSintomas = function() {
-		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-				$scope.pagingOptions.currentPage);
-	};
-	
-    $scope.$watch('pagingOptions', function (newVal, oldVal) {
-        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
-          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
-        }
-    }, true);
-
-	$scope.gridOptions = {
-		data : 'myData',
-		enablePaging : true,
-		showFooter : true,
-		enableColumnResize : true,
-		totalServerItems : 'totalServerItems',
-		pagingOptions : $scope.pagingOptions,
-		columnDefs : [ {
-			field : 'id',
-			visible : false
-		}, {
-			field : 'nombre',
-			displayName : 'Sintoma'
-		}, {
-			field : 'tipoDeSintoma',
-			displayName : 'Discriminante'
-		}, {
-			cellTemplate : $scope.botonAgregarSintoma,
-			width : 70
-		} ]
-	};
-	
-	$scope.enviarSintomas = function(){
-		$http.post('paciente/cargarSintomas',{
-			id: $scope.pacienteActual.id,
-			sintomas: $scope.sintomas
-		}).success(function(data){
-			if (data.prioridad != null && data.prioridad == "UNO"){
-				$cookieStore.put('datosPaciente',data);
-				$location.path("/prioridad1");
-			}else{
-				// TODO: mostrar mensaje que diga "sintomas cargados con exito"
-				$location.path("/paciente_ingresado");
-			}		
-		});		
-	};
-});*/
-
 /** ****************************************************************************************** */
 app.controller('pacienteIngresadoController', function($scope, $cookieStore, $http, $location) {
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
@@ -524,7 +312,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			sintomas : []
 		};
 	
-	$scope.loadSintomas = function() {
+	$scope.traerSintomasImpresionVisual = function() {
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
 			$scope.sintomasImpresionVisual = data;
 		});	
@@ -534,8 +322,6 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			$scope.paciente.sintomas = data;
 		});
 	};
-
-
 
 	$scope.cargarImpresionInicial = function() {
 		$http.post("paciente/cargarSintomas", {
@@ -552,20 +338,28 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 		});
 	};
 
-	$scope.loadSintomas();
+	$scope.traerSintomasImpresionVisual();	
 	
-	
-	$scope.esPrioridadUno = function(sintoma){
-			if (sintoma.prioridad.name == "UNO"){
-				bootbox.confirm(
-						"¿Está seguro que desea ingresar el síntoma?",
-						function(confirma) {
-							if (confirma) {
-								$scope.cargarImpresionInicial();
-							}
-					})
+	$scope.esPrioridadUnoImpresionVisual = function(sintoma){
+		var confirmar = function(){
+			bootbox.confirm(
+				"¿Está seguro que desea ingresar el síntoma?",
+				function(confirma) {
+					if (confirma) {
+						$scope.cargarImpresionInicial();
+					}
+			});
+		};
+
+		if($scope.pacienteActual.esAdulto){//es adulto
+			if (sintoma.prioridadAdulto.name == "UNO"){
+				confirmar();
 			}
-		
+		}else{//es pediatrico
+			if (sintoma.prioridadPediatrico.name == "UNO"){
+				confirmar();
+			}
+		}		
 	};
 
 	/*INGRESO DE SINTOMAS*/
@@ -601,6 +395,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			$http.post('sintoma/traerSintomas', {
 				sintoma : $scope.sintoma,
 				tipoDeSintoma : $scope.discriminante,
+				esAdulto: $scope.pacienteActual.esAdulto
 			}).success(function(data) {
 				$scope.setPagingData(data, page, pageSize);
 			})
@@ -689,27 +484,29 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			140, 150 ];
 	$scope.frecuencias = [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ];
 	$scope.temperaturas = [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ];
-	$scope.presiones = [ 1110, 1112, 117 ];
-
+	$scope.sistoles = [ 1110, 1112, 117 ];
+	$scope.diastoles = [ 1110, 1112, 117 ,118];
 	
-	$scope.loadSignosVitales = function(){
+	$scope.recuperarSignosVitales = function(){
 		$http.post("paciente/getSignosVitales", {
 			id : $scope.pacienteActual.id
 		}).success(function(data){
 			$scope.pulso = data.pulso;
 			$scope.temperatura = data.temperatura;
-			$scope.presion = data.presion;
+			$scope.sistole = data.sistole;
+			$scope.diastole = data.diastole;
 			$scope.frecuencia = data.frecuencia;
 		})
 	}
 	
-	$scope.loadSignosVitales();
+	$scope.recuperarSignosVitales();
 	
-	$scope.cargarSignosVitales = function() {
+	$scope.enviarSignosVitales = function() {
 
 		$http.post("paciente/cargarSignosVitales", {
 			id : $scope.pacienteActual.id,
-			presionArterial : $scope.presion,
+			sistole : $scope.sistole,
+			diastole : $scope.diastole,
 			pulso : $scope.pulso,
 			frecuenciaRespiratoria : $scope.frecuencia,
 			temperatura : $scope.temperatura
@@ -724,22 +521,55 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 
 	};
 
-	$scope.esPrioridadUno = function() {
-
-		if (($scope.pulso != null && ($scope.pulso < 40 || $scope.pulso > 150)) ||
-				($scope.frecuencia != null && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
-				($scope.temperatura != null && ($scope.temperatura < 35 || $scope.temperatura > 40))){
-				bootbox.confirm(
-					"¿Está seguro que desea ingresar el síntoma?",
-					function(confirma) {
-						if (confirma) {
-							$scope.cargarSignosVitales();
-						}
-				})
-	
+	$scope.esPrioridadUno = function(modelo,label) {
+		if($scope.pacienteActual.esAdulto){
+			$scope.chequearSignosVitalesAdulto(modelo,label)
+		}else{//es pediatrico
+			switch($scope.pacienteActual.categoriaPediatrico){
+				case 'recienNacido':
+  					$scope.chequearSignosVitalesRecienNacido(modelo,label)
+  					break;
+				case 'menorDe3Anios':
+  					$scope.chequearSignosVitalesMenorDe3Anios(modelo,label)
+  					break;
+  				case 'mayorDe3Anios':
+  					$scope.chequearSignosVitalesMayorDe3Anios(modelo,label)
 			}
+		}
 	};
 
+	$scope.chequearSignosVitalesAdulto = function(modelo,label){
+		if (($scope.pulso != '' && ($scope.pulso < 40 || $scope.pulso > 150)) ||
+				($scope.frecuencia != '' && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
+				($scope.temperatura != '' && ($scope.temperatura < 35 || $scope.temperatura > 40))){
+
+			$scope.mostrarMensajeDeConfirmacion(modelo,label);
+		}
+	};
+
+	$scope.chequearSignosVitalesRecienNacido = function(modelo,label){
+		alert('chequearSignosVitalesRecienNacido');
+	};
+
+	$scope.chequearSignosVitalesMenorDe3Anios = function(modelo,label){
+		alert('chequearSignosVitalesMenorDe3Anios');
+	};
+
+	$scope.chequearSignosVitalesMayorDe3Anios = function(modelo,label){
+		alert('chequearSignosVitalesMayorDe3Anhios');
+	};
+
+	$scope.mostrarMensajeDeConfirmacion = function(modelo,label){
+		bootbox.confirm("¿Está seguro que desea ingresar el siguiente valor? <br>" + label + ": " + $scope[modelo],
+			function(confirma) {						
+				if (confirma) {
+					$scope.enviarSignosVitales();
+				}else{
+					$scope[modelo] = '';//vacio el campo
+					$scope.$apply();//actualizo la vista
+				}
+			});	
+	};
 });
 
 /** ****************************************************************************************** */
@@ -763,6 +593,7 @@ app.controller('prioridad3Controller',
 		function($scope, $location, $cookieStore) {
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
+
 
 
 /** ****************************************************************************************** */
@@ -979,6 +810,6 @@ app.controller('finalizarPacienteController',
 	
 			}
 	}
+*/
 
-});*/
-/**********************************************************************************************************/
+
