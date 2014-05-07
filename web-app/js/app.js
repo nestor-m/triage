@@ -735,6 +735,19 @@ app.controller('finalizarPacienteController',
 		
 	$scope.paciente = $cookieStore.get('pacienteActual');
 	
+	$scope.ingresa = {
+			"id" : "1",
+			"value" : "Ingresa"
+	};
+	$scope.consultorio = {
+			"id" : "2",
+			"value" : "Consultorio externo"
+	};
+	$scope.retira = {
+			"id" : "3",
+			"value" : "Retira"
+	};
+	
 	$scope.finalizarTriage = function(){
 		$http.post("paciente/calcularPrioridad",{
 			id : $scope.paciente.id
@@ -743,7 +756,29 @@ app.controller('finalizarPacienteController',
 		});
 	};
 	$scope.finalizarTriage();
-	console.log($scope.paciente);
+	
+	$scope.finalizarAtencion = function(){
+		bootbox.confirm("¿Está seguro que desea finalizar la atención del paciente?<br>",function(confirma){
+			if(confirma){
+//				$scope.enviarDatosFinalizacion();
+				$http.post("paciente/finalizarPaciente",{
+					tipoFin : $scope.opciones.id,
+					id : $scope.paciente.id
+				}).success(function(data){
+					$location.path("/pacientes_espera");
+				});
+			}
+		});
+	};
+	
+//	$scope.enviarDatosFinalizacion = function(){
+//		$http.post("paciente/finalizarPaciente",{
+//			tipoFin : $scope.opciones.id,
+//			id : $scope.paciente.id
+//		}).success(function(data){
+//			$location.path("/pacientes_espera");
+//		});
+//	};
 	
 });
 

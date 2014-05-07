@@ -25,7 +25,8 @@ class PacienteController {
 		,getSintomasVisuales: "POST"
 		,getSignosVitales: "POST"
 		,calcularPrioridad: "POST"
-		,ajaxBuscarNoFinalizados: "POST"]
+		,ajaxBuscarNoFinalizados: "POST"
+		,finalizarPaciente: "POST"]
 
 	/*calcula la prioridad (DOS o TRES) y responde un JSON
 	 */
@@ -69,6 +70,15 @@ class PacienteController {
 		request.JSON.apellido = paciente.persona.apellido
 		request.JSON.fechaDeNacimiento = paciente.persona.fechaDeNacimiento.getDateString()
 		request.JSON.DNI = paciente.persona.dni
+		String sintomas = ""
+		paciente.sintomas.each{
+			if(sintomas.size() > 0){
+				sintomas += "; "
+			}
+			sintomas += it.nombre
+		}
+
+		request.JSON.sintomas = sintomas
 
 		render request.JSON
 	}
@@ -202,6 +212,20 @@ class PacienteController {
 		return resultado
 	}
 
+	
+	/**
+	 * Método que marca el paciente como finalizado.
+	 * Levanta del JSON el id paciente y el tipo de finalización (ingresa, consultorio externo, se retira).
+	 * @return
+	 */
+	@Transactional
+	def finalizarPaciente(){
+		Integer tipoFin = request.JSON.tipoFin
+		Paciente paciente = Paciente.get(request.JSON.id)
+		paciente.tipoAtencion = tipoFin
+		paciente.finalizado = true
+		paciente.save(flush:true)
+	}
 
 
 	def index(Integer max) {
