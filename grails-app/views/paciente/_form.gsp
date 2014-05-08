@@ -1,4 +1,8 @@
-<%@ page import="triage.Paciente" %>
+Integer tipoFin = request.JSON.tipoFin
+		Paciente paciente = Paciente.get(request.JSON.id)
+		paciente.tipoAtencion = tipoFin
+		paciente.finalizado = true
+		paciente.save(flush:true)<%@ page import="triage.Paciente" %>
 
 
 

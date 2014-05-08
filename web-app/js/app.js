@@ -737,15 +737,15 @@ app.controller('finalizarPacienteController',
 	
 	$scope.ingresa = {
 			"id" : "1",
-			"value" : "Ingresa"
+			"value" : 1
 	};
 	$scope.consultorio = {
 			"id" : "2",
-			"value" : "Consultorio externo"
+			"value" : 2
 	};
 	$scope.retira = {
 			"id" : "3",
-			"value" : "Retira"
+			"value" : 3
 	};
 	
 	$scope.finalizarTriage = function(){
@@ -760,25 +760,19 @@ app.controller('finalizarPacienteController',
 	$scope.finalizarAtencion = function(){
 		bootbox.confirm("¿Está seguro que desea finalizar la atención del paciente?<br>",function(confirma){
 			if(confirma){
-//				$scope.enviarDatosFinalizacion();
-				$http.post("paciente/finalizarPaciente",{
-					tipoFin : $scope.opciones.id,
-					id : $scope.paciente.id
-				}).success(function(data){
-					$location.path("/pacientes_espera");
-				});
+				$scope.enviarDatosFinalizacion();
 			}
 		});
 	};
 	
-//	$scope.enviarDatosFinalizacion = function(){
-//		$http.post("paciente/finalizarPaciente",{
-//			tipoFin : $scope.opciones.id,
-//			id : $scope.paciente.id
-//		}).success(function(data){
-//			$location.path("/pacientes_espera");
-//		});
-//	};
+	$scope.enviarDatosFinalizacion = function(){
+		$http.post("paciente/finalizarPaciente",{
+			tipoFin: $scope.opciones.value,
+			id: $scope.paciente.id
+		}).success(function(){
+			$location.path("/pacientes_espera");
+		});
+	};
 	
 });
 

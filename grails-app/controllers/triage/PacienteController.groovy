@@ -27,8 +27,27 @@ class PacienteController {
 		,calcularPrioridad: "POST"
 		,ajaxBuscarNoFinalizados: "POST"
 		,finalizarPaciente: "POST"]
+	
+	
+	/**
+	 * Método que marca el paciente como finalizado.
+	 * Levanta del JSON el id paciente y el tipo de finalización (ingresa, consultorio externo, se retira).
+	 * @return
+	 */
+	@Transactional
+	def finalizarPaciente(){
+		Integer tipoFin = request.JSON.tipoFin
+		Paciente paciente = Paciente.get(request.JSON.id)
+		paciente.tipoAtencion = tipoFin
+		paciente.finalizado = true
+		paciente.save(flush:true)
+		render request.JSON
+	}
+	
+	
 
-	/*calcula la prioridad (DOS o TRES) y responde un JSON
+	/**
+	 * calcula la prioridad (DOS o TRES) y responde un JSON
 	 */
 	def calcularPrioridad(){
 		Paciente paciente = Paciente.get(request.JSON.id)
@@ -213,19 +232,8 @@ class PacienteController {
 	}
 
 	
-	/**
-	 * Método que marca el paciente como finalizado.
-	 * Levanta del JSON el id paciente y el tipo de finalización (ingresa, consultorio externo, se retira).
-	 * @return
-	 */
-	@Transactional
-	def finalizarPaciente(){
-		Integer tipoFin = request.JSON.tipoFin
-		Paciente paciente = Paciente.get(request.JSON.id)
-		paciente.tipoAtencion = tipoFin
-		paciente.finalizado = true
-		paciente.save(flush:true)
-	}
+
+	
 
 
 	def index(Integer max) {
