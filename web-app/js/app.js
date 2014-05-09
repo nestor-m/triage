@@ -66,13 +66,19 @@ app.config(function($routeProvider) {
 		controller : 'pacienteIngresadoController'
 	})
 
+	.when('/finalizar_paciente', {
+		templateUrl : 'finalizar_paciente.html',
+		controller : 'finalizarPacienteController'
+	})
+	
 /*	.when('/signos_vitales', {
 		templateUrl : 'signos_vitales.html',
 		controller : 'signosVitalesController'
 	})*/
 	
 	.when('/pacientes_espera', {
-		templateUrl : 'pacientes_espera.html'
+		templateUrl : 'pacientes_espera.html',
+		controller : 'pacientesEsperaController'
 	})
 
 	/*.when('/carga_sintomas', {
@@ -80,6 +86,9 @@ app.config(function($routeProvider) {
 		controller : 'cargaSintomasController'
 	})*/;
 });
+
+
+
 
 /** ************************************************************************************** */
 // Este servicio no se usa, pero lo dejo para tenerlo de ejemplo. Se puede usar
@@ -547,7 +556,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 	};
 
 	$scope.chequearSignosVitalesMayorDe3Anios = function(modelo,label){
-		alert('chequearSignosVitalesMayorDe3Anios');
+		alert('chequearSignosVitalesMayorDe3Anhios');
 	};
 
 	$scope.mostrarMensajeDeConfirmacion = function(modelo,label){
@@ -575,10 +584,261 @@ app.controller('prioridad2Controller',
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
 
+
+
+
+
 /** ****************************************************************************************** */
 app.controller('prioridad3Controller',
 		function($scope, $location, $cookieStore) {
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
+
+
+
+/** ****************************************************************************************** */
+app.controller('pacientesEsperaController',
+		function($scope, $location, $cookieStore, $http) {
+	
+	
+		$scope.botonTriage = '<button type="button" class="btn btn-primary btn-xs" ng-click="ingresarPaciente(row)" name="botonSeleccionarPaciente">Triage</button>'
+		$scope.botonFinalizar = '<button type="button" class="btn btn-primary btn-xs" ng-click="finalizarPaciente(row)" name="botonFinalizarPaciente">Finalizar</button>'
+			
+			
+		$scope.totalServerItems = 0;
+
+		
+		$scope.ingresarPaciente = function(row) {
+			$http.post("paciente/cargarPacienteEnEspera", row.entity)
+					.success(function(data) {// envia todos los
+												// datos de la
+												// persona
+												// (row.entity) pero
+												// con el id alcanza
+						$cookieStore.put('pacienteActual', data); // me
+																	// guardo
+																	// el
+																	// paciente
+						$location.path("/paciente_ingresado");
+					});
+
+		};
+		
+		$scope.finalizarPaciente = function(row){
+			$http.post("paciente/cargarPacienteEnEspera", row.entity)
+			.success(function(data) {// envia todos los
+										// datos de la
+										// persona
+										// (row.entity) pero
+										// con el id alcanza
+				$cookieStore.put('pacienteActual', data); // me
+															// guardo
+															// el
+															// paciente
+				$location.path("/finalizar_paciente");
+			});
+		}
+		
+		
+		$scope.pagingOptions = {
+			pageSizes : [ 3, 6, 9 ],
+			pageSize : 3,
+			currentPage : 1
+		};
+
+		$scope.setPagingData = function(data, page, pageSize) {
+			var pagedData = data.slice((page - 1) * pageSize, page
+					* pageSize);
+			$scope.myData = pagedData;
+			$scope.totalServerItems = data.length;
+			if (!$scope.$$phase) {
+				$scope.$apply();
+			}
+		};
+
+		$scope.getPagedDataAsync = function(pageSize, page) {
+			setTimeout(function() {
+				$http.post('paciente/ajaxBuscarNoFinalizados', {
+					nombre : $scope.nombre,
+					apellido : $scope.apellido
+				}).success(function(data) {
+					$scope.setPagingData(data, page, pageSize);
+				})
+
+			}, 100);
+		};
+	
+		
+		$scope.$watch('pagingOptions', function(newVal, oldVal) {
+			if (newVal !== oldVal
+					&& newVal.currentPage !== oldVal.currentPage) {
+				$scope.getPagedDataAsync(
+						$scope.pagingOptions.pageSize,
+						$scope.pagingOptions.currentPage);
+			}
+		}, true);
+		
+		$scope.buscarPersona = function() {
+			// este if es necesario por el ng-blur
+			if ($scope.nombre != null && $scope.nombre != ""
+				|| $scope.apellido != null
+					&& $scope.apellido != ""
+					|| $scope.fechaDeNacimiento != null
+					&& $scope.fechaDeNacimiento != ""
+					|| $scope.dni != null && $scope.dni != "") {
+				$scope.getPagedDataAsync(
+						$scope.pagingOptions.pageSize,
+						$scope.pagingOptions.currentPage);
+			}
+		};
+		
+		
+		$scope.gridOptions = {
+				data : 'myData',
+				enablePaging : true,
+				showFooter : true,
+				enableColumnResize : true,
+				totalServerItems : 'totalServerItems',
+				pagingOptions : $scope.pagingOptions,
+				columnDefs : [ {
+					field : 'id',
+					visible : false
+				}, {
+					field : 'nombre',
+					displayName : 'Nombre'
+				}, {
+					field : 'edad',
+					displayName : 'Edad',
+					width : 160
+				}, {
+					field : 'demora',
+					displayName : 'Espera',
+					width : 160
+				}, {
+					field : 'prioridad',
+					displayName : 'Prioridad',
+					width : 160
+				},  {
+					cellTemplate : $scope.botonTriage,
+					width : 70
+				}
+				, {
+					cellTemplate : $scope.botonFinalizar,
+					width : 70
+				}]
+			};
+	
+		});
+/** ***************************** FINALIZAR PACIENTE ********************************************* */
+app.controller('finalizarPacienteController',
+		function($scope, $location, $cookieStore, $http) {
+		
+	$scope.paciente = $cookieStore.get('pacienteActual');
+	
+	$scope.ingresa = {
+			"id" : "1",
+			"value" : 1
+	};
+	$scope.consultorio = {
+			"id" : "2",
+			"value" : 2
+	};
+	$scope.retira = {
+			"id" : "3",
+			"value" : 3
+	};
+	
+	$scope.finalizarTriage = function(){
+		$http.post("paciente/calcularPrioridad",{
+			id : $scope.paciente.id
+		}).success(function(data){
+			$scope.prioridad = data.prioridad;
+		});
+	};
+	$scope.finalizarTriage();
+	
+	$scope.finalizarAtencion = function(){
+		bootbox.confirm("¿Está seguro que desea finalizar la atención del paciente?<br>",function(confirma){
+			if(confirma){
+				$scope.enviarDatosFinalizacion();
+			}
+		});
+	};
+	
+	$scope.enviarDatosFinalizacion = function(){
+		$http.post("paciente/finalizarPaciente",{
+			tipoFin: $scope.opciones.value,
+			id: $scope.paciente.id
+		}).success(function(){
+			$location.path("/pacientes_espera");
+		});
+	};
+	
+});
+
+
+
+/** *********************************************************************Ingreso de signos vitales
+
+********************* */
+/*app.controller('signosVitalesController', function($scope, $http, $location,
+		$cookieStore) {
+
+	$scope.pacienteActual = $cookieStore.get('pacienteActual');
+	$scope.pulsos = [ 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130,
+			140, 150 ];
+	$scope.frecuencias = [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ];
+	$scope.temperaturas = [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ];
+	$scope.presiones = [ 1110, 1112, 117 ];
+
+	
+	$scope.loadSignosVitales = function(){
+		$http.post("paciente/getSignosVitales", {
+			id : $scope.pacienteActual.id
+		}).success(function(data){
+			$scope.pulso = data.pulso;
+			$scope.temperatura = data.temperatura;
+			$scope.presion = data.presion;
+			$scope.frecuencia = data.frecuencia;
+		})
+	}
+	
+	$scope.loadSignosVitales();
+	
+	$scope.cargarSignosVitales = function() {
+
+		$http.post("paciente/cargarSignosVitales", {
+			id : $scope.pacienteActual.id,
+			presionArterial : $scope.presion,
+			pulso : $scope.pulso,
+			frecuenciaRespiratoria : $scope.frecuencia,
+			temperatura : $scope.temperatura
+		}).success(function(data) {
+			if (data.prioridad != null && data.prioridad == "UNO") {
+				$cookieStore.put('datosPaciente', data);
+				$location.path("/prioridad1");
+			} else {
+				$location.path("/paciente_ingresado");
+			}
+		})
+
+	};
+
+	$scope.esPrioridadUno = function() {
+
+		if (($scope.pulso != null && ($scope.pulso < 40 || $scope.pulso > 150)) ||
+				($scope.frecuencia != null && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
+				($scope.temperatura != null && ($scope.temperatura < 35 || $scope.temperatura > 40))){
+				bootbox.confirm(
+					"¿Está seguro que desea ingresar el síntoma?",
+					function(confirma) {
+						if (confirma) {
+							$scope.cargarSignosVitales();
+						}
+				})
+	
+			}
+	}
+*/
 
 

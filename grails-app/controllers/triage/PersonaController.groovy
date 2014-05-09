@@ -14,7 +14,23 @@ import grails.transaction.Transactional
 @Transactional //(readOnly = true) esto me hizo romper la cabeza durante unas cuantas horas :(
 class PersonaController {
 
-    static allowedMethods = [ajaxList: "GET", ajaxSave: "POST",	ajaxBuscar: "POST"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
+								ajaxBuscar: "POST", ajaxBuscarNoFinalizados: "POST"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
+    }
+
+    def show(Persona personaInstance) {
+        respond personaInstance
+    }
+
+    def create() {
+        respond new Persona(params)
+    }
+
+
 
 	/**
 	 * Submit del formulario de alta de persona
@@ -38,7 +54,7 @@ class PersonaController {
 			nroAfiliado : request.JSON.nroAfiliado
 		).save( failOnError : true, flush:true )
 		
-		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date()).save( failOnError : true )
+		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date(), finalizado: false).save( failOnError : true )
 		
 		
 		request.JSON.id = paciente.id
@@ -79,7 +95,10 @@ class PersonaController {
 			}
 		}		
 		render resultado as JSON		
-		return resultado
+		return resultado	
 	}	
+	
+
+	
 			
 }

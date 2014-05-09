@@ -10,6 +10,7 @@ class Paciente {
 	Integer frecuenciaRespiratoria
 	Integer temperatura
 	Boolean finalizado
+	Integer tipoAtencion
 
 	Prioridad prioridad
 
@@ -25,6 +26,7 @@ class Paciente {
 		sintomas nullable: true
 		prioridad nullable: true
 		finalizado nullable: true
+		tipoAtencion nullable: true
 	}
 
 	/**
@@ -82,6 +84,8 @@ class Paciente {
 		return false
 	}
 
+	
+
 	/**
 	 * Retorna el tiempo de espera entre el ingreso y la atencion
 	 * @return String
@@ -95,4 +99,14 @@ class Paciente {
 			duration.minutes>0 ? duration.minutes + "minutos": ""
 		}
 	}
+	
+	String tiempoEspera(){
+		use(groovy.time.TimeCategory) {
+			Date ahora = new Date()
+			def duration = ahora - this.fechaHoraIngreso
+			return 	duration
+		}
+	}
+	
+	
 }
