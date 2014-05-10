@@ -120,4 +120,21 @@ class PacienteSpec extends Specification {
 		paciente.esPrioridadUno()
 	}
 	
+	void "Test al crear paciente debe no estar finalizado"(){
+		when: "Cargo una nueva persona y un paciente"
+			def persona = new Persona(
+			nombre : "nestor",
+			apellido : "muñoz",
+			fechaDeNacimiento : new Date()-1
+			).save( failOnError : true )
+		def paciente = new Paciente(persona : persona, finalizado : false).save(failOnError : true )
+			
+		then: "Verifico que el paciente no esté finalizado"
+			paciente.finalizado == false
+	}
+	
+	
+	
+	
+	
 }
