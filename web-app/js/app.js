@@ -700,7 +700,7 @@ app.controller('pacientesEsperaController',
 				}, {
 					field : 'nombre',
 					displayName : 'Nombre',
-					width : 250
+					width : 240
 				}, {
 					field : 'edad',
 					displayName : 'Edad',
@@ -712,7 +712,7 @@ app.controller('pacientesEsperaController',
 				}, {
 					field : 'prioridad',
 					displayName : 'Prioridad',
-					width : 160
+					width : 150
 				},  {
 					cellTemplate : $scope.botonTriage,
 					width : 70

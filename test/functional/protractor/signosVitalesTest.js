@@ -5,12 +5,11 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 	
 	  beforeEach(function() {
 	      browser.get('http://localhost:8080/triage/');  
-	      element(by.model('nombre')).sendKeys('nestor');
-	      element(by.id("botonBuscar")).click();
+	      element(by.model('nombre')).sendKeys('signos');
+	      element(by.model('apellido')).sendKeys('vitales');
+	      element(by.model('fechaDeNacimiento')).sendKeys('21/03/1987');
+	      element(by.id("botonIngresoPaciente")).click();
 	      browser.waitForAngular();
-	      element(by.buttonText('Ingresar')).click();
-	      browser.waitForAngular();
-
 	      element(by.id('signos_vitales')).click();;
 	  });
 
@@ -30,18 +29,23 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		  var selectPresion = selectDropdownbyNum(element(by.id('sistole')), 2);
 		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 8);
 		  var selectFrecuencia = selectDropdownbyNum(element(by.id('frecuencia')), 7);
-		  browser.sleep(500);
+		  browser.waitForAngular();	
 		  //Salgo de la pantalla
 		  element(by.buttonText('Aceptar')).click();
 		  browser.waitForAngular();
 		  element(by.buttonText('OK')).click();//mensaje de carga exitosa
 		  //Entro a la pantalla de paciente ingresado con todas las opciones
 		  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
-		  element(by.id('impresion_visual')).click();
-		  browser.waitForAngular();
-		  //Vuelvo a la lista de signos vitales..
-		  element(by.id('signos_vitales')).click();
-		  browser.sleep(500);
+		  element(by.id('salir')).click();//salgo
+		  browser.waitForAngular();		  
+		  element(by.id('pacientes_espera')).click();//voy al listado de pacientes en espera
+		  browser.waitForAngular();	
+		  element(by.model('nombre')).sendKeys('signos');//busco es paciente ingresado
+		  element(by.id('botonBuscar')).click();
+		  browser.waitForAngular();	
+		  element(by.buttonText('Triage')).click();//vuelvo a la pantalla de triage
+		  browser.waitForAngular();	
+		  element(by.id('signos_vitales')).click();//vuelvo a la pantalla de signos vitales		  
 		  //Yo sé qué elegí en cada opción...
 		  expect(element(by.selectedOption('$parent.pulso')).getText()).toEqual('80');
 		  expect(element(by.selectedOption('$parent.sistole')).getText()).toEqual('1112');

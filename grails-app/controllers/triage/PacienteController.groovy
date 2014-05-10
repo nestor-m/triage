@@ -45,14 +45,13 @@ class PacienteController {
 	}
 	
 	
-
 	/**
 	 * calcula la prioridad (DOS o TRES) y responde un JSON
 	 */
+	@Transactional
 	def calcularPrioridad(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		Prioridad prioridad = paciente.calcularPrioridad();
-		request.JSON.prioridad = prioridad
+		request.JSON.prioridad = paciente.calcularPrioridad()
 		render request.JSON
 	}
 
@@ -76,7 +75,6 @@ class PacienteController {
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
 
-	
 	/**
 	 * Carga un paciente que ya estaba en espera
 	 * @return
@@ -124,7 +122,8 @@ class PacienteController {
 	 */
 	def getSignosVitales(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		if (paciente.presionArterial != null) request.JSON.presion = paciente.presionArterial
+		if (paciente.sistole != null) request.JSON.sistole = paciente.sistole
+		if (paciente.diastole != null) request.JSON.diastole = paciente.diastole
 		if (paciente.temperatura != null) request.JSON.temperatura = paciente.temperatura
 		if (paciente.pulso != null) request.JSON.pulso = paciente.pulso
 		if (paciente.frecuenciaRespiratoria != null) request.JSON.frecuencia = paciente.frecuenciaRespiratoria
@@ -178,7 +177,8 @@ class PacienteController {
 	@Transactional
 	def cargarSignosVitales(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		if (request.JSON.presionArterial != null) paciente.presionArterial = request.JSON.presionArterial
+		if (request.JSON.sistole != null) paciente.sistole = request.JSON.sistole
+		if (request.JSON.diastole != null) paciente.diastole = request.JSON.diastole
 		if (request.JSON.pulso != null) paciente.pulso = request.JSON.pulso
 		if (request.JSON.frecuenciaRespiratoria != null) paciente.frecuenciaRespiratoria = request.JSON.frecuenciaRespiratoria
 		if (request.JSON.temperatura != null) paciente.temperatura = request.JSON.temperatura
@@ -229,26 +229,7 @@ class PacienteController {
 
 		render resultado as JSON
 		return resultado
-	}
-
-	
-
-	
-
-
-	def index(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		respond Paciente.list(params), model:[pacienteInstanceCount: Paciente.count()]
-	}
-
-	def show(Paciente pacienteInstance) {
-		respond pacienteInstance
-	}
-
-	def create() {
-		respond new Paciente(params)
-	}
-	
+	}	
 	
 	String traerPrioridad (Prioridad p){
 		if (p == Prioridad.UNO) return "Prioridad UNO"

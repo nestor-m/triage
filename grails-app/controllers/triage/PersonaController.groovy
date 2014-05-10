@@ -17,20 +17,6 @@ class PersonaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
 								ajaxBuscar: "POST", ajaxBuscarNoFinalizados: "POST"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Persona.list(params), model:[personaInstanceCount: Persona.count()]
-    }
-
-    def show(Persona personaInstance) {
-        respond personaInstance
-    }
-
-    def create() {
-        respond new Persona(params)
-    }
-
-
 
 	/**
 	 * Submit del formulario de alta de persona

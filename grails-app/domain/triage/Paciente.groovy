@@ -5,7 +5,8 @@ class Paciente {
 	Date fechaHoraIngreso = new Date()
 	Date fechaHoraAtencion
 
-	Integer presionArterial
+	Integer sistole
+	Integer diastole
 	Integer pulso
 	Integer frecuenciaRespiratoria
 	Integer temperatura
@@ -19,7 +20,8 @@ class Paciente {
 
 	static constraints = {
 		fechaHoraAtencion nullable: true
-		presionArterial nullable: true
+		sistole nullable: true
+		diastole nullable: true
 		pulso nullable: true
 		frecuenciaRespiratoria nullable: true
 		temperatura nullable: true
@@ -47,7 +49,6 @@ class Paciente {
 
 		this.prioridad = Prioridad.TRES
 		this.save()
-		println 'return Prioridad.TRES'
 		return Prioridad.TRES
 	}
 
