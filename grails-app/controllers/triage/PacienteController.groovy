@@ -26,7 +26,22 @@ class PacienteController {
 		,getSignosVitales: "POST"
 		,calcularPrioridad: "POST"
 		,ajaxBuscarNoFinalizados: "POST"
-		,finalizarPaciente: "POST"]
+		,finalizarPaciente: "POST"
+		,cantidadDeConsultasSegunPrioridad: "POST"]
+	
+	
+	
+	
+	/**
+	 * Método que devuelve la cantidad de consultas según prioridad 
+	 * Se filtra por fechas desde y hasta, parámetros que se reciben por JSON
+	 * @return
+	 */
+	def cantidadDeConsultasSegunPrioridad(){
+		
+	}
+	
+	
 	
 	
 	/**
