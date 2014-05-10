@@ -5,7 +5,8 @@ class Paciente {
 	Date fechaHoraIngreso = new Date()
 	Date fechaHoraAtencion
 
-	Integer presionArterial
+	Integer sistole
+	Integer diastole
 	Integer pulso
 	Integer frecuenciaRespiratoria
 	Integer temperatura
@@ -19,7 +20,8 @@ class Paciente {
 
 	static constraints = {
 		fechaHoraAtencion nullable: true
-		presionArterial nullable: true
+		sistole nullable: true
+		diastole nullable: true
 		pulso nullable: true
 		frecuenciaRespiratoria nullable: true
 		temperatura nullable: true
@@ -37,20 +39,11 @@ class Paciente {
 	 */
 	Prioridad calcularPrioridad(){
 		Boolean esAdulto = persona.esAdulto()
-		def confirmarPrioridadDos = {
-			this.prioridad = Prioridad.DOS
-			this.save()
-			return Prioridad.DOS
-		}
 		for(sintoma in sintomas){
-			if(esAdulto){//si es adulto miro las prioridades para adulto
-				if(sintoma.prioridadAdulto == Prioridad.DOS){
-					confirmarPrioridadDos()
-				}
-			}else{//si es ninio miro las prioridades para ninio
-				if(sintoma.prioridadPediatrico == Prioridad.DOS){
-					confirmarPrioridadDos()
-				}
+			if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
+					this.prioridad = Prioridad.DOS
+					this.save()
+					return Prioridad.DOS			
 			}
 		}
 

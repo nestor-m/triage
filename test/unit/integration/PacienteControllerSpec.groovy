@@ -231,10 +231,9 @@ class PacienteControllerSpec extends Specification {
 		request.JSON.sintomas = [sintomas[1]]
 
 		controller.cargarSintomas()
+		controller.calcularPrioridad()
 		
-		then: "La prioridad es 2"
-		paciente.calcularPrioridad()
+		then: "La prioridad es 2"		
 		paciente.prioridad == Prioridad.DOS
-		response.json.prioridad == "DOS"
 	}
 }

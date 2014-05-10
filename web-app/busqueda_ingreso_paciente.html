@@ -1,4 +1,11 @@
 <title>B&uacute;squeda e ingreso de pacientes</title>
+ <script> 
+    $(function() {  
+        var anioActual = new Date().getFullYear();
+      $( "#fechaDeNacimiento" ).datepicker({  changeMonth: true,changeYear: true,maxDate: new Date(),yearRange: "1900:"+anioActual });
+      $( "#fechaDeNacimiento" ).datepicker( $.datepicker.regional[ "es" ] );
+    });
+</script>
 <body>
       <div class="page-header" style="text-align:center">
         <h4 style="font-weight: bold;">B&uacute;squeda e ingreso de pacientes</h4>
@@ -22,7 +29,8 @@
             <div class="controls form-inline">
                 <label class="col-sm-4 control-label">Fecha de nacimiento</label>
                 <div class="col-sm-2" ng-class="{'has-error': busqueda_form.fechaDeNacimiento.$invalid}">
-                  <div fecha-con-maximo></div>
+                  <!-- <div fecha-con-maximo></div> -->
+                  <input type="text" class="form-control" id="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento" ng-blur="buscarPersona()"/>
                 </div>                
                 <span ng-show="busqueda_form.fechaDeNacimiento.$invalid" style="color:red; float:left">*</span>                
 

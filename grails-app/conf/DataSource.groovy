@@ -56,7 +56,8 @@ environments {
             driverClassName = "org.postgresql.Driver"
             dialect = org.hibernate.dialect.PostgreSQLDialect
 
-            uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
+            //busca la variable de entorno DATABASE_URL, si no la encuentra toma lo q se pasa en el else, despues de ?:
+            uri = new URI(System.env.DATABASE_URL?:"postgres://postgres:postgres@localhost/triage_dev")//el primer postgres es el usuario, el segundo es la pass y triage_dev es la base de datos
 
             url = "jdbc:postgresql://"+uri.host+uri.path
             username = uri.userInfo.split(":")[0]

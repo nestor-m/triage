@@ -584,17 +584,11 @@ app.controller('prioridad2Controller',
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
 
-
-
-
-
 /** ****************************************************************************************** */
 app.controller('prioridad3Controller',
 		function($scope, $location, $cookieStore) {
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
-
-
 
 /** ****************************************************************************************** */
 app.controller('pacientesEsperaController',
@@ -641,8 +635,8 @@ app.controller('pacientesEsperaController',
 		
 		
 		$scope.pagingOptions = {
-			pageSizes : [ 3, 6, 9 ],
-			pageSize : 3,
+			pageSizes : [ 10, 20, 30 ],
+			pageSize : 10,
 			currentPage : 1
 		};
 
@@ -705,19 +699,20 @@ app.controller('pacientesEsperaController',
 					visible : false
 				}, {
 					field : 'nombre',
-					displayName : 'Nombre'
+					displayName : 'Nombre',
+					width : 240
 				}, {
 					field : 'edad',
 					displayName : 'Edad',
-					width : 160
+					width : 50
 				}, {
 					field : 'demora',
 					displayName : 'Espera',
-					width : 160
+					width : 100
 				}, {
 					field : 'prioridad',
 					displayName : 'Prioridad',
-					width : 160
+					width : 150
 				},  {
 					cellTemplate : $scope.botonTriage,
 					width : 70
@@ -727,6 +722,8 @@ app.controller('pacientesEsperaController',
 					width : 70
 				}]
 			};
+
+		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,$scope.pagingOptions.currentPage);
 	
 		});
 /** ***************************** FINALIZAR PACIENTE ********************************************* */
@@ -775,70 +772,3 @@ app.controller('finalizarPacienteController',
 	};
 	
 });
-
-
-
-/** *********************************************************************Ingreso de signos vitales
-
-********************* */
-/*app.controller('signosVitalesController', function($scope, $http, $location,
-		$cookieStore) {
-
-	$scope.pacienteActual = $cookieStore.get('pacienteActual');
-	$scope.pulsos = [ 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130,
-			140, 150 ];
-	$scope.frecuencias = [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ];
-	$scope.temperaturas = [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ];
-	$scope.presiones = [ 1110, 1112, 117 ];
-
-	
-	$scope.loadSignosVitales = function(){
-		$http.post("paciente/getSignosVitales", {
-			id : $scope.pacienteActual.id
-		}).success(function(data){
-			$scope.pulso = data.pulso;
-			$scope.temperatura = data.temperatura;
-			$scope.presion = data.presion;
-			$scope.frecuencia = data.frecuencia;
-		})
-	}
-	
-	$scope.loadSignosVitales();
-	
-	$scope.cargarSignosVitales = function() {
-
-		$http.post("paciente/cargarSignosVitales", {
-			id : $scope.pacienteActual.id,
-			presionArterial : $scope.presion,
-			pulso : $scope.pulso,
-			frecuenciaRespiratoria : $scope.frecuencia,
-			temperatura : $scope.temperatura
-		}).success(function(data) {
-			if (data.prioridad != null && data.prioridad == "UNO") {
-				$cookieStore.put('datosPaciente', data);
-				$location.path("/prioridad1");
-			} else {
-				$location.path("/paciente_ingresado");
-			}
-		})
-
-	};
-
-	$scope.esPrioridadUno = function() {
-
-		if (($scope.pulso != null && ($scope.pulso < 40 || $scope.pulso > 150)) ||
-				($scope.frecuencia != null && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
-				($scope.temperatura != null && ($scope.temperatura < 35 || $scope.temperatura > 40))){
-				bootbox.confirm(
-					"¿Está seguro que desea ingresar el síntoma?",
-					function(confirma) {
-						if (confirma) {
-							$scope.cargarSignosVitales();
-						}
-				})
-	
-			}
-	}
-*/
-
-

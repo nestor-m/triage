@@ -58,12 +58,11 @@ describe('Test pantalla de pacientes en espera', function() {
 	    element.all(by.model('opciones')).get(0).click();
 	    browser.sleep(1000);
 	    element(by.buttonText('Finalizar')).click();
-	    var botonOK = $$('.modal-footer button').get(0);
+	    var botonOK = $$('.modal-footer button').get(1);
 	    browser.sleep(1000);
 	    botonOK.click();//confirmo
 	    browser.sleep(1000);
-	    expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/pacientes_espera');
-	    
+	    expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/pacientes_espera');	    
 	})
 	
 	
