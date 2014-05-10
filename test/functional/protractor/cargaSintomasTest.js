@@ -29,9 +29,9 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
     var celdasDelListado = $$('.ngCellText span');//encuentra las 4 celdas del listado filtrado
     expect(celdasDelListado.count()).toBe(4);
-    expect(celdasDelListado.get(0).getText()).toBe('DESHIDRATACION (p2)');
+    expect(celdasDelListado.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
     expect(celdasDelListado.get(1).getText()).toBe('IMPRESION INICIAL');
-    expect(celdasDelListado.get(2).getText()).toBe('DOLOR SEVERO (p1)');
+    expect(celdasDelListado.get(2).getText()).toBe('DOLOR SEVERO (p1-p3)');
     expect(celdasDelListado.get(3).getText()).toBe('IMPRESION INICIAL');
   });
 
@@ -43,7 +43,7 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
     var celdasDelListado = $$('.ngCellText span');//encuentra las 2 celdas del listado filtrado
     expect(celdasDelListado.count()).toBe(2);
-    expect(celdasDelListado.get(0).getText()).toBe('CONTRACTURA (p3)');
+    expect(celdasDelListado.get(0).getText()).toBe('CONTRACTURA (p3-p2)');
     expect(celdasDelListado.get(1).getText()).toBe('DOLOR MUSCULAR');
   });
 
@@ -75,8 +75,8 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
     var sintomasAgregados = element.all(by.repeater('sintoma in sintomas'));
     expect(sintomasAgregados.count()).toBe(2);
-    expect(sintomasAgregados.get(0).getText()).toBe('DESHIDRATACION (p2)');
-    expect(sintomasAgregados.get(1).getText()).toBe('CONTRACTURA (p3)');
+    expect(sintomasAgregados.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
+    expect(sintomasAgregados.get(1).getText()).toBe('CONTRACTURA (p3-p2)');
   });
 
   it('Test visibilidad del boton borrar del sintoma cargado',function(){

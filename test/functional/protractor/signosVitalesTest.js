@@ -27,7 +27,7 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		    }
 		  };
 		  var selectPulso = selectDropdownbyNum(element(by.id('pulso')), 8);
-		  var selectPresion = selectDropdownbyNum(element(by.id('presion')), 2);
+		  var selectPresion = selectDropdownbyNum(element(by.id('sistole')), 2);
 		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 8);
 		  var selectFrecuencia = selectDropdownbyNum(element(by.id('frecuencia')), 7);
 		  browser.sleep(500);
@@ -44,7 +44,7 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		  browser.sleep(500);
 		  //Yo sé qué elegí en cada opción...
 		  expect(element(by.selectedOption('$parent.pulso')).getText()).toEqual('80');
-		  expect(element(by.selectedOption('$parent.presion')).getText()).toEqual('1112');
+		  expect(element(by.selectedOption('$parent.sistole')).getText()).toEqual('1112');
 		  expect(element(by.selectedOption('$parent.temperatura')).getText()).toEqual('37');
 		  expect(element(by.selectedOption('$parent.frecuencia')).getText()).toEqual('15');		  
   });

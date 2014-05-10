@@ -1,7 +1,5 @@
 package triage
 
-
-
 import static org.springframework.http.HttpStatus.*
 
 import java.net.Authenticator.RequestorType;
@@ -10,6 +8,8 @@ import org.codehaus.groovy.grails.web.json.JSONObject;
 
 import grails.converters.JSON
 import grails.transaction.Transactional
+
+import java.text.SimpleDateFormat
 
 @Transactional //(readOnly = true) esto me hizo romper la cabeza durante unas cuantas horas :(
 class PersonaController {
@@ -39,14 +39,17 @@ class PersonaController {
 	@Transactional
 	def ajaxSave() {
 		//validacion para request desde herramientas como curl
-		if(request.JSON.nombre == null && request.JSON.apellido && request.JSON.fechaDeNacimiento){
+		if(request.JSON.nombre == null || request.JSON.apellido == null || request.JSON.fechaDeNacimiento == null){
 			return
 		}
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaDeNacimiento = sdf.parse(request.JSON.fechaDeNacimiento);
 
 		def persona = new Persona(
 			nombre : request.JSON.nombre.toUpperCase(),
 			apellido : request.JSON.apellido.toUpperCase(),
-			fechaDeNacimiento : new Date(request.JSON.fechaDeNacimiento.replaceAll("-","/")),
+			fechaDeNacimiento : fechaDeNacimiento,
 			dni : request.JSON.dni,
 			direccion : request.JSON.direccion,
 			telefono : request.JSON.telefono,
