@@ -15,7 +15,7 @@
 				<div class="col-sm-2">
 					<select ng-model="$parent.sistole" id="sistole" name="sistole"
 						ng-options="o as o for o in sistoles" class="form-control" required 
-							ng-click="esPrioridadUno('sistole','Sístole')">
+							ng-click="chequearPrioridadSignoVital('sistole','Sístole')">
 						<option value="">-- Seleccionar --</option>
 					</select>
 				</div>
@@ -26,7 +26,7 @@
 				<div class="col-sm-2">
 					<select ng-model="$parent.diastole" id="diastole" name="diastole"
 						ng-options="o as o for o in diastoles" class="form-control" required 
-							ng-click="esPrioridadUno('diastole','Diástole')">
+							ng-click="chequearPrioridadSignoVital('diastole','Diástole')">
 						<option value="">-- Seleccionar --</option>
 					</select>
 				</div>
@@ -35,14 +35,13 @@
 			</div>
 		</div>
 
-
 		<div class="form-group">
 <!-- 			ng-class="{'has-error': signos_vitales_form.pulso.$error.required}"> -->
 			<label class="col-sm-4 control-label">Pulso</label>
 			<div class="col-sm-5">
 				<select ng-model="$parent.pulso" id="pulso" name="pulso"
 					ng-options="o as o for o in pulsos" class="form-control" required
-					ng-click="esPrioridadUno('pulso','Pulso')">
+					ng-click="chequearPrioridadSignoVital('pulso','Pulso')">
 					<option value="">-- Seleccionar --</option>
 				</select>
 			</div>
@@ -50,22 +49,20 @@
 				ng-show="signos_vitales_form.pulso.$error.required" style="float:left; color:red;">*</span><br>
 		</div>
 
-
 		<div class="form-group">
 <!-- 			ng-class="{'has-error': signos_vitales_form.frecuencia.$error.required}"> -->
 			<label class="col-sm-4 control-label">Frecuencia respiratoria</label>
 			<div class="col-sm-5">
-				<select ng-model="$parent.frecuencia" id="frecuencia" name="frecuencia"
-					ng-options="o as o for o in frecuencias" class="form-control" required
-					ng-click="esPrioridadUno('frecuencia','Frecuencia respiratoria')">
+				<select ng-model="$parent.frecuenciaRespiratoria" id="frecuenciaRespiratoria" name="frecuenciaRespiratoria"
+					ng-options="o as o for o in frecuenciasRespiratorias" class="form-control" required
+					ng-click="chequearPrioridadSignoVital('frecuenciaRespiratoria','Frecuencia respiratoria')">
 					<option value="">-- Seleccionar --</option>
 				</select>
 			</div>
 			
 			<span class="error"
-				ng-show="signos_vitales_form.frecuencia.$error.required" style="float:left; color:red;">*</span><br>
+				ng-show="signos_vitales_form.frecuenciaRespiratoria.$error.required" style="float:left; color:red;">*</span><br>
 		</div>
-
 
 		<div class="form-group">
 <!-- 			ng-class="{'has-error': signos_vitales_form.temperatura.$error.required}"> -->
@@ -73,12 +70,40 @@
 			<div class="col-sm-5">
 				<select ng-model="$parent.temperatura" id="temperatura" name="temperatura"
 					ng-options="o as o for o in temperaturas" class="form-control" required
-					ng-click="esPrioridadUno('temperatura','Temperatura')">
+					ng-click="chequearPrioridadSignoVital('temperatura','Temperatura')">
 					<option value="">-- Seleccionar --</option>
 				</select>
 			</div>
 			<span class="error"
 				ng-show="signos_vitales_form.temperatura.$error.required" style="float:left; color:red;">*</span><br>
+		</div>
+
+		<div class="form-group">
+<!-- 			ng-class="{'has-error': signos_vitales_form.temperatura.$error.required}"> -->
+			<label class="col-sm-4 control-label">Saturaci&oacute;n de O2</label>
+			<div class="col-sm-5">
+				<select ng-model="$parent.saturacionO2" id="saturacionO2" name="saturacionO2"
+					ng-options="o as o for o in saturacionesO2" class="form-control" required
+					ng-click="chequearPrioridadSignoVital('saturacionO2','Saturación de O2')">
+					<option value="">-- Seleccionar --</option>
+				</select>
+			</div>
+			<span class="error"
+				ng-show="signos_vitales_form.saturacionO2.$error.required" style="float:left; color:red;">*</span><br>
+		</div>
+
+		<div class="form-group">
+<!-- 			ng-class="{'has-error': signos_vitales_form.temperatura.$error.required}"> -->
+			<label class="col-sm-4 control-label">Glucosa</label>
+			<div class="col-sm-5">
+				<select ng-model="$parent.glucosa" id="glucosa" name="glucosa"
+					ng-options="o as o for o in glucosas" class="form-control" required
+					ng-click="chequearPrioridadSignoVital('glucosa','Glucosa')">
+					<option value="">-- Seleccionar --</option>
+				</select>
+			</div>
+			<span class="error"
+				ng-show="signos_vitales_form.glucosa.$error.required" style="float:left; color:red;">*</span><br>
 		</div>
 
 

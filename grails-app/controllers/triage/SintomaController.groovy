@@ -12,7 +12,7 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 class SintomaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",
-		ajaxListVisuales: "GET", traerSintomas:"POST"]
+		ajaxListVisuales: "GET", traerSintomas:"POST",recuperarSintomas:"POST"]
 	
 	/**submit del formulario del listado de busqueda de pacientes
 	 *
@@ -32,6 +32,24 @@ class SintomaController {
 				                         ',"nombre":"' + s[1] + '"' +
 										 ',"tipoDeSintoma":"' + s[2] + '"' +
 										 ',"prioridad":"' + s[3] + '"}'))			
+		}
+		
+		render resultado as JSON
+		return resultado
+	}
+
+	/*
+	* Recupera los sintomas ingresados anteriormente
+	*/
+	def recuperarSintomas(){
+		Paciente paciente = Paciente.get(request.JSON.id)		
+		List resultado = new ArrayList()
+		for(s in paciente.sintomas){
+			Prioridad prioridad = paciente.esAdulto() ? s.prioridadAdulto : s.prioridadPediatrico			
+			resultado.add(new JSONObject('{"id":' + s.id +
+				                         ',"nombre":"' + s.nombre + '"' +
+										 ',"tipoDeSintoma":"' + s.tipoDeSintoma + '"' +
+										 ',"prioridad":"' + prioridad + '"}'))			
 		}
 		
 		render resultado as JSON
