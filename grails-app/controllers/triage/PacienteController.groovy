@@ -16,7 +16,8 @@ import org.hibernate.criterion.Projection
 @Transactional //(readOnly = true)
 class PacienteController {
 
-
+	//esta variable restringe con que metodos HTTP pueden ser llamados los metodos de la clase.
+	//Si no se especifica, los metodos de la clase pueden ser invocados por cualquier metodo HTTP
     static allowedMethods = [cargarPaciente: "POST"
 		,cargarImpresionInicial: "POST"
 		,cargarSintomasYResponder: "POST"
@@ -26,7 +27,8 @@ class PacienteController {
 		,getSignosVitales: "POST"
 		,finalizarTriage: "POST"
 		,ajaxBuscarNoFinalizados: "POST"
-		,finalizarPaciente: "POST"]
+		,finalizarPaciente: "POST"
+		,cargarPacienteEnEspera: "POST"]
 
 
 	/*
@@ -104,15 +106,6 @@ class PacienteController {
 		request.JSON.fechaDeNacimiento = paciente.persona.fechaDeNacimiento.getDateString()
 		request.JSON.DNI = paciente.persona.dni
 		request.JSON.esAdulto = paciente.esAdulto()
-		String sintomas = ""
-		paciente.sintomas.each{
-			if(sintomas.size() > 0){
-				sintomas += "; "
-			}
-			sintomas += it.nombre
-		}
-
-		request.JSON.sintomas = sintomas
 
 		render request.JSON
 	}
@@ -144,6 +137,8 @@ class PacienteController {
 		if (paciente.temperatura != null) request.JSON.temperatura = paciente.temperatura
 		if (paciente.pulso != null) request.JSON.pulso = paciente.pulso
 		if (paciente.frecuenciaRespiratoria != null) request.JSON.frecuenciaRespiratoria = paciente.frecuenciaRespiratoria
+		if (paciente.glucosa != null) request.JSON.glucosa = paciente.glucosa
+		if (paciente.saturacionO2 != null) request.JSON.saturacionO2 = paciente.saturacionO2
 
 		render request.JSON
 	}
@@ -191,9 +186,9 @@ class PacienteController {
 			sintomas += it.nombre
 		}
 
-		request.JSON.sintomas = sintomas
-		request.JSON.fecha = paciente.fechaHoraIngreso.getDateTimeString()
+		sintomas != ""?request.JSON.sintomas = sintomas:request.JSON.remove("sintomas")
 
+		request.JSON.fecha = paciente.fechaHoraIngreso.getDateTimeString()
 		request.JSON.sistole = paciente.sistole
 		request.JSON.diastole = paciente.diastole
 		request.JSON.pulso = paciente.pulso
@@ -271,7 +266,7 @@ class PacienteController {
 		if (p == null) return "No se ha calculado"
 	}
 	
-	def  calcularEdad(String fecha){
+	def calcularEdad(String fecha){
 		Date fechaNac=null
 			try {
 				/**Se puede cambiar la mascara por el formato de la fecha

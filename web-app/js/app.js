@@ -4,10 +4,6 @@ var app = angular.module('app', [ 'ngRoute', 'ngGrid', 'checklist-model',
 app.config(function($routeProvider) {
 	$routeProvider
 
-	/*
-	 * .when('/', { templateUrl : 'inicio.html' })
-	 */
-
 	.when('/', {
 		templateUrl : 'busqueda_ingreso_paciente.html',
 		controller : 'busquedaController'
@@ -17,11 +13,6 @@ app.config(function($routeProvider) {
 		templateUrl : 'impresion_visual.html',
 		controller : 'impresionVisualController'
 	})
-
-/*	.when('/impresion_visual', {
-		templateUrl : 'impresion_visual.html',
-		controller : 'impresionVisualController'
-	})*/
 
 	.when('/reportes', {
 		templateUrl : 'lista_pacientes.html',
@@ -71,20 +62,10 @@ app.config(function($routeProvider) {
 		controller : 'finalizarPacienteController'
 	})
 	
-/*	.when('/signos_vitales', {
-		templateUrl : 'signos_vitales.html',
-		controller : 'signosVitalesController'
-	})*/
-	
 	.when('/pacientes_espera', {
 		templateUrl : 'pacientes_espera.html',
 		controller : 'pacientesEsperaController'
-	})
-
-	/*.when('/carga_sintomas', {
-		templateUrl : 'carga_sintomas.html',
-		controller : 'cargaSintomasController'
-	})*/;
+	});
 });
 
 
@@ -285,6 +266,11 @@ app
 
 /** ****************************************************************************************** */
 app.controller('pacienteIngresadoController', function($scope, $cookieStore, $http, $location) {
+
+	
+	//TODO: hacer que todos los pedidos que se hacen al server al ingresar a esta pagina se hagan de una sola vez. 
+	//Ahora se estan realizando 6 pedidos diferentes
+
 	$scope.esPrioridadUno = false;
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
 
@@ -294,13 +280,13 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			id : $scope.pacienteActual.id,
 			sintomasImpresionVisual : $scope.paciente.sintomas,
 			sintomas: $scope.sintomas,
-			sistole : $scope.sistole,
-			diastole : $scope.diastole,
-			pulso : $scope.pulso,
-			frecuenciaRespiratoria : $scope.frecuenciaRespiratoria,
-			temperatura : $scope.temperatura,
-			saturacionO2 : $scope.saturacionO2,
-			glucosa : $scope.glucosa
+			sistole : $scope.sistole==''?undefined:$scope.sistole,
+			diastole : $scope.diastole==''?undefined:$scope.diastole,
+			pulso : $scope.pulso==''?undefined:$scope.pulso,
+			frecuenciaRespiratoria : $scope.frecuenciaRespiratoria==''?undefined:$scope.frecuenciaRespiratoria,
+			temperatura : $scope.temperatura==''?undefined:$scope.temperatura,
+			saturacionO2 : $scope.saturacionO2==''?undefined:$scope.saturacionO2,
+			glucosa : $scope.glucosa==''?undefined:$scope.glucosa
 		}).success(function(data){
 			$cookieStore.put('datosPaciente', data);
 			if(data.prioridad == 'DOS'){//nunca puede ser prioridad UNO en esta instancia
@@ -324,7 +310,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 	$scope.paciente = {
 			sintomas : []
 		};
-	
+
 	$scope.traerSintomasImpresionVisual = function() {
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
 			$scope.sintomasImpresionVisual = data;
@@ -354,7 +340,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 
 	$scope.traerSintomasImpresionVisual();	
 	
-	$scope.esPrioridadUnoImpresionVisual = function(sintoma){
+	$scope.checkImpresionVisual = function(event,sintoma){
 		if(($scope.pacienteActual.esAdulto && sintoma.prioridadAdulto.name == "UNO") || //es adulto
 			(!$scope.pacienteActual.esAdulto && sintoma.prioridadPediatrico.name == "UNO")){//es pediatrico
 				bootbox.confirm("¿Está seguro que desea ingresar el síntoma?",
@@ -362,6 +348,8 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 						if (confirma) {
 							$scope.esPrioridadUno = true;
 							$scope.cargarImpresionVisual();
+						}else{
+							event.currentTarget.checked = false;//si cancela deschequeo el checkbox
 						}
 					});
 		}				
@@ -526,13 +514,13 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 		$http.post("paciente/cargarSignosVitalesYResponder", {
 			id : $scope.pacienteActual.id,
 			esPrioridadUno : $scope.esPrioridadUno,
-			sistole : $scope.sistole,
-			diastole : $scope.diastole,
-			pulso : $scope.pulso,
-			frecuenciaRespiratoria : $scope.frecuenciaRespiratoria,
-			temperatura : $scope.temperatura,
-			saturacionO2 : $scope.saturacionO2,
-			glucosa : $scope.glucosa
+			sistole : $scope.sistole==''?undefined:$scope.sistole,
+			diastole : $scope.diastole==''?undefined:$scope.diastole,
+			pulso : $scope.pulso==''?undefined:$scope.pulso,
+			frecuenciaRespiratoria : $scope.frecuenciaRespiratoria==''?undefined:$scope.frecuenciaRespiratoria,
+			temperatura : $scope.temperatura==''?undefined:$scope.temperatura,
+			saturacionO2 : $scope.saturacionO2==''?undefined:$scope.saturacionO2,
+			glucosa : $scope.glucosa==''?undefined:$scope.glucosa
 		}).success(function(data) {
 			if ($scope.esPrioridadUno) {
 				$cookieStore.put('datosPaciente', data);
@@ -545,6 +533,8 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 	};
 
 	$scope.chequearPrioridadSignoVital = function(modelo,label) {
+		if($scope[modelo] == null) return;//es nulo cuando se selecciona el valor default del select
+
 		if($scope.pacienteActual.esAdulto){
 			$scope.chequearSignosVitalesAdulto(modelo,label)
 		}else{//es pediatrico

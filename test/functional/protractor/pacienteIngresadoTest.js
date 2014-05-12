@@ -47,10 +47,8 @@ describe('Test pantalla paciente ingresado', function() {
   it('Finalizar triage', function() {
   	element(by.id('finalizarTriage')).click();//presiono el boton Finalizar Triage
   	browser.waitForAngular();
-  	var dialogo = $('.bootbox').$('.modal-dialog').$('.modal-content').$('.modal-body').$('.bootbox-body');
-    expect(dialogo.getText()).toBe('Triage finalizado con éxito\nPaciente NESTOR MUÑOZ\nPRIORIDAD TRES');//aparece el mensaje de triage finalizado con exito
-    element(by.buttonText('OK')).click();//presiono el boton OK
-    expect(browser.getTitle()).toBe('Búsqueda e ingreso de pacientes');//me dirige a la pantalla de búsqueda e ingreso de pacientes
+  	expect(browser.getTitle()).toBe('PRIORIDAD 3');//chequeo el titulo
+    expect(element(by.id("nombreYApellido")).getText()).toBe("Nombre y apellido: NESTOR MUÑOZ")
   }); 
   
 });

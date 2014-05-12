@@ -5,7 +5,7 @@
 			<p ng-show="paciente.telefono != null">Tel&eacute;fono: {{paciente.telefono}}</p>
 			<p ng-show="paciente.obraSocial != null">Obra social: {{paciente.obraSocial}}</p>
 			<p ng-show="paciente.nroAfiliado != null">Nro afiliado: {{paciente.nroAfiliado}}</p>
-			<p id="sintomas">Motivo de ingreso: {{paciente.sintomas}}</p>
+			<p id="sintomas" ng-show="paciente.sintomas != null">Motivo de ingreso: {{paciente.sintomas}}</p>
 			<!--SIGNOS VITALES-->
 			<p ng-show="paciente.sistole != null">S&iacute;stole: {{paciente.sistole}}</p>
 			<p ng-show="paciente.diastole != null">Diastole: {{paciente.diastole}}</p>

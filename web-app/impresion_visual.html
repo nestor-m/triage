@@ -13,8 +13,8 @@
 					ng-submit="cargarImpresionVisual()" style="text-align: center"
 					role="form">
 					<label ng-repeat="sintomaImpresionVisual in sintomasImpresionVisual">
-					 <input	type="checkbox"	 checklist-model="paciente.sintomas" checklist-value="sintomaImpresionVisual" 
-					 	ng-click="esPrioridadUnoImpresionVisual(sintomaImpresionVisual)"/>
+					 <input	type="checkbox"	checklist-model="paciente.sintomas" checklist-value="sintomaImpresionVisual" 
+					 	ng-click="checkImpresionVisual($event,sintomaImpresionVisual)"/>
 					  {{sintomaImpresionVisual.nombre}}
 					</label>
 					<div class="form-group">
