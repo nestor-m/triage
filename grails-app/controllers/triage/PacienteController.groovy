@@ -16,18 +16,20 @@ import org.hibernate.criterion.Projection
 @Transactional //(readOnly = true)
 class PacienteController {
 
-
+	//esta variable restringe con que metodos HTTP pueden ser llamados los metodos de la clase.
+	//Si no se especifica, los metodos de la clase pueden ser invocados por cualquier metodo HTTP
     static allowedMethods = [cargarPaciente: "POST"
 		,cargarImpresionInicial: "POST"
-		,cargarSintomas: "POST"
-		,cargarSignosVitales: "POST"
+		,cargarSintomasYResponder: "POST"
+		,cargarSignosVitalesYResponder: "POST"
 		,cargarSintomas: "POST"
 		,getSintomasVisuales: "POST"
 		,getSignosVitales: "POST"
-		,calcularPrioridad: "POST"
+		,finalizarTriage: "POST"
 		,ajaxBuscarNoFinalizados: "POST"
 		,finalizarPaciente: "POST"
-		,cantidadDeConsultasSegunPrioridad: "POST"]
+		,cantidadDeConsultasSegunPrioridad: "POST"
+		,cargarPacienteEnEspera: "POST"]
 	
 	
 	
@@ -54,6 +56,23 @@ class PacienteController {
 	}
 	
 	
+
+
+
+	/*
+	*Click boton Finalizar triage. Carga la impresion visual, los sintomas y los signos vitales
+	*/
+	@Transactional
+	def finalizarTriage(){
+		Paciente paciente = Paciente.get(request.JSON.id)
+		request.JSON.sintomasImpresionVisual.each {
+			paciente.addToSintomas(Sintoma.get(it.id))
+		}
+		this.cargarSintomas(paciente)
+		this.cargarSignosVitales(paciente)
+		request.JSON.prioridad = paciente.calcularPrioridad()
+		this.enviarRespuesta(paciente)
+	}
 	
 	
 	/**
@@ -75,11 +94,11 @@ class PacienteController {
 	/**
 	 * calcula la prioridad (DOS o TRES) y responde un JSON
 	 */
-	@Transactional
+	@Transactional 
 	def calcularPrioridad(){
 		Paciente paciente = Paciente.get(request.JSON.id)
 		request.JSON.prioridad = paciente.calcularPrioridad()
-		render request.JSON
+		this.enviarRespuesta(paciente)
 	}
 
 	/**seleccion de paciente del listado de busqueda
@@ -89,7 +108,7 @@ class PacienteController {
 	@Transactional
 	def cargarPaciente(){
 		Persona persona = Persona.get(request.JSON.id)
-		Paciente paciente = new Paciente(persona: persona, finalizado: false).save( failOnError : true )
+		Paciente paciente = new Paciente(persona: persona).save( failOnError : true )
 
 		request.JSON.id = paciente.id
 		request.JSON.nombre = persona.nombre
@@ -114,15 +133,7 @@ class PacienteController {
 		request.JSON.apellido = paciente.persona.apellido
 		request.JSON.fechaDeNacimiento = paciente.persona.fechaDeNacimiento.getDateString()
 		request.JSON.DNI = paciente.persona.dni
-		String sintomas = ""
-		paciente.sintomas.each{
-			if(sintomas.size() > 0){
-				sintomas += "; "
-			}
-			sintomas += it.nombre
-		}
-
-		request.JSON.sintomas = sintomas
+		request.JSON.esAdulto = paciente.esAdulto()
 
 		render request.JSON
 	}
@@ -153,30 +164,39 @@ class PacienteController {
 		if (paciente.diastole != null) request.JSON.diastole = paciente.diastole
 		if (paciente.temperatura != null) request.JSON.temperatura = paciente.temperatura
 		if (paciente.pulso != null) request.JSON.pulso = paciente.pulso
-		if (paciente.frecuenciaRespiratoria != null) request.JSON.frecuencia = paciente.frecuenciaRespiratoria
+		if (paciente.frecuenciaRespiratoria != null) request.JSON.frecuenciaRespiratoria = paciente.frecuenciaRespiratoria
+		if (paciente.glucosa != null) request.JSON.glucosa = paciente.glucosa
+		if (paciente.saturacionO2 != null) request.JSON.saturacionO2 = paciente.saturacionO2
 
 		render request.JSON
 	}
 
 	@Transactional
-	def cargarSintomas(){
+	def cargarSintomasYResponder(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		request.JSON.sintomas.each {
-			paciente.addToSintomas(Sintoma.get(it.id))
-		}
-
-		paciente.save()
-
+		this.cargarSintomas(paciente)
 		this.enviarRespuesta(paciente)
 	}
 
-	def enviarRespuesta(Paciente paciente){
-		if(paciente.esPrioridadUno()){
+	def cargarSintomas(Paciente paciente){
+		/*request.JSON.sintomas.each {
+			paciente.addToSintomas(Sintoma.get(it.id))
+		}*/
+		List resultado = new ArrayList()
+		request.JSON.sintomas.each {
+			resultado.add(Sintoma.get(it.id))		
+		}
+		paciente.sintomas = resultado //piso los sintomas agregados anteriormente. Con esto evito que se carguen repetidos y
+									  //cubro la posibilidad de poder borrar sintomas cargados anteriormente
+
+		if(request.JSON.esPrioridadUno){
 			paciente.prioridad = Prioridad.UNO
-			paciente.save(flush: true)//flush:true significa que hace el commit a la base inmediatamente
-			request.JSON.prioridad = "UNO"
 		}
 
+		paciente.save()
+	}
+
+	def enviarRespuesta(Paciente paciente){
 		request.JSON.nombre = paciente.persona.nombre
 		request.JSON.apellido = paciente.persona.apellido
 		request.JSON.fechaDeNacimiento = paciente.persona.fechaDeNacimiento.getDateString()
@@ -194,30 +214,39 @@ class PacienteController {
 			sintomas += it.nombre
 		}
 
-		request.JSON.sintomas = sintomas
+		sintomas != ""?request.JSON.sintomas = sintomas:request.JSON.remove("sintomas")
+
 		request.JSON.fecha = paciente.fechaHoraIngreso.getDateTimeString()
+		request.JSON.sistole = paciente.sistole
+		request.JSON.diastole = paciente.diastole
+		request.JSON.pulso = paciente.pulso
+		request.JSON.frecuenciaRespiratoria = paciente.frecuenciaRespiratoria
+		request.JSON.temperatura = paciente.temperatura
+		request.JSON.saturacionO2 = paciente.saturacionO2
+		request.JSON.glucosa = paciente.glucosa
 
 		render request.JSON
 	}
 
 
 	@Transactional
-	def cargarSignosVitales(){
+	def cargarSignosVitalesYResponder(){
 		Paciente paciente = Paciente.get(request.JSON.id)
+		this.cargarSignosVitales(paciente)
+		this.enviarRespuesta(paciente)
+	}
+
+	def cargarSignosVitales(Paciente paciente){		
+		if (request.JSON.esPrioridadUno) paciente.prioridad = Prioridad.UNO
 		if (request.JSON.sistole != null) paciente.sistole = request.JSON.sistole
 		if (request.JSON.diastole != null) paciente.diastole = request.JSON.diastole
 		if (request.JSON.pulso != null) paciente.pulso = request.JSON.pulso
 		if (request.JSON.frecuenciaRespiratoria != null) paciente.frecuenciaRespiratoria = request.JSON.frecuenciaRespiratoria
 		if (request.JSON.temperatura != null) paciente.temperatura = request.JSON.temperatura
+		if (request.JSON.saturacionO2 != null) paciente.saturacionO2 = request.JSON.saturacionO2
+		if (request.JSON.glucosa != null) paciente.glucosa = request.JSON.glucosa
 
 		paciente.save()
-
-		if (paciente.esPrioridadUno()){
-			paciente.prioridad = Prioridad.UNO
-			paciente.save(flush:true)
-		}
-
-		this.enviarRespuesta(paciente)
 	}
 
 	
@@ -265,7 +294,7 @@ class PacienteController {
 		if (p == null) return "No se ha calculado"
 	}
 	
-	def  calcularEdad(String fecha){
+	def calcularEdad(String fecha){
 		Date fechaNac=null
 			try {
 				/**Se puede cambiar la mascara por el formato de la fecha

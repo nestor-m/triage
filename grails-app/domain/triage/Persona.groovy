@@ -44,13 +44,14 @@ class Persona { //implements Serializable{
 	* Este metodo se utiliza para la logica de los signos vitales y las prioridades en pediatricos
 	*/
 	String getCategoriaPediatrico(){
-		if(this.getEdad() > 2){
-			return 'mayorDe3Anios'
+		int edad = this.getEdad()
+		if(edad > 5){
+			return 'mayorDe6Anios'
 		}else{
-			if(new Date() - fechaDeNacimiento < 91){//entre cero y tres meses
-				return 'recienNacido'
+			if(edad > 0){
+				return 'menorDe6Anios'
 			}else{
-				return 'menorDe3Anios'
+				return 'menorDeUnAnio'
 			}
 		}
 	}

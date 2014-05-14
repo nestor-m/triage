@@ -10,8 +10,11 @@ class Paciente {
 	Integer pulso
 	Integer frecuenciaRespiratoria
 	Integer temperatura
-	Boolean finalizado
+	Integer saturacionO2
+	Integer glucosa
+	Boolean finalizado = false
 	Integer tipoAtencion
+
 
 	Prioridad prioridad
 
@@ -25,9 +28,10 @@ class Paciente {
 		pulso nullable: true
 		frecuenciaRespiratoria nullable: true
 		temperatura nullable: true
+		saturacionO2 nullable: true
+		glucosa nullable: true
 		sintomas nullable: true
 		prioridad nullable: true
-		finalizado nullable: true
 		tipoAtencion nullable: true
 	}
 
@@ -52,19 +56,17 @@ class Paciente {
 		return Prioridad.TRES
 	}
 
+	/*
+	*Esta logica esta del lado del cliente, por eso para no procesar 2 veces lo mismo este metodo ya no se usa, Nestor 10/05/2014
+	*/
 	Boolean esPrioridadUno(){
 		Boolean esAdulto = persona.esAdulto()
 		for(sintoma in sintomas){
-			if(esAdulto){//si es adulto miro las prioridades para adulto
-				if(sintoma.prioridadAdulto == Prioridad.UNO){
+			if((esAdulto && sintoma.prioridadAdulto == Prioridad.UNO) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.UNO)){
 					return true
-				}
-			}else{//si es ninio miro las prioridades para ninio
-				if(sintoma.prioridadPediatrico == Prioridad.UNO){
-					return true
-				}
 			}
 		}
+		
 
 		//TODO: falta la logica para signos vitales en pediatricos
 
@@ -99,6 +101,10 @@ class Paciente {
 			def duration = ahora - this.fechaHoraIngreso
 			return 	duration
 		}
+	}
+
+	Boolean esAdulto(){
+		return this.persona.esAdulto()
 	}
 	
 	

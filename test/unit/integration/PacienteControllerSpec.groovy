@@ -167,15 +167,16 @@ class PacienteControllerSpec extends Specification {
 		request.JSON.id = 1
 		request.JSON.sintomas = [sintomas[0], sintomas[1]]
 
-		controller.cargarSintomas()
+		controller.cargarSintomas(paciente)
 
 		then: "Verifico que los sintomas se hayan cargado correctamente"
 		paciente.sintomas.size() == 2
 	}
 
-	void "Test cargar impresion inicial con sintoma de priorida uno"(){
+	void "Test cargar impresion inicial con sintoma de prioridad uno"(){
 		when: "Cargo una nueva persona y un paciente asociado"
 		Paciente paciente = this.cargarPaciente()
+		request.JSON.esPrioridadUno = true //cuando es prioridad uno llega en el request
 
 		and: "Creo un JSON con los sintomas y se los cargo al paciente"
 		List sintomas = this.cargarSintomas();
@@ -183,11 +184,10 @@ class PacienteControllerSpec extends Specification {
 		request.JSON.id = 1
 		request.JSON.sintomas = sintomas
 
-		controller.cargarSintomas()
+		controller.cargarSintomasYResponder()
 
 		then: "Verifico que los sintomas se hayan cargado correctamente"
 		paciente.prioridad == Prioridad.UNO
-		response.json.prioridad == "UNO"
 	}
 
 	void "Test cargar sintomas"(){
@@ -200,7 +200,7 @@ class PacienteControllerSpec extends Specification {
 		request.JSON.id = 1
 		request.JSON.sintomas = [Sintoma.get(1)]
 
-		controller.cargarSintomas()
+		controller.cargarSintomas(paciente)
 
 		then: "Verifico que el sintoma se haya cargado correctamente"
 		paciente.sintomas.size() == 1
@@ -230,7 +230,7 @@ class PacienteControllerSpec extends Specification {
 		request.JSON.id = 1
 		request.JSON.sintomas = [sintomas[1]]
 
-		controller.cargarSintomas()
+		controller.cargarSintomas(paciente)
 		controller.calcularPrioridad()
 		
 		then: "La prioridad es 2"		

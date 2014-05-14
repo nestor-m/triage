@@ -1,4 +1,4 @@
-describe('Test pantalla de pacientes en espera', function() {
+	describe('Test pantalla de pacientes en espera', function() {
 	beforeEach(function() {
 	      browser.get('http://localhost:8080/triage/');  
 	      element(by.model('nombre')).sendKeys('nestor');

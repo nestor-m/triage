@@ -1,8 +1,5 @@
 describe('Test pantalla de ingreso de signos vitales', function() {
 
-	
-	
-	
 	  beforeEach(function() {
 	      browser.get('http://localhost:8080/triage/');  
 	      element(by.model('nombre')).sendKeys('signos');
@@ -26,15 +23,14 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		    }
 		  };
 		  var selectPulso = selectDropdownbyNum(element(by.id('pulso')), 8);
-		  var selectPresion = selectDropdownbyNum(element(by.id('sistole')), 2);
+		  var selectPresion = selectDropdownbyNum(element(by.id('sistole')), 3);
 		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 8);
-		  var selectFrecuencia = selectDropdownbyNum(element(by.id('frecuencia')), 7);
+		  var selectFrecuencia = selectDropdownbyNum(element(by.id('frecuenciaRespiratoria')), 7);
 		  browser.waitForAngular();	
 		  //Salgo de la pantalla
 		  element(by.buttonText('Aceptar')).click();
-		  browser.waitForAngular();
+		  browser.sleep(500);//espero a que se despliegue el modal
 		  element(by.buttonText('OK')).click();//mensaje de carga exitosa
-		  //Entro a la pantalla de paciente ingresado con todas las opciones
 		  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
 		  element(by.id('salir')).click();//salgo
 		  browser.waitForAngular();		  
@@ -48,9 +44,9 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		  element(by.id('signos_vitales')).click();//vuelvo a la pantalla de signos vitales		  
 		  //Yo sé qué elegí en cada opción...
 		  expect(element(by.selectedOption('$parent.pulso')).getText()).toEqual('80');
-		  expect(element(by.selectedOption('$parent.sistole')).getText()).toEqual('1112');
+		  expect(element(by.selectedOption('$parent.sistole')).getText()).toEqual('117');
 		  expect(element(by.selectedOption('$parent.temperatura')).getText()).toEqual('37');
-		  expect(element(by.selectedOption('$parent.frecuencia')).getText()).toEqual('15');		  
+		  expect(element(by.selectedOption('$parent.frecuenciaRespiratoria')).getText()).toEqual('15');		  
   });
   
   

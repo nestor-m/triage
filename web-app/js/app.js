@@ -4,10 +4,6 @@ var app = angular.module('app', [ 'ngRoute', 'ngGrid', 'checklist-model',
 app.config(function($routeProvider) {
 	$routeProvider
 
-	/*
-	 * .when('/', { templateUrl : 'inicio.html' })
-	 */
-
 	.when('/', {
 		templateUrl : 'busqueda_ingreso_paciente.html',
 		controller : 'busquedaController'
@@ -17,11 +13,6 @@ app.config(function($routeProvider) {
 		templateUrl : 'impresion_visual.html',
 		controller : 'impresionVisualController'
 	})
-
-/*	.when('/impresion_visual', {
-		templateUrl : 'impresion_visual.html',
-		controller : 'impresionVisualController'
-	})*/
 
 	.when('/reportes', {
 		templateUrl : 'lista_pacientes.html',
@@ -71,20 +62,10 @@ app.config(function($routeProvider) {
 		controller : 'finalizarPacienteController'
 	})
 	
-/*	.when('/signos_vitales', {
-		templateUrl : 'signos_vitales.html',
-		controller : 'signosVitalesController'
-	})*/
-	
 	.when('/pacientes_espera', {
 		templateUrl : 'pacientes_espera.html',
 		controller : 'pacientesEsperaController'
-	})
-
-	/*.when('/carga_sintomas', {
-		templateUrl : 'carga_sintomas.html',
-		controller : 'cargaSintomasController'
-	})*/;
+	});
 });
 
 
@@ -263,6 +244,7 @@ app
 				});
 
 // Directiva para ponerle un tope al date input
+//no se usa desde que encontre otra manera de hacer el campo fecha con jquery, de esta manera solo funcionaba en chrome, Nestor 10/05/2014
 app
 		.directive(
 				'fechaConMaximo',
@@ -284,25 +266,42 @@ app
 
 /** ****************************************************************************************** */
 app.controller('pacienteIngresadoController', function($scope, $cookieStore, $http, $location) {
+
+	
+	//TODO: hacer que todos los pedidos que se hacen al server al ingresar a esta pagina se hagan de una sola vez. 
+	//Ahora se estan realizando 6 pedidos diferentes
+
+	$scope.esPrioridadUno = false;
 	$scope.pacienteActual = $cookieStore.get('pacienteActual');
 
+	$scope.finalizarTriage = function(){
+		//submit de impresion visual, sintomas, signos vitales y calcula la prioridad
+		$http.post("paciente/finalizarTriage", {
+			id : $scope.pacienteActual.id,
+			sintomasImpresionVisual : $scope.paciente.sintomas,
+			sintomas: $scope.sintomas,
+			sistole : $scope.sistole==''?undefined:$scope.sistole,
+			diastole : $scope.diastole==''?undefined:$scope.diastole,
+			pulso : $scope.pulso==''?undefined:$scope.pulso,
+			frecuenciaRespiratoria : $scope.frecuenciaRespiratoria==''?undefined:$scope.frecuenciaRespiratoria,
+			temperatura : $scope.temperatura==''?undefined:$scope.temperatura,
+			saturacionO2 : $scope.saturacionO2==''?undefined:$scope.saturacionO2,
+			glucosa : $scope.glucosa==''?undefined:$scope.glucosa
+		}).success(function(data){
+			$cookieStore.put('datosPaciente', data);
+			if(data.prioridad == 'DOS'){//nunca puede ser prioridad UNO en esta instancia
+				$location.path("/prioridad2");
+			}else{
+				$location.path("/prioridad3");
+			}
+		});
+
+	};
+	
 	$scope.salir = function(){
 		$cookieStore.remove('pacienteActual');
 		$scope.pacienteActual = null;
 		$location.path("/");
-	};
-
-	$scope.finalizarTriage = function(){
-		$http.post("paciente/calcularPrioridad",{
-			id : $scope.pacienteActual.id
-		}).success(function(data){
-			bootbox.alert("Triage finalizado con éxito<br>" + "Paciente " +$scope.pacienteActual.nombre + " " +
-				$scope.pacienteActual.apellido + "<br>" +
-				"PRIORIDAD " + data.prioridad);
-			//TODO: aca deberia comenzar a contar el tiempo de espera
-			$scope.salir();
-		});
-
 	};
 
 	/*IMPRESION VISUAL*/
@@ -311,7 +310,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 	$scope.paciente = {
 			sintomas : []
 		};
-	
+
 	$scope.traerSintomasImpresionVisual = function() {
 		$http.get("sintoma/ajaxListVisuales").success(function(data) {
 			$scope.sintomasImpresionVisual = data;
@@ -323,13 +322,14 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 		});
 	};
 
-	$scope.cargarImpresionInicial = function() {
-		$http.post("paciente/cargarSintomas", {
+	$scope.cargarImpresionVisual = function() {
+		$http.post("paciente/cargarSintomasYResponder", {
 			id : $scope.pacienteActual.id,
+			esPrioridadUno : $scope.esPrioridadUno,
 			sintomas : $scope.paciente.sintomas
 		}).success(function(data) {
-			// en data viene el paciente
-			if (data.prioridad != null && data.prioridad == "UNO") {
+			// en data viene el paciente	
+			if ($scope.esPrioridadUno) {
 				$cookieStore.put('datosPaciente', data);
 				$location.path("/prioridad1");
 			} else {
@@ -340,30 +340,33 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 
 	$scope.traerSintomasImpresionVisual();	
 	
-	$scope.esPrioridadUnoImpresionVisual = function(sintoma){
-		var confirmar = function(){
-			bootbox.confirm(
-				"¿Está seguro que desea ingresar el síntoma?",
-				function(confirma) {
-					if (confirma) {
-						$scope.cargarImpresionInicial();
-					}
-			});
-		};
-
-		if($scope.pacienteActual.esAdulto){//es adulto
-			if (sintoma.prioridadAdulto.name == "UNO"){
-				confirmar();
-			}
-		}else{//es pediatrico
-			if (sintoma.prioridadPediatrico.name == "UNO"){
-				confirmar();
-			}
-		}		
+	$scope.checkImpresionVisual = function(event,sintoma){
+		if(($scope.pacienteActual.esAdulto && sintoma.prioridadAdulto.name == "UNO") || //es adulto
+			(!$scope.pacienteActual.esAdulto && sintoma.prioridadPediatrico.name == "UNO")){//es pediatrico
+				bootbox.confirm("¿Está seguro que desea ingresar el síntoma?",
+					function(confirma) {
+						if (confirma) {
+							$scope.esPrioridadUno = true;
+							$scope.cargarImpresionVisual();
+						}else{
+							event.currentTarget.checked = false;//si cancela deschequeo el checkbox
+						}
+					});
+		}				
 	};
 
 	/*INGRESO DE SINTOMAS*/
 	$scope.sintomas = [];
+
+	$scope.recuperarSintomas = function(){
+		$http.post("sintoma/recuperarSintomas", {
+			id : $scope.pacienteActual.id,
+		}).success(function(data) {
+			$scope.sintomas = data;
+		});
+	}
+
+	$scope.recuperarSintomas();
 
 	$scope.borrarSintoma = function(sintoma) {
 		var i = $scope.sintomas.indexOf(sintoma);
@@ -414,6 +417,7 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			bootbox.confirm("¿Está seguro que desea ingresar el síntoma?<br>" + row.entity.nombre,function(confirma){
 				if(confirma){
 					$scope.sintomas.push(row.entity);
+					$scope.esPrioridadUno = true;
 					$scope.enviarSintomas();
 				}
 			});
@@ -466,11 +470,12 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 	};
 	
 	$scope.enviarSintomas = function(){
-		$http.post('paciente/cargarSintomas',{
+		$http.post('paciente/cargarSintomasYResponder',{
 			id: $scope.pacienteActual.id,
+			esPrioridadUno : $scope.esPrioridadUno,
 			sintomas: $scope.sintomas
 		}).success(function(data){
-			if (data.prioridad != null && data.prioridad == "UNO"){
+			if ($scope.esPrioridadUno){
 				$cookieStore.put('datosPaciente',data);
 				$location.path("/prioridad1");
 			}else{
@@ -480,12 +485,14 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 	};
 
 	/*INGRESO DE SIGNOS VITALES*/
-	$scope.pulsos = [ 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130,
-			140, 150 ];
-	$scope.frecuencias = [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ];
+	$scope.pulsos = [ 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130,140, 150 ];
+	$scope.frecuenciasRespiratorias = [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ];
 	$scope.temperaturas = [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41 ];
 	$scope.sistoles = [ 1110, 1112, 117 ];
 	$scope.diastoles = [ 1110, 1112, 117 ,118];
+	$scope.saturacionesO2 = [ 1110, 1112, 117 ,118];
+	$scope.glucosas = [ 1110, 1112, 117 ,118];
+
 	
 	$scope.recuperarSignosVitales = function(){
 		$http.post("paciente/getSignosVitales", {
@@ -495,23 +502,27 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 			$scope.temperatura = data.temperatura;
 			$scope.sistole = data.sistole;
 			$scope.diastole = data.diastole;
-			$scope.frecuencia = data.frecuencia;
+			$scope.frecuenciaRespiratoria = data.frecuenciaRespiratoria;
+			$scope.saturacionO2 = data.saturacionO2;
+			$scope.glucosa = data.glucosa;
 		})
 	}
 	
 	$scope.recuperarSignosVitales();
 	
 	$scope.enviarSignosVitales = function() {
-
-		$http.post("paciente/cargarSignosVitales", {
+		$http.post("paciente/cargarSignosVitalesYResponder", {
 			id : $scope.pacienteActual.id,
-			sistole : $scope.sistole,
-			diastole : $scope.diastole,
-			pulso : $scope.pulso,
-			frecuenciaRespiratoria : $scope.frecuencia,
-			temperatura : $scope.temperatura
+			esPrioridadUno : $scope.esPrioridadUno,
+			sistole : $scope.sistole==''?undefined:$scope.sistole,
+			diastole : $scope.diastole==''?undefined:$scope.diastole,
+			pulso : $scope.pulso==''?undefined:$scope.pulso,
+			frecuenciaRespiratoria : $scope.frecuenciaRespiratoria==''?undefined:$scope.frecuenciaRespiratoria,
+			temperatura : $scope.temperatura==''?undefined:$scope.temperatura,
+			saturacionO2 : $scope.saturacionO2==''?undefined:$scope.saturacionO2,
+			glucosa : $scope.glucosa==''?undefined:$scope.glucosa
 		}).success(function(data) {
-			if (data.prioridad != null && data.prioridad == "UNO") {
+			if ($scope.esPrioridadUno) {
 				$cookieStore.put('datosPaciente', data);
 				$location.path("/prioridad1");
 			} else {
@@ -521,48 +532,82 @@ app.controller('pacienteIngresadoController', function($scope, $cookieStore, $ht
 
 	};
 
-	$scope.esPrioridadUno = function(modelo,label) {
+	$scope.chequearPrioridadSignoVital = function(modelo,label) {
+		if($scope[modelo] == null) return;//es nulo cuando se selecciona el valor default del select
+
 		if($scope.pacienteActual.esAdulto){
 			$scope.chequearSignosVitalesAdulto(modelo,label)
 		}else{//es pediatrico
 			switch($scope.pacienteActual.categoriaPediatrico){
-				case 'recienNacido':
-  					$scope.chequearSignosVitalesRecienNacido(modelo,label)
+				case 'menorDeUnAnio':
+  					$scope.chequearSignosVitalesMenorDeUnAnio(modelo,label)
   					break;
-				case 'menorDe3Anios':
-  					$scope.chequearSignosVitalesMenorDe3Anios(modelo,label)
+				case 'menorDe6Anios':
+  					$scope.chequearSignosVitalesMenorDe6Anios(modelo,label)
   					break;
-  				case 'mayorDe3Anios':
-  					$scope.chequearSignosVitalesMayorDe3Anios(modelo,label)
+  				case 'mayorDe6Anios':
+  					$scope.chequearSignosVitalesMayorDe6Anios(modelo,label)
 			}
 		}
 	};
 
 	$scope.chequearSignosVitalesAdulto = function(modelo,label){
-		if (($scope.pulso != '' && ($scope.pulso < 40 || $scope.pulso > 150)) ||
-				($scope.frecuencia != '' && ($scope.frecuencia < 12 || $scope.frecuencia > 30 )) ||
-				($scope.temperatura != '' && ($scope.temperatura < 35 || $scope.temperatura > 40))){
+		if (($scope.sistole != '' && ($scope.sistole < 85 || $scope.sistole > 200)) ||
+			($scope.diastole != '' && ($scope.diastole < 50 || $scope.diastole > 110)) ||
+			($scope.pulso != '' && ($scope.pulso < 60 || $scope.pulso > 120)) ||
+			($scope.saturacionO2 != '' && $scope.saturacionO2 < 95) ||
+			($scope.frecuenciaRespiratoria != '' && ($scope.frecuenciaRespiratoria < 12 || $scope.frecuenciaRespiratoria > 30 )) ||
+			($scope.temperatura != '' && ($scope.temperatura < 35 || $scope.temperatura > 41)) ||
+			($scope.glucosa != '' && $scope.glucosa < 50)){			
 
 			$scope.mostrarMensajeDeConfirmacion(modelo,label);
 		}
 	};
 
-	$scope.chequearSignosVitalesRecienNacido = function(modelo,label){
-		alert('chequearSignosVitalesRecienNacido');
+	$scope.chequearSignosVitalesMenorDeUnAnio = function(modelo,label){
+		if (($scope.sistole != '' && ($scope.sistole < 60 || $scope.sistole > 120)) ||
+			($scope.diastole != '' && ($scope.diastole < 30 || $scope.diastole > 70)) ||
+			($scope.pulso != '' && ($scope.pulso < 80 || $scope.pulso > 190)) ||
+			($scope.saturacionO2 != '' && $scope.saturacionO2 < 95) ||
+			($scope.frecuenciaRespiratoria != '' && ($scope.frecuenciaRespiratoria < 15 || $scope.frecuenciaRespiratoria > 60 )) ||
+			($scope.temperatura != '' && ($scope.temperatura < 35 || $scope.temperatura > 41)) ||//TODO CHEQUEAR CON LUIS
+			($scope.glucosa != '' && ($scope.glucosa < 50 || $scope.glucosa > 300))){			
+						
+			$scope.mostrarMensajeDeConfirmacion(modelo,label);
+		}
 	};
 
-	$scope.chequearSignosVitalesMenorDe3Anios = function(modelo,label){
-		alert('chequearSignosVitalesMenorDe3Anios');
+	$scope.chequearSignosVitalesMenorDe6Anios = function(modelo,label){
+		if (($scope.sistole != '' && ($scope.sistole < 70 || $scope.sistole > 150)) ||
+			($scope.diastole != '' && ($scope.diastole < 40 || $scope.diastole > 90)) ||
+			($scope.pulso != '' && ($scope.pulso < 60 || $scope.pulso > 170)) ||
+			($scope.saturacionO2 != '' && $scope.saturacionO2 < 95) ||
+			($scope.frecuenciaRespiratoria != '' && ($scope.frecuenciaRespiratoria < 10 || $scope.frecuenciaRespiratoria > 50 )) ||
+			($scope.temperatura != '' && ($scope.temperatura < 35 || $scope.temperatura > 41)) ||//TODO CHEQUEAR CON LUIS
+			($scope.glucosa != '' && ($scope.glucosa < 50 || $scope.glucosa > 300))){			
+						
+			$scope.mostrarMensajeDeConfirmacion(modelo,label);
+		}
 	};
 
-	$scope.chequearSignosVitalesMayorDe3Anios = function(modelo,label){
-		alert('chequearSignosVitalesMayorDe3Anhios');
+	$scope.chequearSignosVitalesMayorDe6Anios = function(modelo,label){
+		if (($scope.sistole != '' && ($scope.sistole < 85 || $scope.sistole > 165)) ||
+			($scope.diastole != '' && ($scope.diastole < 50 || $scope.diastole > 100)) ||
+			($scope.pulso != '' && ($scope.pulso < 50 || $scope.pulso > 160)) ||
+			($scope.saturacionO2 != '' && $scope.saturacionO2 < 95) ||
+			($scope.frecuenciaRespiratoria != '' && ($scope.frecuenciaRespiratoria < 10 || $scope.frecuenciaRespiratoria > 40 )) ||
+			($scope.temperatura != '' && ($scope.temperatura < 35 || $scope.temperatura > 41)) ||//TODO CHEQUEAR CON LUIS
+			($scope.glucosa != '' && ($scope.glucosa < 50 || $scope.glucosa > 300))){			
+						
+			$scope.mostrarMensajeDeConfirmacion(modelo,label);
+		}
 	};
 
 	$scope.mostrarMensajeDeConfirmacion = function(modelo,label){
 		bootbox.confirm("¿Está seguro que desea ingresar el siguiente valor? <br>" + label + ": " + $scope[modelo],
 			function(confirma) {						
 				if (confirma) {
+					$scope.esPrioridadUno = true;
 					$scope.enviarSignosVitales();
 				}else{
 					$scope[modelo] = '';//vacio el campo
@@ -589,6 +634,13 @@ app.controller('prioridad3Controller',
 		function($scope, $location, $cookieStore) {
 			$scope.paciente = $cookieStore.get('datosPaciente');
 		});
+
+/** ****************************************************************************************** */
+app.directive('datosPaciente',function() {
+	return {
+		templateUrl : 'datosPaciente.html'
+	}
+});
 
 /** ****************************************************************************************** */
 app.controller('pacientesEsperaController',

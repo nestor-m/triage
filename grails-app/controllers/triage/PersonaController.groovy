@@ -43,7 +43,7 @@ class PersonaController {
 			nroAfiliado : request.JSON.nroAfiliado
 		).save( failOnError : true, flush:true )
 		
-		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date(), finalizado: false).save( failOnError : true )
+		Paciente paciente = new Paciente(persona: persona,fechaHoraIngreso: new Date()).save( failOnError : true )
 		
 		
 		request.JSON.id = paciente.id

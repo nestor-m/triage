@@ -10,11 +10,11 @@
 			<div class="panel-heading">Marque los s&iacute;ntomas que presenta el paciente</div>
 			<div class="panel-body">
 				<form name="impresion_visual_form"
-					ng-submit="cargarImpresionInicial()" style="text-align: center"
+					ng-submit="cargarImpresionVisual()" style="text-align: center"
 					role="form">
 					<label ng-repeat="sintomaImpresionVisual in sintomasImpresionVisual">
-					 <input	type="checkbox"	 checklist-model="paciente.sintomas" checklist-value="sintomaImpresionVisual" 
-					 	ng-click="esPrioridadUnoImpresionVisual(sintomaImpresionVisual)"/>
+					 <input	type="checkbox"	checklist-model="paciente.sintomas" checklist-value="sintomaImpresionVisual" 
+					 	ng-click="checkImpresionVisual($event,sintomaImpresionVisual)"/>
 					  {{sintomaImpresionVisual.nombre}}
 					</label>
 					<div class="form-group">
