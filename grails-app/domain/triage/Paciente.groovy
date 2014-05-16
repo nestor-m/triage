@@ -37,49 +37,51 @@ class Paciente {
 
 	/**
 	 * Obtiene la prioridad del paciente a partir de sus sintomas.
-	 * No puede retornar Prioridad.UNO porque si es prioridad uno 
-	 * el proceso no deberia llegar a llamar este metodo
+	 * En caso de que ya se haya calculado la prioridad, no volvemos a calcular
 	 * @return Prioridad.DOS o Prioridad.TRES
 	 */
 	Prioridad calcularPrioridad(){
-		Boolean esAdulto = persona.esAdulto()
-		for(sintoma in sintomas){
-			if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
+		if (prioridad == null){
+			Boolean esAdulto = persona.esAdulto()
+			for(sintoma in sintomas){
+				if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
 					this.prioridad = Prioridad.DOS
 					this.save()
-					return Prioridad.DOS			
+					return Prioridad.DOS
+				}
 			}
-		}
 
-		this.prioridad = Prioridad.TRES
-		this.save()
-		return Prioridad.TRES
+			this.prioridad = Prioridad.TRES
+			this.save()
+			return Prioridad.TRES
+		}
+		else return prioridad
 	}
 
 	/*
-	*Esta logica esta del lado del cliente, por eso para no procesar 2 veces lo mismo este metodo ya no se usa, Nestor 10/05/2014
-	*/
+	 *Esta logica esta del lado del cliente, por eso para no procesar 2 veces lo mismo este metodo ya no se usa, Nestor 10/05/2014
+	 */
 	Boolean esPrioridadUno(){
 		Boolean esAdulto = persona.esAdulto()
 		for(sintoma in sintomas){
 			if((esAdulto && sintoma.prioridadAdulto == Prioridad.UNO) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.UNO)){
-					return true
+				return true
 			}
 		}
-		
+
 
 		//TODO: falta la logica para signos vitales en pediatricos
 
-		
+
 		if ((pulso != null && (pulso < 40 || pulso > 150)) ||
-				(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
-				(temperatura != null && (temperatura < 35 || temperatura > 40))){
+		(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
+		(temperatura != null && (temperatura < 35 || temperatura > 40))){
 			return true
 		}
 		return false
 	}
 
-	
+
 
 	/**
 	 * Retorna el tiempo de espera entre el ingreso y la atencion
@@ -94,7 +96,7 @@ class Paciente {
 			duration.minutes>0 ? duration.minutes + "minutos": ""
 		}
 	}
-	
+
 	String tiempoEspera(){
 		use(groovy.time.TimeCategory) {
 			Date ahora = new Date()
@@ -103,9 +105,14 @@ class Paciente {
 		}
 	}
 
+	/**
+	 * Indica si el paciente es adulto (para marcar la diferencia entre Triage adulto o
+	 * pediátrico)
+	 * @return
+	 */
 	Boolean esAdulto(){
 		return this.persona.esAdulto()
 	}
-	
-	
+
+
 }

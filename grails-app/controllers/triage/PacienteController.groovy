@@ -18,7 +18,7 @@ class PacienteController {
 
 	//esta variable restringe con que metodos HTTP pueden ser llamados los metodos de la clase.
 	//Si no se especifica, los metodos de la clase pueden ser invocados por cualquier metodo HTTP
-    static allowedMethods = [cargarPaciente: "POST"
+	static allowedMethods = [cargarPaciente: "POST"
 		,cargarImpresionInicial: "POST"
 		,cargarSintomasYResponder: "POST"
 		,cargarSignosVitalesYResponder: "POST"
@@ -30,10 +30,10 @@ class PacienteController {
 		,finalizarPaciente: "POST"
 		,cantidadDeConsultasSegunPrioridad: "POST"
 		,cargarPacienteEnEspera: "POST"]
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Método que devuelve la cantidad de consultas según prioridad 
 	 * Se filtra por fechas desde y hasta, parámetros que se reciben por JSON
@@ -46,22 +46,27 @@ class PacienteController {
 		 group by prioridad*/
 		Date fechaDesde = request.JSON.fechaDesde
 		Date fechaHasta = request.JSON.fechaHasta
-		List prioridades = Paciente.executeQuery("select pac.id, per.nombre, per.apellido, per.dni, "+
-				" per.fechaDeNacimiento, pac.fechaHoraIngreso, pac.prioridad"+
-				" from Paciente pac, Persona per where pac.finalizado = false and "+
-				"pac.persona = per.id" +
-				(nombre != null ? " and per.nombre like '" + nombre.toUpperCase() + "%'" : ' ') +
-				(apellido != null ? " and per.apellido like '" + apellido.toUpperCase() + "%'" : ' '))
+		List prioridades = Paciente.executeQuery("SELECT  prioridad, count(*) "+
+													"FROM PACIENTE "+
+													" WHERE fecha_hora_ingreso::date between '" + fechaDesde + 
+													"' and '" + fechaHasta + "' group by prioridad")
 		List resultado = new ArrayList()
+		for (p in prioridades){
+			resultado.add(new JSONObject('{"prioridad":' + p[0] +
+					',"cantidad":"' + p[1] + '"}'))
+		}
+		
+		render resultado as JSON
+		return resultado
 	}
-	
-	
+
+
 
 
 
 	/*
-	*Click boton Finalizar triage. Carga la impresion visual, los sintomas y los signos vitales
-	*/
+	 *Click boton Finalizar triage. Carga la impresion visual, los sintomas y los signos vitales
+	 */
 	@Transactional
 	def finalizarTriage(){
 		Paciente paciente = Paciente.get(request.JSON.id)
@@ -73,8 +78,8 @@ class PacienteController {
 		request.JSON.prioridad = paciente.calcularPrioridad()
 		this.enviarRespuesta(paciente)
 	}
-	
-	
+
+
 	/**
 	 * Método que marca el paciente como finalizado.
 	 * Levanta del JSON el id paciente y el tipo de finalización (ingresa, consultorio externo, se retira).
@@ -89,12 +94,12 @@ class PacienteController {
 		paciente.save(flush:true)
 		render request.JSON
 	}
-	
-	
+
+
 	/**
 	 * calcula la prioridad (DOS o TRES) y responde un JSON
 	 */
-	@Transactional 
+	@Transactional
 	def calcularPrioridad(){
 		Paciente paciente = Paciente.get(request.JSON.id)
 		request.JSON.prioridad = paciente.calcularPrioridad()
@@ -117,7 +122,7 @@ class PacienteController {
 		request.JSON.DNI = persona.dni
 
 		request.JSON.esAdulto = persona.esAdulto()
-		 
+
 		render request.JSON //retorna el id del paciente + los datos de la persona
 	}
 
@@ -137,8 +142,8 @@ class PacienteController {
 
 		render request.JSON
 	}
-	
-	
+
+
 	/**
 	 * Este método sirve para enviar por JSON todos los síntomas visuales
 	 * del paciente marcados.
@@ -180,14 +185,14 @@ class PacienteController {
 
 	def cargarSintomas(Paciente paciente){
 		/*request.JSON.sintomas.each {
-			paciente.addToSintomas(Sintoma.get(it.id))
-		}*/
+		 paciente.addToSintomas(Sintoma.get(it.id))
+		 }*/
 		List resultado = new ArrayList()
 		request.JSON.sintomas.each {
-			resultado.add(Sintoma.get(it.id))		
+			resultado.add(Sintoma.get(it.id))
 		}
 		paciente.sintomas = resultado //piso los sintomas agregados anteriormente. Con esto evito que se carguen repetidos y
-									  //cubro la posibilidad de poder borrar sintomas cargados anteriormente
+		//cubro la posibilidad de poder borrar sintomas cargados anteriormente
 
 		if(request.JSON.esPrioridadUno){
 			paciente.prioridad = Prioridad.UNO
@@ -236,7 +241,7 @@ class PacienteController {
 		this.enviarRespuesta(paciente)
 	}
 
-	def cargarSignosVitales(Paciente paciente){		
+	def cargarSignosVitales(Paciente paciente){
 		if (request.JSON.esPrioridadUno) paciente.prioridad = Prioridad.UNO
 		if (request.JSON.sistole != null) paciente.sistole = request.JSON.sistole
 		if (request.JSON.diastole != null) paciente.diastole = request.JSON.diastole
@@ -249,7 +254,7 @@ class PacienteController {
 		paciente.save()
 	}
 
-	
+
 	/**
 	 * Método que devuelve una lista en JSON con los datos de los pacientes no finalizados
 	 * @return
@@ -257,13 +262,13 @@ class PacienteController {
 	def ajaxBuscarNoFinalizados() {
 		String nombre = request.JSON.nombre
 		String apellido = request.JSON.apellido
-		
+
 		List pacientes = Paciente.executeQuery("select pac.id, per.nombre, per.apellido, per.dni, "+
-							" per.fechaDeNacimiento, pac.fechaHoraIngreso, pac.prioridad"+
-							" from Paciente pac, Persona per where pac.finalizado = false and "+
-									"pac.persona = per.id" +
-									 (nombre != null ? " and per.nombre like '" + nombre.toUpperCase() + "%'" : ' ') + 
-									 (apellido != null ? " and per.apellido like '" + apellido.toUpperCase() + "%'" : ' '))
+				" per.fechaDeNacimiento, pac.fechaHoraIngreso, pac.prioridad"+
+				" from Paciente pac, Persona per where pac.finalizado = false and "+
+				"pac.persona = per.id" +
+				(nombre != null ? " and per.nombre like '" + nombre.toUpperCase() + "%'" : ' ') +
+				(apellido != null ? " and per.apellido like '" + apellido.toUpperCase() + "%'" : ' '))
 		List resultado = new ArrayList()
 		for(p in pacientes){
 			def duration
@@ -285,41 +290,41 @@ class PacienteController {
 
 		render resultado as JSON
 		return resultado
-	}	
-	
+	}
+
 	String traerPrioridad (Prioridad p){
 		if (p == Prioridad.UNO) return "Prioridad UNO"
 		if (p == Prioridad.DOS) return "Prioridad DOS"
 		if (p == Prioridad.TRES) return "Prioridad TRES"
 		if (p == null) return "No se ha calculado"
 	}
-	
+
 	def calcularEdad(String fecha){
 		Date fechaNac=null
-			try {
-				/**Se puede cambiar la mascara por el formato de la fecha
-				que se quiera recibir, por ejemplo año mes día "yyyy-MM-dd"
-				en este caso es día mes año*/
-				fechaNac = new SimpleDateFormat("dd-MM-yyyy").parse(fecha)
-			} catch (Exception ex) {
-				System.out.println("Error:"+ex)
-			}
-			Calendar fechaNacimiento = Calendar.getInstance()
-			//Se crea un objeto con la fecha actual
-			Calendar fechaActual = Calendar.getInstance()
-			//Se asigna la fecha recibida a la fecha de nacimiento.
-			fechaNacimiento.setTime(fechaNac)
-			//Se restan la fecha actual y la fecha de nacimiento
-			int año = fechaActual.get(Calendar.YEAR)- fechaNacimiento.get(Calendar.YEAR)
-			int mes =fechaActual.get(Calendar.MONTH)- fechaNacimiento.get(Calendar.MONTH)
-			int dia = fechaActual.get(Calendar.DATE)- fechaNacimiento.get(Calendar.DATE)
-			//Se ajusta el año dependiendo el mes y el día
-			if(mes<0 || (mes==0 && dia<0)){
-				año--
-			}
-			//Regresa la edad en base a la fecha de nacimiento
-			return año
+		try {
+			/**Se puede cambiar la mascara por el formato de la fecha
+			 que se quiera recibir, por ejemplo año mes día "yyyy-MM-dd"
+			 en este caso es día mes año*/
+			fechaNac = new SimpleDateFormat("dd-MM-yyyy").parse(fecha)
+		} catch (Exception ex) {
+			System.out.println("Error:"+ex)
 		}
-	
+		Calendar fechaNacimiento = Calendar.getInstance()
+		//Se crea un objeto con la fecha actual
+		Calendar fechaActual = Calendar.getInstance()
+		//Se asigna la fecha recibida a la fecha de nacimiento.
+		fechaNacimiento.setTime(fechaNac)
+		//Se restan la fecha actual y la fecha de nacimiento
+		int año = fechaActual.get(Calendar.YEAR)- fechaNacimiento.get(Calendar.YEAR)
+		int mes =fechaActual.get(Calendar.MONTH)- fechaNacimiento.get(Calendar.MONTH)
+		int dia = fechaActual.get(Calendar.DATE)- fechaNacimiento.get(Calendar.DATE)
+		//Se ajusta el año dependiendo el mes y el día
+		if(mes<0 || (mes==0 && dia<0)){
+			año--
+		}
+		//Regresa la edad en base a la fecha de nacimiento
+		return año
+	}
+
 
 }
