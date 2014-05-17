@@ -40,8 +40,7 @@ class Paciente {
 	 * En caso de que ya se haya calculado la prioridad, no volvemos a calcular
 	 * @return Prioridad.DOS o Prioridad.TRES
 	 */
-	Prioridad calcularPrioridad(){
-		if (prioridad == null){
+	Prioridad calcularPrioridad(){		
 			Boolean esAdulto = persona.esAdulto()
 			for(sintoma in sintomas){
 				if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
@@ -62,9 +61,7 @@ class Paciente {
 
 			this.prioridad = Prioridad.TRES
 			this.save()
-			return Prioridad.TRES
-		}
-		else return prioridad
+			return Prioridad.TRES		
 	}
 
 	/**

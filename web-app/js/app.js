@@ -546,20 +546,13 @@ app
 										{
 											id : $scope.pacienteActual.id,
 											esPrioridadUno : $scope.esPrioridadUno,
-											sistole : $scope.sistole == '' ? undefined
-													: $scope.sistole,
-											diastole : $scope.diastole == '' ? undefined
-													: $scope.diastole,
-											pulso : $scope.pulso == '' ? undefined
-													: $scope.pulso,
-											frecuenciaRespiratoria : $scope.frecuenciaRespiratoria == '' ? undefined
-													: $scope.frecuenciaRespiratoria,
-											temperatura : $scope.temperatura == '' ? undefined
-													: $scope.temperatura,
-											saturacionO2 : $scope.saturacionO2 == '' ? undefined
-													: $scope.saturacionO2,
-											glucosa : $scope.glucosa == '' ? undefined
-													: $scope.glucosa
+											sistole : $scope.sistole == '' ? undefined : $scope.sistole,
+											diastole : $scope.diastole == '' ? undefined : $scope.diastole,
+											pulso : $scope.pulso == '' ? undefined : $scope.pulso,
+											frecuenciaRespiratoria : $scope.frecuenciaRespiratoria == '' ? undefined : $scope.frecuenciaRespiratoria,
+											temperatura : $scope.temperatura == '' ? undefined : $scope.temperatura,
+											saturacionO2 : $scope.saturacionO2 == '' ? undefined : $scope.saturacionO2,
+											glucosa : $scope.glucosa == '' ? undefined : $scope.glucosa
 										})
 								.success(
 										function(data) {
@@ -872,8 +865,7 @@ app
 				'finalizarPacienteController',
 				function($scope, $location, $cookieStore, $http) {
 
-					$scope.paciente = $cookieStore.get('pacienteActual');
-					$scope.paciente = $cookieStore.get('datosPaciente');	
+					$scope.pacienteActual = $cookieStore.get('pacienteActual');					
 
 					$scope.ingresa = {
 						"id" : "1",
@@ -888,14 +880,28 @@ app
 						"value" : 3
 					};
 
+					$scope.traerDatosPaciente = function(){
+						$http.post("paciente/traerDatosPaciente", {
+							id : $scope.pacienteActual.id
+						}).success(function(data) {
+							$scope.paciente = data;
+							$scope.prioridad = data.prioridad;
+						});
+					};
+
+					$scope.traerDatosPaciente();
+
 					$scope.finalizarTriage = function() {
 						$http.post("paciente/calcularPrioridad", {
-							id : $scope.paciente.id
+							id : $scope.pacienteActual.id
 						}).success(function(data) {
 							$scope.prioridad = data.prioridad;
 						});
 					};
-					$scope.finalizarTriage();
+
+					if($scope.pacienteActual.prioridad == 'No se ha calculado'){//solamente llamo a finalizar triage si todavia no tiene prioridad
+						$scope.finalizarTriage();
+					};
 
 					$scope.finalizarAtencion = function() {
 						bootbox
@@ -912,7 +918,7 @@ app
 					$scope.enviarDatosFinalizacion = function() {
 						$http.post("paciente/finalizarPaciente", {
 							tipoFin : $scope.opciones.value,
-							id : $scope.paciente.id
+							id : $scope.pacienteActual.id
 						}).success(function() {
 							$location.path("/pacientes_espera");
 						});
