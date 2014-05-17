@@ -236,4 +236,15 @@ class PacienteControllerSpec extends Specification {
 		then: "La prioridad es 2"		
 		paciente.prioridad == Prioridad.DOS
 	}
+
+	void "Test cargar sintomas sin agregar sintomas"(){
+		when: "Cargo una nueva persona y un paciente"
+		Paciente paciente = this.cargarPaciente()
+
+		and: "Llamo a cargarSintomas sin agregar sintomas"
+		controller.cargarSintomas(paciente)
+
+		then: "El paciente no debe tener sintomas cargados"
+		paciente.sintomas.size() == 0
+	}
 }
