@@ -44,8 +44,12 @@ class PacienteController {
 		 FROM PACIENTE
 		 where fecha_hora_ingreso::date between '2014-05-09' and '2014-05-09'
 		 group by prioridad*/
-		Date fechaDesde = request.JSON.fechaDesde
-		Date fechaHasta = request.JSON.fechaHasta
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaDesde = sdf.parse(request.JSON.fechaDesde);
+		Date fechaHasta = sdf.parse(request.JSON.fechaHasta);
+		
+		println fechaDesde
+		println fechaHasta
 		List prioridades = Paciente.executeQuery("SELECT  prioridad, count(*) "+
 													"FROM PACIENTE "+
 													" WHERE fecha_hora_ingreso::date between '" + fechaDesde + 

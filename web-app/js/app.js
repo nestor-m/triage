@@ -720,6 +720,7 @@ app.controller('reportePrioridadesController', function($scope, $location,
 			fechaDesde : $scope.fechaDesde,
 			fechaHasta : $scope.fechaHasta
 		}).success(function(data) {
+			console.log(data);
 			$cookieStore.put('datos', data); 
 		});
 
@@ -869,8 +870,7 @@ app
 
 				});
 /**
- * ***************************** FINALIZAR PACIENTE
- * *********************************************
+ * ***************************** FINALIZAR PACIENTE * *********************************************
  */
 app
 		.controller(
