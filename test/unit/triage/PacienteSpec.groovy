@@ -11,130 +11,134 @@ import spock.lang.Specification
 @Mock([Persona,Paciente,TipoDeSintoma,Sintoma])
 class PacienteSpec extends Specification {
 
+	TipoDeSintoma tipo = new TipoDeSintoma(nombre:'XXX')
+	Sintoma sintomaP2 = new Sintoma(nombre:'prioridad2',prioridadAdulto:Prioridad.DOS,prioridadPediatrico:Prioridad.DOS,TipoDeSintoma:tipo)
+	Sintoma sintomaP3 = new Sintoma(nombre:'prioridad3',prioridadAdulto:Prioridad.TRES,prioridadPediatrico:Prioridad.TRES,TipoDeSintoma:tipo)
+
     def setup() {
+
     }
 
     def cleanup() {
     }
-
- 
 	
-	void "Testeo que si la temperatura es menor a 35°, el paciente es prioridad 1"(){
-		when: "Creo un nuevo paciente"
-		def persona = new Persona(
-			nombre : "nestor",
-			apellido : "muñoz",
-			fechaDeNacimiento : new Date()-1
-			).save( failOnError : true )
-		def paciente = new Paciente(persona : persona).save(failOnError : true )
-		
-		and: "cargo la temperatura en 34"
-		 paciente.temperatura = 34
-		 
-		then: "la persona es prioridad 1"
-		paciente.esPrioridadUno()
-	}
-	
-	
-	void "Testeo que si la temperatura es mayor a 40, el paciente es prioridad 1"(){
-		when: "Creo un nuevo paciente"
-		def persona = new Persona(
-			nombre : "juan",
-			apellido : "perez",
-			fechaDeNacimiento : new Date()-15
-			).save( failOnError : true )
-		def paciente = new Paciente(persona : persona).save(failOnError : true )
-		
-		and: "cargo la temperatura en 41"
-		 paciente.temperatura = 41
-		 
-		then: "la persona es prioridad 1"
-		paciente.esPrioridadUno()
-	}
-	
-	
-	
-	void "Testeo que si el pulso es menor a 40, el paciente es prioridad 1"(){
-		when: "Creo un nuevo paciente"
-		def persona = new Persona(
-			nombre : "juan",
-			apellido : "perez",
-			fechaDeNacimiento : new Date()-30
-			).save( failOnError : true )
-		def paciente = new Paciente(persona : persona).save(failOnError : true )
-		
-		and: "cargo el pulso en en 24"
-		 paciente.pulso = 24
-		 
-		then: "la persona es prioridad 1"
-		paciente.esPrioridadUno()
-	}
-	
-	
-	void "Testeo que si el pulso es mayor a 150, el paciente es prioridad 1"(){
-		when: "Creo un nuevo paciente"
-		def persona = new Persona(
-			nombre : "maria",
-			apellido : "lopez",
-			fechaDeNacimiento : new Date()-10
-			).save( failOnError : true )
-		def paciente = new Paciente(persona : persona).save(failOnError : true )
-		
-		and: "cargo el pulso en 165"
-		 paciente.pulso = 165
-		 
-		then: "la persona es prioridad 1"
-		paciente.esPrioridadUno()
-	}
-	
-	
-	void "Testeo que si la frecuencia  es menor a 12, el paciente es prioridad 1"(){
-		when: "Creo un nuevo paciente"
-		def persona = new Persona(
-			nombre : "juan carlos",
-			apellido : "lopez",
-			fechaDeNacimiento : new Date()-10
-			).save( failOnError : true )
-		def paciente = new Paciente(persona : persona).save(failOnError : true )
-		
-		and: "cargo la frecuencia en 10"
-		 paciente.frecuenciaRespiratoria = 10
-		 
-		then: "la persona es prioridad 1"
-		paciente.esPrioridadUno()
-	}
-	
-	void "Testeo que si la frecuencia  es mayor a 30, el paciente es prioridad 1"(){
-		when: "Creo un nuevo paciente"
-		def persona = new Persona(
-			nombre : "pepe",
-			apellido : "solis",
-			fechaDeNacimiento : new Date()-10
-			).save( failOnError : true )
-		def paciente = new Paciente(persona : persona).save(failOnError : true )
-		
-		and: "cargo la frecuencia en 40"
-		 paciente.frecuenciaRespiratoria = 40
-		 
-		then: "la persona es prioridad 1"
-		paciente.esPrioridadUno()
-	}
-	
-	void "Test al crear paciente debe no estar finalizado"(){
+	void "Test al crear paciente no debe estar finalizado"(){
 		when: "Cargo una nueva persona y un paciente"
 			def persona = new Persona(
 			nombre : "nestor",
 			apellido : "muñoz",
 			fechaDeNacimiento : new Date()-1
 			).save( failOnError : true )
-		def paciente = new Paciente(persona : persona, finalizado : false).save(failOnError : true )
+		def paciente = new Paciente(persona : persona).save(failOnError : true )
 			
 		then: "Verifico que el paciente no esté finalizado"
 			paciente.finalizado == false
 	}
-	
-	
-	
-	
+
+	void "Test calcularPrioridad adulto sintoma prioridad 2"(){
+		when: "Creo un adulto y le agrego un sintoma de prioridad 2 y otro de prioridad 3"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(27*365))//edad 27
+		def paciente = new Paciente(persona : persona)
+		paciente.addToSintomas(sintomaP2)
+		paciente.addToSintomas(sintomaP3)
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.sintomas.size() == 2	
+			paciente.calcularPrioridad() == Prioridad.DOS
+	}
+
+	void "Test calcularPrioridad adulto sintoma prioridad 3"(){
+		when: "Creo un adulto y le agrego un sintoma de prioridad 3"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(27*365))//edad 27
+		def paciente = new Paciente(persona : persona)
+		paciente.addToSintomas(sintomaP3)
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.sintomas.size() == 1
+			paciente.calcularPrioridad() == Prioridad.TRES
+	}
+
+	void "Test calcularPrioridad pediatrico sintoma prioridad 2"(){
+		when: "Creo un pediatrico y le agrego un sintoma de prioridad 2 y otro de prioridad 3"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(10*365))//edad 10
+		def paciente = new Paciente(persona : persona)
+		paciente.addToSintomas(sintomaP2)
+		paciente.addToSintomas(sintomaP3)
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.sintomas.size() == 2	
+			paciente.calcularPrioridad() == Prioridad.DOS
+	}
+
+	void "Test calcularPrioridad pediatrico sintoma prioridad 3"(){
+		when: "Creo un pediatrico y le agrego un sintoma de prioridad 3"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(10*365))//edad 10
+		def paciente = new Paciente(persona : persona)
+		paciente.addToSintomas(sintomaP3)
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.sintomas.size() == 1
+			paciente.calcularPrioridad() == Prioridad.TRES
+	}
+
+	void "Test calcularPrioridad adulto temperatura prioridad 2"(){
+		when: "Creo un adulto y le cargo temperatura de mas de 38.5"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(27*365))//edad 27
+		def paciente = new Paciente(persona : persona)
+		paciente.temperatura = '38.6-39.4'
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.calcularPrioridad() == Prioridad.DOS
+	}
+
+	void "Test calcularPrioridad glucosa prioridad 2"(){
+		when: "Creo un adulto y le cargo glucosa de mas de 300"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(27*365))//edad 27
+		def paciente = new Paciente(persona : persona)
+		paciente.glucosa = 'más de 300'
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.calcularPrioridad() == Prioridad.DOS
+	}
+
+	void "Test calcularPrioridad adulto temperatura prioridad 3"(){
+		when: "Creo un adulto y le cargo temperatura menor a 38.5"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(27*365))//edad 27
+		def paciente = new Paciente(persona : persona)
+		paciente.temperatura = '37.1-37.9'
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.TRES"
+			paciente.calcularPrioridad() == Prioridad.TRES
+	}
+
+	void "Test calcularPrioridad menor de tres meses temperatura prioridad 2"(){
+		when: "Creo un pediatrico menor de tres meses y le cargo una temperatura de mas de 38.0"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-30)//edad 30 dias
+		def paciente = new Paciente(persona : persona)
+		paciente.temperatura = '38.0-38.5'
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.calcularPrioridad() == Prioridad.DOS
+	}
+
+	void "Test calcularPrioridad menor de tres meses temperatura prioridad 3"(){
+		when: "Creo un pediatrico menor de tres meses y le cargo una temperatura de mas de 38.0"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-30)//edad 30 dias
+		def paciente = new Paciente(persona : persona)
+		paciente.temperatura = '37.1-37.9'
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.TRES"
+			paciente.calcularPrioridad() == Prioridad.TRES
+	}
+
+	void "Test calcularPrioridad entre 3 y 36 meses temperatura prioridad 2"(){
+		when: "Creo un pediatrico entre 3 y 36 meses y le cargo una temperatura de mas de 39.4"
+		def persona = new Persona(nombre : "nestor",apellido : "muñoz",fechaDeNacimiento : new Date()-(30*20))//edad 20 meses
+		def paciente = new Paciente(persona : persona)
+		paciente.temperatura = '39.5-41.0'
+			
+		then: "Cuando calcula la prioridad debe retornar Prioridad.DOS"
+			paciente.calcularPrioridad() == Prioridad.DOS
+	}
 	
 }

@@ -29,9 +29,8 @@ class PacienteController {
 		,ajaxBuscarNoFinalizados: "POST"
 		,finalizarPaciente: "POST"
 		,cantidadDeConsultasSegunPrioridad: "POST"
-		,cargarPacienteEnEspera: "POST"]
-
-
+		,cargarPacienteEnEspera: "POST"
+		,traerDatosPaciente: "POST"]
 
 
 	/**
@@ -64,10 +63,6 @@ class PacienteController {
 		return resultado
 	}
 
-
-
-
-
 	/*
 	 *Click boton Finalizar triage. Carga la impresion visual, los sintomas y los signos vitales
 	 */
@@ -82,7 +77,6 @@ class PacienteController {
 		request.JSON.prioridad = paciente.calcularPrioridad()
 		this.enviarRespuesta(paciente)
 	}
-
 
 	/**
 	 * Método que marca el paciente como finalizado.
@@ -99,14 +93,13 @@ class PacienteController {
 		render request.JSON
 	}
 
-
 	/**
 	 * calcula la prioridad (DOS o TRES) y responde un JSON
 	 */
 	@Transactional
 	def calcularPrioridad(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		request.JSON.prioridad = paciente.calcularPrioridad()
+		paciente.calcularPrioridad()
 		this.enviarRespuesta(paciente)
 	}
 
@@ -146,7 +139,6 @@ class PacienteController {
 
 		render request.JSON
 	}
-
 
 	/**
 	 * Este método sirve para enviar por JSON todos los síntomas visuales
@@ -200,9 +192,14 @@ class PacienteController {
 
 		if(request.JSON.esPrioridadUno){
 			paciente.prioridad = Prioridad.UNO
-		}
+			paciente.save()
+		}else{
+			paciente.calcularPrioridad()
+		}		
+	}
 
-		paciente.save()
+	def traerDatosPaciente(){
+		this.enviarRespuesta(Paciente.get(request.JSON.id))
 	}
 
 	def enviarRespuesta(Paciente paciente){
@@ -234,6 +231,8 @@ class PacienteController {
 		request.JSON.saturacionO2 = paciente.saturacionO2
 		request.JSON.glucosa = paciente.glucosa
 
+		request.JSON.prioridad = paciente.prioridad
+
 		render request.JSON
 	}
 
@@ -255,9 +254,8 @@ class PacienteController {
 		if (request.JSON.saturacionO2 != null) paciente.saturacionO2 = request.JSON.saturacionO2
 		if (request.JSON.glucosa != null) paciente.glucosa = request.JSON.glucosa
 
-		paciente.save()
+		paciente.calcularPrioridad()
 	}
-
 
 	/**
 	 * Método que devuelve una lista en JSON con los datos de los pacientes no finalizados
@@ -329,6 +327,5 @@ class PacienteController {
 		//Regresa la edad en base a la fecha de nacimiento
 		return año
 	}
-
 
 }

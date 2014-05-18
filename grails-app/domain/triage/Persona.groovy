@@ -56,4 +56,14 @@ class Persona { //implements Serializable{
 		}
 	}
 
+	Boolean esMenorDeTresMeses(){
+		int meses = (new Date() - fechaDeNacimiento) / 30
+		return meses < 3
+	}
+
+	Boolean estaEntre3y36Meses(){
+		int meses = (new Date() - fechaDeNacimiento) / 30
+		return meses > 2 && meses < 36
+	}
+
 }

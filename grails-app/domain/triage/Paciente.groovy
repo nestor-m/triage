@@ -5,13 +5,13 @@ class Paciente {
 	Date fechaHoraIngreso = new Date()
 	Date fechaHoraAtencion
 
-	Integer sistole
-	Integer diastole
-	Integer pulso
-	Integer frecuenciaRespiratoria
-	Integer temperatura
-	Integer saturacionO2
-	Integer glucosa
+	String sistole
+	String diastole
+	String pulso
+	String frecuenciaRespiratoria
+	String temperatura
+	String saturacionO2
+	String glucosa
 	Boolean finalizado = false
 	Integer tipoAtencion
 
@@ -40,8 +40,7 @@ class Paciente {
 	 * En caso de que ya se haya calculado la prioridad, no volvemos a calcular
 	 * @return Prioridad.DOS o Prioridad.TRES
 	 */
-	Prioridad calcularPrioridad(){
-		if (prioridad == null){
+	Prioridad calcularPrioridad(){		
 			Boolean esAdulto = persona.esAdulto()
 			for(sintoma in sintomas){
 				if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
@@ -50,38 +49,20 @@ class Paciente {
 					return Prioridad.DOS
 				}
 			}
+			//me fijo si es prioridad 2 segun los signos vitales
+			//NOTA: los unicos signos vitales que influyen en una hipotetica Prioridad 2 son la temperatura y la glucosa
+			if((esAdulto && (['38.6-39.4','39.5-41.0'].contains(this.temperatura) || this.glucosa == 'más de 300')) ||
+				(this.esMenorDeTresMeses() && ['38.0-38.5','38.6-39.4','39.5-41.0','más 41.0'].contains(this.temperatura)) ||
+				(this.estaEntre3y36Meses() && ['39.5-41.0','más 41.0'].contains(this.temperatura))){
+					this.prioridad = Prioridad.DOS
+					this.save()
+					return Prioridad.DOS				
+			}
 
 			this.prioridad = Prioridad.TRES
 			this.save()
-			return Prioridad.TRES
-		}
-		else return prioridad
+			return Prioridad.TRES		
 	}
-
-	/*
-	 *Esta logica esta del lado del cliente, por eso para no procesar 2 veces lo mismo este metodo ya no se usa, Nestor 10/05/2014
-	 */
-	Boolean esPrioridadUno(){
-		Boolean esAdulto = persona.esAdulto()
-		for(sintoma in sintomas){
-			if((esAdulto && sintoma.prioridadAdulto == Prioridad.UNO) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.UNO)){
-				return true
-			}
-		}
-
-
-		//TODO: falta la logica para signos vitales en pediatricos
-
-
-		if ((pulso != null && (pulso < 40 || pulso > 150)) ||
-		(frecuenciaRespiratoria != null && (frecuenciaRespiratoria < 12 || frecuenciaRespiratoria > 30 )) ||
-		(temperatura != null && (temperatura < 35 || temperatura > 40))){
-			return true
-		}
-		return false
-	}
-
-
 
 	/**
 	 * Retorna el tiempo de espera entre el ingreso y la atencion
@@ -114,5 +95,12 @@ class Paciente {
 		return this.persona.esAdulto()
 	}
 
+	Boolean esMenorDeTresMeses(){
+		return this.persona.esMenorDeTresMeses()
+	}
+
+	Boolean estaEntre3y36Meses(){
+		return this.persona.estaEntre3y36Meses()
+	}
 
 }
