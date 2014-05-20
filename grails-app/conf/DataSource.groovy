@@ -20,6 +20,7 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            //para que se grabe en disco hay que sacar :mem de la url
             url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             //dbCreate = "update" // one of 'create', 'create-drop','update'
             //url = "jdbc:postgresql://localhost:5432/triage_dev"
@@ -49,8 +50,33 @@ environments {
         }
     }*/
 
-    //CONFIGURACION POSTGRES PARA HEROKU. https://devcenter.heroku.com/articles/getting-started-with-grails
+    //H2 + TOMCAT
+    //fuente: http://sporcic.org/2012/09/using-h2-with-grails-and-tomcat/   NOTA:crear directorio db, como dice en el link y hacerle $chown tomcat7:tomcat7
     production {
+    dataSource {
+        dbdir = "${System.properties['catalina.base']}/db/baseH2"
+ 
+        dbCreate = "update"
+        url = "jdbc:h2:file:${dbdir};MVCC=TRUE;LOCK_TIMEOUT=10000"
+        pooled = true
+ 
+        properties {
+            maxActive = -1
+            minEvictableIdleTimeMillis=1800000
+            timeBetweenEvictionRunsMillis=1800000
+            numTestsPerEvictionRun=3
+            testOnBorrow=true
+            testWhileIdle=true
+            testOnReturn=true
+            validationQuery="SELECT 1"
+        }
+    }
+}
+
+
+
+    //CONFIGURACION POSTGRES PARA HEROKU. https://devcenter.heroku.com/articles/getting-started-with-grails
+    /*production {
         dataSource {
             dbCreate = "update"
             driverClassName = "org.postgresql.Driver"
@@ -63,5 +89,5 @@ environments {
             username = uri.userInfo.split(":")[0]
             password = uri.userInfo.split(":")[1]
         }
-}
+}*/
 }
