@@ -703,13 +703,15 @@ app.controller('prioridad3Controller',
 app.controller('reportePrioridadesController', function($scope, $location,
 		$cookieStore, $http) {
 
+	$scope.prioridades = [];
+	
 	$scope.traerReporte = function() {
 		$http.post("paciente/cantidadDeConsultasSegunPrioridad", {
 			fechaDesde : $scope.fechaDesde,
 			fechaHasta : $scope.fechaHasta
 		}).success(function(data) {
-			console.log(data);
 			$cookieStore.put('datos', data); 
+			$scope.prioridades = data;
 		});
 
 	};
@@ -736,16 +738,8 @@ app
 
 					$scope.ingresarPaciente = function(row) {
 						$http.post("paciente/cargarPacienteEnEspera",
-								row.entity).success(function(data) {// envia
-																	// todos los
-							// datos de la
-							// persona
-							// (row.entity) pero
-							// con el id alcanza
-							$cookieStore.put('pacienteActual', data); // me
-							// guardo
-							// el
-							// paciente
+								row.entity).success(function(data) {
+							$cookieStore.put('pacienteActual', data); 
 							$location.path("/paciente_ingresado");
 						});
 
@@ -753,16 +747,8 @@ app
 
 					$scope.finalizarPaciente = function(row) {
 						$http.post("paciente/cargarPacienteEnEspera",
-								row.entity).success(function(data) {// envia
-																	// todos los
-							// datos de la
-							// persona
-							// (row.entity) pero
-							// con el id alcanza
-							$cookieStore.put('pacienteActual', data); // me
-							// guardo
-							// el
-							// paciente
+								row.entity).success(function(data) {
+							$cookieStore.put('pacienteActual', data); 
 							$location.path("/finalizar_paciente");
 						});
 					}
@@ -865,7 +851,7 @@ app
 				'finalizarPacienteController',
 				function($scope, $location, $cookieStore, $http) {
 
-					$scope.pacienteActual = $cookieStore.get('pacienteActual');					
+					$scope.paciente = $cookieStore.get('datosPaciente');					
 
 					$scope.ingresa = {
 						"id" : "1",
@@ -879,27 +865,16 @@ app
 						"id" : "3",
 						"value" : 3
 					};
-
-					$scope.traerDatosPaciente = function(){
-						$http.post("paciente/traerDatosPaciente", {
-							id : $scope.pacienteActual.id
-						}).success(function(data) {
-							$scope.paciente = data;
-							$scope.prioridad = data.prioridad;
-						});
-					};
-
-					$scope.traerDatosPaciente();
-
+					
 					$scope.finalizarTriage = function() {
 						$http.post("paciente/calcularPrioridad", {
-							id : $scope.pacienteActual.id
+							id : $scope.paciente.id
 						}).success(function(data) {
 							$scope.prioridad = data.prioridad;
 						});
 					};
 
-					if($scope.pacienteActual.prioridad == 'No se ha calculado'){//solamente llamo a finalizar triage si todavia no tiene prioridad
+					if($scope.paciente.prioridad == 'No se ha calculado'){//solamente llamo a finalizar triage si todavia no tiene prioridad
 						$scope.finalizarTriage();
 					};
 
@@ -918,7 +893,7 @@ app
 					$scope.enviarDatosFinalizacion = function() {
 						$http.post("paciente/finalizarPaciente", {
 							tipoFin : $scope.opciones.value,
-							id : $scope.pacienteActual.id
+							id : $scope.paciente.id
 						}).success(function() {
 							$location.path("/pacientes_espera");
 						});
