@@ -265,7 +265,6 @@ class PacienteController {
 	 * @return
 	 */
 	def cargarSignosVitales(Paciente paciente){
-		if (request.JSON.esPrioridadUno) paciente.prioridad = Prioridad.UNO
 		if (request.JSON.sistole != null) paciente.sistole = request.JSON.sistole
 		if (request.JSON.diastole != null) paciente.diastole = request.JSON.diastole
 		if (request.JSON.pulso != null) paciente.pulso = request.JSON.pulso
@@ -274,7 +273,12 @@ class PacienteController {
 		if (request.JSON.saturacionO2 != null) paciente.saturacionO2 = request.JSON.saturacionO2
 		if (request.JSON.glucosa != null) paciente.glucosa = request.JSON.glucosa
 
-		paciente.calcularPrioridad()
+		if(request.JSON.esPrioridadUno){
+			paciente.prioridad = Prioridad.UNO
+			paciente.save()
+		}else{
+			paciente.calcularPrioridad()
+		}	
 	}
 
 
