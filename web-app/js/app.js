@@ -897,6 +897,7 @@ app
 											if (confirma) {
 												$scope
 														.enviarDatosFinalizacion();
+												
 											}
 										});
 					};

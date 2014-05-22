@@ -42,6 +42,7 @@ class PacienteController {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
 		Date fechaDesde = sdf.parse(request.JSON.fechaDesde)
 		Date fechaHasta = sdf.parse(request.JSON.fechaHasta)
+		//Se agrega un día porque el date con horario cuenta sólo hasta las 00 hs..
 		fechaHasta = agregarDias(fechaHasta, 1)
 		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd")
 		String formattedFechaDesde = output.format(fechaDesde)
@@ -92,6 +93,7 @@ class PacienteController {
 		Paciente paciente = Paciente.get(request.JSON.id)
 		paciente.tipoAtencion = tipoFin
 		paciente.finalizado = true
+		paciente.fechaHoraAtencion = new Date();
 		paciente.save(flush:true)
 		render request.JSON
 	}
@@ -349,13 +351,6 @@ class PacienteController {
 		return cal.getTime()
 
 	}
-
-
-
-
-
-
-
 
 	def calcularEdad(String fecha){
 		Date fechaNac=null
