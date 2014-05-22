@@ -29,8 +29,9 @@ class PacienteController {
 		,ajaxBuscarNoFinalizados: "POST"
 		,finalizarPaciente: "POST"
 		,cantidadDeConsultasSegunPrioridad: "POST"
-		,cargarPacienteEnEspera: "POST"
-		,traerDatosPaciente: "POST"]
+		,cargarPacienteEnEspera: "POST"]
+
+
 
 
 	/**
@@ -39,25 +40,31 @@ class PacienteController {
 	 * @return
 	 */
 	def cantidadDeConsultasSegunPrioridad(){
-		/*SELECT  prioridad, count(*)
-		 FROM PACIENTE
-		 where fecha_hora_ingreso::date between '2014-05-09' and '2014-05-09'
-		 group by prioridad*/
-		Date fechaDesde = request.JSON.fechaDesde
-		Date fechaHasta = request.JSON.fechaHasta
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
+		Date fechaDesde = sdf.parse(request.JSON.fechaDesde)
+		Date fechaHasta = sdf.parse(request.JSON.fechaHasta)
+		fechaHasta = agregarDias(fechaHasta, 1)
+		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd")
+		String formattedFechaDesde = output.format(fechaDesde)
+		String formattedFechaHasta = output.format(fechaHasta)
+		
 		List prioridades = Paciente.executeQuery("SELECT  prioridad, count(*) "+
-													"FROM PACIENTE "+
-													" WHERE fecha_hora_ingreso::date between '" + fechaDesde + 
-													"' and '" + fechaHasta + "' group by prioridad")
+				"FROM Paciente  "+
+				" WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
+				"' and '" + formattedFechaHasta + "' group by prioridad")
 		List resultado = new ArrayList()
 		for (p in prioridades){
 			resultado.add(new JSONObject('{"prioridad":' + p[0] +
 					',"cantidad":"' + p[1] + '"}'))
 		}
-		
+
 		render resultado as JSON
 		return resultado
 	}
+
+
+
+
 
 	/*
 	 *Click boton Finalizar triage. Carga la impresion visual, los sintomas y los signos vitales
@@ -74,6 +81,7 @@ class PacienteController {
 		this.enviarRespuesta(paciente)
 	}
 
+
 	/**
 	 * Método que marca el paciente como finalizado.
 	 * Levanta del JSON el id paciente y el tipo de finalización (ingresa, consultorio externo, se retira).
@@ -89,13 +97,14 @@ class PacienteController {
 		render request.JSON
 	}
 
+
 	/**
 	 * calcula la prioridad (DOS o TRES) y responde un JSON
 	 */
 	@Transactional
 	def calcularPrioridad(){
 		Paciente paciente = Paciente.get(request.JSON.id)
-		paciente.calcularPrioridad()
+		request.JSON.prioridad = paciente.calcularPrioridad()
 		this.enviarRespuesta(paciente)
 	}
 
@@ -135,6 +144,7 @@ class PacienteController {
 
 		render request.JSON
 	}
+
 
 	/**
 	 * Este método sirve para enviar por JSON todos los síntomas visuales
@@ -188,16 +198,16 @@ class PacienteController {
 
 		if(request.JSON.esPrioridadUno){
 			paciente.prioridad = Prioridad.UNO
-			paciente.save()
-		}else{
-			paciente.calcularPrioridad()
-		}		
+		}
+
+		paciente.save()
 	}
 
-	def traerDatosPaciente(){
-		this.enviarRespuesta(Paciente.get(request.JSON.id))
-	}
-
+	/**
+	 * 
+	 * @param paciente
+	 * @return
+	 */
 	def enviarRespuesta(Paciente paciente){
 		request.JSON.nombre = paciente.persona.nombre
 		request.JSON.apellido = paciente.persona.apellido
@@ -227,12 +237,13 @@ class PacienteController {
 		request.JSON.saturacionO2 = paciente.saturacionO2
 		request.JSON.glucosa = paciente.glucosa
 
-		request.JSON.prioridad = paciente.prioridad
-
 		render request.JSON
 	}
 
-
+	/**
+	 * 
+	 * @return
+	 */
 	@Transactional
 	def cargarSignosVitalesYResponder(){
 		Paciente paciente = Paciente.get(request.JSON.id)
@@ -240,6 +251,13 @@ class PacienteController {
 		this.enviarRespuesta(paciente)
 	}
 
+
+	/**
+	 * Carga l	os signos vitales del paciente 
+	 * (Los datos viene por JSON)
+	 * @param paciente
+	 * @return
+	 */
 	def cargarSignosVitales(Paciente paciente){
 		if (request.JSON.esPrioridadUno) paciente.prioridad = Prioridad.UNO
 		if (request.JSON.sistole != null) paciente.sistole = request.JSON.sistole
@@ -250,8 +268,9 @@ class PacienteController {
 		if (request.JSON.saturacionO2 != null) paciente.saturacionO2 = request.JSON.saturacionO2
 		if (request.JSON.glucosa != null) paciente.glucosa = request.JSON.glucosa
 
-		paciente.calcularPrioridad()
+		paciente.save()
 	}
+
 
 	/**
 	 * Método que devuelve una lista en JSON con los datos de los pacientes no finalizados
@@ -290,12 +309,47 @@ class PacienteController {
 		return resultado
 	}
 
+	/**
+	 * Método que devuelve un String con la prioridad actual de un paciente.
+	 * @param p
+	 * @return
+	 */
 	String traerPrioridad (Prioridad p){
 		if (p == Prioridad.UNO) return "Prioridad UNO"
 		if (p == Prioridad.DOS) return "Prioridad DOS"
 		if (p == Prioridad.TRES) return "Prioridad TRES"
 		if (p == null) return "No se ha calculado"
 	}
+
+
+
+
+	/**
+	 * Método para agregar días a una fecha
+	 * @param fecha
+	 * @param dia
+	 * @return la misma fecha con día de más
+	 */
+	def agregarDias(Date fecha,int dia){
+
+		Calendar cal = new GregorianCalendar()
+		cal.setLenient(false)
+		cal.setTime(fecha)
+
+
+		cal.add(Calendar.DAY_OF_MONTH, dia)
+
+
+		return cal.getTime()
+
+	}
+
+
+
+
+
+
+
 
 	def calcularEdad(String fecha){
 		Date fechaNac=null
@@ -323,5 +377,6 @@ class PacienteController {
 		//Regresa la edad en base a la fecha de nacimiento
 		return año
 	}
+
 
 }
