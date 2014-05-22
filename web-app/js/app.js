@@ -851,7 +851,7 @@ app
 				'finalizarPacienteController',
 				function($scope, $location, $cookieStore, $http) {
 
-					$scope.paciente = $cookieStore.get('datosPaciente');					
+					$scope.pacienteActual = $cookieStore.get('pacienteActual');					
 
 					$scope.ingresa = {
 						"id" : "1",
@@ -865,16 +865,27 @@ app
 						"id" : "3",
 						"value" : 3
 					};
-					
+
+					$scope.traerDatosPaciente = function(){
+						$http.post("paciente/traerDatosPaciente", {
+							id : $scope.pacienteActual.id
+						}).success(function(data) {
+							$scope.paciente = data;
+							$scope.prioridad = data.prioridad;
+						});
+					};
+
+					$scope.traerDatosPaciente();
+
 					$scope.finalizarTriage = function() {
 						$http.post("paciente/calcularPrioridad", {
-							id : $scope.paciente.id
+							id : $scope.pacienteActual.id
 						}).success(function(data) {
 							$scope.prioridad = data.prioridad;
 						});
 					};
 
-					if($scope.paciente.prioridad == 'No se ha calculado'){//solamente llamo a finalizar triage si todavia no tiene prioridad
+					if($scope.pacienteActual.prioridad == 'No se ha calculado'){//solamente llamo a finalizar triage si todavia no tiene prioridad
 						$scope.finalizarTriage();
 					};
 
@@ -893,7 +904,7 @@ app
 					$scope.enviarDatosFinalizacion = function() {
 						$http.post("paciente/finalizarPaciente", {
 							tipoFin : $scope.opciones.value,
-							id : $scope.paciente.id
+							id : $scope.pacienteActual.id
 						}).success(function() {
 							$location.path("/pacientes_espera");
 						});

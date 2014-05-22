@@ -40,28 +40,33 @@ class Paciente {
 	 * En caso de que ya se haya calculado la prioridad, no volvemos a calcular
 	 * @return Prioridad.DOS o Prioridad.TRES
 	 */
-	Prioridad calcularPrioridad(){		
-			Boolean esAdulto = persona.esAdulto()
-			for(sintoma in sintomas){
-				if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
-					this.prioridad = Prioridad.DOS
-					this.save()
-					return Prioridad.DOS
-				}
+	Prioridad calcularPrioridad(){
+		Boolean esAdulto = persona.esAdulto()
+		for(sintoma in sintomas){
+			if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
+				this.prioridad = Prioridad.DOS
+				this.save()
+				return Prioridad.DOS
 			}
-			//me fijo si es prioridad 2 segun los signos vitales
-			//NOTA: los unicos signos vitales que influyen en una hipotetica Prioridad 2 son la temperatura y la glucosa
-			if((esAdulto && (['38.6-39.4','39.5-41.0'].contains(this.temperatura) || this.glucosa == 'más de 300')) ||
-				(this.esMenorDeTresMeses() && ['38.0-38.5','38.6-39.4','39.5-41.0','más 41.0'].contains(this.temperatura)) ||
-				(this.estaEntre3y36Meses() && ['39.5-41.0','más 41.0'].contains(this.temperatura))){
-					this.prioridad = Prioridad.DOS
-					this.save()
-					return Prioridad.DOS				
-			}
-
-			this.prioridad = Prioridad.TRES
+		}
+		//me fijo si es prioridad 2 segun los signos vitales
+		//NOTA: los unicos signos vitales que influyen en una hipotetica Prioridad 2 son la temperatura y la glucosa
+		if((esAdulto && (['38.6-39.4', '39.5-41.0'].contains(this.temperatura) || this.glucosa == 'más de 300')) ||
+		(this.esMenorDeTresMeses() && [
+			'38.0-38.5',
+			'38.6-39.4',
+			'39.5-41.0',
+			'más 41.0'
+		].contains(this.temperatura)) ||
+		(this.estaEntre3y36Meses() && ['39.5-41.0', 'más 41.0'].contains(this.temperatura))){
+			this.prioridad = Prioridad.DOS
 			this.save()
-			return Prioridad.TRES		
+			return Prioridad.DOS
+		}
+
+		this.prioridad = Prioridad.TRES
+		this.save()
+		return Prioridad.TRES
 	}
 
 	/**
@@ -78,6 +83,12 @@ class Paciente {
 		}
 	}
 
+
+	/**
+	 * Retorna el tiempo de espera del paciente desde que ingresó
+	 * hasta ahora
+	 * @return
+	 */
 	String tiempoEspera(){
 		use(groovy.time.TimeCategory) {
 			Date ahora = new Date()
@@ -94,11 +105,18 @@ class Paciente {
 	Boolean esAdulto(){
 		return this.persona.esAdulto()
 	}
-
+	/**
+	 * Indica si el paciente esmenor de tres meses
+	 * @return
+	 */
 	Boolean esMenorDeTresMeses(){
 		return this.persona.esMenorDeTresMeses()
 	}
 
+	/**
+	 * Indica si el paciente tiene entre 3 y 36 meses
+	 * @return
+	 */
 	Boolean estaEntre3y36Meses(){
 		return this.persona.estaEntre3y36Meses()
 	}
