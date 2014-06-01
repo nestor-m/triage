@@ -51,8 +51,8 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a id="inicio" href="#"><i class="fa fa-home"></i> Inicio</a></li>
-        <li><a href="#reporte_prioridades"><i class="fa fa-shield"></i> Reportes</a></li>
-        <li><a href="#reportes"><i class="fa fa-comment"></i> Estadísticas</a></li>
+        <li><a href="#reporte_prioridades"><i class="fa fa-shield"></i> Reportes </a></li>
+        <li><a href="#reporte_tiempo_espera"><i class="fa fa-comment"></i> Reportes II</a></li>
       </ul>
     </div>
   </nav>

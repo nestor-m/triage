@@ -1,0 +1,67 @@
+<title>Reporte: Tiempo de espera para cada prioridad</title>
+
+<script>
+	$(function() {
+		var anioActual = new Date().getFullYear();
+		$("#fechaDesde").datepicker({
+			changeMonth : true,
+			changeYear : true,
+			maxDate : new Date(),
+			yearRange : "1900:" + anioActual
+		});
+		$("#fechaHasta").datepicker({
+			changeMonth : true,
+			changeYear : true,
+			maxDate : new Date(),
+			yearRange : "1900:" + anioActual
+		});
+		$("#fechaDesde").datepicker($.datepicker.regional["es"]);
+		$("#fechaHasta").datepicker($.datepicker.regional["es"]);
+	});
+</script>
+
+
+<form name="busqueda_form" class="form-horizontal"
+	style="text-align: center" role="form">
+	<div class="form-group">
+		<div class="controls form-inline">
+			<label class="col-sm-4 control-label">Fecha desde</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="fechaDesde"
+					name="fechaDesde" ng-model="fechaDesde" />
+			</div>
+			<label class="col-sm-1 control-label">Fecha hasta</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="fechaHasta"
+					name="fechaHasta" ng-model="fechaHasta" />
+			</div>
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<div class="controls form-inline">
+			<div class="col-sm-1 col-sm-offset-5">
+				<input type="button" name="botonGenerar" class="btn btn-primary"
+					value="Generar" id="botonGenerar" ng-click="traerReporte()"
+					ng-disabled="(fechaDesde==null || fechaDesde =='') || (fechaHasta==null || fechaHasta =='')" />
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<table class="table table-striped">
+		<tr>
+        <td>Prioridad </td>
+        <td>Tiempo espera (en minutos) </td>
+        </tr>
+			<tr ng-repeat="espera in esperas">
+				<td><label for="{{ espera.prioridad }}">{{
+						espera.prioridad }}</label></td>
+				<td><label for="{{ espera.tiempo }}">{{
+						espera.tiempo }}</label></td>
+			</tr>
+		</table>
+	</div>
+
+</form>

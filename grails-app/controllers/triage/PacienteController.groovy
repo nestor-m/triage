@@ -30,6 +30,7 @@ class PacienteController {
 		,finalizarPaciente: "POST"
 		,cantidadDeConsultasSegunPrioridad: "POST"
 		,cargarPacienteEnEspera: "POST"
+		,tiempoEsperaSegunPrioridad: "POST"
 		,traerDatosPaciente: "POST"]
 
 
@@ -47,7 +48,7 @@ class PacienteController {
 		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd")
 		String formattedFechaDesde = output.format(fechaDesde)
 		String formattedFechaHasta = output.format(fechaHasta)
-		
+
 		List prioridades = Paciente.executeQuery("SELECT  prioridad, count(*) "+
 				"FROM Paciente  "+
 				" WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
@@ -62,6 +63,54 @@ class PacienteController {
 		return resultado
 	}
 
+
+	/**
+	 * Consulta que retorna los tiempos de espera según prioridad
+	 * en un determinado período de tiempo que viene por parámetro
+	 * @return
+	 */
+	def tiempoEsperaSegunPrioridad(){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
+		Date fechaDesde = sdf.parse(request.JSON.fechaDesde)
+		Date fechaHasta = sdf.parse(request.JSON.fechaHasta)
+		//Se agrega un día porque el date con horario cuenta sólo hasta las 00 hs..
+		fechaHasta = agregarDias(fechaHasta, 1)
+		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd")
+		String formattedFechaDesde = output.format(fechaDesde)
+		String formattedFechaHasta = output.format(fechaHasta)
+		/**
+		 * SELECT  sum (fecha_hora_atencio - fecha_hora_ingreso)
+		 FROM PACIENTE p
+		 SELECT  sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60 
+		 FROM PACIENTE p
+		 SELECT  (((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60)/count(*)), prioridad
+		 FROM PACIENTE 
+		 group by prioridad
+		 */
+
+		String sql = "SELECT  prioridad, "+
+				"(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60))/count(*) as tiempo "+	
+				"FROM Paciente	"+ 
+				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
+				"' and '" + formattedFechaHasta + 
+				"' group by prioridad"
+		println sql
+		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
+				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
+				"FROM Paciente	"+ 
+				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
+				"' and '" + formattedFechaHasta + 
+				"' group by prioridad")
+		
+		List resultado = new ArrayList()
+		for (p in prioridades){
+			resultado.add(new JSONObject('{"prioridad":' + p[0] +
+					',"tiempo":"' + p[1] + '"}'))
+		}
+
+		render resultado as JSON
+		return resultado
+	}
 
 
 
@@ -202,7 +251,7 @@ class PacienteController {
 			paciente.save()
 		}else{
 			paciente.calcularPrioridad()
-		}		
+		}
 	}
 
 	def traerDatosPaciente(){
@@ -280,7 +329,7 @@ class PacienteController {
 			paciente.save()
 		}else{
 			paciente.calcularPrioridad()
-		}	
+		}
 	}
 
 
