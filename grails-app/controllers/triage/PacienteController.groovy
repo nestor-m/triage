@@ -95,8 +95,16 @@ class PacienteController {
 				"' and '" + formattedFechaHasta + 
 				"' group by prioridad"
 		println sql
+//		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
+//				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
+//				"FROM Paciente	"+ 
+//				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
+//				"' and '" + formattedFechaHasta + 
+//				"' group by prioridad")
+		
+		
 		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
-				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
+				"(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60))/count(*) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
