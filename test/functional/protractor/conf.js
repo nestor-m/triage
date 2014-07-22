@@ -5,6 +5,6 @@ exports.config = {
   //specs : ['signosVitalesTest.js']
   //specs: ['impresionVisualTest.js']
   //specs : ['pacienteIngresadoTest.js']
-  specs : ['pacienteEsperaTest.js']
+  specs : ['reporteEsperasTest.js']
 //  specs: ['./*']//corre todos los archivos de la carpeta
 }

@@ -1,15 +1,16 @@
-describe('Test reporte de prioridades', function() {
+describe('Test pantalla de reporte de tiempo de espera', function() {
 	beforeEach(function() {
 	      browser.get('http://localhost:8080/triage/');  
-	      browser.waitForAngular();
+	      browser.sleep(2000);
 	  });
-	it('Testeo que existe la pantalla del reporte', function(){
-		element(by.id("reporte_prioridades")).click();
-		browser.waitForAngular();
-		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_prioridades');
-	});
 	
-	it('Agrego una persona con prioridad 2 y chequeo que para la fecha de hoy haya un P2', function() {
+	it('Ingreso a la pantalla del reporte', function(){
+		element(by.id("reporte_esperas")).click();
+		browser.sleep(2000);
+		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');
+	})
+	
+	it('Agrego algunos pacientes para ver algunos resultados', function(){
 		element(by.model('nombre')).sendKeys('nestor');
 	    element(by.id("botonBuscar")).click();
 	    browser.waitForAngular();
@@ -50,19 +51,17 @@ describe('Test reporte de prioridades', function() {
 	    browser.sleep(1000);
 	    botonOK.click();
 	    browser.sleep(1000);
-	    expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/pacientes_espera');	
+		
 	    
-	    element(by.id("reporte_prioridades")).click();
+	    element(by.id("reporte_esperas")).click();
 	    browser.waitForAngular();
-		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_prioridades');
+		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');
 		
 		element(by.model('fechaDesde')).sendKeys('10/07/2014');
 		element(by.model('fechaHasta')).sendKeys('30/07/2014');
 		
 		 element(by.buttonText('Generar')).click();
 		 browser.sleep(1500);
-	});
+	})
 	
-}
-)
-	
+})
