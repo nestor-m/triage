@@ -61,6 +61,18 @@ describe('Test reporte de prioridades', function() {
 		
 		 element(by.buttonText('Generar')).click();
 		 browser.sleep(1500);
+		 
+		 //hay elementos en la tabla
+		 expect(element(by.binding('prioridad.prioridad')).isPresent()).toBe(true);
+		 
+		 //me fijo que haya un prioridad dos
+		 expect(element(by.binding('prioridad.prioridad')).getText()).toBe('DOS');
+		 
+		 //me fijo que la palabra tres no esté en pantalla (sólo agregué personas con prioridad 2)
+		 var prioridad =  element(by.binding('prioridad.prioridad')).getText();
+		 expect(prioridad == 'TRES').toBe(false);
+		 
+		 
 	});
 	
 }

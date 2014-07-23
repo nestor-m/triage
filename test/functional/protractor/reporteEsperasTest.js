@@ -62,6 +62,17 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 		
 		 element(by.buttonText('Generar')).click();
 		 browser.sleep(1500);
+		 
+		 
+		//hay elementos en la tabla
+		 expect(element(by.binding('espera.prioridad')).isPresent()).toBe(true);
+		 
+		 //me fijo que haya un prioridad dos
+		 expect(element(by.binding('espera.prioridad')).getText()).toBe('DOS');
+		 
+		 //me fijo que la palabra tres no esté en pantalla (sólo agregué personas con prioridad 2)
+		 var prioridad =  element(by.binding('espera.prioridad')).getText();
+		 expect(prioridad == 'TRES').toBe(false);
 	})
 	
 })
