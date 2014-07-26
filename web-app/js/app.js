@@ -73,6 +73,17 @@ app.config(function($routeProvider) {
 	.when('/pacientes_espera', {
 		templateUrl : 'pacientes_espera.html',
 		controller : 'pacientesEsperaController'
+	})
+
+	//ABM sintomas
+	.when('/sintomas_list', {
+		templateUrl : 'sintomas_listado.html',
+		controller : 'sintomasListadoController'
+	})
+
+	.when('/sintomas_form', {
+		templateUrl : 'sintomas_form.html',
+		controller : 'sintomasFormularioController'
 	});
 });
 
@@ -209,16 +220,16 @@ app
 							displayName : 'Apellido'
 						}, {
 							field : 'dni',
-							displayName : 'DNI'
+							displayName : 'DNI',
+							width: 130
 						}, {
 							field : 'fechaDeNacimiento',
 							displayName : 'Fecha de nacimiento',
 							cellFilter : 'date:\'dd/MM/yyyy\'',
-							width : 160
+							width: 130
 						}, {
 							field : 'direccion',
-							displayName : 'Dirección',
-							width : 170
+							displayName : 'Dirección'
 						}, {
 							cellTemplate : $scope.botonIngresar,
 							width : 70
@@ -304,10 +315,10 @@ app
 					};
 
 					/* IMPRESION VISUAL */
-					$scope.sintomasImpresionVisual = [];
+					$scope.sintomasImpresionVisual = [];//todos los sintomas de impresion visual
 
 					$scope.paciente = {
-						sintomas : []
+						sintomas : []//sintomas de impresion visual cargados al paciente
 					};
 
 					$scope.traerSintomasImpresionVisual = function() {
@@ -358,14 +369,12 @@ app
 											function(confirma) {
 												if (confirma) {
 													$scope.esPrioridadUno = true;
-													$scope
-															.cargarImpresionVisual();
+													$scope.cargarImpresionVisual();
 												} else {
-													event.currentTarget.checked = false;// si
-													// cancela
-													// deschequeo
-													// el
-													// checkbox
+													event.currentTarget.checked = false;// si cancela deschequeo el checkbox
+													//y lo saco del array de sintomas de impresion visual agregados
+													var i = $scope.paciente.sintomas.indexOf(sintoma);
+													$scope.paciente.sintomas.splice(i, 1);
 												}
 											});
 						}
@@ -411,7 +420,7 @@ app
 
 					$scope.getPagedDataAsync = function(pageSize, page) {
 						setTimeout(function() {
-							$http.post('sintoma/traerSintomas', {
+							$http.post('sintoma/sintomasListado', {
 								sintoma : $scope.sintoma,
 								tipoDeSintoma : $scope.discriminante,
 								esAdulto : $scope.pacienteActual.esAdulto
@@ -429,7 +438,9 @@ app
 
 					$scope.agregarSintoma = function(row) {
 						// primero chequeo si es un sintoma de PRIORIDAD 1
-						if (row.entity.prioridad == "UNO") {
+						if ((row.entity.prioridadAdulto == "UNO" && $scope.pacienteActual.esAdulto) ||
+							(row.entity.prioridadPediatrico == "UNO" && !$scope.pacienteActual.esAdulto)
+							) {
 							bootbox.confirm(
 									"¿Está seguro que desea ingresar el síntoma?<br>"
 											+ row.entity.nombre, function(
@@ -481,14 +492,15 @@ app
 							visible : false
 						}, {
 							field : 'nombre',
-							displayName : 'Sintoma'
+							displayName : 'Sintoma',
+							width : '50%'
 						}, {
 							field : 'tipoDeSintoma',
 							displayName : 'Discriminante',
-							width : 200
+							width : '40%'
 						}, {
 							cellTemplate : $scope.botonAgregarSintoma,
-							width : 70
+							width : '10%'
 						} ]
 					};
 
@@ -912,25 +924,25 @@ app
 						}, {
 							field : 'nombre',
 							displayName : 'Nombre',
-							width : 240
+							width : '45%'
 						}, {
 							field : 'edad',
 							displayName : 'Edad',
-							width : 50
+							width : '10%'
 						}, {
 							field : 'demora',
 							displayName : 'Espera',
-							width : 100
+							width : '10%'
 						}, {
 							field : 'prioridad',
 							displayName : 'Prioridad',
-							width : 150
+							width : '15%'
 						}, {
 							cellTemplate : $scope.botonTriage,
-							width : 70
+							width : '10%'
 						}, {
 							cellTemplate : $scope.botonFinalizar,
-							width : 70
+							width : '10%'
 						} ]
 					};
 
@@ -1017,4 +1029,186 @@ app
 						});
 					};
 
-				});
+});
+
+/*ABM SINTOMAS*/
+//LISTADO
+app.controller('sintomasListadoController',function($scope, $location, $cookieStore, $http){
+
+	$scope.totalServerItems = 0;
+
+	$scope.pagingOptions = {
+		pageSizes : [ 10, 15, 20 ],
+		pageSize : 10,
+		currentPage : 1
+	};
+
+	$scope.setPagingData = function(data, page, pageSize) {
+		var pagedData = data.slice((page - 1) * pageSize, page
+				* pageSize);
+		$scope.myData = pagedData;
+		$scope.totalServerItems = data.length;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	};
+
+	$scope.getPagedDataAsync = function(pageSize, page) {
+		setTimeout(function() {
+			$http.post('sintoma/sintomasListado', {
+				sintoma : $scope.sintoma,
+				tipoDeSintoma : $scope.tipoDeSintoma
+			}).success(function(data) {
+				$scope.setPagingData(data, page, pageSize);
+			})
+
+		}, 100);
+	};
+
+	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+			$scope.pagingOptions.currentPage);
+
+	$scope.botonDetalleSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
+	$scope.botonBorrarSintoma = '<a style="color:red" ng-click="eliminarSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar"/> </a>';
+
+	$scope.verDetalle = function(row){
+		$cookieStore.put('detalleSintoma',row.entity);
+		$location.path('/sintomas_form');
+	}
+
+	$scope.nuevoSintoma = function(){
+		$cookieStore.remove('detalleSintoma');
+		$location.path('/sintomas_form');
+	}
+
+	$scope.eliminarSintoma = function(row){
+		bootbox.confirm('¿Está seguro que quiere eliminar el s&iacute;ntoma ' + row.entity.nombre + '?',
+			function(confirma){
+				if(confirma){
+					$http.post("sintoma/borrarSintoma",{
+						id:row.entity.id
+					}).success(function(data) {
+							$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
+							borrarSintoma(row.entity.id);
+						});
+				}
+			});
+	}
+
+	function borrarSintoma(id){
+		var indiceABorrar;
+		for(var i=0; i<$scope.myData.length; i++){
+			if($scope.myData[i].id == id){
+				indiceABorrar = i;
+				break;
+			}
+		}
+		$scope.myData.splice(indiceABorrar,1);		
+		$scope.totalServerItems--;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	}
+
+
+	$scope.filtrarListadoDeSintomas = function() {
+		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+				$scope.pagingOptions.currentPage);
+	};
+
+	$scope.$watch('pagingOptions', function(newVal, oldVal) {
+		if (newVal !== oldVal
+				&& newVal.currentPage !== oldVal.currentPage) {
+			$scope.getPagedDataAsync(
+					$scope.pagingOptions.pageSize,
+					$scope.pagingOptions.currentPage);
+		}
+	}, true);
+
+	$scope.gridOptions = {
+		data : 'myData',
+		enablePaging : true,
+		showFooter : true,
+		enableColumnResize : true,
+		totalServerItems : 'totalServerItems',
+		pagingOptions : $scope.pagingOptions,
+		columnDefs : [ {
+			field : 'id',
+			visible : false
+		}, {
+			field : 'nombre',
+			displayName : 'Sintoma',
+			width : '40%'
+		}, {
+			field : 'prioridadAdulto',
+			displayName : 'P. Adulto',
+			width : '10%'
+		}, {
+			field : 'prioridadPediatrico',
+			displayName : 'P. Pediatrico',
+			width : '10%'
+		}, {
+			field : 'tipoDeSintoma',
+			displayName : 'Discriminante',
+			width : '30%'
+		}, {
+			cellTemplate : $scope.botonDetalleSintoma,
+			width : '5%'
+		}, {
+			cellTemplate : $scope.botonBorrarSintoma,
+			width : '5%'
+		} ]
+	};
+
+});
+
+//FORMULARIO SINTOMAS
+app.controller('sintomasFormularioController',function($scope, $location, $cookieStore, $http){
+
+	$scope.tiposDeSintomas = [];
+
+	$scope.traerTiposDeSintomas = function(){
+		$http.get('tipoDeSintoma/traerTiposDeSintomas')
+		.success(function(data){
+			$scope.tiposDeSintomas = data;
+			if ($cookieStore.get('detalleSintoma') != null){
+				llenarFormulario();//lo pongo aca porque es necesario que se ejecute luego de que responda el server
+			}
+		});
+	}
+
+	function llenarFormulario(){
+		$scope.sintoma = $cookieStore.get('detalleSintoma');
+		//busco tipo de sintoma		
+		for(var i=0; i<$scope.tiposDeSintomas.length; i++){
+    		if($scope.tiposDeSintomas[i].nombre == $scope.sintoma.tipoDeSintoma){
+    			$scope.sintoma.tipoDeSintoma = $scope.tiposDeSintomas[i];//reemplazo el nombre del tipo de sintoma por el objeto tipo de sintoma
+    			break;
+    		}
+		}
+	}
+
+	$scope.submitSintomaForm = function(){
+		$http.post('sintoma/submitSintomaForm',{
+			id : $scope.sintoma.id,
+			nombre : $scope.sintoma.nombre,
+			tipoDeSintomaId : $scope.sintoma.tipoDeSintoma.id,
+			prioridadAdulto : $scope.sintoma.prioridadAdulto,
+			prioridadPediatrico : $scope.sintoma.prioridadPediatrico
+		}).success(function(data){
+			bootbox.alert(data);
+			limpiarFormulario();
+		});
+	};
+
+	function limpiarFormulario(){
+		$scope.sintoma.nombre = '';
+		$scope.sintoma.tipoDeSintoma = '';
+		$scope.sintoma.prioridadAdulto = '';
+		$scope.sintoma.prioridadPediatrico = '';
+	}
+
+	$scope.traerTiposDeSintomas();//traigo todos los sintomas al iniciar la pantalla
+
+
+});

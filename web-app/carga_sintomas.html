@@ -1,8 +1,8 @@
 <title>Ingreso de s&iacute;ntomas</title>
 <body>
-  <div class="page-header" style="text-align: center">
-    <h3><b>Ingreso de s&iacute;ntomas</b></h3>
-  </div>
+  <h3 style="text-align: center"><b>Ingreso de s&iacute;ntomas</b></h3>
+
+  <hr/>
 
   <div class="row">
    <div class="col-md-9">
@@ -24,7 +24,7 @@
         </div>
      </form>
      
-     <div class="gridStyle" ng-grid="gridOptions"> </div>
+     <div class="gridStyle" ng-grid="gridOptions" style="width: 100%; height:250px"> </div>
      
      <br/>
      
@@ -34,13 +34,11 @@
      
     </div>
     
-    <div class="col-md-3">
-      <p>Síntomas agregados</p>
-      <ul>
-        <li class="animate-repeat" ng-repeat="sintoma in sintomas" ng-mouseover="borrar=true" ng-mouseleave="borrar=false" ng-init="borrar=false">
+    <div class="col-md-3" style="font-size:small">
+      <p>Síntomas agregados</p>      
+      <li class="animate-repeat" ng-repeat="sintoma in sintomas" ng-mouseover="borrar=true" ng-mouseleave="borrar=false" ng-init="borrar=false">
           {{sintoma.nombre}} <a id="borrar_{{$index}}" ng-click="borrarSintoma(sintoma)" ng-show="borrar">borrar</a>
-        </li>
-      </ul>
+      </li>      
     </div>
    </div>
 </body>

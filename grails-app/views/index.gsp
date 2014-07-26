@@ -53,6 +53,7 @@
         <li><a id="inicio" href="#"><i class="fa fa-home"></i> Inicio</a></li>
         <li><a id="reporte_prioridades" href="#reporte_prioridades"><i class="fa fa-shield"></i> Reportes </a></li>
         <li><a id="reporte_esperas" href="#reporte_tiempo_espera"><i class="fa fa-comment"></i> Reportes II</a></li>
+        <li><a id="abm_sintomas" href="#sintomas_list"><i class="fa fa-comment"></i> Sintomas</a></li>
       </ul>
     </div>
   </nav>

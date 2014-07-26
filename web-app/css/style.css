@@ -1,9 +1,41 @@
 .gridStyle {
     border: 1px solid rgb(212,212,212);
-    width: 700px; 
-    height: 180px;
+    width: 80%; 
+    height: 220px;
     margin-left:auto; 
     margin-right:auto;
     text-align:center;
-    vertical-align:middle
+    vertical-align:middle;
+    font-size: 12px;
+}
+
+.alertStyle{
+    display:none;
+    width: 50%; 
+    height: 10px;
+    line-height: 0px;
+    margin-left:auto; 
+    margin-right:auto;
+    text-align:center;
+    vertical-align:middle;
+    /*vertical-align:text-top;    */
+    /*font-size: 12px;*/
+}
+
+
+
+input::-webkit-input-placeholder {
+   font-weight: bold;
+}
+
+/*input:-moz-placeholder {  Firefox 18- 
+   color: red;  
+}*/
+
+input::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: bold;
+}
+
+input:-ms-input-placeholder {  
+   font-weight: bold;
 }
