@@ -1,0 +1,26 @@
+<title>Listado de s&iacute;ntomas</title>
+<body>
+  <div class="page-header" style="text-align: center">
+    <h3><b>Listado de s&iacute;ntomas</b></h3>
+  </div>
+
+  <div id="alert" class="alert alert-success alertStyle" role="alert">S&iacute;ntoma eliminado con &eacute;xito</div>
+
+  <div class="row">
+      <div class="col-md-2 col-md-offset-4">
+        <input type="text" class="form-control" id="sintoma" ng-model="sintoma" ng-blur="filtrarListadoDeSintomas()" placeholder="S&iacute;ntoma"/>
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="tipoDeSintoma" ng-model="tipoDeSintoma" ng-blur="filtrarListadoDeSintomas()" placeholder="Discriminante"/>
+      </div>
+      <div class="col-md-1">
+        <a class="btn btn-success btn-sm active" role="button" ng-click="nuevoSintoma()"><i class="fa fa-plus-circle"/> Nuevo</a>
+      </div>
+ </div>
+
+ <br>
+
+   <div class="gridStyle" ng-grid="gridOptions" style="height: 400px;"> </div>
+
+
+</body>
