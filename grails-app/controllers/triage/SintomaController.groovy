@@ -84,7 +84,6 @@ class SintomaController {
    		def sintoma = Sintoma.get(request.JSON.id)
    		sintoma.delete()
 
-   		//sintomasListado()
    		render 'Sintoma ' + sintoma.nombre + ' eliminado con exito =)'//es necesario qque responda algo para que se ejecute el success del lado del cliente
    }
 

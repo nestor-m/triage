@@ -84,13 +84,24 @@ app.config(function($routeProvider) {
 	.when('/sintomas_form', {
 		templateUrl : 'sintomas_form.html',
 		controller : 'sintomasFormularioController'
+	})
+
+	//ABM tipos de sintomas
+	.when('/discriminantesListado', {
+		templateUrl : 'tiposDeSintomaListado.html',
+		controller : 'tiposDeSintomaListController'
+	})
+
+	.when('/discriminantesForm', {
+		templateUrl : 'tiposDeSintomaForm.html',
+		controller : 'tiposDeSintomaFormController'
 	});
 });
 
 /** ************************************************************************************** */
 // Este servicio no se usa, pero lo dejo para tenerlo de ejemplo. Se puede usar
 // para pasar data entre controllers pero se pierde la info
-// al refrescar la pagina, por eso opte por $cookieStore
+// al refrescar la pagina, por eso finalmente optamos por usar $cookieStore
 // Para usarlo en un controller hay que pasarlo por parametro, ej:
 // app.controller('personaController', function($scope, $http, $location,
 // pacienteActualService){...});
@@ -1089,13 +1100,13 @@ app.controller('sintomasListadoController',function($scope, $location, $cookieSt
 						id:row.entity.id
 					}).success(function(data) {
 							$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
-							borrarSintoma(row.entity.id);
+							quitarSintomaDelListado(row.entity.id);
 						});
 				}
 			});
 	}
 
-	function borrarSintoma(id){
+	function quitarSintomaDelListado(id){
 		var indiceABorrar;
 		for(var i=0; i<$scope.myData.length; i++){
 			if($scope.myData[i].id == id){
@@ -1109,7 +1120,6 @@ app.controller('sintomasListadoController',function($scope, $location, $cookieSt
 			$scope.$apply();
 		}
 	}
-
 
 	$scope.filtrarListadoDeSintomas = function() {
 		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
@@ -1168,7 +1178,7 @@ app.controller('sintomasFormularioController',function($scope, $location, $cooki
 	$scope.tiposDeSintomas = [];
 
 	$scope.traerTiposDeSintomas = function(){
-		$http.get('tipoDeSintoma/traerTiposDeSintomas')
+		$http.post('tipoDeSintoma/traerTiposDeSintomas')
 		.success(function(data){
 			$scope.tiposDeSintomas = data;
 			if ($cookieStore.get('detalleSintoma') != null){
@@ -1210,5 +1220,128 @@ app.controller('sintomasFormularioController',function($scope, $location, $cooki
 
 	$scope.traerTiposDeSintomas();//traigo todos los sintomas al iniciar la pantalla
 
+});
 
+//ABM tiposDeSintoma
+//Listado de tipos de sintoma
+app.controller('tiposDeSintomaListController',function($scope, $location, $cookieStore, $http){
+
+	$scope.totalServerItems = 0;
+
+	$scope.pagingOptions = {
+		pageSizes : [ 10, 15, 20 ],
+		pageSize : 10,
+		currentPage : 1
+	};
+
+	$scope.setPagingData = function(data, page, pageSize) {
+		var pagedData = data.slice((page - 1) * pageSize, page
+				* pageSize);
+		$scope.myData = pagedData;
+		$scope.totalServerItems = data.length;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	};
+
+	$scope.getPagedDataAsync = function(pageSize, page) {
+		setTimeout(function() {
+			$http.post('tipoDeSintoma/traerTiposDeSintomas', {
+				tipoDeSintoma : $scope.tipoDeSintoma
+			}).success(function(data) {
+				$scope.setPagingData(data, page, pageSize);
+			})
+
+		}, 100);
+	};
+
+	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+			$scope.pagingOptions.currentPage);
+
+	$scope.botonDetalleTipoDeSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
+	$scope.botonBorrarTipoDeSintoma = '<a style="color:red" ng-click="eliminarTipoDeSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar"/> </a>';
+
+	$scope.verDetalle = function(row){
+		$cookieStore.put('detalleTipoDeSintoma',row.entity);
+		$location.path('/discriminantesForm');
+	}
+
+	$scope.nuevoTipoDeSintoma = function(){
+		$cookieStore.remove('detalleTipoDeSintoma');
+		$location.path('/discriminantesForm');
+	}
+
+	$scope.eliminarTipoDeSintoma = function(row){
+		bootbox.confirm('El discriminante ' + row.entity.nombre + ' tiene ' + row.entity.sintomas.length + ' s&iacute;ntomas </br>' +
+				'¿Está seguro que quiere eliminar el discriminante ' + row.entity.nombre + ' y todos sus s&iacute;ntomas?',
+			function(confirma){
+				if(confirma){
+					$http.post("tipoDeSintoma/eliminarTipoDeSintoma",{
+						id:row.entity.id
+					}).success(function(data) {
+							$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de tipo de sintoma eliminado con exito
+							quitarTipoSintomaDelListado(row.entity.id);
+						});
+				}
+			});
+	}
+
+	function quitarTipoSintomaDelListado(id){
+		var indiceABorrar;
+		for(var i=0; i<$scope.myData.length; i++){
+			if($scope.myData[i].id == id){
+				indiceABorrar = i;
+				break;
+			}
+		}
+		$scope.myData.splice(indiceABorrar,1);		
+		$scope.totalServerItems--;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	}
+
+	$scope.gridOptions = {
+		data : 'myData',
+		enablePaging : true,
+		showFooter : true,
+		enableColumnResize : true,
+		totalServerItems : 'totalServerItems',
+		pagingOptions : $scope.pagingOptions,
+		columnDefs : [ {
+			field : 'id',
+			visible : false
+		}, {
+			field : 'nombre',
+			displayName : 'Discriminante',
+			width : '80%'
+		}, {
+			cellTemplate : $scope.botonDetalleTipoDeSintoma,
+			width : '10%'
+		}, {
+			cellTemplate : $scope.botonBorrarTipoDeSintoma,
+			width : '10%'
+		} ]
+	};
+
+	$scope.filtrarListadoDeTiposDeSintoma = function() {
+		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+				$scope.pagingOptions.currentPage);
+	};
+
+});
+
+//Formulario de tipos de sintoma
+app.controller('tiposDeSintomaFormController',function($scope, $location, $cookieStore, $http){
+
+	$scope.submitTipoDeSintomaForm = function(){
+		$http.post('tipoDeSintoma/submitTipoDeSintomaForm',{
+			id : $scope.tipoDeSintoma.id,
+			nombre : $scope.tipoDeSintoma.nombre
+		}).success(function(data){
+			bootbox.alert(data);
+			//limpio el formulario
+			$scope.tipoDeSintoma.nombre = '';
+		});
+	};
 });
