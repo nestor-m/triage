@@ -74,6 +74,11 @@ app.config(function($routeProvider) {
 		templateUrl : 'pacientes_espera.html',
 		controller : 'pacientesEsperaController'
 	})
+	
+	.when('/busqueda_personas', {
+		templateUrl : 'busqueda_personas.html',
+		controller : 'busquedaPersonasController'
+	})
 
 	//ABM sintomas
 	.when('/sintomas_list', {
@@ -1211,4 +1216,141 @@ app.controller('sintomasFormularioController',function($scope, $location, $cooki
 	$scope.traerTiposDeSintomas();//traigo todos los sintomas al iniciar la pantalla
 
 
+});
+
+
+
+/****************************LISTADO DE PERSONAS*****************************/
+
+
+
+app.controller('busquedaPersonasController',function($scope, $location, $cookieStore, $http){
+	$scope.totalServerItems = 0;
+
+	$scope.pagingOptions = {
+		pageSizes : [ 3, 6, 9 ],
+		pageSize : 3,
+		currentPage : 1
+	};
+
+	$scope.setPagingData = function(data, page, pageSize) {
+		var pagedData = data.slice((page - 1) * pageSize, page
+				* pageSize);
+		$scope.myData = pagedData;
+		$scope.totalServerItems = data.length;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	};
+
+	$scope.getPagedDataAsync = function(pageSize, page) {
+		setTimeout(function() {
+			$http.post('persona/ajaxBuscar', {
+				nombre : $scope.nombre,
+				apellido : $scope.apellido,
+				fechaDeNacimiento : $scope.fechaDeNacimiento,
+				dni : $scope.dni
+			}).success(function(data) {
+				$scope.setPagingData(data, page, pageSize);
+			})
+
+		}, 100);
+	};
+
+	$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="verDetalle(row)" name="botonSeleccionarPersona">Detalle</button>'
+
+	$scope.verDetalle = function(row) {
+		$http.post("paciente/cargarPaciente", row.entity)
+				.success(function(data) {// envia todos los
+					// datos de la
+					// persona
+					// (row.entity) pero
+					// con el id alcanza
+					$cookieStore.put('pacienteActual', data); // me
+					// guardo
+					// el
+					// paciente
+					$location.path("/paciente_ingresado");
+				});
+
+	};
+
+	$scope.buscarPersona = function() {
+		// este if es necesario por el ng-blur
+		if ($scope.nombre != null && $scope.nombre != ""
+				|| $scope.apellido != null
+				&& $scope.apellido != ""
+				|| $scope.fechaDeNacimiento != null
+				&& $scope.fechaDeNacimiento != ""
+				|| $scope.dni != null && $scope.dni != "") {
+			$scope.getPagedDataAsync(
+					$scope.pagingOptions.pageSize,
+					$scope.pagingOptions.currentPage);
+		}
+	};
+
+	$scope.$watch('pagingOptions', function(newVal, oldVal) {
+		if (newVal !== oldVal
+				&& newVal.currentPage !== oldVal.currentPage) {
+			$scope.getPagedDataAsync(
+					$scope.pagingOptions.pageSize,
+					$scope.pagingOptions.currentPage);
+		}
+	}, true);
+
+	$scope.gridOptions = {
+		data : 'myData',
+		enablePaging : true,
+		showFooter : true,
+		enableColumnResize : true,
+		totalServerItems : 'totalServerItems',
+		pagingOptions : $scope.pagingOptions,
+		columnDefs : [ {
+			field : 'id',
+			visible : false
+		}, {
+			field : 'nombre',
+			displayName : 'Nombre'
+		}, {
+			field : 'apellido',
+			displayName : 'Apellido'
+		}, {
+			field : 'dni',
+			displayName : 'DNI',
+			width: 130
+		}, {
+			field : 'fechaDeNacimiento',
+			displayName : 'Fecha de nacimiento',
+			cellFilter : 'date:\'dd/MM/yyyy\'',
+			width: 130
+		}, {
+			field : 'direccion',
+			displayName : 'Dirección'
+		}, {
+			cellTemplate : $scope.botonIngresar,
+			width : 70
+		} ]
+	};
+
+	/* Alta de paciente */
+
+	$scope.agregarPersona = function() {
+		// request
+		$http.post("persona/ajaxSave", {
+			nombre : $scope.nombre,
+			apellido : $scope.apellido,
+			fechaDeNacimiento : $scope.fechaDeNacimiento,
+			dni : $scope.dni,
+			direccion : $scope.direccion,
+			telefono : $scope.telefono,
+			obraSocial : $scope.obraSocial,
+			nroAfiliado : $scope.nroAfiliado
+		}).success(function(data) {
+			$cookieStore.put('pacienteActual', data); // me
+			// guardo
+			// el
+			// paciente
+			$location.path("/paciente_ingresado");
+		});
+	};
 });
