@@ -45,10 +45,9 @@ class TipoDeSintomaController {
    			try {
    				new TipoDeSintoma(nombre: nombre).save(failOnError : true)   
    			}catch(ValidationException ve) {
-  				render 'Error. Ya existe un discriminante con el nombre ' + nombre
-  				return
-			}
-
+  				   render 'Error. Ya existe un discriminante con el nombre ' + nombre
+  				   return
+			   }
    			render 'Discriminante ' + nombre + ' cargado con éxito'
    		}else{//si me llega el id es porque es un update
    			def tipoDeSintoma = TipoDeSintoma.get(id)

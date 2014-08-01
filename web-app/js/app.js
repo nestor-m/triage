@@ -839,6 +839,7 @@ app.controller('reportePrioridadesController', function($scope, $location,
 /** ****************************************************************************************** */
 app.directive('datosPaciente', function() {
 	return {
+		restrict:'A',//solo matchea con el nombre del atributo del tag
 		templateUrl : 'datosPaciente.html'
 	}
 });
@@ -1044,130 +1045,16 @@ app
 
 /*ABM SINTOMAS*/
 //LISTADO
-app.controller('sintomasListadoController',function($scope, $location, $cookieStore, $http){
-
-	$scope.totalServerItems = 0;
-
-	$scope.pagingOptions = {
-		pageSizes : [ 10, 15, 20 ],
-		pageSize : 10,
-		currentPage : 1
-	};
-
-	$scope.setPagingData = function(data, page, pageSize) {
-		var pagedData = data.slice((page - 1) * pageSize, page
-				* pageSize);
-		$scope.myData = pagedData;
-		$scope.totalServerItems = data.length;
-		if (!$scope.$$phase) {
-			$scope.$apply();
-		}
-	};
-
-	$scope.getPagedDataAsync = function(pageSize, page) {
-		setTimeout(function() {
-			$http.post('sintoma/sintomasListado', {
-				sintoma : $scope.sintoma,
-				tipoDeSintoma : $scope.tipoDeSintoma
-			}).success(function(data) {
-				$scope.setPagingData(data, page, pageSize);
-			})
-
-		}, 100);
-	};
-
-	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
-			$scope.pagingOptions.currentPage);
-
-	$scope.botonDetalleSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
-	$scope.botonBorrarSintoma = '<a style="color:red" ng-click="eliminarSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar"/> </a>';
-
-	$scope.verDetalle = function(row){
-		$cookieStore.put('detalleSintoma',row.entity);
-		$location.path('/sintomas_form');
-	}
+app.controller('sintomasListadoController',function($scope, $location, $cookieStore, $http,$rootScope){
 
 	$scope.nuevoSintoma = function(){
 		$cookieStore.remove('detalleSintoma');
 		$location.path('/sintomas_form');
 	}
 
-	$scope.eliminarSintoma = function(row){
-		bootbox.confirm('¿Está seguro que quiere eliminar el s&iacute;ntoma ' + row.entity.nombre + '?',
-			function(confirma){
-				if(confirma){
-					$http.post("sintoma/borrarSintoma",{
-						id:row.entity.id
-					}).success(function(data) {
-							$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
-							quitarSintomaDelListado(row.entity.id);
-						});
-				}
-			});
-	}
-
-	function quitarSintomaDelListado(id){
-		var indiceABorrar;
-		for(var i=0; i<$scope.myData.length; i++){
-			if($scope.myData[i].id == id){
-				indiceABorrar = i;
-				break;
-			}
-		}
-		$scope.myData.splice(indiceABorrar,1);		
-		$scope.totalServerItems--;
-		if (!$scope.$$phase) {
-			$scope.$apply();
-		}
-	}
-
 	$scope.filtrarListadoDeSintomas = function() {
 		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 				$scope.pagingOptions.currentPage);
-	};
-
-	$scope.$watch('pagingOptions', function(newVal, oldVal) {
-		if (newVal !== oldVal
-				&& newVal.currentPage !== oldVal.currentPage) {
-			$scope.getPagedDataAsync(
-					$scope.pagingOptions.pageSize,
-					$scope.pagingOptions.currentPage);
-		}
-	}, true);
-
-	$scope.gridOptions = {
-		data : 'myData',
-		enablePaging : true,
-		showFooter : true,
-		enableColumnResize : true,
-		totalServerItems : 'totalServerItems',
-		pagingOptions : $scope.pagingOptions,
-		columnDefs : [ {
-			field : 'id',
-			visible : false
-		}, {
-			field : 'nombre',
-			displayName : 'Sintoma',
-			width : '40%'
-		}, {
-			field : 'prioridadAdulto',
-			displayName : 'P. Adulto',
-			width : '10%'
-		}, {
-			field : 'prioridadPediatrico',
-			displayName : 'P. Pediatrico',
-			width : '10%'
-		}, {
-			field : 'tipoDeSintoma',
-			displayName : 'Discriminante',
-			width : '30%'
-		}, {
-			cellTemplate : $scope.botonDetalleSintoma,
-			width : '5%'
-		}, {
-			cellTemplate : $scope.botonBorrarSintoma,
-			width : '5%'
-		} ]
 	};
 
 });
@@ -1207,16 +1094,9 @@ app.controller('sintomasFormularioController',function($scope, $location, $cooki
 			prioridadPediatrico : $scope.sintoma.prioridadPediatrico
 		}).success(function(data){
 			bootbox.alert(data);
-			limpiarFormulario();
+			$scope.sintoma = null;//limpio el formulario
 		});
 	};
-
-	function limpiarFormulario(){
-		$scope.sintoma.nombre = '';
-		$scope.sintoma.tipoDeSintoma = '';
-		$scope.sintoma.prioridadAdulto = '';
-		$scope.sintoma.prioridadPediatrico = '';
-	}
 
 	$scope.traerTiposDeSintomas();//traigo todos los sintomas al iniciar la pantalla
 
@@ -1301,6 +1181,15 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 		}
 	}
 
+	$scope.$watch('pagingOptions', function(newVal, oldVal) {
+		if (newVal !== oldVal
+				&& newVal.currentPage !== oldVal.currentPage) {
+			$scope.getPagedDataAsync(
+					$scope.pagingOptions.pageSize,
+					$scope.pagingOptions.currentPage);
+		}
+	}, true);
+
 	$scope.gridOptions = {
 		data : 'myData',
 		enablePaging : true,
@@ -1334,14 +1223,146 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 //Formulario de tipos de sintoma
 app.controller('tiposDeSintomaFormController',function($scope, $location, $cookieStore, $http){
 
+	$scope.tipoDeSintoma = $cookieStore.get('detalleTipoDeSintoma');//lleno el formulario si se presiono el boton ver detalle 
+
+	$scope.ocultarListado = $scope.tipoDeSintoma == null;
+
 	$scope.submitTipoDeSintomaForm = function(){
 		$http.post('tipoDeSintoma/submitTipoDeSintomaForm',{
 			id : $scope.tipoDeSintoma.id,
 			nombre : $scope.tipoDeSintoma.nombre
 		}).success(function(data){
-			bootbox.alert(data);
-			//limpio el formulario
-			$scope.tipoDeSintoma.nombre = '';
+			bootbox.alert(data);			
+			$scope.tipoDeSintoma = null;//limpio el formulario
+			$scope.ocultarListado = true;
 		});
 	};
+
+});
+
+/*****************************************************************/
+app.directive('sintomasListado',function(){//creo una directiva para evitar repetir el codigo del listado de sintomas en el detalle del discriminante
+
+	return{
+		restrict:'E',//solo matchea con el nombre del tag
+		template:'<div class="gridStyle" ng-grid="gridOptions" style="height: 380px;"> </div>',
+		controller:function($scope,$http,$cookieStore,$location){
+
+				$scope.totalServerItems = 0;
+
+				$scope.pagingOptions = {
+					pageSizes : [ 10, 15, 20 ],
+					pageSize : 10,
+					currentPage : 1
+				};
+
+				$scope.setPagingData = function(data, page, pageSize) {
+					var pagedData = data.slice((page - 1) * pageSize, page
+							* pageSize);
+					$scope.myData = pagedData;
+					$scope.totalServerItems = data.length;
+					if (!$scope.$$phase) {
+						$scope.$apply();
+					}
+				};
+
+				$scope.getPagedDataAsync = function(pageSize, page) {
+					setTimeout(function() {
+						$http.post('sintoma/sintomasListado', {
+							sintoma : $scope.sintoma,
+							tipoDeSintoma : $scope.tipoDeSintoma==null?undefined:($scope.tipoDeSintoma.nombre==null?$scope.tipoDeSintoma:$scope.tipoDeSintoma.nombre)
+						}).success(function(data) {
+							$scope.setPagingData(data, page, pageSize);
+						})
+
+					}, 100);
+				};
+
+				$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+						$scope.pagingOptions.currentPage);
+
+				$scope.botonDetalleSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
+				$scope.botonBorrarSintoma = '<a style="color:red" ng-click="eliminarSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar"/> </a>';
+
+				$scope.verDetalle = function(row){
+					$cookieStore.put('detalleSintoma',row.entity);
+					$location.path('/sintomas_form');
+				}
+
+				$scope.eliminarSintoma = function(row){
+					bootbox.confirm('¿Está seguro que quiere eliminar el s&iacute;ntoma ' + row.entity.nombre + '?',
+						function(confirma){
+							if(confirma){
+								$http.post("sintoma/borrarSintoma",{
+									id:row.entity.id
+								}).success(function(data) {
+										$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
+										quitarSintomaDelListado(row.entity.id);
+									});
+							}
+						});
+				}
+
+				function quitarSintomaDelListado(id){
+					var indiceABorrar;
+					for(var i=0; i<$scope.myData.length; i++){
+						if($scope.myData[i].id == id){
+							indiceABorrar = i;
+							break;
+						}
+					}
+					$scope.myData.splice(indiceABorrar,1);		
+					$scope.totalServerItems--;
+					if (!$scope.$$phase) {
+						$scope.$apply();
+					}
+				}
+
+
+				$scope.$watch('pagingOptions', function(newVal, oldVal) {
+					if (newVal !== oldVal
+							&& newVal.currentPage !== oldVal.currentPage) {
+						$scope.getPagedDataAsync(
+								$scope.pagingOptions.pageSize,
+								$scope.pagingOptions.currentPage);
+					}
+				}, true);
+
+				$scope.gridOptions = {
+					data : 'myData',
+					enablePaging : true,
+					showFooter : true,
+					enableColumnResize : true,
+					totalServerItems : 'totalServerItems',
+					pagingOptions : $scope.pagingOptions,
+					columnDefs : [ {
+						field : 'id',
+						visible : false
+					}, {
+						field : 'nombre',
+						displayName : 'Sintoma',
+						width : '40%'
+					}, {
+						field : 'prioridadAdulto',
+						displayName : 'P. Adulto',
+						width : '10%'
+					}, {
+						field : 'prioridadPediatrico',
+						displayName : 'P. Pediatrico',
+						width : '10%'
+					}, {
+						field : 'tipoDeSintoma',
+						displayName : 'Discriminante',
+						width : '30%'
+					}, {
+						cellTemplate : $scope.botonDetalleSintoma,
+						width : '5%'
+					}, {
+						cellTemplate : $scope.botonBorrarSintoma,
+						width : '5%'
+					} ]
+				};
+		}
+	};
+
 });

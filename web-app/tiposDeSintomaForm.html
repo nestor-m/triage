@@ -2,9 +2,9 @@
 <title>Formulario de discriminante</title>
 
 <body>
-	<div class="page-header" style="text-align: center">
-		<h3><b>Detalle de discriminante</b></h3>
-	</div>
+	<h3 style="text-align: center"><b>Detalle de discriminante</b></h3>
+
+	<hr/>
 
 	<form class="form-horizontal" role="form" ng-submit="submitTipoDeSintomaForm()" ng-controller="tiposDeSintomaFormController">
 
@@ -24,6 +24,10 @@
 			</div>
 		</div>
 
+		<sintomas-listado ng-show="!ocultarListado"/>
+
 	</form>
+
+
 
 </body>
