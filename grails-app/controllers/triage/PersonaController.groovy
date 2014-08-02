@@ -14,8 +14,14 @@ import java.text.SimpleDateFormat
 @Transactional //(readOnly = true) esto me hizo romper la cabeza durante unas cuantas horas :(
 class PersonaController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxList: "GET", ajaxSave: "POST",
-								ajaxBuscar: "POST", ajaxBuscarNoFinalizados: "POST"]
+    static allowedMethods = [save: "POST"
+								, update: "PUT"
+								, delete: "DELETE"
+								, ajaxList: "GET"
+								,ajaxSave: "POST"
+								,ajaxBuscar: "POST"
+								,ajaxBuscarNoFinalizados: "POST"
+								,cargarPersona: "POST"]
 
 
 	/**
@@ -87,7 +93,19 @@ class PersonaController {
 		return resultado	
 	}	
 	
-
+	def cargarPersona(){
+		Persona persona = Persona.get(request.JSON.id)
+		request.JSON.nombre = persona.nombre
+		request.JSON.apellido = persona.apellido
+		request.JSON.fechaDeNacimiento = persona.fechaDeNacimiento.getDateString()
+		request.JSON.dni = persona.dni
+		request.JSON.direccion = persona.direccion
+		request.JSON.telefono = persona.telefono
+		request.JSON.obraSocial = persona.obraSocial
+		request.JSON.nroAfiliado = persona.nroAfiliado
+		
+		render request.JSON
+	}
 	
 			
 }

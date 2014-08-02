@@ -1,0 +1,81 @@
+<title>B&uacute;squeda e ingreso de pacientes</title>
+ <script> 
+    $(function() {  
+        var anioActual = new Date().getFullYear();
+      $( "#fechaDeNacimiento" ).datepicker({  changeMonth: true,changeYear: true,maxDate: new Date(),yearRange: "1900:"+anioActual });
+      $( "#fechaDeNacimiento" ).datepicker( $.datepicker.regional[ "es" ] );
+    });
+</script>
+<body>
+      <h4 style="font-weight:bold;text-align:center;">B&uacute;squeda de personas</h4>
+
+      <hr/>
+
+      <form name="busqueda_form" class="form-horizontal" style="text-align:center" role="form">
+        <div class="form-group">
+            <div class="controls form-inline" >
+                <label class="col-sm-4 control-label" style="font-size:small">DNI</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="dni" ng-model="dni" ng-blur="buscarPersona()" style="height: 30px;"/>
+                </div>
+                <label class="col-sm-1 control-label" style="font-size:small">Apellido</label>
+                <div class="col-sm-2" ng-class="{'has-error': busqueda_form.apellido.$invalid}">
+                  <input type="text" class="form-control" name="apellido" ng-model="apellido" ng-blur="buscarPersona()" style="height: 30px;"/>
+                </div>
+                <span ng-show="busqueda_form.apellido.$invalid" style="float:left; color:red;">*</span> 
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label" style="font-size:small">Fecha de nacimiento</label>
+                <div class="col-sm-2" ng-class="{'has-error': busqueda_form.fechaDeNacimiento.$invalid}">
+                  <!-- <div fecha-con-maximo></div> -->
+                  <input type="text" class="form-control" id="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento" ng-blur="buscarPersona()" style="height: 30px;"/>
+                </div>                
+                <span ng-show="busqueda_form.fechaDeNacimiento.$invalid" style="color:red; float:left">*</span>                
+
+                <label class="col-sm-1 control-label" style="font-size:small">Nombre</label>
+                <div class="col-sm-2" ng-class="{'has-error': busqueda_form.nombre.$invalid}">
+                  <input type="text" class="form-control" name="nombre" ng-model="nombre" ng-blur="buscarPersona()" style="height: 30px;"/>                  
+                </div>                
+                <span ng-show="busqueda_form.nombre.$invalid" style="float:left; color:red;">*</span>            
+            </div>
+           </div>
+        </div>
+        <div class="form-group">
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label" style="font-size:small">Tel&eacute;fono</label>
+                <div class="col-sm-2">
+                  <input type="text" name="telefono" class="form-control" ng-model="telefono" style="height: 30px;">
+                </div>
+                <label class="col-sm-1 control-label" style="font-size:small">Obra social</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="obraSocial" ng-model="obraSocial" style="height: 30px;">
+                </div>
+           </div>
+        </div>
+        <div class="form-group">
+            <div class="controls form-inline">
+                <label class="col-sm-4 control-label" style="font-size:small">Direcci&oacute;n</label>
+                <div class="col-sm-2">
+                  <input type="text" name="direccion" class="form-control" ng-model="direccion" style="height: 30px;">
+                </div>
+                <label class="col-sm-1 control-label" style="font-size:small">Nro afiliado</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="nroAfiliado" ng-model="nroAfiliado" style="height: 30px;">
+                </div>
+           </div>
+        </div>
+        <div class="form-group">
+            <div class="controls form-inline">
+                <div class="col-sm-1 col-sm-offset-5">
+                  <input type="button" name="botonBuscar" class="btn btn-primary" value="Buscar" id="botonBuscar" ng-click="buscarPersona()" ng-disabled="(nombre==null || nombre =='') && (apellido==null || apellido =='') && (dni==null || dni =='') && (fechaDeNacimiento==null || fechaDeNacimiento =='')"/>
+                </div>
+              
+                
+           </div>
+        </div>
+     </form>
+     
+     <div class="gridStyle" ng-grid="gridOptions"> </div>
+</body>

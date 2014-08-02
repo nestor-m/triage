@@ -1,0 +1,22 @@
+<title>Detalle</title>
+<body>
+	<div class="page-header" style="text-align: center">
+		<h3>
+			<b>Detalle de la persona</b>
+		</h3>
+	</div>
+
+	<p id="nombreYApellido">Nombre y apellido: {{personaActual.nombre}}
+		{{personaActual.apellido}}</p>
+	<p ng-show="personaActual != null">DNI: {{personaActual.dni}}</p>
+	<p>Fecha de nacimiento: {{personaActual.fechaDeNacimiento}}</p>
+	<p ng-show="personaActual != null">Direcci&oacute;n:
+		{{personaActual.direccion}}</p>
+	<p ng-show="personaActual != null">Tel&eacute;fono:
+		{{personaActual.telefono}}</p>
+	<p ng-show="personaActual.obraSocial != null">Obra social:
+		{{personaActual.obraSocial}}</p>
+	<p ng-show="personaActual.nroAfiliado != null">Nro afiliado:
+		{{personaActual.nroAfiliado}}</p>
+
+</body>

@@ -79,12 +79,17 @@ app.config(function($routeProvider) {
 		templateUrl : 'busqueda_personas.html',
 		controller : 'busquedaPersonasController'
 	})
+	
+	.when('/detalle_personas', {
+		templateUrl : 'detalle_personas.html',
+		controller : 'detallePersonaController'
+	})
 
 	//ABM sintomas
 	.when('/sintomas_list', {
 		templateUrl : 'sintomas_listado.html',
 		controller : 'sintomasListadoController'
-	})
+	})	
 
 	.when('/sintomas_form', {
 		templateUrl : 'sintomas_form.html',
@@ -1414,17 +1419,10 @@ app.controller('busquedaPersonasController',function($scope, $location, $cookieS
 	$scope.botonIngresar = '<button type="button" class="btn btn-primary btn-xs" ng-click="verDetalle(row)" name="botonSeleccionarPersona">Detalle</button>'
 
 	$scope.verDetalle = function(row) {
-		$http.post("paciente/cargarPaciente", row.entity)
-				.success(function(data) {// envia todos los
-					// datos de la
-					// persona
-					// (row.entity) pero
-					// con el id alcanza
-					$cookieStore.put('pacienteActual', data); // me
-					// guardo
-					// el
-					// paciente
-					$location.path("/paciente_ingresado");
+		$http.post("persona/cargarPersona", row.entity)
+				.success(function(data) {
+					$cookieStore.put('personaActual', data); 
+					$location.path("/detalle_personas");
 				});
 
 	};
@@ -1486,25 +1484,15 @@ app.controller('busquedaPersonasController',function($scope, $location, $cookieS
 		} ]
 	};
 
-	/* Alta de paciente */
-
-	$scope.agregarPersona = function() {
-		// request
-		$http.post("persona/ajaxSave", {
-			nombre : $scope.nombre,
-			apellido : $scope.apellido,
-			fechaDeNacimiento : $scope.fechaDeNacimiento,
-			dni : $scope.dni,
-			direccion : $scope.direccion,
-			telefono : $scope.telefono,
-			obraSocial : $scope.obraSocial,
-			nroAfiliado : $scope.nroAfiliado
-		}).success(function(data) {
-			$cookieStore.put('pacienteActual', data); // me
-			// guardo
-			// el
-			// paciente
-			$location.path("/paciente_ingresado");
-		});
-	};
+	
 });
+
+
+/****************DETALLE PERSONAS****************/
+
+app.controller('detallePersonaController',function($scope, $location, $cookieStore, $http){
+	$scope.personaActual = $cookieStore.get('personaActual');
+	
+});
+
+
