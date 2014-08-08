@@ -4,6 +4,7 @@ import static org.springframework.http.HttpStatus.*
 
 import java.net.Authenticator.RequestorType;
 
+import org.codehaus.groovy.grails.web.binding.bindingsource.JsonDataBindingSourceCreator.JsonArrayList;
 import org.codehaus.groovy.grails.web.json.JSONObject;
 
 import grails.converters.JSON
@@ -104,7 +105,36 @@ class PersonaController {
 		request.JSON.obraSocial = persona.obraSocial
 		request.JSON.nroAfiliado = persona.nroAfiliado
 		
+		String sql = "SELECT p.prioridad, p.id, p.fechaHoraAtencion, p.diastole, p.sistole, p.temperatura, "+
+						"p.frecuenciaRespiratoria, p.glucosa, p.pulso, p.saturacionO2, p.tipoAtencion FROM Paciente p where persona_id = "+persona.id
+		
+		List consultaAtenciones = Paciente.executeQuery(sql)
+		List atenciones = new ArrayList()
+		
+		for (atencion in consultaAtenciones) {
+			String prioridad = traerPrioridad(atencion[0]);
+			String fecha = new SimpleDateFormat("dd-MM-yyyy").format(atencion[2]);
+			atenciones.add(new JSONObject('{"id":' + atencion[1] +
+				',"prioridad":"' + prioridad + '"' +
+				',"fechaAtencion":' + fecha +
+				',"presion":' + atencion[3] +"-"+atencion[4] +
+				',"temperatura":' + atencion[5] +
+				',"frecuencia":' + atencion[6] +
+				',"glucosa":' + atencion[7] +
+				',"pulso":' + atencion[8] +
+				',"saturacion":' + atencion[9] +
+				',"tipoAtencion":"' + atencion[10]+ '"}'))
+		}
+		
+		request.JSON.atenciones = atenciones
 		render request.JSON
+	}
+	
+	String traerPrioridad (Prioridad p){
+		if (p == Prioridad.UNO) return "Prioridad UNO"
+		if (p == Prioridad.DOS) return "Prioridad DOS"
+		if (p == Prioridad.TRES) return "Prioridad TRES"
+		if (p == null) return "No se ha calculado"
 	}
 	
 			

@@ -18,5 +18,20 @@
 		{{personaActual.obraSocial}}</p>
 	<p ng-show="personaActual.nroAfiliado != null">Nro afiliado:
 		{{personaActual.nroAfiliado}}</p>
+		
+	 <h1>Atenciones recibidas</h1>
+    <table class="table table-hover">
+        <tr>
+        <td>Fecha de atención</td>
+        <td>Prioridad </td>
+        <td>Tipo atención </td>
+        
+        </tr>
+        <tr ng-repeat="paciente in atenciones">
+                <td><label for="{{ paciente.fechaAtencion }}">{{ paciente.fechaAtencion }}</label></td>
+                <td><label for="{{ paciente.prioridad }}">{{ paciente.prioridad }}</label></td>
+                <td><label for="{{ paciente.tipoAtencion }}">{{ paciente.tipoAtencion }}</label></td>
+        </tr>
+    </table>
 
 </body>

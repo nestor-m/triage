@@ -281,7 +281,7 @@ class PacienteController {
 		request.JSON.obraSocial = paciente.persona.obraSocial
 		request.JSON.nroAfiliado = paciente.persona.nroAfiliado
 
-		String sintomas = ""
+		String sintomas = "" //la variable tiene el mismo nombre que el atributo?
 		paciente.sintomas.each{
 			if(sintomas.size() > 0){
 				sintomas += "; "
