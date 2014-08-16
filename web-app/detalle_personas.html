@@ -1,37 +1,52 @@
 <title>Detalle</title>
 <body>
-	<div class="page-header" style="text-align: center">
-		<h3>
-			<b>Detalle de la persona</b>
-		</h3>
+
+	<div class="container">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h1 class="panel-title" style="text-align: center">Detalle de
+					la persona</h1>
+			</div>
+
+
+
+			<p id="nombreYApellido">Nombre y apellido:
+				{{personaActual.nombre}} {{personaActual.apellido}}</p>
+			<p ng-show="personaActual != null">DNI: {{personaActual.dni}}</p>
+			<p>Fecha de nacimiento: {{personaActual.fechaDeNacimiento}}</p>
+			<p ng-show="personaActual != null">Direcci&oacute;n:
+				{{personaActual.direccion}}</p>
+			<p ng-show="personaActual != null">Tel&eacute;fono:
+				{{personaActual.telefono}}</p>
+			<p ng-show="personaActual.obraSocial != null">Obra social:
+				{{personaActual.obraSocial}}</p>
+			<p ng-show="personaActual.nroAfiliado != null">Nro afiliado:
+				{{personaActual.nroAfiliado}}</p>
+
+			<h1>Atenciones recibidas</h1>
+			<table class="table table-hover">
+				<tr>
+					<td>ID</td>
+					<td>Prioridad</td>
+					<td>Tipo atención</td>
+					<td>Fecha</td>
+					<td>Presión</td>
+				</tr>
+				<tr ng-repeat="paciente in personaActual.atenciones track by paciente.id">
+					<td><label for="{{ paciente.id }}">{{ paciente.id }}</label></td>
+					<td><label for="{{ paciente.prioridad }}">{{
+							paciente.prioridad }}</label></td>
+					<td><label for="{{ paciente.tipoAtencion }}">{{
+							paciente.tipoAtencion }}</label></td>
+					<td><label for="{{ paciente.fechaAtencion }}">{{
+							paciente.fechaAtencion }}</label></td>
+					<td><label for="{{ paciente.presion }}">{{
+							paciente.presion }}</label></td>
+				</tr>
+			</table>
+
+		</div>
 	</div>
 
-	<p id="nombreYApellido">Nombre y apellido: {{personaActual.nombre}}
-		{{personaActual.apellido}}</p>
-	<p ng-show="personaActual != null">DNI: {{personaActual.dni}}</p>
-	<p>Fecha de nacimiento: {{personaActual.fechaDeNacimiento}}</p>
-	<p ng-show="personaActual != null">Direcci&oacute;n:
-		{{personaActual.direccion}}</p>
-	<p ng-show="personaActual != null">Tel&eacute;fono:
-		{{personaActual.telefono}}</p>
-	<p ng-show="personaActual.obraSocial != null">Obra social:
-		{{personaActual.obraSocial}}</p>
-	<p ng-show="personaActual.nroAfiliado != null">Nro afiliado:
-		{{personaActual.nroAfiliado}}</p>
-		
-	 <h1>Atenciones recibidas</h1>
-    <table class="table table-hover">
-        <tr>
-        <td>Fecha de atención</td>
-        <td>Prioridad </td>
-        <td>Tipo atención </td>
-        
-        </tr>
-        <tr ng-repeat="paciente in atenciones">
-                <td><label for="{{ paciente.fechaAtencion }}">{{ paciente.fechaAtencion }}</label></td>
-                <td><label for="{{ paciente.prioridad }}">{{ paciente.prioridad }}</label></td>
-                <td><label for="{{ paciente.tipoAtencion }}">{{ paciente.tipoAtencion }}</label></td>
-        </tr>
-    </table>
 
 </body>

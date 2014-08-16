@@ -1492,7 +1492,7 @@ app.controller('busquedaPersonasController',function($scope, $location, $cookieS
 
 app.controller('detallePersonaController',function($scope, $location, $cookieStore, $http){
 	$scope.personaActual = $cookieStore.get('personaActual');
-	
+	console.log($scope.personaActual.atenciones);
 });
 
 
