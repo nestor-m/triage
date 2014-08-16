@@ -109,24 +109,26 @@ class PersonaController {
 						"p.frecuenciaRespiratoria, p.glucosa, p.pulso, p.saturacionO2, p.tipoAtencion FROM Paciente p where persona_id = "+persona.id
 		
 		List consultaAtenciones = Paciente.executeQuery(sql)
-		List atenciones = new ArrayList()
+		List atencionesResp = new ArrayList()
 		
 		for (atencion in consultaAtenciones) {
 			String prioridad = traerPrioridad(atencion[0]);
 			String fecha = new SimpleDateFormat("dd-MM-yyyy").format(atencion[2]);
-			atenciones.add(new JSONObject('{"id":' + atencion[1] +
+			atencionesResp.add(new JSONObject('{"id":' + atencion[1] +
 				',"prioridad":"' + prioridad + '"' +
 				',"fechaAtencion":' + fecha +
 				',"presion":' + atencion[3] +"-"+atencion[4] +
-				',"temperatura":' + atencion[5] +
-				',"frecuencia":' + atencion[6] +
-				',"glucosa":' + atencion[7] +
-				',"pulso":' + atencion[8] +
-				',"saturacion":' + atencion[9] +
+//				',"temperatura":' + atencion[5] +
+//				',"frecuencia":' + atencion[6] +
+//				',"glucosa":' + atencion[7] +
+//				',"pulso":' + atencion[8] +
+//				',"saturacion":' + atencion[9] +
 				',"tipoAtencion":"' + atencion[10]+ '"}'))
 		}
 		
-		request.JSON.atenciones = atenciones
+		println atencionesResp
+		
+		request.JSON.atenciones = atencionesResp as JSON
 		render request.JSON
 	}
 	
