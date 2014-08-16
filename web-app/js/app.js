@@ -1149,7 +1149,7 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 			$scope.pagingOptions.currentPage);
 
 	$scope.botonDetalleTipoDeSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
-	$scope.botonBorrarTipoDeSintoma = '<a style="color:red" ng-click="eliminarTipoDeSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar"/> </a>';
+	$scope.botonBorrarTipoDeSintoma = '<a style="color:red"  ng-hide="row.entity.nombre==\'IMPRESION INICIAL\'" ng-click="eliminarTipoDeSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="EliminarRr"/> </a>';
 
 	$scope.verDetalle = function(row){
 		$cookieStore.put('detalleTipoDeSintoma',row.entity);

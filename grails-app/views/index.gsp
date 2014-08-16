@@ -54,7 +54,7 @@
         <li><a id="reporte_prioridades" href="#reporte_prioridades"><i class="fa fa-shield"></i> Reportes </a></li>
         <li><a id="reporte_esperas" href="#reporte_tiempo_espera"><i class="fa fa-comment"></i> Reportes II</a></li>
         <li>          
-            <a id="dropdownMenu1" data-toggle="dropdown"><i class="fa fa-asterisk"></i></a>
+            <a id="dropdownMenu1" data-toggle="dropdown" href=""><i class="fa fa-asterisk"></i></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#sintomas_list">S&iacute;ntomas</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#discriminantesListado">Discriminantes</a></li>
