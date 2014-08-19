@@ -128,8 +128,8 @@ class PersonaController {
 		
 		println atencionesResp
 		
-		request.JSON.atenciones = atencionesResp as JSON
-		render request.JSON
+		request.JSON.atenciones = atencionesResp
+		render request.JSON as JSON
 	}
 	
 	String traerPrioridad (Prioridad p){

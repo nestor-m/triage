@@ -424,8 +424,8 @@ app
 					$scope.totalServerItems = 0;
 
 					$scope.pagingOptions = {
-						pageSizes : [ 3, 6, 9 ],
-						pageSize : 3,
+						pageSizes : [ 5, 10, 15 ],
+						pageSize : 5,
 						currentPage : 1
 					};
 
@@ -1149,7 +1149,6 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 			$scope.pagingOptions.currentPage);
 
 	$scope.botonDetalleTipoDeSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
-	$scope.botonBorrarTipoDeSintoma = '<a style="color:red"  ng-hide="row.entity.nombre==\'IMPRESION INICIAL\'" ng-click="eliminarTipoDeSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="EliminarRr"/> </a>';
 
 	$scope.verDetalle = function(row){
 		$cookieStore.put('detalleTipoDeSintoma',row.entity);
@@ -1159,36 +1158,6 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 	$scope.nuevoTipoDeSintoma = function(){
 		$cookieStore.remove('detalleTipoDeSintoma');
 		$location.path('/discriminantesForm');
-	}
-
-	$scope.eliminarTipoDeSintoma = function(row){
-		bootbox.confirm('El discriminante ' + row.entity.nombre + ' tiene ' + row.entity.sintomas.length + ' s&iacute;ntomas </br>' +
-				'¿Está seguro que quiere eliminar el discriminante ' + row.entity.nombre + ' y todos sus s&iacute;ntomas?',
-			function(confirma){
-				if(confirma){
-					$http.post("tipoDeSintoma/eliminarTipoDeSintoma",{
-						id:row.entity.id
-					}).success(function(data) {
-							$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de tipo de sintoma eliminado con exito
-							quitarTipoSintomaDelListado(row.entity.id);
-						});
-				}
-			});
-	}
-
-	function quitarTipoSintomaDelListado(id){
-		var indiceABorrar;
-		for(var i=0; i<$scope.myData.length; i++){
-			if($scope.myData[i].id == id){
-				indiceABorrar = i;
-				break;
-			}
-		}
-		$scope.myData.splice(indiceABorrar,1);		
-		$scope.totalServerItems--;
-		if (!$scope.$$phase) {
-			$scope.$apply();
-		}
 	}
 
 	$scope.$watch('pagingOptions', function(newVal, oldVal) {
@@ -1213,13 +1182,10 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 		}, {
 			field : 'nombre',
 			displayName : 'Discriminante',
-			width : '80%'
+			width : '95%'
 		}, {
 			cellTemplate : $scope.botonDetalleTipoDeSintoma,
-			width : '10%'
-		}, {
-			cellTemplate : $scope.botonBorrarTipoDeSintoma,
-			width : '10%'
+			width : '5%'
 		} ]
 	};
 
@@ -1235,8 +1201,6 @@ app.controller('tiposDeSintomaFormController',function($scope, $location, $cooki
 
 	$scope.tipoDeSintoma = $cookieStore.get('detalleTipoDeSintoma');//lleno el formulario si se presiono el boton ver detalle 
 
-	$scope.ocultarListado = $scope.tipoDeSintoma == null;
-
 	$scope.submitTipoDeSintomaForm = function(){
 		$http.post('tipoDeSintoma/submitTipoDeSintomaForm',{
 			id : $scope.tipoDeSintoma.id,
@@ -1244,7 +1208,6 @@ app.controller('tiposDeSintomaFormController',function($scope, $location, $cooki
 		}).success(function(data){
 			bootbox.alert(data);			
 			$scope.tipoDeSintoma = null;//limpio el formulario
-			$scope.ocultarListado = true;
 		});
 	};
 
@@ -1279,8 +1242,9 @@ app.directive('sintomasListado',function(){//creo una directiva para evitar repe
 				$scope.getPagedDataAsync = function(pageSize, page) {
 					setTimeout(function() {
 						$http.post('sintoma/sintomasListado', {
-							sintoma : $scope.sintoma,
-							tipoDeSintoma : $scope.tipoDeSintoma==null?undefined:($scope.tipoDeSintoma.nombre==null?$scope.tipoDeSintoma:$scope.tipoDeSintoma.nombre)
+							sintoma: $scope.sintoma,
+							tipoDeSintoma: $scope.tipoDeSintoma==null?undefined:($scope.tipoDeSintoma.nombre==null?$scope.tipoDeSintoma:$scope.tipoDeSintoma.nombre),
+							habilitados: $scope.habilitados
 						}).success(function(data) {
 							$scope.setPagingData(data, page, pageSize);
 						})
@@ -1292,42 +1256,11 @@ app.directive('sintomasListado',function(){//creo una directiva para evitar repe
 						$scope.pagingOptions.currentPage);
 
 				$scope.botonDetalleSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
-				$scope.botonBorrarSintoma = '<a style="color:red" ng-click="eliminarSintoma(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar"/> </a>';
 
 				$scope.verDetalle = function(row){
 					$cookieStore.put('detalleSintoma',row.entity);
 					$location.path('/sintomas_form');
 				}
-
-				$scope.eliminarSintoma = function(row){
-					bootbox.confirm('¿Está seguro que quiere eliminar el s&iacute;ntoma ' + row.entity.nombre + '?',
-						function(confirma){
-							if(confirma){
-								$http.post("sintoma/borrarSintoma",{
-									id:row.entity.id
-								}).success(function(data) {
-										$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
-										quitarSintomaDelListado(row.entity.id);
-									});
-							}
-						});
-				}
-
-				function quitarSintomaDelListado(id){
-					var indiceABorrar;
-					for(var i=0; i<$scope.myData.length; i++){
-						if($scope.myData[i].id == id){
-							indiceABorrar = i;
-							break;
-						}
-					}
-					$scope.myData.splice(indiceABorrar,1);		
-					$scope.totalServerItems--;
-					if (!$scope.$$phase) {
-						$scope.$apply();
-					}
-				}
-
 
 				$scope.$watch('pagingOptions', function(newVal, oldVal) {
 					if (newVal !== oldVal
@@ -1351,7 +1284,7 @@ app.directive('sintomasListado',function(){//creo una directiva para evitar repe
 					}, {
 						field : 'nombre',
 						displayName : 'Sintoma',
-						width : '40%'
+						width : '45%'
 					}, {
 						field : 'prioridadAdulto',
 						displayName : 'P. Adulto',
@@ -1366,9 +1299,6 @@ app.directive('sintomasListado',function(){//creo una directiva para evitar repe
 						width : '30%'
 					}, {
 						cellTemplate : $scope.botonDetalleSintoma,
-						width : '5%'
-					}, {
-						cellTemplate : $scope.botonBorrarSintoma,
 						width : '5%'
 					} ]
 				};

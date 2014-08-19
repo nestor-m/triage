@@ -56,16 +56,5 @@ class TipoDeSintomaController {
    			render 'Discriminante ' + nombre + ' actualizado con éxito'
    		}	
 	}
-
-   /**
-   * Elimina un sintoma de la base de datos.
-   */
-   @Transactional
-   def eliminarTipoDeSintoma(){
-   		def tipoDeSintoma = TipoDeSintoma.get(request.JSON.id)
-   		tipoDeSintoma.delete()
-
-   		render 'Discriminante ' + tipoDeSintoma.nombre + ' eliminado con exito =)'//es necesario qque responda algo para que se ejecute el success del lado del cliente
-   }
    
 }
