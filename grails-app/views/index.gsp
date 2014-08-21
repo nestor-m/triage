@@ -56,8 +56,8 @@
         <li>          
             <a id="dropdownMenu1" data-toggle="dropdown" href=""><i class="fa fa-asterisk"></i></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#sintomas_list">S&iacute;ntomas</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#discriminantesListado">Discriminantes</a></li>
+                <li role="presentation"><a id="sintomas" role="menuitem" tabindex="-1" href="#sintomas_list">S&iacute;ntomas</a></li>
+                <li role="presentation"><a id="discriminantes" role="menuitem" tabindex="-1" href="#discriminantesListado">Discriminantes</a></li>
               </ul>              
         </li>
       </ul>

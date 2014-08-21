@@ -19,14 +19,12 @@
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-10">
 				<p style="text-align: center">
-					<input type="submit" class="btn btn-success" value="Aceptar" ng-disabled="tipoDeSintoma.nombre==null || tipoDeSintoma.nombre ==''"/>
+					<input id="aceptar" type="submit" class="btn btn-success" value="Aceptar" ng-disabled="tipoDeSintoma.nombre==null || tipoDeSintoma.nombre ==''"/>
 				</p>
 			</div>
 		</div>
 
-		<div id="alert" class="alert alert-success alertStyle" role="alert">S&iacute;ntoma eliminado con &eacute;xito</div>
-
-		<sintomas-listado ng-hide="tipoDeSintoma == null"/>
+		<sintomas-listado id="listado" ng-hide="ocultarListado"/>
 
 	</form>
 

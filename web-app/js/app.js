@@ -1148,7 +1148,7 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 			$scope.pagingOptions.currentPage);
 
-	$scope.botonDetalleTipoDeSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
+	$scope.botonDetalleTipoDeSintoma = '<a id="verDetalle" ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
 
 	$scope.verDetalle = function(row){
 		$cookieStore.put('detalleTipoDeSintoma',row.entity);
@@ -1200,6 +1200,7 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 app.controller('tiposDeSintomaFormController',function($scope, $location, $cookieStore, $http){
 
 	$scope.tipoDeSintoma = $cookieStore.get('detalleTipoDeSintoma');//lleno el formulario si se presiono el boton ver detalle 
+	$scope.ocultarListado = $scope.tipoDeSintoma == null;
 
 	$scope.submitTipoDeSintomaForm = function(){
 		$http.post('tipoDeSintoma/submitTipoDeSintomaForm',{
@@ -1255,7 +1256,7 @@ app.directive('sintomasListado',function(){//creo una directiva para evitar repe
 				$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
 						$scope.pagingOptions.currentPage);
 
-				$scope.botonDetalleSintoma = '<a ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
+				$scope.botonDetalleSintoma = '<a id="verDetalle" ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
 
 				$scope.verDetalle = function(row){
 					$cookieStore.put('detalleSintoma',row.entity);

@@ -12,7 +12,7 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 @Transactional //(readOnly = true)
 class SintomaController {
 
-	static allowedMethods = [submitSintomaForm: "POST", borrarSintoma: "POST",
+	static allowedMethods = [submitSintomaForm: "POST",
 		ajaxListVisuales: "GET", traerSintomas:"POST",recuperarSintomas:"POST"]
 	
 

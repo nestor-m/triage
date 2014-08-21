@@ -10,7 +10,7 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 @Transactional //(readOnly = true)
 class TipoDeSintomaController {
 
-	static allowedMethods = [traerTiposDeSintomas:"POST",submitTipoDeSintomaForm:"POST",eliminarTipoDeSintoma:"POST"]
+	static allowedMethods = [traerTiposDeSintomas:"POST",submitTipoDeSintomaForm:"POST"]
 
 
 	/**

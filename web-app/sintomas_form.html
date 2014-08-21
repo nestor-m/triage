@@ -11,7 +11,7 @@
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Nombre</label>
 			<div class="col-sm-5">
-				<input type="text" ng-model="sintoma.nombre" class="form-control"/>				
+				<input id="nombre" type="text" ng-model="sintoma.nombre" class="form-control"/>				
 			</div>
 			<span class="error" ng-show="sintoma.nombre == undefined || sintoma.nombre == ''" style="color:red;">*</span>
 		</div>
@@ -19,7 +19,7 @@
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Discriminante</label>
 			<div class="col-sm-5">
-				<select ng-model="sintoma.tipoDeSintoma"
+				<select ng-model="sintoma.tipoDeSintoma" id="discriminante"
 					ng-options="tipoDeSintoma.nombre for tipoDeSintoma in tiposDeSintomas" class="form-control">
 					<option value="">-- Seleccionar --</option>
 				</select>				
@@ -30,9 +30,9 @@
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Prioridad adulto</label>
 			<div class="col-sm-5">
-				<select ng-model="sintoma.prioridadAdulto" class="form-control">
+				<select ng-model="sintoma.prioridadAdulto" class="form-control" id="prioridadAdulto">
 					<option value="">-- Seleccionar --</option>
-				    <option value="UNO">UNO</option>
+				    <option id="prioridadAdultoUno" value="UNO">UNO</option>
   					<option value="DOS">DOS</option>
   					<option value="TRES">TRES</option>
 				</select>				
@@ -43,10 +43,10 @@
 		<div class="form-group">
 			<label class="col-sm-4 control-label">Prioridad pedi&aacute;trico</label>
 			<div class="col-sm-5">
-				<select ng-model="sintoma.prioridadPediatrico" class="form-control">
+				<select ng-model="sintoma.prioridadPediatrico" class="form-control" id="prioridadPediatrico">
 					<option value="">-- Seleccionar --</option>
 				    <option value="UNO">UNO</option>
-  					<option value="DOS">DOS</option>
+  					<option id="prioridadPediatricoDos" value="DOS">DOS</option>
   					<option value="TRES">TRES</option>
 				</select>				
 			</div>
@@ -56,7 +56,7 @@
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-10">
 				<p style="text-align: center">
-					<input type="submit" class="btn btn-success" value="Aceptar" ng-disabled="sintoma.nombre==null || sintoma.nombre =='' || sintoma.prioridadAdulto==null || sintoma.prioridadAdulto=='' || sintoma.prioridadPediatrico==null || sintoma.prioridadPediatrico =='' || sintoma.tipoDeSintoma==null || sintoma.tipoDeSintoma ==''"/>
+					<input id="aceptar" type="submit" class="btn btn-success" value="Aceptar" ng-disabled="sintoma.nombre==null || sintoma.nombre =='' || sintoma.prioridadAdulto==null || sintoma.prioridadAdulto=='' || sintoma.prioridadPediatrico==null || sintoma.prioridadPediatrico =='' || sintoma.tipoDeSintoma==null || sintoma.tipoDeSintoma ==''"/>
 				</p>
 			</div>
 		</div>
