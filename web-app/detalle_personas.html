@@ -26,14 +26,18 @@
 			<h1>Atenciones recibidas</h1>
 			<table class="table table-hover">
 				<tr>
-					<td>ID</td>
 					<td>Prioridad</td>
 					<td>Tipo atención</td>
 					<td>Fecha</td>
 					<td>Presión</td>
+					<td>Temperatura</td>
+					<td>Frecuencia Resp</td>
+					<td>Glucosa</td>
+					<td>Pulso</td>
+					<td>Saturacion</td>
 				</tr>
 				<tr ng-repeat="paciente in personaActual.atenciones track by paciente.id">
-					<td><label for="{{ paciente.id }}">{{ paciente.id }}</label></td>
+					
 					<td><label for="{{ paciente.prioridad }}">{{
 							paciente.prioridad }}</label></td>
 					<td><label for="{{ paciente.tipoAtencion }}">{{
@@ -42,6 +46,11 @@
 							paciente.fechaAtencion }}</label></td>
 					<td><label for="{{ paciente.presion }}">{{
 							paciente.presion }}</label></td>
+					<td><label for="{{ paciente.temperatura }}">{{ paciente.temperatura }}</label></td>
+					<td><label for="{{ paciente.frecuencia }}">{{ paciente.frecuencia }}</label></td>
+					<td><label for="{{ paciente.glucosa }}">{{ paciente.glucosa }}</label></td>
+					<td><label for="{{ paciente.pulso }}">{{ paciente.saturacion }}</label></td>
+					<td><label for="{{ paciente.saturacion }}">{{ paciente.saturacion }}</label></td>		
 				</tr>
 			</table>
 

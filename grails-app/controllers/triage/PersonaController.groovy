@@ -118,11 +118,11 @@ class PersonaController {
 				',"prioridad":"' + prioridad + '"' +
 				',"fechaAtencion":' + fecha +
 				',"presion":' + atencion[3] +"-"+atencion[4] +
-//				',"temperatura":' + atencion[5] +
-//				',"frecuencia":' + atencion[6] +
-//				',"glucosa":' + atencion[7] +
-//				',"pulso":' + atencion[8] +
-//				',"saturacion":' + atencion[9] +
+				',"temperatura":' + atencion[5] +
+				',"frecuencia":' + atencion[6] +
+				',"glucosa":' + atencion[7] +
+				',"pulso":' + atencion[8] +
+				',"saturacion":' + atencion[9] +
 				',"tipoAtencion":"' + atencion[10]+ '"}'))
 		}
 		
