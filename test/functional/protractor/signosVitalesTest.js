@@ -22,14 +22,14 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		        });
 		    }
 		  };
-		  var selectPulso = selectDropdownbyNum(element(by.id('pulso')), 8);
-		  var selectPresion = selectDropdownbyNum(element(by.id('sistole')), 3);
-		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 8);
-		  var selectFrecuencia = selectDropdownbyNum(element(by.id('frecuenciaRespiratoria')), 7);
+		  var selectPulso = selectDropdownbyNum(element(by.id('pulso')), 2);
+		  var selectPresion = selectDropdownbyNum(element(by.id('sistole')), 2);
+		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 2);
+		  var selectFrecuencia = selectDropdownbyNum(element(by.id('frecuenciaRespiratoria')), 2);
 		  browser.waitForAngular();	
 		  //Salgo de la pantalla
 		  element(by.buttonText('Aceptar')).click();
-		  browser.sleep(500);//espero a que se despliegue el modal
+		  browser.waitForAngular();//espero a que se despliegue el modal
 		  element(by.buttonText('OK')).click();//mensaje de carga exitosa
 		  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
 		  element(by.id('salir')).click();//salgo
@@ -43,10 +43,10 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		  browser.waitForAngular();	
 		  element(by.id('signos_vitales')).click();//vuelvo a la pantalla de signos vitales		  
 		  //Yo sé qué elegí en cada opción...
-		  expect(element(by.selectedOption('$parent.pulso')).getText()).toEqual('80');
-		  expect(element(by.selectedOption('$parent.sistole')).getText()).toEqual('117');
-		  expect(element(by.selectedOption('$parent.temperatura')).getText()).toEqual('37');
-		  expect(element(by.selectedOption('$parent.frecuenciaRespiratoria')).getText()).toEqual('15');		  
+		  expect(element(by.selectedOption('$parent.pulso')).getText()).toEqual('70');
+		  expect(element(by.selectedOption('$parent.sistole')).getText()).toEqual('90');
+		  expect(element(by.selectedOption('$parent.temperatura')).getText()).toEqual('35-37');
+		  expect(element(by.selectedOption('$parent.frecuenciaRespiratoria')).getText()).toEqual('12-15');		  
   });
   
   
@@ -59,11 +59,11 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		        });
 		    }
 		  };
-		  
+		  browser.waitForAngular();
 		  expect($('.bootbox').isPresent()).toBe(false);//el pedido de confirmacion no exite
-		  //selecciono la temperatura en 33
-		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 4);
-		  browser.sleep(500);
+		  //selecciono la temperatura en menos de 35
+		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 1);
+		  browser.waitForAngular();
 		  expect($('.bootbox').isPresent()).toBe(true);//aparece el pedido de confirmacion
 		  
 		  var botonOK = $$('.modal-footer button').get(1);
@@ -71,12 +71,7 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		    browser.waitForAngular();
 
 		    expect(browser.getTitle()).toBe('PRIORIDAD 1');
-		    browser.sleep(500);
-  });
-  
-
-  
-  
+  });  
   
 });
 

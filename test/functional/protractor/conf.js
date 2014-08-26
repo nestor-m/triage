@@ -5,8 +5,8 @@ exports.config = {
   //specs : ['signosVitalesTest.js']
   //specs: ['impresionVisualTest.js']
   //specs : ['pacienteIngresadoTest.js']
-  //specs : ['reporteEsperasTest.js']
+  //specs : ['reporteEsperasTest.js']//TODO: fallo
   //specs : ['ABMSintomasTest.js']
-  specs : ['ABMTiposDeSintomasTest.js']
-  //specs: ['./*']//corre todos los archivos de la carpeta
+  //specs : ['ABMTiposDeSintomasTest.js']
+  specs: ['./*']//corre todos los archivos de la carpeta
 }
