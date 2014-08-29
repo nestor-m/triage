@@ -217,6 +217,20 @@ class PacienteController {
 		}
 		render sintomasVisuales as JSON
 	}
+	
+	/**
+	 * Listo todos los síntomas del paciente.
+	 * @return
+	 */
+	def getSintomas(id){
+		Paciente paciente = Paciente.get(id)
+		List sintomas = new ArrayList()
+		for (s in paciente.sintomas) {
+			sintomas.add(s)
+		}
+		return sintomas
+	}
+	
 
 	/**
 	 * Este método sirve para enviar por JSON
