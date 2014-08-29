@@ -51,10 +51,19 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a id="inicio" href="#"><i class="fa fa-home"></i> Inicio</a></li>
-        <li><a id="reporte_prioridades" href="#reporte_prioridades"><i class="fa fa-shield"></i> Reportes </a></li>
-        <li><a id="reporte_esperas" href="#reporte_tiempo_espera"><i class="fa fa-comment"></i> Reportes II</a></li>
+<%--        <li><a id="reporte_prioridades" href="#reporte_prioridades"><i class="fa fa-shield"></i> Reportes </a></li>--%>
+<%--        <li><a id="reporte_esperas" href="#reporte_tiempo_espera"><i class="fa fa-comment"></i> Reportes II</a></li>--%>
+        
+         <li>          
+            <a id="dropdownMenu1" data-toggle="dropdown" href=""><i class="fa fa-asterisk"></i> Reportes</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a id="reporte_prioridades" role="menuitem" tabindex="-1" href="#reporte_prioridades">Prioridades</a></li>
+                <li role="presentation"><a id="reporte_esperas" role="menuitem" tabindex="-1" href="#reporte_tiempo_espera">Tiempos de espera</a></li>
+              </ul>              
+        </li>
+        
         <li>          
-            <a id="dropdownMenu1" data-toggle="dropdown" href=""><i class="fa fa-asterisk"></i></a>
+            <a id="dropdownMenu1" data-toggle="dropdown" href=""><i class="fa fa-asterisk"></i>Configuraci&oacute;n</a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a id="sintomas" role="menuitem" tabindex="-1" href="#sintomas_list">S&iacute;ntomas</a></li>
                 <li role="presentation"><a id="discriminantes" role="menuitem" tabindex="-1" href="#discriminantesListado">Discriminantes</a></li>

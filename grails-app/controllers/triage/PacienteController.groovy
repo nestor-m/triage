@@ -89,7 +89,7 @@ class PacienteController {
 		 */
 
 		String sql = "SELECT  prioridad, "+
-				"(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60))/count(*) as tiempo "+	
+				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
@@ -104,7 +104,7 @@ class PacienteController {
 		
 		
 		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
-				"(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60))/count(*) as tiempo "+	
+				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion))  / 60))/count(*) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
@@ -115,7 +115,7 @@ class PacienteController {
 			resultado.add(new JSONObject('{"prioridad":' + p[0] +
 					',"tiempo":"' + p[1] + '"}'))
 		}
-
+		
 		render resultado as JSON
 		return resultado
 	}
