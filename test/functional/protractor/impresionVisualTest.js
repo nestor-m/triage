@@ -14,31 +14,26 @@ describe('Test pantalla de ingreso de impresion visual', function() {
 	
 	/*Precond: tengo en la base dos síntomas de impresión visual*/
 	it('chequeo que al ingresar un síntoma y volver a la pantalla, el sintoma sigue cargado', function (){
-		browser.sleep(500);
 		var sintomas = element.all(by.repeater('sintomaImpresionVisual in sintomasImpresionVisual'));
 		//se que el primero del arreglo es deshidratacion de p2
 		expect(sintomas.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
 		sintomas.get(0).click();
-		browser.sleep(1000);
+		browser.waitForAngular();
 		//vuelvo a la pantalla de paciente ingresado /que ya no existe!
 		element(by.buttonText('Aceptar')).click();
-		browser.sleep(500);
+		browser.waitForAngular();
 		var botonOK = $$('.modal-footer button').get(0);
 	    botonOK.click();//confirmo
 	    browser.waitForAngular();
-		browser.sleep(500);
 		
 		element(by.id('signos_vitales')).click();
-		browser.sleep(500);
+		browser.waitForAngular();
 		//ingreso nuevamente a la impresion visual
 		element(by.id('impresion_visual')).click();
-		browser.sleep(500);
-		
+		browser.waitForAngular();		
 		
 		var sintomas2 = element.all(by.repeater('sintomaImpresionVisual in sintomasImpresionVisual'));
-//		 expect(sintomas2.get(0).evaluate()).toBe(true);
-		
-		
+//		 expect(sintomas2.get(0).evaluate()).toBe(true);		
 	})
 	
 	
@@ -55,8 +50,6 @@ describe('Test pantalla de ingreso de impresion visual', function() {
 		    browser.waitForAngular();
 
 		    expect(browser.getTitle()).toBe('PRIORIDAD 1');
-		    browser.sleep(500);
-		
 	})
 	
 })

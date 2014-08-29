@@ -8,7 +8,7 @@ describe('Test pantalla de búsqueda e ingreso de pacientes', function() {
   });
 
   it('el titulo debe ser "Búsqueda e ingreso de pacientes"', function() {
-    expect($$('.page-header h4').get(0).getText()).toBe('Búsqueda e ingreso de pacientes');    
+    expect(element(by.tagName('h4')).getText()).toBe('Búsqueda e ingreso de pacientes');    
   });
 
   it('el boton "buscar" deberia estar desabilitado y el listado vacio', function() {
