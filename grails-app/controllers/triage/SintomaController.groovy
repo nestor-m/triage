@@ -10,7 +10,7 @@ import grails.validation.ValidationException
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 @Transactional //(readOnly = true)
-class SintomaController {
+class SintomaController extends BeforeInterceptorController{
 
 	static allowedMethods = [submitSintomaForm: "POST",
 		ajaxListVisuales: "GET", traerSintomas:"POST",recuperarSintomas:"POST"]
@@ -47,17 +47,17 @@ class SintomaController {
 	*/
 	def recuperarSintomas(){
 		Paciente paciente = Paciente.get(request.JSON.id)		
-		List resultado = new ArrayList()
+/*		List resultado = new ArrayList()
 		for(s in paciente.sintomas){
 			Prioridad prioridad = paciente.esAdulto() ? s.prioridadAdulto : s.prioridadPediatrico			
 			resultado.add(new JSONObject('{"id":' + s.id +
 				                         ',"nombre":"' + s.nombre + '"' +
 										 ',"tipoDeSintoma":"' + s.tipoDeSintoma + '"' +
 										 ',"prioridad":"' + prioridad + '"}'))			
-		}
+		}*/
 		
-		render resultado as JSON
-		return resultado
+		render paciente.sintomas as JSON
+		return paciente.sintomas
 	}
    
    def ajaxListVisuales() {

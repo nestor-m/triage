@@ -2,6 +2,11 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 
 	  beforeEach(function() {
 	      browser.get('http://localhost:8080/triage/');  
+		  element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+	      element(by.model('password')).sendKeys('admin');
+	      element(by.id("ingresar")).click();
+	      browser.waitForAngular();
+	      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes      
 	      element(by.model('nombre')).sendKeys('signos');
 	      element(by.model('apellido')).sendKeys('vitales');
 	      element(by.model('fechaDeNacimiento')).sendKeys('21/03/1987');

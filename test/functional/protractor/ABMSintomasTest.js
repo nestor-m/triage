@@ -7,6 +7,11 @@ describe('Test ABM de sintomas', function() {
 
   beforeEach(function() {
       browser.get('http://localhost:8080/triage/');
+      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+      element(by.model('password')).sendKeys('admin');
+      element(by.id("ingresar")).click();
+      browser.waitForAngular();
+      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
       element(by.id("dropdownMenu1")).click();
       element(by.id("sintomas")).click();
   });

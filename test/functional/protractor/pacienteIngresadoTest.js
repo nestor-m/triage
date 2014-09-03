@@ -3,6 +3,11 @@ describe('Test pantalla paciente ingresado', function() {
   beforeEach(function() {
   	//ingreso el paciente Nestor Muñoz
     browser.get('http://localhost:8080/triage/');  
+    element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+    element(by.model('password')).sendKeys('admin');
+    element(by.id("ingresar")).click();
+    browser.waitForAngular();
+    //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes
     element(by.model('nombre')).sendKeys('nestor');
     element(by.id("botonBuscar")).click();
     browser.waitForAngular();

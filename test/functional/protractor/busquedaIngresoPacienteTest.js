@@ -1,10 +1,17 @@
 describe('Test pantalla de búsqueda e ingreso de pacientes', function() {
 
-  /*PRECONDICION: hay solamente dos pacientes en el listado: NESTOR MUÑOZ y MARCIA TEJEDA. Si se ingresan nuevos pacientes
+  /*PRECONDICION: hay solamente dos pacientes en el listado: NESTOR MUÑOZ y MARCIA TEJEDA. 
+  existe el usuario admin/admin
+  Si se ingresan nuevos pacientes
   es probable que los test dejen de funcionar*/
 
   beforeEach(function() {
       browser.get('http://localhost:8080/triage/');  
+      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+      element(by.model('password')).sendKeys('admin');
+      element(by.id("ingresar")).click();
+      browser.waitForAngular();
+      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes
   });
 
   it('el titulo debe ser "Búsqueda e ingreso de pacientes"', function() {

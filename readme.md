@@ -42,3 +42,25 @@ sudo ln -s /usr/local/share/phantomjs/bin/phantomjs /usr/bin/phantomjs
 Y después Casper con npm:
 
 $ npm install -g casperjs
+
+
+INSTALACIÓN PROTRACTOR
+
+1) Descargar jar de selenium de http://selenium-release.storage.googleapis.com/2.40/selenium-server-standalone-2.40.0.jar
+2) Instalar protractor
+	$npm install -g protractor
+3) Crear archivo de configuracion y test como dice en https://github.com/angular/protractor
+4) Descargar driver para chrome de http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
+5) Descomprimirlo y agregar directorio al $PATH. Para hacerlo ejecutar
+	$gedit ~/.profile	
+
+  y donde diga PATH="$HOME/bin:$PATH" agregar el path al directorio, 
+  ej PATH="$HOME/bin:$PATH:/path/al/directorio/del/archivo/descomprimido"
+  (fuente: http://askubuntu.com/questions/141718/what-is-path-environment-variable-and-how-to-add-it)
+
+6) Levantar selenium, ejecutar
+ $java -jar selenium-server-standalone-2.40.0.jar
+7) Ejecutar test
+ $protractor myConf.js
+
+fuente: https://github.com/angular/protractor

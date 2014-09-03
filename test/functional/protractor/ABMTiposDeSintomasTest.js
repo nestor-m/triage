@@ -2,11 +2,16 @@ describe('Test ABM de tipos de sintomas', function() {
 
   /*PRECONDICION: en el sistema estan cargados los síntomas: “DOLOR SEVERO” y “DESHIDRATACION” 
   del determinante “IMPRESION INICIAL”, y “CONTRACTURA” del determinante “DOLOR MUSCULAR”. 
-  Y los pacientes NESTOR MUÑOZ Y MARCIA TEJEDA
+  Los pacientes NESTOR MUÑOZ Y MARCIA TEJEDA, y el usuario admin/admin
   Si se ingresan nuevos sintomas es probable que los test dejen de funcionar*/
 
   beforeEach(function() {
       browser.get('http://localhost:8080/triage/');
+      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+      element(by.model('password')).sendKeys('admin');
+      element(by.id("ingresar")).click();
+      browser.waitForAngular();
+      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
       element(by.id("dropdownMenu1")).click();
       element(by.id("discriminantes")).click();
   });

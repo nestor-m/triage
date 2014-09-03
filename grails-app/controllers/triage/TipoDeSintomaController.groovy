@@ -8,7 +8,7 @@ import grails.validation.ValidationException
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 @Transactional //(readOnly = true)
-class TipoDeSintomaController {
+class TipoDeSintomaController extends BeforeInterceptorController{
 
 	static allowedMethods = [traerTiposDeSintomas:"POST",submitTipoDeSintomaForm:"POST"]
 
@@ -23,7 +23,6 @@ class TipoDeSintomaController {
 			render TipoDeSintoma.findAll() as JSON
 		}		
 	}
-
 	
 
 	/**

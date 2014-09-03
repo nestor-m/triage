@@ -1,30 +1,42 @@
 var app = angular.module('app', [ 'ngRoute', 'ngGrid', 'checklist-model',
 		'ngCookies', 'ngDropdowns' ]);
 
+app.controller('indexController',function($scope,$location,$http,$cookieStore) {
+	$scope.usuario = $cookieStore.get('usuario');
+
+	$scope.logout = function(){
+		$http.get('usuario/logout').success(function(){
+			$scope.usuario = null;
+			$cookieStore.remove('usuario');
+			$location.path('/');
+		});
+
+	}
+});
+
+//muestra el menu del encabezado, esta funcion se puede llamar desde cualquier controller
+function mostrarMenu(usuario){
+	var indexController = document.querySelector('body');//<body ng-controller="indexController"> 
+	var indexControllerScope = angular.element(indexController).scope();
+    indexControllerScope.usuario = usuario;
+}
+
 app.config(function($routeProvider) {
 	$routeProvider
 
-	.when('/', {
-		templateUrl : 'busqueda_ingreso_paciente.html',
-		controller : 'busquedaController'
+	.when('/',{
+		templateUrl : 'login.html',
+		controller : 'loginController'
 	})
 
-	.when('/datos_maestros', {
-		templateUrl : 'impresion_visual.html',
-		controller : 'impresionVisualController'
+	.when('/busqueda_ingreso_paciente', {
+		templateUrl : 'busqueda_ingreso_paciente.html',
+		controller : 'busquedaController'
 	})
 
 	.when('/reportes', {
 		templateUrl : 'lista_pacientes.html',
 		controller : 'personaController'
-	})
-
-	.when('/paciente_ingreso_previo_adultos', {
-		templateUrl : 'paciente_ingreso_previo_adultos.html'
-	})
-
-	.when('/paciente_ingreso_previo_pediatricos', {
-		templateUrl : 'paciente_ingreso_previo_pediatricos.html'
 	})
 
 	.when('/prioridad1', {
@@ -108,6 +120,31 @@ app.config(function($routeProvider) {
 	});
 });
 
+
+//catch de los errores 401 que tira Grails cuando se intenta hacer algo sin estar logueado
+//fuente: http://blog.thesparktree.com/post/75952317665/angularjs-interceptors-globally-handle-401-and-other
+app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$location){
+    return {
+        response: function(response){
+            if (response.status === 401) {
+                console.log("Response 401");
+            }
+            return response || $q.when(response);
+        },
+        responseError: function(rejection) {
+            if (rejection.status === 401) {
+                console.log("Response Error 401",rejection);
+                $location.path('/');
+            }
+            return $q.reject(rejection);
+        }
+    }
+}])
+.config(['$httpProvider',function($httpProvider) {
+    //Http Intercpetor to check auth failures for xhr requests
+    $httpProvider.interceptors.push('authHttpResponseInterceptor');
+}]);
+
 /** ************************************************************************************** */
 // Este servicio no se usa, pero lo dejo para tenerlo de ejemplo. Se puede usar
 // para pasar data entre controllers pero se pierde la info
@@ -122,6 +159,27 @@ app.config(function($routeProvider) {
  * 
  * this.getPaciente = function(){ return this.paciente; }; });
  */
+
+ /*LOGIN CONTROLLER* ************************************************************************************** */
+
+ app.controller('loginController', function($scope,$http,$location,$cookieStore) {
+
+ 	$scope.falloLogin = false;
+
+	$scope.login = function() {
+		$http.post('usuario/login',{
+			usuario: $scope.nombre,
+			password: $scope.password
+		}).success(function(usuario){
+			$cookieStore.put('usuario',usuario);
+			mostrarMenu(usuario);
+			$location.path('/busqueda_ingreso_paciente');
+		}).error(function(){
+			$scope.falloLogin = true;
+		});		
+	}
+
+});
 
 /** ************************************************************************************** */
 
@@ -177,7 +235,7 @@ app
 								dni : $scope.dni
 							}).success(function(data) {
 								$scope.setPagingData(data, page, pageSize);
-							})
+							});
 
 						}, 100);
 					};
@@ -280,7 +338,7 @@ app
 					};
 				});
 
-/** ****************************************************************************************** */
+/**PACIENTE INGRESADO****************************************************************************************** */
 app
 		.controller(
 				'pacienteIngresadoController',
@@ -332,7 +390,7 @@ app
 					$scope.salir = function() {
 						$cookieStore.remove('pacienteActual');
 						$scope.pacienteActual = null;
-						$location.path("/");
+						$location.path("/busqueda_ingreso_paciente");
 					};
 
 					/* IMPRESION VISUAL */
@@ -347,11 +405,11 @@ app
 								function(data) {
 									$scope.sintomasImpresionVisual = data;
 								});
-						$http.post("paciente/getSintomasVisuales", {
+						/*$http.post("paciente/getSintomasVisuales", {
 							id : $scope.pacienteActual.id
 						}).success(function(data) {
 							$scope.paciente.sintomas = data;
-						});
+						});*/
 					};
 
 					$scope.cargarImpresionVisual = function() {
@@ -365,12 +423,10 @@ app
 										function(data) {
 											// en data viene el paciente
 											if ($scope.esPrioridadUno) {
-												$cookieStore.put(
-														'datosPaciente', data);
+												$cookieStore.put('datosPaciente', data);
 												$location.path("/prioridad1");
 											} else {
-												bootbox
-														.alert("Impresión visual cargada con éxito");
+												bootbox.alert("Impresión visual cargada con éxito");
 											}
 										});
 					};
@@ -378,26 +434,29 @@ app
 					$scope.traerSintomasImpresionVisual();
 
 					$scope.checkImpresionVisual = function(event, sintoma) {
-						if (!event.currentTarget.checked)
-							return;// si se deschequeo no hago nada
-						if (($scope.pacienteActual.esAdulto && sintoma.prioridadAdulto.name == "UNO")
-								|| // es adulto
-								(!$scope.pacienteActual.esAdulto && sintoma.prioridadPediatrico.name == "UNO")) {// es
-							// pediatrico
-							bootbox
-									.confirm(
-											"¿Está seguro que desea ingresar el síntoma?",
-											function(confirma) {
-												if (confirma) {
-													$scope.esPrioridadUno = true;
-													$scope.cargarImpresionVisual();
-												} else {
-													event.currentTarget.checked = false;// si cancela deschequeo el checkbox
-													//y lo saco del array de sintomas de impresion visual agregados
-													var i = $scope.paciente.sintomas.indexOf(sintoma);
-													$scope.paciente.sintomas.splice(i, 1);
-												}
-											});
+						if (!event.currentTarget.checked){//si se deschequeo
+							$scope.borrarSintoma(sintoma);							
+						}else{//si se checkeo
+
+							$scope.sintomas.push(sintoma);
+
+							if (($scope.pacienteActual.esAdulto && sintoma.prioridadAdulto.name == "UNO")
+									|| 
+									(!$scope.pacienteActual.esAdulto && sintoma.prioridadPediatrico.name == "UNO")) {
+								
+								bootbox.confirm("¿Está seguro que desea ingresar el síntoma?",
+												function(confirma) {
+													if (confirma) {
+														$scope.esPrioridadUno = true;
+														$scope.cargarImpresionVisual();
+													} else {
+														event.currentTarget.checked = false;// si cancela deschequeo el checkbox
+														//y lo saco del array de sintomas de impresion visual agregados
+														var i = $scope.paciente.sintomas.indexOf(sintoma);
+														$scope.paciente.sintomas.splice(i, 1);
+													}
+												});
+							}
 						}
 					};
 
@@ -409,15 +468,29 @@ app
 							id : $scope.pacienteActual.id,
 						}).success(function(data) {
 							$scope.sintomas = data;
+							for(var i = 0; i < data.length; i++){
+								if(data[i].tipoDeSintoma.id==1)//si es sintoma de IMPRESION INICIAL
+									$scope.paciente.sintomas.push(data[i]);
+							}							
 						});
 					}
 
 					$scope.recuperarSintomas();
 
-					$scope.borrarSintoma = function(sintoma) {
-						var i = $scope.sintomas.indexOf(sintoma);
-						if (i > -1) {
-							$scope.sintomas.splice(i, 1);
+					$scope.borrarSintoma = function(sintoma) {						
+						for (var i = 0; i < $scope.sintomas.length; i++){//lo elimino de los sintomas q no son de impresion visual
+							if($scope.sintomas[i].id == sintoma.id){
+								$scope.sintomas.splice(i, 1);
+								break;
+							}
+						}
+						if(sintoma.tipoDeSintoma.id == 1){//si es sintoma de IMPRESION INICIAL
+							for (var i = 0; i < $scope.paciente.sintomas.length; i++){//lo elimino de los sintomas de impresion visual
+								if($scope.paciente.sintomas[i].id == sintoma.id){
+									$scope.paciente.sintomas.splice(i, 1);
+									break;
+								}
+							}
 						}
 					};
 
@@ -484,6 +557,14 @@ app
 						}
 						if (!repetido) {
 							$scope.sintomas.push(row.entity);
+							if(row.entity.tipoDeSintoma == 'IMPRESION INICIAL'){//si es de impresion inicial tambien lo chequeo en la pantalla de impresion inicial
+								for (var i = 0; i < $scope.sintomasImpresionVisual.length; i++) {
+									if($scope.sintomasImpresionVisual[i].id==row.entity.id){
+										$scope.paciente.sintomas.push($scope.sintomasImpresionVisual[i]);
+										break;
+									}
+								}								
+							}								
 						}
 					};
 

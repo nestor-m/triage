@@ -14,7 +14,7 @@ import org.hibernate.criterion.CriteriaSpecification
 import org.hibernate.criterion.Projection
 
 @Transactional //(readOnly = true)
-class PacienteController {
+class PacienteController extends BeforeInterceptorController{
 
 	//esta variable restringe con que metodos HTTP pueden ser llamados los metodos de la clase.
 	//Si no se especifica, los metodos de la clase pueden ser invocados por cualquier metodo HTTP
@@ -209,14 +209,14 @@ class PacienteController {
 	 * del paciente marcados.
 	 * @return
 	 */
-	def getSintomasVisuales(){
+	/*def getSintomasVisuales(){
 		Paciente paciente = Paciente.get(request.JSON.id)
 		List sintomasVisuales = new ArrayList()
 		for (s in paciente.sintomas) {
 			sintomasVisuales.add(s)
 		}
-		render sintomasVisuales as JSON
-	}
+		render paciente.sintomas as JSON
+	}*/
 
 	/**
 	 * Este método sirve para enviar por JSON

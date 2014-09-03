@@ -1,7 +1,12 @@
 describe('Test pantalla de ingreso de impresion visual', function() {
 
 	beforeEach(function() {
-	      browser.get('http://localhost:8080/triage/');  
+	      browser.get('http://localhost:8080/triage/');
+	      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+	      element(by.model('password')).sendKeys('admin');
+	      element(by.id("ingresar")).click();
+	      browser.waitForAngular();
+	      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes
 	      element(by.model('nombre')).sendKeys('nestor');
 	      element(by.id("botonBuscar")).click();
 	      browser.waitForAngular();
@@ -13,6 +18,7 @@ describe('Test pantalla de ingreso de impresion visual', function() {
 	
 	
 	/*Precond: tengo en la base dos síntomas de impresión visual*/
+	//a veces anda y a veces no
 	it('chequeo que al ingresar un síntoma y volver a la pantalla, el sintoma sigue cargado', function (){
 		var sintomas = element.all(by.repeater('sintomaImpresionVisual in sintomasImpresionVisual'));
 		//se que el primero del arreglo es deshidratacion de p2

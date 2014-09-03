@@ -1,12 +1,16 @@
 describe('Test pantalla de reporte de tiempo de espera', function() {
 	beforeEach(function() {
 	      browser.get('http://localhost:8080/triage/');  
-	      browser.sleep(2000);
+	      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+	      element(by.model('password')).sendKeys('admin');
+	      element(by.id("ingresar")).click();
+	      browser.waitForAngular();
+	      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
 	  });
 	
 	it('Ingreso a la pantalla del reporte', function(){
 		element(by.id("reporte_esperas")).click();
-		browser.sleep(2000);
+		browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');
 	})
 	
@@ -25,19 +29,19 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 		element(by.buttonText('Aceptar')).click();
 		
 		var botonOK = $$('.modal-footer button').get(0);
-	    browser.sleep(1000);
+	    browser.waitForAngular();
 	    botonOK.click();//confirmo
-	    browser.sleep(1000);
+	    browser.waitForAngular();
 		
 		element(by.buttonText('Salir')).click();
 		
 		
 		browser.get('http://localhost:8080/triage/');
 		element(by.id('pacientes_espera')).click();
-		browser.sleep(500);
+		browser.waitForAngular();
 		element(by.model('nombre')).sendKeys('nestor');
 		element(by.id("botonBuscar")).click();
-		browser.sleep(500);	
+		browser.waitForAngular();	
 		
 		element(by.buttonText('Finalizar')).click();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/finalizar_paciente');
@@ -45,12 +49,12 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 	    expect(nombre.getText()).toBe('Nombre y apellido: NESTOR MUÑOZ');
 	    
 	    element.all(by.model('opciones')).get(0).click();
-	    browser.sleep(1000);
+	    browser.waitForAngular();
 	    element(by.buttonText('Finalizar')).click();
 	    var botonOK = $$('.modal-footer button').get(1);
-	    browser.sleep(1000);
+	    browser.waitForAngular();
 	    botonOK.click();
-	    browser.sleep(1000);
+	    browser.waitForAngular();
 		
 	    
 	    element(by.id("reporte_esperas")).click();
@@ -61,7 +65,7 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 		element(by.model('fechaHasta')).sendKeys('30/07/2014');
 		
 		 element(by.buttonText('Generar')).click();
-		 browser.sleep(1500);
+		 browser.waitForAngular();
 		 
 		 
 		//hay elementos en la tabla

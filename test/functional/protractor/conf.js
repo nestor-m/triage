@@ -8,5 +8,5 @@ exports.config = {
   //specs : ['reporteEsperasTest.js']//TODO: fallo
   //specs : ['ABMSintomasTest.js']
   //specs : ['ABMTiposDeSintomasTest.js']
-  specs: ['./*']//corre todos los archivos de la carpeta
+  //specs: ['./*']//corre todos los archivos de la carpeta
 }
