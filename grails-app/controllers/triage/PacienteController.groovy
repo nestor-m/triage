@@ -89,7 +89,7 @@ class PacienteController extends BeforeInterceptorController{
 		 */
 
 		String sql = "SELECT  prioridad, "+
-				"(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60))/count(*) as tiempo "+	
+				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
@@ -104,7 +104,7 @@ class PacienteController extends BeforeInterceptorController{
 		
 		
 		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
-				"(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60))/count(*) as tiempo "+	
+				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion))  / 60))/count(*) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
@@ -115,7 +115,7 @@ class PacienteController extends BeforeInterceptorController{
 			resultado.add(new JSONObject('{"prioridad":' + p[0] +
 					',"tiempo":"' + p[1] + '"}'))
 		}
-
+		
 		render resultado as JSON
 		return resultado
 	}
@@ -202,21 +202,19 @@ class PacienteController extends BeforeInterceptorController{
 
 		render request.JSON
 	}
-
-
+	
 	/**
-	 * Este método sirve para enviar por JSON todos los síntomas visuales
-	 * del paciente marcados.
+	 * Listo todos los síntomas del paciente.
 	 * @return
 	 */
-	/*def getSintomasVisuales(){
-		Paciente paciente = Paciente.get(request.JSON.id)
-		List sintomasVisuales = new ArrayList()
+	def getSintomas(id){
+		Paciente paciente = Paciente.get(id)
+		List sintomas = new ArrayList()
 		for (s in paciente.sintomas) {
-			sintomasVisuales.add(s)
+			sintomas.add(s)
 		}
-		render paciente.sintomas as JSON
-	}*/
+		return sintomas
+	}
 
 	/**
 	 * Este método sirve para enviar por JSON

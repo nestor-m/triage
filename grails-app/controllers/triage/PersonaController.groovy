@@ -114,6 +114,7 @@ class PersonaController extends BeforeInterceptorController{
 		for (atencion in consultaAtenciones) {
 			String prioridad = traerPrioridad(atencion[0]);
 			String fecha = new SimpleDateFormat("dd-MM-yyyy").format(atencion[2]);
+//			List sintomas = Paciente.getSintomas(atencion[1])
 			atencionesResp.add(new JSONObject('{"id":' + atencion[1] +
 				',"prioridad":"' + prioridad + '"' +
 				',"fechaAtencion":' + fecha +
@@ -123,6 +124,7 @@ class PersonaController extends BeforeInterceptorController{
 				',"glucosa":' + atencion[7] +
 				',"pulso":' + atencion[8] +
 				',"saturacion":' + atencion[9] +
+//				',"sintomas":' + sintomas +
 				',"tipoAtencion":"' + atencion[10]+ '"}'))
 		}
 		
