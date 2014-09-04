@@ -107,6 +107,8 @@ class PersonaController extends BeforeInterceptorController{
 		
 		String sql = "SELECT p.prioridad, p.id, p.fechaHoraAtencion, p.diastole, p.sistole, p.temperatura, "+
 						"p.frecuenciaRespiratoria, p.glucosa, p.pulso, p.saturacionO2, p.tipoAtencion FROM Paciente p where persona_id = "+persona.id
+						
+		
 		
 		List consultaAtenciones = Paciente.executeQuery(sql)
 		List atencionesResp = new ArrayList()
@@ -114,7 +116,7 @@ class PersonaController extends BeforeInterceptorController{
 		for (atencion in consultaAtenciones) {
 			String prioridad = traerPrioridad(atencion[0]);
 			String fecha = new SimpleDateFormat("dd-MM-yyyy").format(atencion[2]);
-//			List sintomas = Paciente.getSintomas(atencion[1])
+			String sintomas = traerSintomas(atencion[1])
 			atencionesResp.add(new JSONObject('{"id":' + atencion[1] +
 				',"prioridad":"' + prioridad + '"' +
 				',"fechaAtencion":' + fecha +
@@ -124,7 +126,7 @@ class PersonaController extends BeforeInterceptorController{
 				',"glucosa":' + atencion[7] +
 				',"pulso":' + atencion[8] +
 				',"saturacion":' + atencion[9] +
-//				',"sintomas":' + sintomas +
+				',"sintomas":' + sintomas +
 				',"tipoAtencion":"' + atencion[10]+ '"}'))
 		}
 		
@@ -132,6 +134,20 @@ class PersonaController extends BeforeInterceptorController{
 		
 		request.JSON.atenciones = atencionesResp
 		render request.JSON as JSON
+	}
+	
+	def traerSintomas (Long nid){
+		Paciente p = Paciente.get(nid)
+		List sintomas = new ArrayList()
+		String ss = ""
+		for (s in p.sintomas) {
+			sintomas.add(s.nombre)
+			ss = ss+" - "+(s.nombre)
+		}
+		
+		return ss
+		
+		
 	}
 	
 	String traerPrioridad (Prioridad p){
