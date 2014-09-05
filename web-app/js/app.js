@@ -405,7 +405,7 @@ app
 								function(data) {
 									$scope.sintomasImpresionVisual = data;
 								});
-						/*$http.post("paciente/getSintomasVisuales", {
+						/*$http.post("paciente/getSintomasVisuales", {//ya no se usa, ahora trae todo recuperarSintomas
 							id : $scope.pacienteActual.id
 						}).success(function(data) {
 							$scope.paciente.sintomas = data;

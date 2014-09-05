@@ -23,7 +23,6 @@ class PacienteController extends BeforeInterceptorController{
 		,cargarSintomasYResponder: "POST"
 		,cargarSignosVitalesYResponder: "POST"
 		,cargarSintomas: "POST"
-		,getSintomasVisuales: "POST"
 		,getSignosVitales: "POST"
 		,finalizarTriage: "POST"
 		,ajaxBuscarNoFinalizados: "POST"
