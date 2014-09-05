@@ -24,6 +24,7 @@ class PacienteController extends BeforeInterceptorController{
 		,cargarSignosVitalesYResponder: "POST"
 		,cargarSintomas: "POST"
 		,getSignosVitales: "POST"
+		,getSintomas: "POST"
 		,finalizarTriage: "POST"
 		,ajaxBuscarNoFinalizados: "POST"
 		,finalizarPaciente: "POST"
@@ -206,13 +207,13 @@ class PacienteController extends BeforeInterceptorController{
 	 * Listo todos los síntomas del paciente.
 	 * @return
 	 */
-	def getSintomas(id){
-		Paciente paciente = Paciente.get(id)
+	def getSintomas(){
+		Paciente paciente = Paciente.get(request.JSON.id)
 		List sintomas = new ArrayList()
 		for (s in paciente.sintomas) {
 			sintomas.add(s)
 		}
-		return sintomas
+		render sintomas as JSON
 	}
 
 	/**

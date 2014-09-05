@@ -58,6 +58,7 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a id="reporte_prioridades" role="menuitem" tabindex="-1" href="#reporte_prioridades">Prioridades</a></li>
                 <li role="presentation"><a id="reporte_esperas" role="menuitem" tabindex="-1" href="#reporte_tiempo_espera">Tiempos de espera</a></li>
+                 <li role="presentation"><a id="busqueda_personas" role="menuitem" tabindex="-1" href="#busqueda_personas">B&uacute;squeda de personas</a></li>
               </ul>              
         </li>
         <li ng-hide="usuario.rol.name!='ADMINISTRADOR'">          
