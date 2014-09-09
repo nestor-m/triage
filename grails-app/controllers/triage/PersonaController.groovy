@@ -13,7 +13,7 @@ import grails.transaction.Transactional
 import java.text.SimpleDateFormat
 
 @Transactional //(readOnly = true) esto me hizo romper la cabeza durante unas cuantas horas :(
-class PersonaController extends BeforeInterceptorController{
+class PersonaController extends LoginController{
 
     static allowedMethods = [save: "POST"
 								, update: "PUT"

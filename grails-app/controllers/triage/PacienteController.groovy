@@ -14,7 +14,7 @@ import org.hibernate.criterion.CriteriaSpecification
 import org.hibernate.criterion.Projection
 
 @Transactional //(readOnly = true)
-class PacienteController extends BeforeInterceptorController{
+class PacienteController extends LoginController{
 
 	//esta variable restringe con que metodos HTTP pueden ser llamados los metodos de la clase.
 	//Si no se especifica, los metodos de la clase pueden ser invocados por cualquier metodo HTTP

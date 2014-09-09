@@ -10,7 +10,7 @@ import grails.validation.ValidationException
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 @Transactional //(readOnly = true)
-class SintomaController extends BeforeInterceptorController{
+class SintomaController extends LoginController{
 
 	static allowedMethods = [submitSintomaForm: "POST",
 		ajaxListVisuales: "GET", traerSintomas:"POST",recuperarSintomas:"POST"]
@@ -81,6 +81,12 @@ class SintomaController extends BeforeInterceptorController{
    */
    @Transactional
    def submitSintomaForm(){
+   		if(session.user.rol != Rol.ADMINISTRADOR){//valido que el usuario tenga rol ADMINISTRADOR
+   			response.status = 401
+   			render 'Usted no tiene permiso para crear o actualizar un sintoma' //respondo algo para que no me tire error 404
+   			return
+   		}
+
    		def id = request.JSON.id
    		def nombre = request.JSON.nombre.toUpperCase()
    		def tipoDeSintomaId = request.JSON.tipoDeSintomaId
