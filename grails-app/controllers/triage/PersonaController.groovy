@@ -106,10 +106,9 @@ class PersonaController extends LoginController{
 		request.JSON.nroAfiliado = persona.nroAfiliado
 		
 		String sql = "SELECT p.prioridad, p.id, p.fechaHoraAtencion, p.diastole, p.sistole, p.temperatura, "+
-						"p.frecuenciaRespiratoria, p.glucosa, p.pulso, p.saturacionO2, p.tipoAtencion FROM Paciente p where persona_id = "+persona.id
+						"p.frecuenciaRespiratoria, p.glucosa, p.pulso, p.saturacionO2,"+
+						" p.tipoAtencion FROM Paciente p where  finalizado = TRUE and persona_id = "+persona.id
 						
-		
-		
 		List consultaAtenciones = Paciente.executeQuery(sql)
 		List atencionesResp = new ArrayList()
 		
@@ -117,6 +116,7 @@ class PersonaController extends LoginController{
 			String prioridad = traerPrioridad(atencion[0]);
 			String fecha = new SimpleDateFormat("dd-MM-yyyy").format(atencion[2]);
 			String sintomas = traerSintomas(atencion[1])
+			String tipoAtencion = traerTipoAtencion(atencion[10])
 			atencionesResp.add(new JSONObject('{"id":' + atencion[1] +
 				',"prioridad":"' + prioridad + '"' +
 				',"fechaAtencion":' + fecha +
@@ -127,13 +127,25 @@ class PersonaController extends LoginController{
 				',"pulso":' + atencion[8] +
 				',"saturacion":' + atencion[9] +
 				',"sintomas":' + sintomas +
-				',"tipoAtencion":"' + atencion[10]+ '"}'))
+				',"tipoAtencion":"' + tipoAtencion+ '"}'))
 		}
 		
 		println atencionesResp
 		
 		request.JSON.atenciones = atencionesResp
 		render request.JSON as JSON
+	}
+	
+	def traerTipoAtencion(Long nta){
+		switch(nta){
+			 case 1:
+			 	return "Ingresa"
+			 case 2:
+			 	return "Consultorio externo"
+			 case 3:
+			 	return "Retira sin atención"
+		}
+			
 	}
 	
 	def traerSintomas (Long nid){
