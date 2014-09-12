@@ -1,0 +1,40 @@
+<title>Formulario de usuario</title>
+
+<body>
+	<h3 style="text-align: center"><strong>Detalle de usuario</strong></h3>
+
+	<hr/>
+
+	<form class="form-horizontal" role="form" ng-submit="submit()">
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Nombre</label>
+			<div class="col-sm-5">
+				<input type="text" ng-model="usuario.nombre" class="form-control"/>				
+			</div>
+			<span class="error" ng-show="usuario.nombre == undefined || usuario.nombre == ''" style="color:red;">*</span>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label">Rol</label>
+			<div class="col-sm-5">
+				<select ng-model="usuario.rol" class="form-control" id="rol">
+					<option value="">-- Seleccionar --</option>
+				    <option id="rolAdministrador" value="ADMINISTRADOR">ADMINISTRADOR</option>
+  					<option value="USUARIO">USUARIO</option>
+				</select>				
+			</div>
+			<span class="error" ng-show="usuario.rol == undefined || usuario.rol == ''" style="color:red;">*</span>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-10">
+				<p style="text-align: center">
+					<input id="aceptar" type="submit" class="btn btn-success" value="Aceptar" ng-disabled="usuario.rol==null || usuario.rol =='' || usuario.nombre==null || usuario.nombre==''"/>
+				</p>
+			</div>
+		</div>
+
+	</form>
+
+</body>

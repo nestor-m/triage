@@ -1,0 +1,25 @@
+<title>Listado de usuarios</title>
+<body>
+  <div class="page-header" style="text-align: center">
+    <h3><b>Listado de usuarios</b></h3>
+  </div>
+
+   <div id="alert" class="alert alert-success alertStyle" role="alert">Usuario eliminado con &eacute;xito</div>
+
+  <div class="row">
+      <div class="col-md-2 col-md-offset-4">
+        <input type="text" class="form-control" ng-model="nombre" ng-blur="filtrarListadoDeUsuarios()" placeholder="Usuario"/>
+      </div>
+      <div class="col-md-1">
+        <input type="button" id="buscar" value="Buscar" class="btn btn-primary btn-sm" ng-click="filtrarListadoDeUsuarios()"/>
+      </div>
+      <div class="col-md-1">
+        <a id="nuevo" class="btn btn-success btn-sm active" role="button" ng-click="nuevoUsuario()"><i class="fa fa-plus-circle"/> Nuevo</a>
+      </div>
+ </div>
+
+ <br>
+
+   <div class="gridStyle" ng-grid="gridOptions" style="height: 400px;"> </div>
+
+</body>

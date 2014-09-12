@@ -117,7 +117,25 @@ app.config(function($routeProvider) {
 	.when('/discriminantesForm', {
 		templateUrl : 'tiposDeSintomaForm.html',
 		controller : 'tiposDeSintomaFormController'
+	})
+
+	//ABM usuarios
+	.when('/usuariosListado', {
+		templateUrl : 'usuariosListado.html',
+		controller : 'usuariosListadoController'
+	})
+
+	.when('/usuariosForm', {
+		templateUrl : 'usuariosForm.html',
+		controller : 'usuariosFormController'
+	})
+
+	//CAMBIAR PASSWORD
+	.when('/cambiarPassword',{
+		templateUrl : 'cambiarPassword.html',
+		controller : 'cambiarPasswordController'
 	});
+
 });
 
 
@@ -199,8 +217,7 @@ app.controller('personaController', function($scope, $http) {
 
 /** ******************************************************************************************************* */
 
-app
-		.controller(
+app.controller(
 				'busquedaController',
 				function($scope, $http, $location, $cookieStore/* ,$locale */) {
 
@@ -339,8 +356,7 @@ app
 				});
 
 /**PACIENTE INGRESADO****************************************************************************************** */
-app
-		.controller(
+app.controller(
 				'pacienteIngresadoController',
 				function($scope, $cookieStore, $http, $location) {
 
@@ -936,8 +952,7 @@ app.directive('datosPaciente', function() {
 });
 
 /** ****************************************************************************************** */
-app
-		.controller(
+app.controller(
 				'pacientesEsperaController',
 				function($scope, $location, $cookieStore, $http) {
 
@@ -1057,8 +1072,7 @@ app
  * ***************************** FINALIZAR PACIENTE *
  * *********************************************
  */
-app
-		.controller(
+app.controller(
 				'finalizarPacienteController',
 				function($scope, $location, $cookieStore, $http) {
 
@@ -1135,7 +1149,8 @@ app
 });
 
 /*ABM SINTOMAS*/
-//LISTADO
+/**LISTADO DE SINTOMAS*************************************/
+/**Esta es la pantalla del listado, el listado en si se define en una directiva mas abajo en el codigo*/
 app.controller('sintomasListadoController',function($scope, $location, $cookieStore, $http,$rootScope){
 
 	$scope.nuevoSintoma = function(){
@@ -1150,7 +1165,7 @@ app.controller('sintomasListadoController',function($scope, $location, $cookieSt
 
 });
 
-//FORMULARIO SINTOMAS
+/**FORMULARIO SINTOMAS*****************************************************/
 app.controller('sintomasFormularioController',function($scope, $location, $cookieStore, $http){
 
 	$scope.tiposDeSintomas = [];
@@ -1193,8 +1208,8 @@ app.controller('sintomasFormularioController',function($scope, $location, $cooki
 
 });
 
-//ABM tiposDeSintoma
-//Listado de tipos de sintoma
+/**ABM tiposDeSintoma************************************************/
+/**LISTADO DE TIPOS DE SINTOMA******************************************/
 app.controller('tiposDeSintomaListController',function($scope, $location, $cookieStore, $http){
 
 	$scope.totalServerItems = 0;
@@ -1277,7 +1292,7 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 
 });
 
-//Formulario de tipos de sintoma
+/**FORMULARIO DE TIPOS DE SINTOMA*****************/
 app.controller('tiposDeSintomaFormController',function($scope, $location, $cookieStore, $http){
 
 	$scope.tipoDeSintoma = $cookieStore.get('detalleTipoDeSintoma');//lleno el formulario si se presiono el boton ver detalle 
@@ -1295,7 +1310,7 @@ app.controller('tiposDeSintomaFormController',function($scope, $location, $cooki
 
 });
 
-/*****************************************************************/
+/**LISTADO DE SINTOMAS***************************************************************/
 app.directive('sintomasListado',function(){//creo una directiva para evitar repetir el codigo del listado de sintomas en el detalle del discriminante
 
 	return{
@@ -1390,10 +1405,7 @@ app.directive('sintomasListado',function(){//creo una directiva para evitar repe
 });
 
 
-
 /****************************LISTADO DE PERSONAS*****************************/
-
-
 
 app.controller('busquedaPersonasController',function($scope, $location, $cookieStore, $http){
 	$scope.totalServerItems = 0;
@@ -1495,7 +1507,6 @@ app.controller('busquedaPersonasController',function($scope, $location, $cookieS
 			width : 70
 		} ]
 	};
-
 	
 });
 
@@ -1505,6 +1516,172 @@ app.controller('busquedaPersonasController',function($scope, $location, $cookieS
 app.controller('detallePersonaController',function($scope, $location, $cookieStore, $http){
 	$scope.personaActual = $cookieStore.get('personaActual');
 	console.log($scope.personaActual.atenciones);
+});
+
+/**ABM USUARIOS************************************/
+app.controller('usuariosListadoController',function($scope, $location, $cookieStore, $http){
+
+	$scope.totalServerItems = 0;
+
+	$scope.pagingOptions = {
+		pageSizes : [ 10, 15, 20 ],
+		pageSize : 10,
+		currentPage : 1
+	};
+
+	$scope.setPagingData = function(data, page, pageSize) {
+		var pagedData = data.slice((page - 1) * pageSize, page
+				* pageSize);
+		$scope.myData = pagedData;
+		$scope.totalServerItems = data.length;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	};
+
+	$scope.getPagedDataAsync = function(pageSize, page) {
+		setTimeout(function() {
+			$http.post('usuario/traerUsuarios', {
+				nombre : $scope.nombre
+			}).success(function(data) {
+				$scope.setPagingData(data, page, pageSize);
+			})
+
+		}, 100);
+	};
+
+	$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+			$scope.pagingOptions.currentPage);
+
+	$scope.botonVerDetalle = '<a id="verDetalle" ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
+	$scope.botonEliminar = '<a style="color:red" ng-click="eliminarUsuario(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar" ng-hide="usuario.nombre==row.entity.nombre"/> </a>';
+
+	$scope.verDetalle = function(row){
+		$cookieStore.put('detalleUsuario',row.entity);
+		$location.path('/usuariosForm');
+	}
+
+	$scope.nuevoUsuario = function(){
+		$cookieStore.remove('detalleUsuario');
+		$location.path('/usuariosForm');
+	}
+
+	$scope.eliminarUsuario = function(row){
+		bootbox.confirm('¿Está seguro que quiere eliminar el usuario ' + row.entity.nombre + '?',
+			function(confirma){
+				if(confirma){
+					$http.post("usuario/eliminarUsuario",{
+						id:row.entity.id
+					}).success(function(data) {
+							$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
+							quitarUsuarioDelListado(row.entity.id);
+						});
+				}
+			});
+	}
+
+	function quitarUsuarioDelListado(id){
+		var indiceABorrar;
+		for(var i=0; i<$scope.myData.length; i++){
+			if($scope.myData[i].id == id){
+				indiceABorrar = i;
+				break;
+			}
+		}
+		$scope.myData.splice(indiceABorrar,1);		
+		$scope.totalServerItems--;
+		if (!$scope.$$phase) {
+			$scope.$apply();
+		}
+	}
+
+	$scope.$watch('pagingOptions', function(newVal, oldVal) {
+		if (newVal !== oldVal
+				&& newVal.currentPage !== oldVal.currentPage) {
+			$scope.getPagedDataAsync(
+					$scope.pagingOptions.pageSize,
+					$scope.pagingOptions.currentPage);
+		}
+	}, true);
+
+	$scope.gridOptions = {
+		data : 'myData',
+		enablePaging : true,
+		showFooter : true,
+		enableColumnResize : true,
+		totalServerItems : 'totalServerItems',
+		pagingOptions : $scope.pagingOptions,
+		columnDefs : [ {
+			field : 'id',
+			visible : false
+		}, {
+			field : 'nombre',
+			displayName : 'Usuario',
+			width : '90%'
+		}, {
+			cellTemplate : $scope.botonVerDetalle,
+			width : '5%'
+		}, {
+			cellTemplate : $scope.botonEliminar,
+			width : '5%'
+		} ]
+	};
+
+	$scope.filtrarListadoDeUsuarios = function() {
+		$scope.getPagedDataAsync($scope.pagingOptions.pageSize,
+				$scope.pagingOptions.currentPage);
+	};
+
+});
+
+/**FORMULARIO DE USUARIOS*************************/
+app.controller('usuariosFormController',function($scope, $location, $cookieStore, $http){
+
+	$scope.usuario = $cookieStore.get('detalleUsuario');//lleno el formulario si se presiono el boton ver detalle 
+
+	if($scope.usuario != null){
+		$scope.usuario.rol = $scope.usuario.rol.name;//pongo el nombre del objeto rol para cargar el formulario
+	};
+
+	$scope.submit = function(){
+		$http.post('usuario/submit',{
+			usuario : $scope.usuario
+		}).success(function(data){
+			bootbox.alert(data);			
+			$scope.usuario = null;//limpio el formulario
+		});
+	};
+
+});
+
+
+/**CAMBIAR PASSWORD*************************/
+app.controller('cambiarPasswordController',function($scope, $location, $cookieStore, $http){
+
+	$(document).ready(function(){//evito con jquery que se pueda copypastear en el campo Repita nueva password
+      $('#repite').bind("cut copy paste",function(e) {
+          e.preventDefault();
+      });
+    });
+
+	$scope.pass = {};
+
+	$scope.chequearLargo = function(){
+		$scope.passDemasiadoCorta = $scope.pass.nueva.length < 6;
+	};
+
+	$scope.submit = function(){
+		$http.post('usuario/cambiarPass',{
+			usuario : $scope.usuario,//usuario logueado
+			pass : $scope.pass
+		}).success(function(data){
+			bootbox.alert(data);			
+			$location.path('/busqueda_ingreso_paciente');
+		}).error(function(data){
+			bootbox.alert(data);
+		});
+	};
+
 });
 
 
