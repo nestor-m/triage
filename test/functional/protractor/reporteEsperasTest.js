@@ -1,14 +1,11 @@
 describe('Test pantalla de reporte de tiempo de espera', function() {
-	beforeEach(function() {
-	      browser.get('http://localhost:8080/triage/');  
-	      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
-	      element(by.model('password')).sendKeys('admin');
-	      element(by.id("ingresar")).click();
-	      browser.waitForAngular();
-	      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
-	  });
 	
 	it('Ingreso a la pantalla del reporte', function(){
+		browser.get('http://localhost:8080/triage/');  
+	    element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+	    element(by.model('password')).sendKeys('admin');
+	    element(by.id("ingresar")).click();
+	    browser.waitForAngular();
 		element(by.id("reporte_esperas")).click();
 		browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');

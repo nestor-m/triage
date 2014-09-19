@@ -1,12 +1,15 @@
 	describe('Test pantalla de pacientes en espera', function() {
 	beforeEach(function() {
 	      browser.get('http://localhost:8080/triage/');  
+	      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+	      element(by.model('password')).sendKeys('admin');
+	      element(by.id("ingresar")).click();
+	      browser.waitForAngular();
 	      element(by.model('nombre')).sendKeys('nestor');
 	      element(by.id("botonBuscar")).click();
 	      browser.waitForAngular();
 	      element(by.buttonText('Ingresar')).click();
-	      browser.waitForAngular();
-	      
+	      browser.waitForAngular();	      
 	  });
 	
 	/**
@@ -20,12 +23,12 @@
 		expect(sintomas.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
 		sintomas.get(0).click();
 		element(by.buttonText('Salir')).click();
-		browser.sleep(500);
-		element(by.id('pacientes_espera')).click();
-		browser.sleep(500);
+		browser.waitForAngular();
+		element(by.id('espera')).click();
+		browser.waitForAngular();
 		element(by.model('nombre')).sendKeys('nestor');
 		element(by.id("botonBuscar")).click();
-		browser.sleep(500);
+		browser.waitForAngular();
 		element(by.buttonText('Triage')).click();
 		var nombre = element(by.binding('pacienteActual.nombre'));
 	    expect(nombre.getText()).toBe('NESTOR MUÑOZ');
@@ -43,12 +46,12 @@
 		expect(sintomas.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
 		sintomas.get(0).click();
 		element(by.buttonText('Salir')).click();
-		browser.sleep(500);
-		element(by.id('pacientes_espera')).click();
-		browser.sleep(500);
+		browser.waitForAngular();
+		element(by.id('espera')).click();
+		browser.waitForAngular();
 		element(by.model('nombre')).sendKeys('nestor');
 		element(by.id("botonBuscar")).click();
-		browser.sleep(500);
+		browser.waitForAngular();
 		
 		element(by.buttonText('Finalizar')).click();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/finalizar_paciente');
@@ -56,15 +59,12 @@
 	    expect(nombre.getText()).toBe('Nombre y apellido: NESTOR MUÑOZ');
 	    //clickeo en "Ingresa"
 	    element.all(by.model('opciones')).get(0).click();
-	    browser.sleep(1000);
+	    browser.waitForAngular();
 	    element(by.buttonText('Finalizar')).click();
 	    var botonOK = $$('.modal-footer button').get(1);
-	    browser.sleep(1000);
 	    botonOK.click();//confirmo
 	    browser.sleep(1000);
 	    expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/pacientes_espera');	    
 	})
-	
-	
 	
 })

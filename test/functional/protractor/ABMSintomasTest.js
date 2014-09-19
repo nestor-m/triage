@@ -12,7 +12,7 @@ describe('Test ABM de sintomas', function() {
       element(by.id("ingresar")).click();
       browser.waitForAngular();
       //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
-      element(by.id("dropdownMenu1")).click();
+      element(by.id("dropdownConfiguracion")).click();
       element(by.id("sintomas")).click();
   });
   
@@ -85,7 +85,7 @@ describe('Test ABM de sintomas', function() {
     browser.waitForAngular();
 
     //voy hacia el listado de sintomas
-    element(by.id("dropdownMenu1")).click();
+    element(by.id("dropdownConfiguracion")).click();
     element(by.id("sintomas")).click();
     //filtro el listado
     element(by.id('sintoma')).sendKeys('un nuevo sintoma');

@@ -1,9 +1,15 @@
 describe('Test reporte de prioridades', function() {
+
 	beforeEach(function() {
-	      browser.get('http://localhost:8080/triage/');  
+	      browser.get('http://localhost:8080/triage/');
+	      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+	      element(by.model('password')).sendKeys('admin');
+	      element(by.id("ingresar")).click();
 	      browser.waitForAngular();
-	  });
+	});
+
 	it('Testeo que existe la pantalla del reporte', function(){
+		element(by.id("dropdownMenu1")).click();
 		element(by.id("reporte_prioridades")).click();
 		browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_prioridades');
@@ -24,19 +30,17 @@ describe('Test reporte de prioridades', function() {
 		element(by.buttonText('Aceptar')).click();
 		
 		var botonOK = $$('.modal-footer button').get(0);
-	    browser.sleep(1000);
 	    botonOK.click();//confirmo
 	    browser.sleep(1000);
 		
-		element(by.buttonText('Salir')).click();
-		
+		element(by.buttonText('Salir')).click();		
 		
 		browser.get('http://localhost:8080/triage/');
-		element(by.id('pacientes_espera')).click();
-		browser.sleep(500);
+		element(by.id('espera')).click();
+	    browser.waitForAngular();
 		element(by.model('nombre')).sendKeys('nestor');
 		element(by.id("botonBuscar")).click();
-		browser.sleep(500);	
+	    browser.waitForAngular();
 		
 		element(by.buttonText('Finalizar')).click();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/finalizar_paciente');
@@ -44,14 +48,14 @@ describe('Test reporte de prioridades', function() {
 	    expect(nombre.getText()).toBe('Nombre y apellido: NESTOR MUÑOZ');
 	    
 	    element.all(by.model('opciones')).get(0).click();
-	    browser.sleep(1000);
+	    browser.waitForAngular();
 	    element(by.buttonText('Finalizar')).click();
 	    var botonOK = $$('.modal-footer button').get(1);
-	    browser.sleep(1000);
 	    botonOK.click();
 	    browser.sleep(1000);
 	    expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/pacientes_espera');	
-	    
+
+   		element(by.id("dropdownMenu1")).click();
 	    element(by.id("reporte_prioridades")).click();
 	    browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_prioridades');
@@ -59,22 +63,19 @@ describe('Test reporte de prioridades', function() {
 		element(by.model('fechaDesde')).sendKeys('10/07/2014');
 		element(by.model('fechaHasta')).sendKeys('30/07/2014');
 		
-		 element(by.buttonText('Generar')).click();
-		 browser.sleep(1500);
+		element(by.buttonText('Generar')).click();
+	    browser.waitForAngular();
 		 
-		 //hay elementos en la tabla
-		 expect(element(by.binding('prioridad.prioridad')).isPresent()).toBe(true);
+		//hay elementos en la tabla
+		expect(element(by.binding('prioridad.prioridad')).isPresent()).toBe(true);
 		 
-		 //me fijo que haya un prioridad dos
-		 expect(element(by.binding('prioridad.prioridad')).getText()).toBe('DOS');
+		//me fijo que haya un prioridad dos
+		expect(element(by.binding('prioridad.prioridad')).getText()).toBe('DOS');
 		 
-		 //me fijo que la palabra tres no esté en pantalla (sólo agregué personas con prioridad 2)
-		 var prioridad =  element(by.binding('prioridad.prioridad')).getText();
-		 expect(prioridad == 'TRES').toBe(false);
-		 
-		 
+		//me fijo que la palabra tres no esté en pantalla (sólo agregué personas con prioridad 2)
+		var prioridad =  element(by.binding('prioridad.prioridad')).getText();
+		expect(prioridad == 'TRES').toBe(false);		 
 	});
 	
-}
-)
+});
 	

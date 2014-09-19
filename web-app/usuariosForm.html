@@ -21,7 +21,7 @@
 				<select ng-model="usuario.rol" class="form-control" id="rol">
 					<option value="">-- Seleccionar --</option>
 				    <option id="rolAdministrador" value="ADMINISTRADOR">ADMINISTRADOR</option>
-  					<option value="USUARIO">USUARIO</option>
+  					<option id="rolUsuario" value="USUARIO">USUARIO</option>
 				</select>				
 			</div>
 			<span class="error" ng-show="usuario.rol == undefined || usuario.rol == ''" style="color:red;">*</span>

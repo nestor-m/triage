@@ -1,25 +1,17 @@
 var app = angular.module('app', [ 'ngRoute', 'ngGrid', 'checklist-model',
 		'ngCookies', 'ngDropdowns' ]);
 
-app.controller('indexController',function($scope,$location,$http,$cookieStore) {
-	$scope.usuario = $cookieStore.get('usuario');
+app.controller('indexController',function($rootScope,$location,$http,$cookieStore) {
+	$rootScope.usuario = $cookieStore.get('usuario');
 
-	$scope.logout = function(){
+	$rootScope.logout = function(){
 		$http.get('usuario/logout').success(function(){
-			$scope.usuario = null;
+			$rootScope.usuario = null;
 			$cookieStore.remove('usuario');
 			$location.path('/');
 		});
-
 	}
 });
-
-//muestra el menu del encabezado, esta funcion se puede llamar desde cualquier controller
-function mostrarMenu(usuario){
-	var indexController = document.querySelector('body');//<body ng-controller="indexController"> 
-	var indexControllerScope = angular.element(indexController).scope();
-    indexControllerScope.usuario = usuario;
-}
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -141,7 +133,7 @@ app.config(function($routeProvider) {
 
 //catch de los errores 401 que tira Grails cuando se intenta hacer algo sin estar logueado
 //fuente: http://blog.thesparktree.com/post/75952317665/angularjs-interceptors-globally-handle-401-and-other
-app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$location){
+app.factory('authHttpResponseInterceptor',['$q','$location','$rootScope',function($q,$location,$rootScope){//aca no me deja injectar $scope
     return {
         response: function(response){
             if (response.status === 401) {
@@ -153,6 +145,7 @@ app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$locatio
             if (rejection.status === 401) {
                 console.log("Response Error 401",rejection);
                 $location.path('/');
+                $rootScope.logout();
             }
             return $q.reject(rejection);
         }
@@ -180,7 +173,11 @@ app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$locatio
 
  /*LOGIN CONTROLLER* ************************************************************************************** */
 
- app.controller('loginController', function($scope,$http,$location,$cookieStore) {
+ app.controller('loginController', function($rootScope,$scope,$http,$location,$cookieStore) {
+
+ 	if($rootScope.usuario != null){//si ya estoy logueado me dirige a la pantalla de inicio
+ 		$location.path('/busqueda_ingreso_paciente');
+ 	}
 
  	$scope.falloLogin = false;
 
@@ -190,7 +187,8 @@ app.factory('authHttpResponseInterceptor',['$q','$location',function($q,$locatio
 			password: $scope.password
 		}).success(function(usuario){
 			$cookieStore.put('usuario',usuario);
-			mostrarMenu(usuario);
+			//mostrarMenu(usuario);
+			$rootScope.usuario = usuario;
 			$location.path('/busqueda_ingreso_paciente');
 		}).error(function(){
 			$scope.falloLogin = true;
@@ -1559,7 +1557,7 @@ app.controller('usuariosListadoController',function($scope, $location, $cookieSt
 			$scope.pagingOptions.currentPage);
 
 	$scope.botonVerDetalle = '<a id="verDetalle" ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
-	$scope.botonEliminar = '<a style="color:red" ng-click="eliminarUsuario(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar" ng-hide="usuario.nombre==row.entity.nombre"/> </a>';
+	$scope.botonEliminar = '<a id="eliminar" style="color:red" ng-click="eliminarUsuario(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar" ng-hide="usuario.nombre==row.entity.nombre"/> </a>';
 
 	$scope.verDetalle = function(row){
 		$cookieStore.put('detalleUsuario',row.entity);
@@ -1661,7 +1659,7 @@ app.controller('usuariosFormController',function($scope, $location, $cookieStore
 
 
 /**CAMBIAR PASSWORD*************************/
-app.controller('cambiarPasswordController',function($scope, $location, $cookieStore, $http){
+app.controller('cambiarPasswordController',function($rootScope, $scope, $location, $cookieStore, $http){
 
 	$(document).ready(function(){//evito con jquery que se pueda copypastear en el campo Repita nueva password
       $('#repite').bind("cut copy paste",function(e) {
@@ -1677,7 +1675,7 @@ app.controller('cambiarPasswordController',function($scope, $location, $cookieSt
 
 	$scope.submit = function(){
 		$http.post('usuario/cambiarPass',{
-			usuario : $scope.usuario,//usuario logueado
+			usuario : $rootScope.usuario,//usuario logueado
 			pass : $scope.pass
 		}).success(function(data){
 			bootbox.alert(data);			

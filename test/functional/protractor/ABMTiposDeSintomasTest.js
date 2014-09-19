@@ -12,7 +12,7 @@ describe('Test ABM de tipos de sintomas', function() {
       element(by.id("ingresar")).click();
       browser.waitForAngular();
       //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
-      element(by.id("dropdownMenu1")).click();
+      element(by.id("dropdownConfiguracion")).click();
       element(by.id("discriminantes")).click();
   });
   
@@ -70,7 +70,7 @@ describe('Test ABM de tipos de sintomas', function() {
     browser.waitForAngular();
 
     //voy hacia el listado de sintomas
-    element(by.id("dropdownMenu1")).click();
+    element(by.id("dropdownConfiguracion")).click();
     element(by.id("discriminantes")).click();
     //filtro el listado
     element(by.model('tipoDeSintoma')).sendKeys('un nuevo discriminante');
@@ -79,7 +79,7 @@ describe('Test ABM de tipos de sintomas', function() {
     expect(element.all(by.id('verDetalle')).count()).toBe(1)
 
     //voy hacia el formulario de sintoma y me deberia aparecer el nuevo tipo de sintoma entre las opciones
-    element(by.id("dropdownMenu1")).click();
+    element(by.id("dropdownConfiguracion")).click();
     element(by.id("sintomas")).click();
     browser.waitForAngular();
     element(by.id('nuevo')).click();
