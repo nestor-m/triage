@@ -117,10 +117,11 @@ class PersonaController extends LoginController{
 			String fecha = new SimpleDateFormat("dd-MM-yyyy").format(atencion[2]);
 			String sintomas = traerSintomas(atencion[1])
 			String tipoAtencion = traerTipoAtencion(atencion[10])
+			String presion = traerPresion(atencion[3], atencion[4])
 			atencionesResp.add(new JSONObject('{"id":' + atencion[1] +
 				',"prioridad":"' + prioridad + '"' +
 				',"fechaAtencion":' + fecha +
-				',"presion":' + atencion[3] +"-"+atencion[4] +
+				',"presion":' + presion +
 				',"temperatura":' + atencion[5] +
 				',"frecuencia":' + atencion[6] +
 				',"glucosa":' + atencion[7] +
@@ -148,6 +149,12 @@ class PersonaController extends LoginController{
 			
 	}
 	
+	def traerPresion(p1, p2){
+		if (p1 == null || p2 == null) return null
+		else return p1+"-"+p2
+		
+	}
+	
 	def traerSintomas (Long nid){
 		Paciente p = Paciente.get(nid)
 		List sintomas = new ArrayList()
@@ -156,10 +163,8 @@ class PersonaController extends LoginController{
 			sintomas.add(s.nombre)
 			ss = ss+" - "+(s.nombre)
 		}
-		
-		return ss
-		
-		
+		if (ss == "") return null
+		else return ss
 	}
 	
 	String traerPrioridad (Prioridad p){

@@ -37,27 +37,44 @@
 					<td>Pulso</td>
 					<td>Saturacion</td>
 				</tr>
-				<tr ng-repeat="paciente in personaActual.atenciones track by paciente.id">
-					
+				<tr
+					ng-repeat="paciente in personaActual.atenciones track by paciente.id">
+
 					<td><label for="{{ paciente.prioridad }}">{{
 							paciente.prioridad }}</label></td>
 					<td><label for="{{ paciente.tipoAtencion }}">{{
 							paciente.tipoAtencion }}</label></td>
 					<td><label for="{{ paciente.fechaAtencion }}">{{
 							paciente.fechaAtencion }}</label></td>
-					<td><label for="{{ paciente.sintomas }}">{{ paciente.sintomas }}</label></td>
+					<td><label for="{{ paciente.sintomas }}">{{
+							paciente.sintomas }}</label></td>
 					<td><label for="{{ paciente.presion }}">{{
 							paciente.presion }}</label></td>
-					<td><label for="{{ paciente.temperatura }}">{{ paciente.temperatura }}</label></td>
-					<td><label for="{{ paciente.frecuencia }}">{{ paciente.frecuencia }}</label></td>
-					<td><label for="{{ paciente.glucosa }}">{{ paciente.glucosa }}</label></td>
-					<td><label for="{{ paciente.pulso }}">{{ paciente.saturacion }}</label></td>
-					<td><label for="{{ paciente.saturacion }}">{{ paciente.saturacion }}</label></td>
+					<td><label for="{{ paciente.temperatura }}">{{
+							paciente.temperatura }}</label></td>
+					<td><label for="{{ paciente.frecuencia }}">{{
+							paciente.frecuencia }}</label></td>
+					<td><label for="{{ paciente.glucosa }}">{{
+							paciente.glucosa }}</label></td>
+					<td><label for="{{ paciente.pulso }}">{{
+							paciente.saturacion }}</label></td>
+					<td><label for="{{ paciente.saturacion }}">{{
+							paciente.saturacion }}</label></td>
 				</tr>
 			</table>
 
 		</div>
 	</div>
+	<div class="form-group">
 
+		<div class="col-sm-offset-4 col-sm-12">
+
+			<p style="text-align: center">
+				<input type="button" id="salir"
+					class="btn btn-sm btn-primary" ng-click="salir()"
+					value='Volver' style="width: 10%" />
+			</p>
+		</div>
+	</div>
 
 </body>
