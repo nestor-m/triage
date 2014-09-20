@@ -67,6 +67,7 @@ describe('Test ABM de sintomas', function() {
     element(by.id("ingresar")).click();
     browser.waitForAngular();
     expect(element(by.id("configuracion")).isDisplayed()).toBe(false);//*configuracion no debe aparecer en el menu
+    logout();
   });
 
 });

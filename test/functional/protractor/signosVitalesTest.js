@@ -1,20 +1,20 @@
 describe('Test pantalla de ingreso de signos vitales', function() {
 
-	  beforeEach(function() {
-	      browser.get('http://localhost:8080/triage/');  
-		  element(by.model('nombre')).sendKeys('admin');//me logueo con admin
-	      element(by.model('password')).sendKeys('admin');
-	      element(by.id("ingresar")).click();
-	      browser.waitForAngular();
-	      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes      
-	      element(by.model('nombre')).sendKeys('signos');
-	      element(by.model('apellido')).sendKeys('vitales');
-	      element(by.model('fechaDeNacimiento')).sendKeys('21/03/1987');
-	      element(by.id("botonIngresoPaciente")).click();
-	      browser.waitForAngular();
-	      element(by.id('signos_vitales')).click();;
-	  });
-
+  it('Cheueo que el titulo es Signos Vitales',function() {
+      browser.get('http://localhost:8080/triage/');  
+	  element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+      element(by.model('password')).sendKeys('admin');
+      element(by.id("ingresar")).click();
+      browser.waitForAngular();
+      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes      
+      element(by.model('nombre')).sendKeys('signos');
+      element(by.model('apellido')).sendKeys('vitales');
+      element(by.model('fechaDeNacimiento')).sendKeys('21/03/1987');
+      element(by.id("botonIngresoPaciente")).click();
+      browser.waitForAngular();
+      element(by.id('signos_vitales')).click();;
+      expect(browser.getTitle()).toBe('Signos Vitales');//chequeo el titulo
+  });
   
   it('chequeo que los sintomas ingresados sean los mismos cuando vuelvo a la pantalla', function() {
 	  
@@ -36,10 +36,11 @@ describe('Test pantalla de ingreso de signos vitales', function() {
 		  element(by.buttonText('Aceptar')).click();
 		  browser.waitForAngular();//espero a que se despliegue el modal
 		  element(by.buttonText('OK')).click();//mensaje de carga exitosa
+		  browser.sleep(1000);
 		  expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
 		  element(by.id('salir')).click();//salgo
 		  browser.waitForAngular();		  
-		  element(by.id('pacientes_espera')).click();//voy al listado de pacientes en espera
+		  element(by.id('espera')).click();//voy al listado de pacientes en espera
 		  browser.waitForAngular();	
 		  element(by.model('nombre')).sendKeys('signos');//busco es paciente ingresado
 		  element(by.id('botonBuscar')).click();
@@ -56,26 +57,28 @@ describe('Test pantalla de ingreso de signos vitales', function() {
   
   
   it('TEST que temperatura 33 es p1', function(){
-	  var selectDropdownbyNum = function ( element, optionNum ) {
-		    if (optionNum){
-		      var options = element.findElements(by.tagName('option'))   
-		        .then(function(options){
-		          options[optionNum].click();
-		        });
-		    }
-		  };
-		  browser.waitForAngular();
-		  expect($('.bootbox').isPresent()).toBe(false);//el pedido de confirmacion no exite
-		  //selecciono la temperatura en menos de 35
-		  var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 1);
-		  browser.waitForAngular();
-		  expect($('.bootbox').isPresent()).toBe(true);//aparece el pedido de confirmacion
-		  
-		  var botonOK = $$('.modal-footer button').get(1);
-		    botonOK.click();//confirmo
-		    browser.waitForAngular();
+  	var selectDropdownbyNum = function ( element, optionNum ) {
+	    if (optionNum){
+	      var options = element.findElements(by.tagName('option'))   
+	        .then(function(options){
+	          options[optionNum].click();
+	        });
+	    }
+	};
 
-		    expect(browser.getTitle()).toBe('PRIORIDAD 1');
+	browser.waitForAngular();
+	expect($('.bootbox').isPresent()).toBe(false);//el pedido de confirmacion no exite
+	//selecciono la temperatura en menos de 35
+	var selectTemperatura = selectDropdownbyNum(element(by.id('temperatura')), 1);
+	browser.waitForAngular();
+	expect($('.bootbox').isPresent()).toBe(true);//aparece el pedido de confirmacion	  
+	var botonOK = $$('.modal-footer button').get(1);
+	botonOK.click();//confirmo
+	browser.sleep(1000);
+	expect(browser.getTitle()).toBe('PRIORIDAD 1');
+	//me deslogueo logout
+	element(by.id("dropdownUsuario")).click();
+	element(by.id("logout")).click();
   });  
   
 });

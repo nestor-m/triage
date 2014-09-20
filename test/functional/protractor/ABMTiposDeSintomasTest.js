@@ -5,40 +5,42 @@ describe('Test ABM de tipos de sintomas', function() {
   Los pacientes NESTOR MUÑOZ Y MARCIA TEJEDA, y el usuario admin/admin
   Si se ingresan nuevos sintomas es probable que los test dejen de funcionar*/
 
-  beforeEach(function() {
-      browser.get('http://localhost:8080/triage/');
-      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
-      element(by.model('password')).sendKeys('admin');
-      element(by.id("ingresar")).click();
-      browser.waitForAngular();
-      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
-      element(by.id("dropdownConfiguracion")).click();
-      element(by.id("discriminantes")).click();
-  });
+  function voyAlListadoDeDiscriminantes(){
+    element(by.id("dropdownConfiguracion")).click();
+    element(by.id("discriminantes")).click();
+  }
   
   it('el titulo debe ser "Listado de discriminantes"', function() {
+    browser.get('http://localhost:8080/triage/');
+    element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+    element(by.model('password')).sendKeys('admin');
+    element(by.id("ingresar")).click();
+    browser.waitForAngular();//me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
+    voyAlListadoDeDiscriminantes();
     expect(browser.getTitle()).toBe('Listado de discriminantes');   
   });
 
   //TEST FILTRO
   it('filtro por discriminante',function(){
     element(by.model('tipoDeSintoma')).sendKeys('IMPRESION');
-    $('.page-header').click();//hago click en otro elemento para sacarle el foco
+    element(by.id("buscar")).click();//presiono buscar
     browser.waitForAngular();
     expect(element.all(by.id('verDetalle')).count()).toBe(1);//deben quedar un boton 'Ver detalle' correspondiente a IMPRESION INICIAL
+    element(by.model('tipoDeSintoma')).clear();
   });
 
   it('filtro por discriminante incorrectamente',function(){
     element(by.model('tipoDeSintoma')).sendKeys('    aaaaaaaaaaa');//ingreso '    aaaaaaaaaaa'
-    $('.page-header').click();//hago click en otro elemento para sacarle el foco
+    element(by.id("buscar")).click();//presiono buscar
     browser.waitForAngular();
     expect(element(by.id('verDetalle')).isPresent()).toBe(false);//no encuentro ningun boton en el listado, es decir, el listado no arrojo ningun resultado
+    element(by.model('tipoDeSintoma')).clear();
   });
 
   //TEST DETALLE DE DISCRIMINANTES
   it('Detalle del discrimiante IMPRESION INICIAL',function(){//Nota: el discriminante IMPRESION INICIAL es al unico que no se puede modificar el nombre
     element(by.model('tipoDeSintoma')).sendKeys('impresion inicial');//filtro el listado
-    $('.page-header').click();//hago click en otro elemento para sacarle el foco
+    element(by.id("buscar")).click();//presiono buscar
     browser.waitForAngular();
 
     element(by.id('verDetalle')).click();
@@ -54,6 +56,7 @@ describe('Test ABM de tipos de sintomas', function() {
   });
 
   it('Nuevo discriminante',function(){    
+    voyAlListadoDeDiscriminantes();
     element(by.id('nuevo')).click();
 
     expect(browser.getTitle()).toBe('Formulario de discriminante');//chequeo que estoy en el formulario de discriminante
@@ -67,14 +70,12 @@ describe('Test ABM de tipos de sintomas', function() {
     browser.waitForAngular();
     expect($('.bootbox').isPresent()).toBe(true);//aparece el mensaje de discriminante cargado con exito
     element(by.buttonText('OK')).click();//presiono OK
-    browser.waitForAngular();
+    browser.sleep(1000);
 
-    //voy hacia el listado de sintomas
-    element(by.id("dropdownConfiguracion")).click();
-    element(by.id("discriminantes")).click();
+    voyAlListadoDeDiscriminantes();
     //filtro el listado
     element(by.model('tipoDeSintoma')).sendKeys('un nuevo discriminante');
-    $('.page-header').click();//hago click en otro elemento para sacarle el foco
+    element(by.id("buscar")).click();//presiono buscar
     browser.waitForAngular();
     expect(element.all(by.id('verDetalle')).count()).toBe(1)
 
@@ -84,6 +85,9 @@ describe('Test ABM de tipos de sintomas', function() {
     browser.waitForAngular();
     element(by.id('nuevo')).click();
     expect(element.all(by.css('select[id="discriminante"] option')).count()).toBe(4);//tiene que aparecer el nuevo tipo de sintoma disponible
+    //me deslogueo logout
+    element(by.id("dropdownUsuario")).click();
+    element(by.id("logout")).click();
   });
 
 });

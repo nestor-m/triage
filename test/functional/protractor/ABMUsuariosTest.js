@@ -195,24 +195,34 @@ describe('Test ABM de usuarios', function() {
     browser.sleep(1000);//lo duermo porque el modal tarda en desaparecer
   });
 
-  it('intento cambiar la contraseña por una de menos de 6 caracteres', function() {
+  it('intento cambiar la contraseña por una de menos de 4 caracteres', function() {
     voyPantallaCambioPass();
-    element(by.model('pass.nueva')).sendKeys('corta');//ingreso la password nueva
-    element(by.model('pass.repite')).sendKeys('corta');//repito la password nueva
+    element(by.model('pass.nueva')).sendKeys('aaa');//ingreso la password nueva
+    element(by.model('pass.repite')).sendKeys('aaa');//repito la password nueva
+    element(by.tagName('h3')).click();//activo el ng-blur
     expect(element(by.id("passCorta")).isDisplayed()).toBe(true);//se muestra el mensaje de pass demasiado corta
   });
 
-  it('intento cambiar la contraseña por una de menos de 6 caracteres', function() {
+  it('No repito la nueva contraseña', function() {
     element(by.model('pass.nueva')).clear();//limpio los campos
     element(by.model('pass.repite')).clear();
 
     element(by.model('pass.nueva')).sendKeys('passnueva');//ingreso la password nueva
     element(by.model('pass.repite')).sendKeys('PASSNUEVA');//no repito la password nueva
+    element(by.tagName('h3')).click();//activo el ng-blur
     expect(element(by.id("passNoCoinciden")).isDisplayed()).toBe(true);//se muestra el mensaje de No coinciden las passwords
   });
 
-
-
+  it('El nombre del usuario debe tener al menos 3 caracteres', function() {
+    voyPantallaUsuarios();
+    element(by.id("nuevo")).click();//presiono boton nuevo
+    element(by.model('usuario.nombre')).sendKeys('ro');//en campo nombre ingreso ro
+    element(by.select("usuario.rol")).click();//activo el ng-blur
+    expect(element(by.id("nombreCorto")).isDisplayed()).toBe(true);//se muestra el mensaje de nombre demasiado corto
+    //me deslogueo logout
+    element(by.id("dropdownUsuario")).click();
+    element(by.id("logout")).click();
+  });
 
 });
 

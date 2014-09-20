@@ -1199,6 +1199,8 @@ app.controller('sintomasFormularioController',function($scope, $location, $cooki
 		}).success(function(data){
 			bootbox.alert(data);
 			$scope.sintoma = null;//limpio el formulario
+		}).error(function(data){
+			bootbox.alert(data);
 		});
 	};
 
@@ -1301,8 +1303,10 @@ app.controller('tiposDeSintomaFormController',function($scope, $location, $cooki
 			id : $scope.tipoDeSintoma.id,
 			nombre : $scope.tipoDeSintoma.nombre
 		}).success(function(data){
-			bootbox.alert(data);			
+			bootbox.alert(data);
 			$scope.tipoDeSintoma = null;//limpio el formulario
+		}).error(function(data){
+			bootbox.alert(data);
 		});
 	};
 
@@ -1655,6 +1659,10 @@ app.controller('usuariosFormController',function($scope, $location, $cookieStore
 		});
 	};
 
+	$scope.chequearLargoNombre = function(){
+		$scope.nombreCorto = $scope.usuario.nombre.length < 3;
+	};
+
 });
 
 
@@ -1670,7 +1678,11 @@ app.controller('cambiarPasswordController',function($rootScope, $scope, $locatio
 	$scope.pass = {};
 
 	$scope.chequearLargo = function(){
-		$scope.passDemasiadoCorta = $scope.pass.nueva.length < 6;
+		$scope.passDemasiadoCorta = $scope.pass.nueva.length < 4;
+	};
+
+	$scope.chequearNuevaPassCoincide = function(){
+		$scope.passNoCoinciden = $scope.pass.nueva != $scope.pass.repite;
 	};
 
 	$scope.submit = function(){

@@ -5,16 +5,12 @@ describe('Test pantalla de búsqueda e ingreso de pacientes', function() {
   Si se ingresan nuevos pacientes
   es probable que los test dejen de funcionar*/
 
-  beforeEach(function() {
-      browser.get('http://localhost:8080/triage/');  
-      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
-      element(by.model('password')).sendKeys('admin');
-      element(by.id("ingresar")).click();
-      browser.waitForAngular();
-      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes
-  });
-
   it('el titulo debe ser "Búsqueda e ingreso de pacientes"', function() {
+    browser.get('http://localhost:8080/triage/');  
+    element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+    element(by.model('password')).sendKeys('admin');
+    element(by.id("ingresar")).click();
+    browser.waitForAngular();//me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes
     expect(element(by.tagName('h4')).getText()).toBe('Búsqueda e ingreso de pacientes');    
   });
 
@@ -31,6 +27,7 @@ describe('Test pantalla de búsqueda e ingreso de pacientes', function() {
     element.all(by.buttonText('Ingresar')).then(function(items){
     	expect(items.length).toBe(1);
     });
+    element(by.model('nombre')).clear();
   });
 
   it('si ingreso "aa" en "nombre" y presiono "buscar", deberia arrojar cero filas', function() {
@@ -38,6 +35,7 @@ describe('Test pantalla de búsqueda e ingreso de pacientes', function() {
   	element(by.id('botonBuscar')).click();//buscar
     browser.waitForAngular();
     expect(element(by.buttonText('Ingresar')).isPresent()).toBe(false);//no encuentro ningun boton en el listado, es decir, el listado no arrojo ningun resultado
+    element(by.model('nombre')).clear();
   });
 
   it('si filtro por "nestor" y hago click sobre el boton Ingresar el paciente ingresado debe ser NESTOR MUÑOZ', function() {
@@ -49,6 +47,9 @@ describe('Test pantalla de búsqueda e ingreso de pacientes', function() {
     expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/paciente_ingresado');
     var nombre = element(by.binding('pacienteActual.nombre'));
     expect(nombre.getText()).toBe('NESTOR MUÑOZ');
+    //me deslogueo logout
+    element(by.id("dropdownUsuario")).click();
+    element(by.id("logout")).click();
   });
 });
 

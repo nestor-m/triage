@@ -104,6 +104,7 @@ class SintomaController extends LoginController{
    				new Sintoma(nombre: nombre, tipoDeSintoma: TipoDeSintoma.get(tipoDeSintomaId), 
    					prioridadAdulto: prioridadAdulto, prioridadPediatrico: prioridadPediatrico).save(failOnError : true)   
    			}catch(ValidationException ve) {
+   				response.status = 500
   				render 'Error. Ya existe un síntoma ' + nombre + ' del discriminante ' + TipoDeSintoma.get(tipoDeSintomaId).nombre
   				return
 			}
@@ -115,8 +116,14 @@ class SintomaController extends LoginController{
    			sintoma.tipoDeSintoma = TipoDeSintoma.get(tipoDeSintomaId)
    			sintoma.prioridadAdulto = prioridadAdulto
    			sintoma.prioridadPediatrico = prioridadPediatrico
-   			sintoma.save(failOnError : true)
-   			render 'Síntoma ' + nombre + ' actualizado con éxito'
+   			try{
+   				sintoma.save(failOnError : true)
+   				render 'Síntoma ' + nombre + ' actualizado con éxito'
+   			}catch(ValidationException ve) {
+   				response.status = 500
+   				render 'Error. Ya existe un síntoma ' + nombre + ' del discriminante ' + TipoDeSintoma.get(tipoDeSintomaId).nombre
+   			}
+   			
    		}		  		
    }
    

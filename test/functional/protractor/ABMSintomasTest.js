@@ -5,47 +5,51 @@ describe('Test ABM de sintomas', function() {
   Y los pacientes NESTOR MUÑOZ Y MARCIA TEJEDA
   Si se ingresan nuevos sintomas es probable que los test dejen de funcionar*/
 
-  beforeEach(function() {
-      browser.get('http://localhost:8080/triage/');
-      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
-      element(by.model('password')).sendKeys('admin');
-      element(by.id("ingresar")).click();
-      browser.waitForAngular();
-      //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
-      element(by.id("dropdownConfiguracion")).click();
-      element(by.id("sintomas")).click();
-  });
+  function voyAlListadoDeSintomas(){
+    element(by.id("dropdownConfiguracion")).click();
+    element(by.id("sintomas")).click();
+  }
   
   it('el titulo debe ser "Listado de síntomas"', function() {
+    browser.get('http://localhost:8080/triage/');
+    element(by.model('nombre')).sendKeys('admin');//me logueo con admin
+    element(by.model('password')).sendKeys('admin');
+    element(by.id("ingresar")).click();
+    browser.waitForAngular();
+    //me logueo y me dirige a la pantalla de busqueda e ingreso de pacientes    
+    voyAlListadoDeSintomas();
     expect(browser.getTitle()).toBe('Listado de síntomas');   
   });
 
   //TEST FILTRO
   it('filtro por sintoma',function(){
     element(by.id('sintoma')).sendKeys('d');//ingreso la letra d
-    element(by.id('tipoDeSintoma')).click();//hago click en otro elemento para sacarle el foco
+    element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
     expect(element.all(by.id('verDetalle')).count()).toBe(2);//deben quedar dos botones 'Ver detalle' correspondientes a los sintomas “DOLOR SEVERO” y “DESHIDRATACION” 
+    element(by.id('sintoma')).clear();
   });
 
   it('filtro por discriminante',function(){
     element(by.id('tipoDeSintoma')).sendKeys('dolor');//ingreso "dolor"
-    element(by.id('sintoma')).click();//hago click en otro elemento para sacarle el foco
+    element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
     expect(element.all(by.id('verDetalle')).count()).toBe(1);//debe quedar un boton 'Ver detalle' correspondiente al sintoma “CONTRACTURA” 
+    element(by.id('tipoDeSintoma')).clear();
   });
 
   it('filtro por sintoma incorrectamente',function(){
     element(by.id('sintoma')).sendKeys('    aaaaaaaaaaa');//ingreso '    aaaaaaaaaaa'
-    element(by.id('tipoDeSintoma')).click();//hago click en otro elemento para sacarle el foco
+    element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
     expect(element(by.id('verDetalle')).isPresent()).toBe(false);//no encuentro ningun boton en el listado, es decir, el listado no arrojo ningun resultado
+    element(by.id('sintoma')).clear();
   });
 
   //TEST DETALLE DE SINTOMAS
   it('Detalle del sintoma DOLOR SEVERO',function(){
     element(by.id('sintoma')).sendKeys('dolor severo');//filtro el listado
-    element(by.id('tipoDeSintoma')).click();
+    element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
 
     element(by.id('verDetalle')).click();
@@ -62,6 +66,7 @@ describe('Test ABM de sintomas', function() {
   });
 
   it('Nuevo sintoma',function(){    
+    voyAlListadoDeSintomas();
     element(by.id('nuevo')).click();
 
     expect(browser.getTitle()).toBe('Formulario de síntomas');//chequeo que estoy en el formulario de sintomas
@@ -82,16 +87,18 @@ describe('Test ABM de sintomas', function() {
     browser.waitForAngular();
     expect($('.bootbox').isPresent()).toBe(true);//aparece el mensaje de sintoma cargado con exito
     element(by.buttonText('OK')).click();//presiono OK
-    browser.waitForAngular();
+    browser.sleep(1000);
 
-    //voy hacia el listado de sintomas
-    element(by.id("dropdownConfiguracion")).click();
-    element(by.id("sintomas")).click();
+    voyAlListadoDeSintomas();
+
     //filtro el listado
     element(by.id('sintoma')).sendKeys('un nuevo sintoma');
-    element(by.id('tipoDeSintoma')).click();//hago click en otro elemento para sacarle el foco
+    element(by.id('buscar')).click();//presiono buscar
     browser.waitForAngular();
     expect(element.all(by.id('verDetalle')).count()).toBe(1)
+    //me deslogueo logout
+    element(by.id("dropdownUsuario")).click();
+    element(by.id("logout")).click();
   });
 
 });

@@ -185,10 +185,13 @@ describe('Test pantalla de ingreso de sintomas', function() {
 
     var botonOK = $$('.modal-footer button').get(1);
     botonOK.click();//confirmo
-    browser.waitForAngular();
+    browser.sleep(1000);
 
     expect(browser.getTitle()).toBe('PRIORIDAD 1');
     expect(element(by.id('nombreYApellido')).getText()).toBe('Nombre y apellido: MARCIA TEJEDA');
+    //me deslogueo logout
+    element(by.id("dropdownUsuario")).click();
+    element(by.id("logout")).click();
   });
 
 });

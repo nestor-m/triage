@@ -1,6 +1,6 @@
 describe('Test pantalla paciente ingresado', function() {
 	
-  beforeEach(function() {
+  it('Chequeo el titulo',function() {
   	//ingreso el paciente Nestor Muñoz
     browser.get('http://localhost:8080/triage/');  
     element(by.model('nombre')).sendKeys('admin');//me logueo con admin
@@ -13,6 +13,7 @@ describe('Test pantalla paciente ingresado', function() {
     browser.waitForAngular();
     element(by.buttonText('Ingresar')).click();
     browser.waitForAngular();
+    expect(browser.getTitle()).toBe('Impresión Visual');//chequeo el titulo
   });
   
   it('Navego desde impresión visual a carga de síntomas', function() {
@@ -22,8 +23,6 @@ describe('Test pantalla paciente ingresado', function() {
   });
   
   it('Navego desde carga de síntomas a impresión visual', function() {
-  	element(by.id("cargaSintomas")).click();//presiono boton sintomas
-  	browser.waitForAngular();
   	element(by.id("impresion_visual")).click();//presiono boton impresion visual
   	browser.waitForAngular();
   	expect(browser.getTitle()).toBe('Impresión Visual');//chequeo el titulo
@@ -50,10 +49,20 @@ describe('Test pantalla paciente ingresado', function() {
   });
 
   it('Finalizar triage', function() {
+    element(by.id('espera')).click();
+    browser.waitForAngular();
+    //element(by.model('nombre')).sendKeys('nestor');
+    //element(by.id("botonBuscar")).click();
+    //browser.waitForAngular();
+    element(by.buttonText('Triage')).click();
+    browser.waitForAngular();
   	element(by.id('finalizarTriage')).click();//presiono el boton Finalizar Triage
   	browser.waitForAngular();
   	expect(browser.getTitle()).toBe('PRIORIDAD 3');//chequeo el titulo
-    expect(element(by.id("nombreYApellido")).getText()).toBe("Nombre y apellido: NESTOR MUÑOZ")
+    expect(element(by.id("nombreYApellido")).getText()).toBe("Nombre y apellido: NESTOR MUÑOZ");
+    //me deslogueo logout
+    element(by.id("dropdownUsuario")).click();
+    element(by.id("logout")).click();
   }); 
   
 });
