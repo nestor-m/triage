@@ -6,12 +6,15 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 	    element(by.model('password')).sendKeys('admin');
 	    element(by.id("ingresar")).click();
 	    browser.waitForAngular();
+	    
+	    element(by.id("dropdownMenu1")).click();
 		element(by.id("reporte_esperas")).click();
 		browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');
 	})
 	
 	it('Agrego algunos pacientes para ver algunos resultados', function(){
+		browser.get('http://localhost:8080/triage/');  
 		element(by.model('nombre')).sendKeys('nestor');
 	    element(by.id("botonBuscar")).click();
 	    browser.waitForAngular();
@@ -24,17 +27,21 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 		expect(sintomas.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
 		sintomas.get(0).click();
 		element(by.buttonText('Aceptar')).click();
+
 		
-		var botonOK = $$('.modal-footer button').get(0);
-	    browser.waitForAngular();
+		browser.sleep(1000);
+		browser.waitForAngular();
+	    var botonOK = $$('.modal-footer button').get(0);
 	    botonOK.click();//confirmo
+	    browser.sleep(1000);
+	    
 	    browser.waitForAngular();
 		
 		element(by.buttonText('Salir')).click();
 		
 		
 		browser.get('http://localhost:8080/triage/');
-		element(by.id('pacientes_espera')).click();
+		element(by.id('espera')).click();
 		browser.waitForAngular();
 		element(by.model('nombre')).sendKeys('nestor');
 		element(by.id("botonBuscar")).click();
@@ -53,13 +60,13 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 	    botonOK.click();
 	    browser.waitForAngular();
 		
-	    
+	    element(by.id("dropdownMenu1")).click();
 	    element(by.id("reporte_esperas")).click();
 	    browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');
 		
 		element(by.model('fechaDesde')).sendKeys('10/07/2014');
-		element(by.model('fechaHasta')).sendKeys('30/07/2014');
+		element(by.model('fechaHasta')).sendKeys('30/10/2014');
 		
 		 element(by.buttonText('Generar')).click();
 		 browser.waitForAngular();

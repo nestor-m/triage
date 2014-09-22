@@ -1,14 +1,13 @@
 describe('Test reporte de prioridades', function() {
 
-	beforeEach(function() {
-	      browser.get('http://localhost:8080/triage/');
+
+
+	it('Testeo que existe la pantalla del reporte', function(){
+		browser.get('http://localhost:8080/triage/');
 	      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
 	      element(by.model('password')).sendKeys('admin');
 	      element(by.id("ingresar")).click();
 	      browser.waitForAngular();
-	});
-
-	it('Testeo que existe la pantalla del reporte', function(){
 		element(by.id("dropdownMenu1")).click();
 		element(by.id("reporte_prioridades")).click();
 		browser.waitForAngular();
@@ -16,6 +15,7 @@ describe('Test reporte de prioridades', function() {
 	});
 	
 	it('Agrego una persona con prioridad 2 y chequeo que para la fecha de hoy haya un P2', function() {
+		browser.get('http://localhost:8080/triage/');
 		element(by.model('nombre')).sendKeys('nestor');
 	    element(by.id("botonBuscar")).click();
 	    browser.waitForAngular();
@@ -28,7 +28,7 @@ describe('Test reporte de prioridades', function() {
 		expect(sintomas.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
 		sintomas.get(0).click();
 		element(by.buttonText('Aceptar')).click();
-		
+		   browser.sleep(1000);
 		var botonOK = $$('.modal-footer button').get(0);
 	    botonOK.click();//confirmo
 	    browser.sleep(1000);
@@ -61,7 +61,7 @@ describe('Test reporte de prioridades', function() {
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_prioridades');
 		
 		element(by.model('fechaDesde')).sendKeys('10/07/2014');
-		element(by.model('fechaHasta')).sendKeys('30/07/2014');
+		element(by.model('fechaHasta')).sendKeys('30/09/2014');
 		
 		element(by.buttonText('Generar')).click();
 	    browser.waitForAngular();

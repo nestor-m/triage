@@ -3,14 +3,14 @@ exports.config = {
   //specs: ['cargaSintomasTest.js']
   //specs: ['busquedaIngresoPacienteTest.js']
   //specs : ['signosVitalesTest.js']
-  //specs: ['impresionVisualTest.js']
+//  specs: ['impresionVisualTest.js']
   //specs : ['pacienteIngresadoTest.js']
-  //specs : ['reporteEsperasTest.js']//TODO: fallo
-  //specs : ['reportePrioridadesTest.js']//TODO: fallo
+//  specs : ['reporteEsperasTest.js']//TODO: fixed!
+  specs : ['reportePrioridadesTest.js']//TODO: fixed!
   //specs : ['pacienteEsperaTest.js']
   //specs : ['ABMSintomasTest.js']
   //specs : ['ABMTiposDeSintomasTest.js']
   //specs : ['loginTest.js']
-  specs:['ABMUsuariosTest.js']
+//  specs:['ABMUsuariosTest.js']
   //specs: ['./*']//corre todos los archivos de la carpeta
 }
