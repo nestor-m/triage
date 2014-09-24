@@ -74,7 +74,12 @@ describe('Test reporte de prioridades', function() {
 		 
 		//me fijo que la palabra tres no esté en pantalla (sólo agregué personas con prioridad 2)
 		var prioridad =  element(by.binding('prioridad.prioridad')).getText();
-		expect(prioridad == 'TRES').toBe(false);		 
+		expect(prioridad == 'TRES').toBe(false);	
+		
+		
+		//me deslogueo logout
+    	element(by.id("dropdownUsuario")).click();
+    	element(by.id("logout")).click();
 	});
 	
 });

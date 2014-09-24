@@ -89,11 +89,11 @@ class PacienteController extends LoginController{
 		 */
 
 		String sql = "SELECT  prioridad, "+
-				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
+				"coalesce(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*),0)  as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
-				"' group by prioridad"
+				"' and finalizado = true group by prioridad"
 		println sql
 //		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
 //				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
@@ -104,11 +104,11 @@ class PacienteController extends LoginController{
 		
 		
 		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
-				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion))  / 60))/count(*) as tiempo "+	
+				"coalesce(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*),0) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
-				"' group by prioridad")
+				"'and finalizado = true group by prioridad")
 		
 		List resultado = new ArrayList()
 		for (p in prioridades){
