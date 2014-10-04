@@ -9,28 +9,27 @@
       <form name="busqueda_form" class="form-horizontal" style="text-align:center" role="form">
         <div class="form-group">
             <div class="controls form-inline">
-                <label class="col-sm-3 control-label">S&iacute;ntoma</label>
-                <div class="col-sm-2">
-                  <input type="text" class="form-control" id="sintoma" ng-model="$parent.sintoma" ng-blur="filtrarListadoDeSintomas()"/>
+                <div class="col-md-3  col-md-offset-3">
+                  <input type="text" class="form-control" id="sintoma" ng-model="$parent.sintoma" placeholder="S&iacute;ntoma"/>
                 </div>
-                <label class="col-sm-2 control-label">Discriminante</label>
-                <div class="col-sm-2">
-                  <input type="text" class="form-control" id="discriminante" ng-model="$parent.discriminante" ng-blur="filtrarListadoDeSintomas()"/>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" id="discriminante" ng-model="$parent.discriminante" placeholder="Discriminante"/>
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-primary btn-sm" value="Buscar" id="buscar" ng-click="filtrarListadoDeSintomas()"/>
                 </div>
            </div>
         </div>
-        <div class="form-group">
-              <input type="button" class="btn btn-primary" value="Buscar" id="buscar" ng-click="filtrarListadoDeSintomas()"/>
-        </div>
-     </form>
-     
-     <div class="gridStyle" ng-grid="gridOptions" style="width: 100%; height:250px"> </div>
-     
-     <br/>
-     
-     <div style="text-align:right">
-         <input type="button" id="botonAceptar" class="btn btn-success col-sm-offset-1" ng-click="enviarSintomas()" value="Aceptar"/>
-     </div>
+
+       </form>
+       
+       <div class="gridStyle" ng-grid="gridOptions" style="width: 100%; height:250px"> </div>
+       
+       <br/>
+       
+       <div style="text-align:right">
+           <input type="button" id="botonAceptar" class="btn btn-success col-sm-offset-1" ng-click="enviarSintomas()" value="Aceptar"/>
+       </div>
      
     </div>
     

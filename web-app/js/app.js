@@ -498,7 +498,7 @@ app.controller(
 								break;
 							}
 						}
-						if(sintoma.tipoDeSintoma.id == 1){//si es sintoma de IMPRESION INICIAL
+						if(sintoma.tipoDeSintoma.id == 1 || sintoma.tipoDeSintoma == 'IMPRESION INICIAL'){//si es sintoma de IMPRESION INICIAL
 							for (var i = 0; i < $scope.paciente.sintomas.length; i++){//lo elimino de los sintomas de impresion visual
 								if($scope.paciente.sintomas[i].id == sintoma.id){
 									$scope.paciente.sintomas.splice(i, 1);
