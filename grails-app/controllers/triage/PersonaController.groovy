@@ -111,7 +111,6 @@ class PersonaController extends LoginController{
 						
 		List consultaAtenciones = Paciente.executeQuery(sql)
 		List atencionesResp = new ArrayList()
-		
 		for (atencion in consultaAtenciones) {
 			String prioridad = traerPrioridad(atencion[0]);
 			String fecha = new SimpleDateFormat("dd-MM-yyyy").format(atencion[2]);
