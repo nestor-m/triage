@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  6 OCT 2014 01:17
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  7 OCT 2014 00:48
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -297,13 +297,13 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout3 = `doc.toc'.
 
  [3] [4] [5]
-[6]
+[6] [7]
 No file doc.bbl.
 (./doc.aux) ) 
 Here is how much of TeX's memory you used:
  1064 strings out of 493848
  11740 string characters out of 1152823
- 67873 words of memory out of 3000000
+ 72873 words of memory out of 3000000
  4382 multiletter control sequences out of 15000+50000
  8502 words of font info for 30 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
@@ -315,9 +315,9 @@ live/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/
 amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
 cmr9.pfb>
-Output written on doc.pdf (6 pages, 92829 bytes).
+Output written on doc.pdf (7 pages, 102124 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
