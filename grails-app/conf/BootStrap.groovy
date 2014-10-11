@@ -18,6 +18,9 @@ class BootStrap {
     	if(Persona.count() == 0){//para que solo lo haga cuando la base esta vacia, sino tira error al iniciar
     		new Persona(nombre:"NESTOR",apellido:"MUÑOZ",fechaDeNacimiento:new Date("1987/03/21"),dni:33688677).save()
 			new Persona(nombre:"MARCIA",apellido:"TEJEDA",fechaDeNacimiento:new Date("1987/01/01"),dni:12345678).save()
+			
+			new Persona(nombre:"JUAN",apellido:"LOPEZ",fechaDeNacimiento:new Date("1999/03/21"),dni:33688568).save()
+			new Persona(nombre:"LUISA",apellido:"MARTINEZ",fechaDeNacimiento:new Date("2012/01/01"),dni:12458956).save()
 		
 			def impresionInicial = new TipoDeSintoma(nombre:"IMPRESION INICIAL")
 			impresionInicial.save()
