@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  10 OCT 2014 22:22
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  12 OCT 2014 12:59
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -321,7 +321,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  1065 strings out of 493848
  11746 string characters out of 1152823
- 73873 words of memory out of 3000000
+ 72873 words of memory out of 3000000
  4384 multiletter control sequences out of 15000+50000
  8502 words of font info for 30 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
@@ -332,7 +332,7 @@ xlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-Output written on doc.pdf (9 pages, 115692 bytes).
+Output written on doc.pdf (9 pages, 115265 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
