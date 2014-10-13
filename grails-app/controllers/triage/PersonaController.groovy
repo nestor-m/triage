@@ -15,13 +15,9 @@ import java.text.SimpleDateFormat
 @Transactional //(readOnly = true) esto me hizo romper la cabeza durante unas cuantas horas :(
 class PersonaController extends LoginController{
 
-    static allowedMethods = [save: "POST"
-								, update: "PUT"
-								, delete: "DELETE"
-								, ajaxList: "GET"
+    static allowedMethods = [ ajaxList: "GET"
 								,ajaxSave: "POST"
 								,ajaxBuscar: "POST"
-								,ajaxBuscarNoFinalizados: "POST"
 								,cargarPersona: "POST"]
 
 
@@ -130,7 +126,7 @@ class PersonaController extends LoginController{
 				',"tipoAtencion":"' + tipoAtencion+ '"}'))
 		}
 		
-		println atencionesResp
+		//println atencionesResp
 		
 		request.JSON.atenciones = atencionesResp
 		render request.JSON as JSON
