@@ -1,13 +1,37 @@
 \section{Introducción}
 \subsection{Contexto general}
-El hospital, el jefe de guardia, pioneros en Triage, necesidades
+Actualmente la guardia del H.Z.G.A ''Dr. Arturo Oñativia'' de la localidad de Rafael Calzada, a cargo del Doctor Luis Reggiani, utiliza el método Triage \cite{Derlet} \cite{Manual} para la clasificación de pacientes según los síntomas que presenten. Hasta el momento todo el proceso se hace en forma manual, lo que implica algunos contratiempos:
+\begin{itemize}
+\item Depender de una persona (o varias) con todo el conocimiento.
+\item Emplear demasiado tiempo para guardar datos y recolectarlos.
+\item Obtener diferentes resultados (algunas veces incorrectos), pues diferentes personas usan a veces criterios diferentes para la toma de decisiones.
+\end{itemize}
+Según Luis Reggiani informatizar el proceso de Triage implicaría una mejora notable en el desempeño de la guardia. Se lograría una estandarización en la clasificación de síntomas, se agilizaría el ingreso y la obtención de datos de pacientes, se mejoraría la atención en general y se distinguirían de una manera más eficaz aquellos pacientes que necesiten una atención inmediata.
 \subsection{Sobre el TRIAGE}
-Acá contamos qué es el Triage
+Triage es un método de la medicina de emergencias y desastres para la selección y clasificación de los pacientes basándose en las prioridades de atención, privilegiando la posibilidad de supervivencia, de acuerdo a las necesidades terapéuticas y los recursos disponibles. Trata de evitar que se retrase la atención del paciente que empeoraría su pronóstico por la demora en su atención. Un nivel que implique que el paciente puede ser demorado no quiere decir que el diagnóstico final no pueda ser una enfermedad grave, ya que un cáncer, por ejemplo, puede tener funciones vitales estables que no lleve a ser visto con premura. El triage prioriza el compromiso vital inmediato y las posibles complicaciones.
 \subsection{Propuesta de solución}
-Cómo vamos a encarar el problema
+Proponemos desarrollar y poner en funcionamiento un sistema informático que dé soporte al proceso de Triage en la guardia del H.Z.G.A ''Dr. Arturo Oñativia'' de la localidad de Rafael Calzada.\\
+Dado que el sistema podría incluir muchísimas funcionalidades y al mismo tiempo existe una especificación detallada de los requerimientos, planteamos el proyecto con alcance variable con el compromiso de entrega de un software que resuelva la parte central del proceso de Triage. La idea es que el sistema desarrollado en el contexto de este trabajo sea puesto en marcha y utilizado por la institución promotora.
 \subsection{Objetivo General}
-Cómo queremos que sea el resultado
+Concretamente el sistema debe cubrir las siguientes funcionalidades mínimas:
+\begin{itemize}
+\item Recepción de pacientes mediante búsqueda de aquellos que ya fueron atendidos en el hospital e ingreso de los que se atienden por primera vez.
+\item Toma de impresión visual inicial del paciente.
+\item Toma de los signos vitales que presenta el paciente: presión arterial (sístole y diástole), frecuencia cardíaca, saturación de O2, frecuencia respiratoria, temperatura y glucosa.
+\item Ingreso de los síntomas que presenta el paciente.
+\item División de los síntomas por categorías (discriminantes) y asociación de prioridades a los mismos.
+\item Lógica variada para los síntomas, según se trate de un paciente adulto o pediátrico, tanto para los valores de los signos vitales como para las prioridades de los síntomas.
+\item Emisión de alerta al momento de detectarse un síntoma de prioridad uno, para que se ingrese al paciente de inmediato al shock room.
+\item Posibilidad de extraer reportes de cantidad de consultas realizadas según prioridad y promedio de tiempo de espera de atención según prioridad.
+\item Puesta en funcionamiento en cada sala de recepción de pacientes de guardia.
+\end{itemize}
 \subsection{Resultado Final}
-Cuál fue el resultado
+Desarrollamos una aplicación web que cubre todas las funcionalidades mínimas detalladas anteriormente y además realiza las siguientes:
+\begin{itemize}
+\item Generación de reportes por paciente a modo de historial de atenciones en guardia con detalle de fecha, síntomas presentados, signos vitales, prioridad asignada y tipo de atención recibida.
+\item Diferenciación entre usuarios administradores del sistema y usuarios comunes.
+\item Posibilidad de detallar el tipo de atención recibida por el paciente luego de pasar por el proceso de Triage
+\item Alta, baja y modificación de pacientes, síntomas, discriminantes de síntomas y usuarios del sistema.
+\end{itemize}
 \subsection{Síntesis de trabajo}
-?
+TODO
