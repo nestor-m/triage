@@ -121,8 +121,6 @@ class PacienteController extends LoginController{
 	}
 
 
-
-
 	/*
 	 *Click boton Finalizar triage. Carga la impresion visual, los sintomas y los signos vitales
 	 */
@@ -173,7 +171,19 @@ class PacienteController extends LoginController{
 	@Transactional
 	def cargarPaciente(){
 		Persona persona = Persona.get(request.JSON.id)
-		Paciente paciente = new Paciente(persona: persona).save( failOnError : true )
+		Paciente paciente = Paciente.withCriteria(uniqueResult: true) {//chequeo si el paciente ya esta cargado
+			eq('finalizado', false)
+			eq('persona', persona)
+		}
+
+		//esto hace lo mismo que withCriteria pero no es soportado por los test de Grails
+		//Paciente paciente = Paciente.find("from Paciente where finalizado='FALSE' and persona=:persona", [persona: persona])
+
+		//los test de Grails hacian una cosa rara, me devolvia un paciente con todo en null
+		//entonces me vi obligado a agregar la condicion || paciente.id == null)
+		if(paciente == null || paciente.id == null){//solo cargo el paciente si no esta cargado
+			paciente = new Paciente(persona: persona).save( failOnError : true )
+		}	
 
 		request.JSON.id = paciente.id
 		request.JSON.nombre = persona.nombre
@@ -314,7 +324,6 @@ class PacienteController extends LoginController{
 		this.enviarRespuesta(paciente)
 	}
 
-
 	/**
 	 * Carga l	os signos vitales del paciente 
 	 * (Los datos viene por JSON)
@@ -337,7 +346,6 @@ class PacienteController extends LoginController{
 			paciente.calcularPrioridad()
 		}
 	}
-
 
 	/**
 	 * Método que devuelve una lista en JSON con los datos de los pacientes no finalizados
@@ -389,26 +397,20 @@ class PacienteController extends LoginController{
 	}
 
 
-
-
 	/**
 	 * Método para agregar días a una fecha
 	 * @param fecha
 	 * @param dia
 	 * @return la misma fecha con día de más
 	 */
-	def agregarDias(Date fecha,int dia){
-
+	private agregarDias(Date fecha,int dia){//agrego el private para que no me tire un warning por recibir un Date por parametro
 		Calendar cal = new GregorianCalendar()
 		cal.setLenient(false)
 		cal.setTime(fecha)
 
-
 		cal.add(Calendar.DAY_OF_MONTH, dia)
 
-
 		return cal.getTime()
-
 	}
 
 	def calcularEdad(String fecha){

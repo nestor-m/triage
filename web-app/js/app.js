@@ -365,40 +365,39 @@ app.controller(
 						// submit de impresion visual, sintomas, signos vitales
 						// y calcula la prioridad
 						$http
-								.post(
-										"paciente/finalizarTriage",
-										{
-											id : $scope.pacienteActual.id,
-											sintomasImpresionVisual : $scope.paciente.sintomas,
-											sintomas : $scope.sintomas,
-											sistole : $scope.sistole == '' ? undefined
-													: $scope.sistole,
-											diastole : $scope.diastole == '' ? undefined
-													: $scope.diastole,
-											pulso : $scope.pulso == '' ? undefined
-													: $scope.pulso,
-											frecuenciaRespiratoria : $scope.frecuenciaRespiratoria == '' ? undefined
-													: $scope.frecuenciaRespiratoria,
-											temperatura : $scope.temperatura == '' ? undefined
-													: $scope.temperatura,
-											saturacionO2 : $scope.saturacionO2 == '' ? undefined
-													: $scope.saturacionO2,
-											glucosa : $scope.glucosa == '' ? undefined
-													: $scope.glucosa
-										}).success(function(data) {
-									$cookieStore.put('datosPaciente', data);
-									if (data.prioridad == 'DOS') {// nunca
-										// puede ser
-										// prioridad
-										// UNO en
-										// esta
-										// instancia
-										$location.path("/prioridad2");
-									} else {
-										$location.path("/prioridad3");
-									}
-								});
-
+							.post(
+									"paciente/finalizarTriage",
+									{
+										id : $scope.pacienteActual.id,
+										sintomasImpresionVisual : $scope.paciente.sintomas,
+										sintomas : $scope.sintomas,
+										sistole : $scope.sistole == '' ? undefined
+												: $scope.sistole,
+										diastole : $scope.diastole == '' ? undefined
+												: $scope.diastole,
+										pulso : $scope.pulso == '' ? undefined
+												: $scope.pulso,
+										frecuenciaRespiratoria : $scope.frecuenciaRespiratoria == '' ? undefined
+												: $scope.frecuenciaRespiratoria,
+										temperatura : $scope.temperatura == '' ? undefined
+												: $scope.temperatura,
+										saturacionO2 : $scope.saturacionO2 == '' ? undefined
+												: $scope.saturacionO2,
+										glucosa : $scope.glucosa == '' ? undefined
+												: $scope.glucosa
+									}).success(function(data) {											
+										$cookieStore.put('datosPaciente', data);
+										switch (data.prioridad) {
+											case 'UNO':
+												$location.path("/prioridad1");
+												break; 
+											case 'DOS':
+												$location.path("/prioridad2");
+												break; 
+											case 'TRES': 
+												$location.path("/prioridad3");
+										}
+									});
 					};
 
 					$scope.salir = function() {

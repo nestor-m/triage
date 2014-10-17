@@ -42,6 +42,18 @@ class Paciente {
 	 */
 	Prioridad calcularPrioridad(){
 		Boolean esAdulto = persona.esAdulto()
+
+		//CHEQUEO SI ES PRIORIDAD 1, lo normal seria que la prioridad uno se detecte sin llamar a este metodo pero igualmente se puede dar el caso en que se presione el boton "Fin triage" con sintomas de prioridad uno
+		for(sintoma in sintomas){
+			if((esAdulto && sintoma.prioridadAdulto == Prioridad.UNO) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.UNO)){
+				this.prioridad = Prioridad.UNO
+				this.save()
+				return Prioridad.UNO
+			}
+		}
+
+
+		//CHEQUEO SI ES PRIORIDAD 2
 		for(sintoma in sintomas){
 			if((esAdulto && sintoma.prioridadAdulto == Prioridad.DOS) || (!esAdulto && sintoma.prioridadPediatrico == Prioridad.DOS)){
 				this.prioridad = Prioridad.DOS
@@ -49,6 +61,7 @@ class Paciente {
 				return Prioridad.DOS
 			}
 		}
+
 		//me fijo si es prioridad 2 segun los signos vitales
 		//NOTA: los unicos signos vitales que influyen en una hipotetica Prioridad 2 son la temperatura y la glucosa
 		if((esAdulto && (['38.6-39.4', '39.5-41.0'].contains(this.temperatura) || this.glucosa == 'más de 300')) ||

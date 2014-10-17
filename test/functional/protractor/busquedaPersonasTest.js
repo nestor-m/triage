@@ -42,7 +42,6 @@ describe('Test pantalla de búsqueda de personas', function() {
 	    var botonOK = $$('.modal-footer button').get(0);
 	    botonOK.click();
 	    browser.sleep(1000);
-	    browser.waitForAngular();
 		element(by.buttonText('Salir')).click();
 		
 		browser.get('http://localhost:8080/triage/');
@@ -50,17 +49,15 @@ describe('Test pantalla de búsqueda de personas', function() {
 		browser.waitForAngular();
 		element(by.model('nombre')).sendKeys('nestor');
 		element(by.id("botonBuscar")).click();
-		browser.waitForAngular();	
+		browser.waitForAngular();
 		element(by.buttonText('Finalizar')).click();
-		
+		browser.waitForAngular();
 		element.all(by.model('opciones')).get(0).click();
 	    browser.waitForAngular();
 	    element(by.buttonText('Finalizar')).click();
-	    var botonOK = $$('.modal-footer button').get(1);
-	    browser.waitForAngular();
+	    var botonOK = $$('.modal-footer button').get(1);	    
 	    botonOK.click();
-	    browser.waitForAngular();
-	    
+	    browser.sleep(1000);
 	    
 	    element(by.id("dropdownMenu1")).click();
 		element(by.id("busqueda_personas")).click();
