@@ -1,34 +1,40 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{4}
-\contentsline {subsection}{\numberline {1.1}Contexto general}{4}
-\contentsline {subsection}{\numberline {1.2}Sobre el TRIAGE}{4}
-\contentsline {subsection}{\numberline {1.3}Propuesta de soluci\IeC {\'o}n}{4}
-\contentsline {subsection}{\numberline {1.4}Objetivo General}{4}
-\contentsline {subsection}{\numberline {1.5}Resultado Final}{5}
-\contentsline {subsection}{\numberline {1.6}S\IeC {\'\i }ntesis de trabajo}{5}
-\contentsline {section}{\numberline {2}Planteo}{6}
-\contentsline {subsection}{\numberline {2.1}Problema en detalle}{6}
-\contentsline {subsection}{\numberline {2.2}Reuniones y contacto con el usuario}{6}
-\contentsline {subsection}{\numberline {2.3}Requerimientos del cliente}{6}
-\contentsline {subsection}{\numberline {2.4}Pantallas}{6}
-\contentsline {subsection}{\numberline {2.5}Informes}{6}
-\contentsline {subsubsection}{\numberline {2.5.1}Tiempo de espera para cada prioridad}{6}
-\contentsline {subsubsection}{\numberline {2.5.2}Cantidad de atenciones para cada prioridad}{6}
-\contentsline {subsubsection}{\numberline {2.5.3}Reporte de Personas}{6}
-\contentsline {section}{\numberline {3}Dise\IeC {\~n}o e implementaci\IeC {\'o}n}{7}
-\contentsline {subsection}{\numberline {3.1}Tecnolog\IeC {\'\i }as}{7}
-\contentsline {subsection}{\numberline {3.2}Metodolog\IeC {\'\i }a de trabajo}{7}
-\contentsline {subsection}{\numberline {3.3}Relevamiento}{7}
-\contentsline {subsection}{\numberline {3.4}Dise\IeC {\~n}o y arquitectura}{7}
-\contentsline {subsection}{\numberline {3.5}Detalle t\IeC {\'e}cnico}{7}
-\contentsline {subsection}{\numberline {3.6}Problemas que tuvimos}{7}
-\contentsline {subsection}{\numberline {3.7}Detalles interesantes del c\IeC {\'o}digo}{7}
-\contentsline {subsection}{\numberline {3.8}Testing}{7}
-\contentsline {subsubsection}{\numberline {3.8.1}Funcional}{7}
-\contentsline {subsubsection}{\numberline {3.8.2}Unitario}{7}
-\contentsline {subsubsection}{\numberline {3.8.3}Integraci\IeC {\'o}n}{7}
-\contentsline {subsection}{\numberline {3.9}Deploy}{8}
-\contentsline {subsubsection}{\numberline {3.9.1}Instalaci\IeC {\'o}n}{8}
-\contentsline {subsubsection}{\numberline {3.9.2}Manual de usuario}{8}
-\contentsline {subsubsection}{\numberline {3.9.3}Aprendizaje del usuario}{8}
-\contentsline {section}{\numberline {4}Conclusiones}{9}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Contexto general}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Sobre el TRIAGE}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Propuesta de soluci\IeC {\'o}n}{4}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Objetivo General}{5}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Resultado Final}{5}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}S\IeC {\'\i }ntesis de trabajo}{5}{subsection.1.6}
+\contentsline {section}{\numberline {2}Planteo}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Problema en detalle}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Reuniones y contacto con el usuario}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Requerimientos del cliente}{6}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Pantallas}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Informes}{6}{subsection.2.5}
+\contentsline {subsubsection}{\numberline {2.5.1}Tiempo de espera para cada prioridad}{6}{subsubsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.2}Cantidad de atenciones para cada prioridad}{6}{subsubsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.3}Reporte de Personas}{6}{subsubsection.2.5.3}
+\contentsline {section}{\numberline {3}Dise\IeC {\~n}o e implementaci\IeC {\'o}n}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Tecnolog\IeC {\'\i }as}{7}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}AngularJS}{7}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Grails}{7}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Bases de datos}{7}{subsubsection.3.1.3}
+\contentsline {subsection}{\numberline {3.2}Metodolog\IeC {\'\i }a de trabajo}{8}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Resumen del itinerario del proyecto}{8}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Flujo de trabajo en una iteraci\IeC {\'o}n}{9}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Herramientas que utilizamos}{9}{subsubsection.3.2.3}
+\contentsline {subsection}{\numberline {3.3}Arquitectura}{9}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Dise\IeC {\~n}o}{9}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Detalle t\IeC {\'e}cnico}{9}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Problemas que tuvimos}{9}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Detalles interesantes del c\IeC {\'o}digo}{9}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}Testing}{10}{subsection.3.8}
+\contentsline {subsubsection}{\numberline {3.8.1}Funcional}{10}{subsubsection.3.8.1}
+\contentsline {subsubsection}{\numberline {3.8.2}Unitario}{10}{subsubsection.3.8.2}
+\contentsline {subsubsection}{\numberline {3.8.3}Integraci\IeC {\'o}n}{10}{subsubsection.3.8.3}
+\contentsline {subsection}{\numberline {3.9}Deploy}{10}{subsection.3.9}
+\contentsline {subsubsection}{\numberline {3.9.1}Instalaci\IeC {\'o}n}{10}{subsubsection.3.9.1}
+\contentsline {subsubsection}{\numberline {3.9.2}Manual de usuario}{10}{subsubsection.3.9.2}
+\contentsline {subsubsection}{\numberline {3.9.3}Aprendizaje del usuario}{10}{subsubsection.3.9.3}
+\contentsline {section}{\numberline {4}Conclusiones}{11}{section.4}

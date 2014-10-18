@@ -1,7 +1,5 @@
 describe('Test reporte de prioridades', function() {
 
-
-
 	it('Testeo que existe la pantalla del reporte', function(){
 		browser.get('http://localhost:8080/triage/');
 	      element(by.model('nombre')).sendKeys('admin');//me logueo con admin
@@ -15,7 +13,8 @@ describe('Test reporte de prioridades', function() {
 	});
 	
 	it('Agrego una persona con prioridad 2 y chequeo que para la fecha de hoy haya un P2', function() {
-		browser.get('http://localhost:8080/triage/');
+		//browser.get('http://localhost:8080/triage/');
+		element(by.id('inicio')).click();
 		element(by.model('nombre')).sendKeys('nestor');
 	    element(by.id("botonBuscar")).click();
 	    browser.waitForAngular();
@@ -35,7 +34,7 @@ describe('Test reporte de prioridades', function() {
 		
 		element(by.buttonText('Salir')).click();		
 		
-		browser.get('http://localhost:8080/triage/');
+		//browser.get('http://localhost:8080/triage/');
 		element(by.id('espera')).click();
 	    browser.waitForAngular();
 		element(by.model('nombre')).sendKeys('nestor');
@@ -60,8 +59,12 @@ describe('Test reporte de prioridades', function() {
 	    browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_prioridades');
 		
-		element(by.model('fechaDesde')).sendKeys('10/07/2014');
-		element(by.model('fechaHasta')).sendKeys('30/09/2014');
+		var hoyDate = new Date();
+		var mes = hoyDate.getMonth()+1;
+		var hoyString = hoyDate.getDate()+'/'+mes+'/'+hoyDate.getFullYear();
+
+		element(by.model('fechaDesde')).sendKeys(hoyString);
+		element(by.model('fechaHasta')).sendKeys(hoyString);
 		
 		element(by.buttonText('Generar')).click();
 	    browser.waitForAngular();

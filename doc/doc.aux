@@ -3,45 +3,65 @@
 \catcode`<\active
 \catcode`>\active
 \@nameuse{es@quoting}
+\ifx\hyper@anchor\@undefined
+\global \let \oldcontentsline\contentsline
+\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global \let \oldnewlabel\newlabel
+\gdef \newlabel#1#2{\newlabelxx{#1}#2}
+\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\let \contentsline\oldcontentsline
+\let \newlabel\oldnewlabel}
+\else
+\global \let \hyper@last\relax 
+\fi
+
 \select@language{spanish}
 \@writefile{toc}{\select@language{spanish}}
 \@writefile{lof}{\select@language{spanish}}
 \@writefile{lot}{\select@language{spanish}}
 \citation{Derlet}
 \citation{Manual}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Contexto general}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Sobre el TRIAGE}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Propuesta de soluci\IeC {\'o}n}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Objetivo General}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Resultado Final}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}S\IeC {\'\i }ntesis de trabajo}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Planteo}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Problema en detalle}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Reuniones y contacto con el usuario}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Requerimientos del cliente}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Pantallas}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Informes}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1}Tiempo de espera para cada prioridad}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2}Cantidad de atenciones para cada prioridad}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.3}Reporte de Personas}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Dise\IeC {\~n}o e implementaci\IeC {\'o}n}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Tecnolog\IeC {\'\i }as}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Metodolog\IeC {\'\i }a de trabajo}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Relevamiento}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Dise\IeC {\~n}o y arquitectura}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Detalle t\IeC {\'e}cnico}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Problemas que tuvimos}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Detalles interesantes del c\IeC {\'o}digo}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Testing}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.1}Funcional}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.2}Unitario}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.3}Integraci\IeC {\'o}n}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Deploy}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.1}Instalaci\IeC {\'o}n}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.2}Manual de usuario}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.3}Aprendizaje del usuario}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusiones}{9}}
+\citation{Shore}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{4}{section.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Contexto general}{4}{subsection.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Sobre el TRIAGE}{4}{subsection.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Propuesta de soluci\IeC {\'o}n}{4}{subsection.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Objetivo General}{5}{subsection.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Resultado Final}{5}{subsection.1.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}S\IeC {\'\i }ntesis de trabajo}{5}{subsection.1.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Planteo}{6}{section.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Problema en detalle}{6}{subsection.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Reuniones y contacto con el usuario}{6}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Requerimientos del cliente}{6}{subsection.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Pantallas}{6}{subsection.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Informes}{6}{subsection.2.5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1}Tiempo de espera para cada prioridad}{6}{subsubsection.2.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2}Cantidad de atenciones para cada prioridad}{6}{subsubsection.2.5.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.3}Reporte de Personas}{6}{subsubsection.2.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Dise\IeC {\~n}o e implementaci\IeC {\'o}n}{7}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Tecnolog\IeC {\'\i }as}{7}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}AngularJS}{7}{subsubsection.3.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Grails}{7}{subsubsection.3.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Bases de datos}{7}{subsubsection.3.1.3}}
+\citation{Shore}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Metodolog\IeC {\'\i }a de trabajo}{8}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Resumen del itinerario del proyecto}{8}{subsubsection.3.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Flujo de trabajo en una iteraci\IeC {\'o}n}{9}{subsubsection.3.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Herramientas que utilizamos}{9}{subsubsection.3.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Arquitectura}{9}{subsection.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Dise\IeC {\~n}o}{9}{subsection.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Detalle t\IeC {\'e}cnico}{9}{subsection.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Problemas que tuvimos}{9}{subsection.3.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Detalles interesantes del c\IeC {\'o}digo}{9}{subsection.3.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Testing}{10}{subsection.3.8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.1}Funcional}{10}{subsubsection.3.8.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.2}Unitario}{10}{subsubsection.3.8.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.3}Integraci\IeC {\'o}n}{10}{subsubsection.3.8.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Deploy}{10}{subsection.3.9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.1}Instalaci\IeC {\'o}n}{10}{subsubsection.3.9.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.2}Manual de usuario}{10}{subsubsection.3.9.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.3}Aprendizaje del usuario}{10}{subsubsection.3.9.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusiones}{11}{section.4}}
 \bibcite{Derlet}{1}
 \bibcite{Manual}{2}
 \bibcite{Shore}{3}
