@@ -6,10 +6,10 @@
 \BOOKMARK [2][-]{subsection.1.5}{Resultado Final}{section.1}
 \BOOKMARK [2][-]{subsection.1.6}{S\355ntesis de trabajo}{section.1}
 \BOOKMARK [1][-]{section.2}{Planteo}{}
-\BOOKMARK [2][-]{subsection.2.1}{Problema en detalle}{section.2}
+\BOOKMARK [2][-]{subsection.2.1}{Din\341mica de trabajo en el hospital}{section.2}
 \BOOKMARK [2][-]{subsection.2.2}{Reuniones y contacto con el usuario}{section.2}
 \BOOKMARK [2][-]{subsection.2.3}{Requerimientos del cliente}{section.2}
-\BOOKMARK [2][-]{subsection.2.4}{Pantallas}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Pantallas y din\341mica de uso}{section.2}
 \BOOKMARK [2][-]{subsection.2.5}{Informes}{section.2}
 \BOOKMARK [3][-]{subsubsection.2.5.1}{Tiempo de espera para cada prioridad}{subsection.2.5}
 \BOOKMARK [3][-]{subsubsection.2.5.2}{Cantidad de atenciones para cada prioridad}{subsection.2.5}
@@ -24,16 +24,17 @@
 \BOOKMARK [3][-]{subsubsection.3.2.2}{Flujo de trabajo en una iteraci\363n}{subsection.3.2}
 \BOOKMARK [3][-]{subsubsection.3.2.3}{Herramientas que utilizamos}{subsection.3.2}
 \BOOKMARK [2][-]{subsection.3.3}{Arquitectura}{section.3}
-\BOOKMARK [2][-]{subsection.3.4}{Dise\361o}{section.3}
-\BOOKMARK [2][-]{subsection.3.5}{Detalle t\351cnico}{section.3}
-\BOOKMARK [2][-]{subsection.3.6}{Problemas que tuvimos}{section.3}
-\BOOKMARK [2][-]{subsection.3.7}{Detalles interesantes del c\363digo}{section.3}
-\BOOKMARK [2][-]{subsection.3.8}{Testing}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.8.1}{Funcional}{subsection.3.8}
-\BOOKMARK [3][-]{subsubsection.3.8.2}{Unitario}{subsection.3.8}
-\BOOKMARK [3][-]{subsubsection.3.8.3}{Integraci\363n}{subsection.3.8}
-\BOOKMARK [2][-]{subsection.3.9}{Deploy}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.9.1}{Instalaci\363n}{subsection.3.9}
-\BOOKMARK [3][-]{subsubsection.3.9.2}{Manual de usuario}{subsection.3.9}
-\BOOKMARK [3][-]{subsubsection.3.9.3}{Aprendizaje del usuario}{subsection.3.9}
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Comunicaci\363n entre el cliente y el servidor}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Arquitectura en AngularJS}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Arquitectura en Grails}{subsection.3.3}
+\BOOKMARK [2][-]{subsection.3.4}{Detalle t\351cnico}{section.3}
+\BOOKMARK [2][-]{subsection.3.5}{Problemas que tuvimos}{section.3}
+\BOOKMARK [2][-]{subsection.3.6}{Detalles interesantes del c\363digo}{section.3}
+\BOOKMARK [2][-]{subsection.3.7}{Testing}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.7.1}{Funcional}{subsection.3.7}
+\BOOKMARK [3][-]{subsubsection.3.7.2}{Unitario}{subsection.3.7}
+\BOOKMARK [3][-]{subsubsection.3.7.3}{Integraci\363n}{subsection.3.7}
+\BOOKMARK [2][-]{subsection.3.8}{Deploy e Instalaci\363n}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.8.1}{Manual de usuario}{subsection.3.8}
+\BOOKMARK [3][-]{subsubsection.3.8.2}{Aprendizaje del usuario}{subsection.3.8}
 \BOOKMARK [1][-]{section.4}{Conclusiones}{}
