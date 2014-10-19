@@ -1,6 +1,9 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+%links en el indice
+\usepackage[bookmarks = true, colorlinks=true, linkcolor = black, citecolor = black, menucolor = black, urlcolor = black]{hyperref} 
+
 
 %opening
 \title{Trabajo de Inserción Profesional}
@@ -33,47 +36,7 @@ La solución propuesta es el desarrollo de una aplicación web que sea accesible
 \input{planteo}
 
 \newpage 
-\section{Diseño e implementación}
-\subsection{Tecnologías}
-Acá contamos la elección de las tecnologías
-
-\subsection{Metodología de trabajo}
-Cuáles fueron las metodologías de trabajo y qué herramientas utilizamos
-
-\subsection{Relevamiento}
-?
-
-\subsection{Diseño y arquitectura}
-Cómo pensamos el modelo: particularidades de persona y paciente; pantalla de espera (poder acceder desde cualquier pc a los pacientes).
-Diagrama de clases 
-
-\subsection{Detalle técnico}
-División entre angular y grails
-
-\subsection{Problemas que tuvimos}
-?
-
-\subsection{Detalles interesantes del código}
-En el caso de que los haya 
-
-
-
-
-\subsection{Testing}
-Herramientas que usamos para testear, qué tipo de testing hicimos (funcional, unitario, de integración...)
-\subsubsection{Funcional}
-Selenium.. / Protractor / Casper
-\subsubsection{Unitario}
-Con Grails
-\subsubsection{Integración}
-Con Grails
-\subsection{Deploy}
-\subsubsection{Instalación}
-Cómo realizamos la instalación en el entorno de trabajo donde se usará el producto
-\subsubsection{Manual de usuario}
-Se confeccionó un manual de usuario...
-\subsubsection{Aprendizaje del usuario}
-Cuánto tiempo llevó explicar el sistema, si fue fácil de entender..
+\input{implementacion}
 
 \newpage 
 \section{Conclusiones}

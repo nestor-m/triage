@@ -11,7 +11,7 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 		element(by.id("reporte_esperas")).click();
 		browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');
-	})
+	});
 	
 	it('Agrego algunos pacientes para ver algunos resultados', function(){
 		browser.get('http://localhost:8080/triage/');  
@@ -27,7 +27,6 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 		expect(sintomas.get(0).getText()).toBe('DESHIDRATACION (p2-p1)');
 		sintomas.get(0).click();
 		element(by.buttonText('Aceptar')).click();
-
 		
 		browser.sleep(1000);
 		browser.waitForAngular();
@@ -37,8 +36,7 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 	    
 	    browser.waitForAngular();
 		
-		element(by.buttonText('Salir')).click();
-		
+		element(by.buttonText('Salir')).click();		
 		
 		browser.get('http://localhost:8080/triage/');
 		element(by.id('espera')).click();
@@ -58,34 +56,36 @@ describe('Test pantalla de reporte de tiempo de espera', function() {
 	    var botonOK = $$('.modal-footer button').get(1);
 	    browser.waitForAngular();
 	    botonOK.click();
-	    browser.waitForAngular();
+	    browser.sleep(1000);
 		
 	    element(by.id("dropdownMenu1")).click();
 	    element(by.id("reporte_esperas")).click();
 	    browser.waitForAngular();
 		expect(browser.getCurrentUrl()).toBe('http://localhost:8080/triage/#/reporte_tiempo_espera');
 		
-		element(by.model('fechaDesde')).sendKeys('10/07/2014');
-		element(by.model('fechaHasta')).sendKeys('30/10/2014');
+		var hoyDate = new Date();
+		var mes = hoyDate.getMonth()+1;
+		var hoyString = hoyDate.getDate()+'/'+mes+'/'+hoyDate.getFullYear();
+
+		element(by.model('fechaDesde')).sendKeys(hoyString);
+		element(by.model('fechaHasta')).sendKeys(hoyString);
 		
-		 element(by.buttonText('Generar')).click();
-		 browser.waitForAngular();
-		 
+		element(by.buttonText('Generar')).click();
+		browser.waitForAngular();		 
 		 
 		//hay elementos en la tabla
-		 expect(element(by.binding('espera.prioridad')).isPresent()).toBe(true);
+		expect(element(by.binding('espera.prioridad')).isPresent()).toBe(true);
 		 
-		 //me fijo que haya un prioridad dos
-		 expect(element(by.binding('espera.prioridad')).getText()).toBe('DOS');
+		//me fijo que haya un prioridad dos
+		expect(element(by.binding('espera.prioridad')).getText()).toBe('DOS');
 		 
-		 //me fijo que la palabra tres no esté en pantalla (sólo agregué personas con prioridad 2)
-		 var prioridad =  element(by.binding('espera.prioridad')).getText();
-		 expect(prioridad == 'TRES').toBe(false);
-		 
+		//me fijo que la palabra tres no esté en pantalla (sólo agregué personas con prioridad 2)
+		var prioridad =  element(by.binding('espera.prioridad')).getText();
+		expect(prioridad == 'TRES').toBe(false);		 
 		 
 		//me deslogueo logout
-	    	element(by.id("dropdownUsuario")).click();
-	    	element(by.id("logout")).click();
-	})
+	    element(by.id("dropdownUsuario")).click();
+	    element(by.id("logout")).click();
+	});
 	
-})
+});
