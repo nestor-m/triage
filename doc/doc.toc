@@ -19,22 +19,23 @@
 \contentsline {subsection}{\numberline {3.1}Tecnolog\IeC {\'\i }as}{7}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}AngularJS}{7}{subsubsection.3.1.1}
 \contentsline {subsubsection}{\numberline {3.1.2}Grails}{7}{subsubsection.3.1.2}
-\contentsline {subsubsection}{\numberline {3.1.3}Bases de datos}{7}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.3}Bases de datos}{8}{subsubsection.3.1.3}
 \contentsline {subsection}{\numberline {3.2}Metodolog\IeC {\'\i }a de trabajo}{8}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Resumen del itinerario del proyecto}{8}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Flujo de trabajo en una iteraci\IeC {\'o}n}{9}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Herramientas que utilizamos}{9}{subsubsection.3.2.3}
 \contentsline {subsection}{\numberline {3.3}Arquitectura}{9}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Dise\IeC {\~n}o}{9}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Detalle t\IeC {\'e}cnico}{9}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Problemas que tuvimos}{9}{subsection.3.6}
-\contentsline {subsection}{\numberline {3.7}Detalles interesantes del c\IeC {\'o}digo}{9}{subsection.3.7}
-\contentsline {subsection}{\numberline {3.8}Testing}{10}{subsection.3.8}
-\contentsline {subsubsection}{\numberline {3.8.1}Funcional}{10}{subsubsection.3.8.1}
-\contentsline {subsubsection}{\numberline {3.8.2}Unitario}{10}{subsubsection.3.8.2}
-\contentsline {subsubsection}{\numberline {3.8.3}Integraci\IeC {\'o}n}{10}{subsubsection.3.8.3}
-\contentsline {subsection}{\numberline {3.9}Deploy}{10}{subsection.3.9}
-\contentsline {subsubsection}{\numberline {3.9.1}Instalaci\IeC {\'o}n}{10}{subsubsection.3.9.1}
-\contentsline {subsubsection}{\numberline {3.9.2}Manual de usuario}{10}{subsubsection.3.9.2}
-\contentsline {subsubsection}{\numberline {3.9.3}Aprendizaje del usuario}{10}{subsubsection.3.9.3}
-\contentsline {section}{\numberline {4}Conclusiones}{11}{section.4}
+\contentsline {subsubsection}{\numberline {3.3.1}Comunicaci\IeC {\'o}n entre el cliente y el servidor}{9}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Arquitectura en AngularJS}{10}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}Arquitetura en Grails}{10}{subsubsection.3.3.3}
+\contentsline {subsection}{\numberline {3.4}Detalle t\IeC {\'e}cnico}{10}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Problemas que tuvimos}{11}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Detalles interesantes del c\IeC {\'o}digo}{11}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Testing}{11}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Funcional}{11}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Unitario}{11}{subsubsection.3.7.2}
+\contentsline {subsubsection}{\numberline {3.7.3}Integraci\IeC {\'o}n}{11}{subsubsection.3.7.3}
+\contentsline {subsection}{\numberline {3.8}Deploy e Instalaci\IeC {\'o}n}{11}{subsection.3.8}
+\contentsline {subsubsection}{\numberline {3.8.1}Manual de usuario}{11}{subsubsection.3.8.1}
+\contentsline {subsubsection}{\numberline {3.8.2}Aprendizaje del usuario}{11}{subsubsection.3.8.2}
+\contentsline {section}{\numberline {4}Conclusiones}{12}{section.4}
