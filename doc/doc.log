@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.8)  23 OCT 2014 16:51
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.8)  24 OCT 2014 14:57
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -543,7 +543,7 @@ usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fo
 nts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/pub
 lic/amsfonts/cm/cmtt10.pfb>
-Output written on doc.pdf (15 pages, 255814 bytes).
+Output written on doc.pdf (15 pages, 255824 bytes).
 PDF statistics:
  354 PDF objects out of 1000 (max. 8388607)
  77 named destinations out of 1000 (max. 500000)
