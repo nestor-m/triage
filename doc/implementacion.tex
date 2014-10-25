@@ -18,8 +18,8 @@ Elegimos Postgres porque es lo que recomienda Heroku\footnote{https://www.heroku
 \subsection{Metodología de trabajo}
 Desde el primer momento el director del TIP nos indujo a darle al desarrollo un enfoque ágil\cite{Shore}. Así dar visibilidad constante a todos los interesados fue uno de los principios transversales a todo el proyecto. La comunicación fue muy fluida, tanto por mail, como a través de reuniones presenciales o virtuales (en forma remota). Otro de los pilares del enfoque ágil fue trabajar en forma iterativa e incremental. Es decir que trabajamos con iteraciones de tiempo fijo de una semana de duración. Al final de cada iteración los avances eran validados por el ''cliente''.
 \subsubsection{Resumen del itinerario del proyecto}
-Los primero que hicimos fueron varias reuniones entre todos los interesados en el proyecto: los desarrolladores, los directores y el ''cliente''. De esas reuniones y de una visita al hospital obtuvimos los requerimientos.\\
-El segundo paso fue la elección de las tecnologías. Entre el basto abanico de posibilidades NodeJS\footnote{http://nodejs.org/} y Grails aparecian como las predilectas aunque nunca habiamos trabajado con ninguna de las dos. Por ello, para obtener una impresión general de cada una y así resolver la elección, desarrollamos un conversor de Farenheit a Celcius muy simple. Finalmente optamos por usar Grails ya que se asemeja más que NodeJS a las tecnologías que veniamos utilizando en las distintas materias a lo largo de la carrera.\\
+Lo primero que hicimos fue varias reuniones entre todos los interesados en el proyecto: los desarrolladores, los directores y el ''cliente''. De esas reuniones y de una visita al hospital obtuvimos los requerimientos.\\
+El segundo paso fue la elección de las tecnologías. Entre el basto abanico de posibilidades NodeJS\footnote{http://nodejs.org/} y Grails aparecían como las predilectas aunque nunca habiamos trabajado con ninguna de las dos. Por ello, para obtener una impresión general de cada una y así resolver la elección, desarrollamos un conversor de Farenheit a Celcius muy simple. Finalmente optamos por usar Grails ya que se asemeja más que NodeJS a las tecnologías que veníamos utilizando en las distintas materias a lo largo de la carrera.\\
 Si bien Grails es full stack, el director del TIP quería que la aplicación sea más moderna. Entonces nos recomendó utilizar una tecnología que resuelva las vistas del lado del cliente, se comunique con el back-end mediante una API(Application Programming Interface) REST\footnote{http://es.wikipedia.org/wiki/Representational\_State\_Transfer} 
 y sea responsive\footnote{http://es.wikipedia.org/wiki/Diseño\_web\_adaptable}. Así surgio la idea de utilizar AngularJS que cubre ampliamente todos esos requisitos.\\
 En tercer lugar hicimos una estimación relativa a grandes rasgos. Allí calculamos cuanto tiempo nos iba a demandar cada funcionalidad requerida y la fecha de cierre del proyecto. Luego hicimos una planificación en donde ordenamos los requerimientos dentro de las iteraciones según las prioridades del ''cliente''.\\
@@ -36,7 +36,7 @@ Utilizamos una arquitectura cliente-servidor\footnote{http://es.wikipedia.org/wi
 La comunicación se da mediante peticiones HTTP\footnote{http://es.wikipedia.org/wiki/Hypertext\_Transfer\_Protocol} desde el cliente (AngularJS) al servidor (Grails). La información viaja en formato JSON\footnote{http://es.wikipedia.org/wiki/JSON}. Ejemplo de petición HTTP desde AngularJS:\\
 \begin{verbatim}
 $http.post('usuario/login',{
-  usuario: $scope.nombre,Beatriz Leani
+  usuario: $scope.nombre,
   password: $scope.password
 }).success(function(usuario){
   //hago algo cuando la peticion fue exitosa
@@ -56,41 +56,36 @@ Grails está dividido en vistas, controladores y clases del dominio. Como se tra
 \caption{Diagrama de clases del dominio}
 \end{figure}
 
-
-\subsection{Detalle técnico}
-?
-
-\subsection{Problemas que tuvimos}
-?
-
-\subsection{Detalles interesantes del código}
-En el caso de que los haya 
-
-
-
-
 \subsection{Testing}
-Desarrollamos la aplicación realizando testing unitario y de integración de cada clase de dominio así como también testing funcional de cada pantalla.
-\subsubsection{Funcional}
-Para testear el correcto funcionamiento de cada pantalla, usamos dos herramientas de Testing:
+Desarrollamos la aplicación realizando testing unitario y de integración de cada clase de dominio así como también testing funcional de cada pantalla.\\
+Cada funcionalidad desarrollada tiene su testing correspondiente. Algunas de las ventajas de usar testing automatizado son las siguientes:
 \begin{itemize}
-\item Casper
-\item Protractor
+\item Se robustece la aplicación.
+\item Se genera confianza en el programador al hacer modificaciones.
+\item Se ahorra tiempo.
+\item Se disminuye el margen de error en el código.
 \end{itemize}
 
-Para realizar las pruebas utilizamos Selenium, que es un entorno de pruebas de software para aplicaciones basadas en la web. 
+\subsubsection{Testing unitario}
+Para los tests unitarios utilizamos la herramienta nativa de Grails\footnote{http://grails.org/doc/latest/guide/testing.html\#unitTesting} con la librería de Java JUnit. Con ello cubrimos el comportamiento de las clases de dominio definidas en Grails que no tiene repercución en la base de datos.
 
-\subsubsection{Unitario}
-Para los tests unitarios se utilizó la herramienta nativa de Grails con la librería JUnit.
-\subsubsection{Integración}
-Los tests de integración fueron realizados con la herramienta nativa de Grails. 
+\subsubsection{Testing de integración}
+Realizamos los tests de integración con la herramienta nativa de Grails\footnote{http://grails.org/doc/latest/guide/testing.html\#integrationTesting}. Con ello cubrimos el comportamiento de los controladores definidos en Grails que tiene repercución en la base de datos.
+
+\subsubsection{Testing funcional}
+Para testear el correcto funcionamiento de cada pantalla emulamos al usuario final usando dos herramientas de testing funcional: CasperJS\footnote{http://casperjs.org/} y Protractor\footnote{https://github.com/angular/protractor}.\\
+En un primer momento utilizamos CasperJS pero tuvimos muchos problemas para hacerlo funcionar correctamente con AngularJS. Por eso dejamos de usarlo y lo reemplazamos por Protractor.\\
+Para utilizar Protractor necesitamos usar Selenium\footnote{http://www.seleniumhq.org/}, un entorno de pruebas de software para aplicaciones basadas en la web, con un driver para el navegador  Chrome\footnote{http://www.google.com/intl/es-419/chrome/}.
+
+\subsubsection{Problemas que tuvimos con el testing}
+\begin{itemize}
+\item Hay algunas funciones de Grails que no son soportadas por el ambiente de test del mismo framework. Entonces para que los test pasen nos vimos obligados a usar sólo aquellas funciones que no tenían dicho problema.
+\item Tuvimos problemas con Protractor al testear pantallas con modales. Como los modales bloquean el resto de la pantalla nos vimos obligados, siempre que aparece un modal en un caso de prueba, a dormir la ejecución del test para darle tiempo al modal a desaparecer y desbloquear el resto de la pantalla. Si no haciamos esto el test no pasaba.
+\end{itemize}
 \subsection{Deploy e Instalación}
-.war
-Tomcat
-H2
-Postgres
-
-Cómo realizamos la instalación en el entorno de trabajo donde se usará el producto
+La idea original fue tener la aplicación en línea corriendo en Heroku\footnote{https://www.heroku.com/}. Pero tuvimos que descartar esa posibilidad ya que la cantidad de memoria que la aplicación necesita para funcionar es mayor a la que ofrece el servicio gratuito. Entonces acordamos hacer la instalación en una máquina del hospital. Como las computadoras están en una misma red entonces la aplicación se encuentra accesible desde cualquier punto del lugar.\\
+Para la instalación de prueba usamos un servidor Tomcat\footnote{http://tomcat.apache.org/} al cual le insertamos el WAR\footnote{http://es.wikipedia.org/wiki/WAR\_(archivo)} de nuestra aplicación que contiene a su vez una base de datos H2\footnote{http://www.h2database.com} embebida.\\
+La instalación final es igual a la de prueba pero no utilizamos la base de datos H2 y en su lugar instalamos una base de datos Postgres.
 \subsubsection{Manual de usuario}
 Se confeccionó un manual de usuario...
 \subsubsection{Aprendizaje del usuario}

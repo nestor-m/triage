@@ -22,14 +22,12 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Comunicaci\IeC {\'o}n entre el cliente y el servidor}{11}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Arquitectura en AngularJS}{12}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Arquitectura en Grails}{12}{subsubsection.3.3.3}
-\contentsline {subsection}{\numberline {3.4}Detalle t\IeC {\'e}cnico}{12}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Problemas que tuvimos}{13}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Detalles interesantes del c\IeC {\'o}digo}{13}{subsection.3.6}
-\contentsline {subsection}{\numberline {3.7}Testing}{13}{subsection.3.7}
-\contentsline {subsubsection}{\numberline {3.7.1}Funcional}{13}{subsubsection.3.7.1}
-\contentsline {subsubsection}{\numberline {3.7.2}Unitario}{13}{subsubsection.3.7.2}
-\contentsline {subsubsection}{\numberline {3.7.3}Integraci\IeC {\'o}n}{13}{subsubsection.3.7.3}
-\contentsline {subsection}{\numberline {3.8}Deploy e Instalaci\IeC {\'o}n}{13}{subsection.3.8}
-\contentsline {subsubsection}{\numberline {3.8.1}Manual de usuario}{13}{subsubsection.3.8.1}
-\contentsline {subsubsection}{\numberline {3.8.2}Aprendizaje del usuario}{13}{subsubsection.3.8.2}
-\contentsline {section}{\numberline {4}Conclusiones}{14}{section.4}
+\contentsline {subsection}{\numberline {3.4}Testing}{13}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Testing unitario}{13}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Testing de integraci\IeC {\'o}n}{13}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Testing funcional}{13}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Problemas que tuvimos con el testing}{13}{subsubsection.3.4.4}
+\contentsline {subsection}{\numberline {3.5}Deploy e Instalaci\IeC {\'o}n}{14}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Manual de usuario}{14}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Aprendizaje del usuario}{14}{subsubsection.3.5.2}
+\contentsline {section}{\numberline {4}Conclusiones}{15}{section.4}

@@ -21,14 +21,12 @@
 \BOOKMARK [3][-]{subsubsection.3.3.1}{Comunicaci\363n entre el cliente y el servidor}{subsection.3.3}
 \BOOKMARK [3][-]{subsubsection.3.3.2}{Arquitectura en AngularJS}{subsection.3.3}
 \BOOKMARK [3][-]{subsubsection.3.3.3}{Arquitectura en Grails}{subsection.3.3}
-\BOOKMARK [2][-]{subsection.3.4}{Detalle t\351cnico}{section.3}
-\BOOKMARK [2][-]{subsection.3.5}{Problemas que tuvimos}{section.3}
-\BOOKMARK [2][-]{subsection.3.6}{Detalles interesantes del c\363digo}{section.3}
-\BOOKMARK [2][-]{subsection.3.7}{Testing}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.7.1}{Funcional}{subsection.3.7}
-\BOOKMARK [3][-]{subsubsection.3.7.2}{Unitario}{subsection.3.7}
-\BOOKMARK [3][-]{subsubsection.3.7.3}{Integraci\363n}{subsection.3.7}
-\BOOKMARK [2][-]{subsection.3.8}{Deploy e Instalaci\363n}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.8.1}{Manual de usuario}{subsection.3.8}
-\BOOKMARK [3][-]{subsubsection.3.8.2}{Aprendizaje del usuario}{subsection.3.8}
+\BOOKMARK [2][-]{subsection.3.4}{Testing}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Testing unitario}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Testing de integraci\363n}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Testing funcional}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Problemas que tuvimos con el testing}{subsection.3.4}
+\BOOKMARK [2][-]{subsection.3.5}{Deploy e Instalaci\363n}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Manual de usuario}{subsection.3.5}
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Aprendizaje del usuario}{subsection.3.5}
 \BOOKMARK [1][-]{section.4}{Conclusiones}{}
