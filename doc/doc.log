@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.8)  30 OCT 2014 12:09
-=======
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  31 OCT 2014 01:29
->>>>>>> 8eab765e7a87f612d26929fccea9b3636d6c3fc1
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.8)  31 OCT 2014 12:01
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -484,13 +480,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout4 = `doc.toc'.
 
 
-[3] (./introduccion.tex [4]) [5] (./planteo.tex
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
-
- []
-
-[6]
-Overfull \hbox (0.12524pt too wide) in paragraph at lines 62--63
+[3] (./introduccion.tex [4]) [5] (./planteo.tex [6]
+Overfull \hbox (0.12524pt too wide) in paragraph at lines 61--62
 []\OT1/cmr/m/n/10 Reporte que mues-tra la can-
  []
 
@@ -512,17 +503,8 @@ Overfull \hbox (68.99895pt too wide) in paragraph at lines 55--56
  [][] 
  []
 
-<<<<<<< HEAD
-[12 <./triage.png (PNG copy)>] [13]) [14] (./conclusiones.tex) [15] [16]
+[11 <./triage.png (PNG copy)>] [12]) [13] (./conclusiones.tex) [14] [15]
 (./doc.aux) ) 
-=======
-[11 <./triage.png (PNG copy)>] [12]) [13] (./conclusiones.tex
-Underfull \hbox (badness 10000) in paragraph at lines 5--7
-
- []
-
-) [14] [15] (./doc.aux) ) 
->>>>>>> 8eab765e7a87f612d26929fccea9b3636d6c3fc1
 Here is how much of TeX's memory you used:
  5108 strings out of 493848
  71558 string characters out of 1152823
@@ -530,8 +512,7 @@ Here is how much of TeX's memory you used:
  8221 multiletter control sequences out of 15000+50000
  8670 words of font info for 31 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
-<<<<<<< HEAD
- 38i,8n,36p,739b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,36p,737b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pf
 b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-tex
@@ -542,21 +523,7 @@ cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf
 -texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/font
 s/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on doc.pdf (16 pages, 262756 bytes).
-=======
- 38i,8n,36p,737b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on doc.pdf (15 pages, 261420 bytes).
->>>>>>> 8eab765e7a87f612d26929fccea9b3636d6c3fc1
+Output written on doc.pdf (15 pages, 261391 bytes).
 PDF statistics:
  355 PDF objects out of 1000 (max. 8388607)
  86 named destinations out of 1000 (max. 500000)
