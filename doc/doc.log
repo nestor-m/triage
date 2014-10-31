@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  31 OCT 2014 01:26
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  31 OCT 2014 01:29
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -486,7 +486,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
  []
 
 [6]
-Overfull \hbox (0.12524pt too wide) in paragraph at lines 60--61
+Overfull \hbox (0.12524pt too wide) in paragraph at lines 62--63
 []\OT1/cmr/m/n/10 Reporte que mues-tra la can-
  []
 
@@ -532,7 +532,7 @@ amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
 /share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on doc.pdf (15 pages, 261419 bytes).
+Output written on doc.pdf (15 pages, 261420 bytes).
 PDF statistics:
  355 PDF objects out of 1000 (max. 8388607)
  86 named destinations out of 1000 (max. 500000)
