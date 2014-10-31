@@ -28,5 +28,8 @@
 \BOOKMARK [3][-]{subsubsection.3.4.4}{Problemas que tuvimos con el testing}{subsection.3.4}
 \BOOKMARK [2][-]{subsection.3.5}{Deploy e Instalaci\363n}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.5.1}{Manual de usuario}{subsection.3.5}
-\BOOKMARK [3][-]{subsubsection.3.5.2}{Aprendizaje del usuario}{subsection.3.5}
-\BOOKMARK [1][-]{section.4}{Conclusiones}{}
+\BOOKMARK [1][-]{section.4}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
+\BOOKMARK [2][-]{subsection.4.1}{ABM de s\355ntomas}{section.4}
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Filtrado del listado}{subsection.4.1}
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Aprendizaje del usuario}{subsection.4.1}
+\BOOKMARK [1][-]{section.5}{Conclusiones}{}
