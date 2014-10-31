@@ -1,13 +1,10 @@
 \BOOKMARK [1][-]{section.1}{Introducci\363n}{}
+\BOOKMARK [2][-]{subsection.1.1}{Sumario}{section.1}
 \BOOKMARK [1][-]{section.2}{Planteo}{}
 \BOOKMARK [2][-]{subsection.2.1}{Din\341mica de trabajo en el hospital}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Reuniones y contacto con el usuario}{section.2}
-\BOOKMARK [2][-]{subsection.2.3}{Requerimientos del cliente}{section.2}
-\BOOKMARK [2][-]{subsection.2.4}{Pantallas y din\341mica de uso}{section.2}
-\BOOKMARK [2][-]{subsection.2.5}{Informes}{section.2}
-\BOOKMARK [3][-]{subsubsection.2.5.1}{Tiempo de espera para cada prioridad}{subsection.2.5}
-\BOOKMARK [3][-]{subsubsection.2.5.2}{Cantidad de atenciones para cada prioridad}{subsection.2.5}
-\BOOKMARK [3][-]{subsubsection.2.5.3}{Reporte de Personas}{subsection.2.5}
+\BOOKMARK [2][-]{subsection.2.2}{Requerimientos del cliente}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Pantallas y din\341mica de uso}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Informes}{section.2}
 \BOOKMARK [1][-]{section.3}{Dise\361o e implementaci\363n}{}
 \BOOKMARK [2][-]{subsection.3.1}{Tecnolog\355as}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.1.1}{AngularJS}{subsection.3.1}
