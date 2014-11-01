@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  31 OCT 2014 15:29
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  31 OCT 2014 15:31
 entering extended mode
  %&-line parsing enabled.
-**doc.tex
-(./doc.tex
+**manual.tex
+(./manual.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
@@ -405,23 +405,23 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 ))
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
-) (./doc.aux)
-\openout1 = `doc.aux'.
+) (./manual.aux)
+\openout1 = `manual.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -431,7 +431,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-Package hyperref Info: Link coloring ON on input line 16.
+Package hyperref Info: Link coloring ON on input line 14.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -441,12 +441,12 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count98
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
- (./doc.out)
-(./doc.out)
+LaTeX Info: Redefining \ref on input line 14.
+LaTeX Info: Redefining \pageref on input line 14.
+ (./manual.out)
+(./manual.out)
 \@outlinefile=\write3
-\openout3 = `doc.out'.
+\openout3 = `manual.out'.
 
 \AtBeginShipoutBox=\box26
  (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
@@ -463,82 +463,90 @@ LaTeX Info: Redefining \pageref on input line 16.
 \everyMPtoPDFconversion=\toks20
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 21.
+(Font)              <12> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 21.
+(Font)              <8> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 21.
+(Font)              <6> on input line 18.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./doc.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 21--23
+
+ []
+
+[2] (./manual.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 3.
 )
 \tf@toc=\write4
-\openout4 = `doc.toc'.
+\openout4 = `manual.toc'.
 
+ [3] (./manual_ABMs.tex
+<menu_configuracion_visible.png, id=40, 508.90125pt x 56.21pt>
+File: menu_configuracion_visible.png Graphic file (type png)
 
-[3] (./introduccion.tex [4]) [5] (./planteo.tex [6]
-Overfull \hbox (0.12524pt too wide) in paragraph at lines 61--62
-[]\OT1/cmr/m/n/10 Reporte que mues-tra la can-
+<use menu_configuracion_visible.png>
+<menu_configuracion_oculto.png, id=42, 381.425pt x 49.18375pt>
+File: menu_configuracion_oculto.png Graphic file (type png)
+
+<use menu_configuracion_oculto.png>
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
+
  []
 
-) [7] (./implementacion.tex [8]
-<planificacion.png, id=227, 1064.97874pt x 548.0475pt>
-File: planificacion.png Graphic file (type png)
- <use planificacion.png>
+<menu_sintomas.png, id=43, 508.90125pt x 154.5775pt>
+File: menu_sintomas.png Graphic file (type png)
+ <use menu_sintomas.png>
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+
+ []
+
+<sintomas_listado.png, id=44, 914.41624pt x 325.215pt>
+File: sintomas_listado.png Graphic file (type png)
+
+<use sintomas_listado.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] <tracking.png, id=238, 1213.53375pt x 546.04pt>
-File: tracking.png Graphic file (type png)
- <use tracking.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+ []
+
+<sintomas_listado_filtro.png, id=46, 914.41624pt x 273.02pt>
+File: sintomas_listado_filtro.png Graphic file (type png)
+
+<use sintomas_listado_filtro.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10 <./planificacion.png (PNG copy)>] [11 <./tracking.png (PNG copy)>]
-<triage.png, id=274, 780.9175pt x 468.75125pt>
-File: triage.png Graphic file (type png)
- <use triage.png> [12 <./triage.png (PNG copy)>] [13]) [14] (./conclusiones.tex
-) [15] [16] (./doc.aux) ) 
+) [4 <./menu_configuracion_visible.png> <./menu_configuracion_oculto.png> <./me
+nu_sintomas.png>] [5 <./sintomas_listado.png> <./sintomas_listado_filtro.png>]
+(./manual.aux) ) 
 Here is how much of TeX's memory you used:
- 5128 strings out of 493848
- 71862 string characters out of 1152823
- 151615 words of memory out of 3000000
- 8233 multiletter control sequences out of 15000+50000
- 8670 words of font info for 31 fonts, out of 3000000 for 9000
+ 5017 strings out of 493848
+ 70700 string characters out of 1152823
+ 144615 words of memory out of 3000000
+ 8205 multiletter control sequences out of 15000+50000
+ 8849 words of font info for 31 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,8n,36p,737b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{section.5} has been refere
-nced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.4.1.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.4.1.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.5.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmtt10.pfb>
-Output written on doc.pdf (16 pages, 410927 bytes).
+ 38i,8n,36p,585b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on manual.pdf (5 pages, 190208 bytes).
 PDF statistics:
- 379 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 500000)
- 272 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 109 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 50 words of extra memory for PDF output out of 10000 (max. 10000000)
 

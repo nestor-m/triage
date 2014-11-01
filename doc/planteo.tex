@@ -1,55 +1,65 @@
 \section{Planteo}
+
+El presente trabajo comenzó con el relevamiento de información mediante reuniones con el Dr. Reggiani, con quien hubo contacto constante durante todo el desarrollo. Las primeras reuniones fueron para describir el problema y las necesidades reales. Luego, durante la etapa de desarrollo, cada pantalla y funcionalidad fue validada por el usuario, con el propósito de llegar a un producto que fuera útil y consistente. A medida que avanzamos con el producto, se fue negociando el alcance; agregando o quitando funcionalidades dependiendo del tiempo disponible y consultando con el Dr. la prioridad para cada tarea.
+
+
 \subsection{Dinámica de trabajo en el hospital}
-La guardia del H.Z.G.A ''Dr. Arturo Oñativia'' opera recibiendo a los pacientes en dos sectores: Pediatría y Adultos. \\
-Cada sector tiene definidos sus parámetros de evaluación de pacientes, pudiendo un síntoma tener una prioridad para los adultos y otra para los pacientes pediátricos.\\
-Hay una división entre los pacientes pediátricos también dependiendo de la edad, diferenciando bebés de meses y niños más grandes.\\
-Al llegar a la guardia, los pacientes son recibidos por el enfermero de guardia que es quién utiliza el sistema desarrollado. Éste toma una impresión visual del paciente. Luego se pasa a la sala de toma de signos vitales donde un enfermero controla la presión, glucosa en sangre -entre otros- y graba en el sistema los síntomas que presenta el paciente. \\
-En caso de encontrar algún síntoma de prioridad UNO en alguna de las tres instancias mencionadas antes (Impresión Visual, Signos Vitales o Síntomas), el sistema deriva al paciente de inmediato a la sala de Shock.  \\
+La guardia del H.Z.G.A ``Dr. Arturo Oñativia'' opera recibiendo a los pacientes en dos sectores: Pediatría y Adultos. Cada sector tiene definidos sus parámetros de evaluación de pacientes, pudiendo un síntoma tener una prioridad para los adultos y otra para los pacientes pediátricos. Hay una división entre los pacientes pediátricos también dependiendo de la edad, diferenciando bebés de meses y niños más grandes.
+
+Al llegar a la guardia, los pacientes son recibidos por el enfermero de guardia, quién utilizando el sistema desarrollado, toma una impresión visual del paciente. Luego se pasa a la sala de toma de signos vitales donde otro enfermero controla la presión, glucosa en sangre ,entre otros, y graba en el sistema los síntomas que presenta el paciente. En caso de encontrar algún síntoma de prioridad UNO en alguna de las tres instancias mencionadas antes (Impresión Visual, Signos Vitales o Síntomas), el sistema deriva al paciente de inmediato a la sala de Shock.  
+
 Una vez conocida la prioridad del paciente ingresado, hay tres caminos: 
 \begin{itemize}
 \item Atención Inmediata.
 \item Atención dentro de los próximos 30 minutos. 
 \item Atención en Consultorios Externos.
 \end{itemize}
-Una vez atendido el paciente, se termina el ciclo dentro del sistema, esto es: el sistema no guarda información post-triage. \\
+Una vez atendido el paciente, se termina el ciclo dentro del sistema; esto es, el sistema no guarda información post-triage. 
 
 
-\subsection{Reuniones y contacto con el usuario}
-
-Durante el trabajo hubo contacto constante con Luis Reggiani.\\
-Las primeras reuniones fueron para describir el problema y las necesidades reales. \\
-Luego, durante la etapa de desarrollo, cada pantalla y funcionalidad fue validada por el usuario, con el propósito de llegar a un producto que fuera útil y consistente. \\
-A medida que avanzamos con el producto, se fue negociando el alcance; agregando o quitando cosas dependiendo del tiempo disponible y consultando con Luis la prioridad para cada tarea.
 
 \subsection{Requerimientos del cliente}
-Lo más importante para Luis fue desde un primer momento registrar adecuadamente a los pacientes que ingresan. Para ello, se decidió guardar todos los datos de las personas: Nombre, Apellido, Teléfono, DNI, Dirección -entre otros- para poder contar con una base de datos de todas las personas atendidas en caso de necesitarla. \\
-Entre las cosas más prioritarias, se tomó la idea de completar el Triage de forma eficiente y con una respuesta rápida ante casos de urgencias. Se pidió que el sistema corte cualquier interacción ante un caso de Prioridad UNO, para poder actuar con el apremio necesario.\\
-Se detallan en secciones futuras los reportes que fueron requeridos.
+La característica más mencionada por el Dr. fue, en las primeras entrevistas, registrar adecuadamente a los pacientes que ingresan. Para ello, se decidió guardar todos los datos de las personas (tal como Nombre, Apellido, Teléfono, DNI, Dirección, entre otros) para poder contar con una base de datos de todas las personas atendidas en caso de necesitarla. 
+
+Otra de las prioridades detectadas fue la necesidad de completar el Triage de forma eficiente y con una respuesta rápida ante casos de urgencias. El cliente solicitó de manera excluyente que el sistema debia cortar cualquier interacción en el momento de detectar un caso de Prioridad UNO, para poder actuar con el apremio necesario.
+
+Se detallan en secciones futuras los reportes que el cliente requerió.
 
 
 \subsection{Pantallas y dinámica de uso}
-La pantalla inicial -y principal- del sistema permite buscar a los pacientes por nombre, apellido, DNI o fecha de nacimiento. En el caso de que ya hayan sido atendidos en algún momento en la guardia, serán encontrados por el buscador y se podrá proceder a completar los datos del Triage. \\
-En caso de no encontrarlos, la misma pantalla permite ingresarlos al sistema en el momento generando un nuevo registro de una persona. \\
-La pantalla de Triage está divida en tres: Impresión Visual, Síntomas y Signos Vitales. Tiene una navegación definida por pestañas que permite navegar de forma fluida entre los tres formularios. \\
-Una vez que se cargan los datos deseados, el paciente pasa a una "Lista de espera". Esta otra pantalla permite ver qué pacientes están esperando atención. Permite también continuar el Triage, esto es: ingresar nuevamente a la pantalla de Triage y poder modificar o cargar nuevos síntomas. Esto es útil cuando la persona que toma la Impresión Visual está en un lugar físico distinto del de el enfermero que toma los signos vitales, por ejemplo. \\
-En el caso de que el paciente haya sido atendido -o derivado a consultorio externo- y se retire del hospital, el enfermero -o administrativo- ubicado en el puesto de salida debe buscar al paciente en la lista de espera y marcar la finalización de la atención con alguna de las opciones mencionadas anteriormente: Atención Inmediata, Atención dentro de los próximos 30 minutos o Atención en consultorios externos.\\
-Entre las pantallas administrativas -o de configuración- se encuentran las de Alta y Modificación:
+Las pantallas, como fue mencionado se fueron diseñando y validando con el cliente en las reuniones periódicas.
+
+La pantalla inicial (y principal) del sistema permite buscar a los pacientes por nombre, apellido, DNI o fecha de nacimiento. En el caso de que ya hayan sido atendidos en algún momento en la guardia, serán encontrados por el buscador y se podrá proceder a completar los datos del Triage. En caso de no encontrarlos, la misma pantalla permite ingresarlos al sistema en el momento generando un nuevo registro de una persona. 
+
+La pantalla de Triage está divida en tres: Impresión Visual, Síntomas y Signos Vitales. Tiene una navegación definida por pestañas que permite navegar de forma fluida entre los tres formularios. Una vez que se cargan los datos deseados, el paciente pasa a una ``Lista de espera'', otra pantalla que permite ver qué pacientes están esperando atención. Permite también continuar el Triage; esto es, ingresar nuevamente a la pantalla de Triage y poder modificar o cargar nuevos síntomas. Esta característica es necesaria cuando la persona que toma la Impresión Visual está en un lugar físico distinto al del enfermero que toma los signos vitales, por ejemplo.
+
+En el caso de que el paciente haya sido atendido, o derivado a consultorio externo, y se retire del hospital, el enfermero, o administrativo, ubicado en el puesto de salida debe buscar al paciente en la lista de espera y marcar la finalización de la atención con alguna de las opciones mencionadas anteriormente: Atención Inmediata, Atención dentro de los próximos 30 minutos o Atención en consultorios externos.
+
+Entre las pantallas administrativas, o de configuración, se encuentran las de Alta y Modificación de:
 \begin{itemize}
 \item Síntomas
-\item Discriminante
+\item Discriminantes
 \item Usuarios
 \end{itemize}
+%
+permitiendo crear nuevos registros o modificar los existentes. En el caso de los usuarios, es posible también dar la baja.
 
-Permitiendo crear nuevos registros o modificar los existentes. En el caso de los usuarios, es posible también dar la baja.\\
 
- 
 
 
 \subsection{Informes}
-El cliente pidió pantallas con los informes detallados a continuación.\\
-\subsubsection{Tiempo de espera para cada prioridad}
+El cliente pidió pantallas con los informes detallados a continuación.
+
+\begin{description}
+\item[Tiempo de espera para cada prioridad] 
+
 Reporte que muestra el tiempo de espera medio para cada prioridad en un rango de tiempo dado por dos fechas. 
-\subsubsection{Cantidad de atenciones para cada prioridad}
+
+
+\item[Cantidad de atenciones para cada prioridad] 
+
 Reporte que muestra la cantidad de atenciones para cada prioridad en un rango de tiempo dado por dos fechas.
-\subsubsection{Reporte de Personas}
+\item[Reporte de Personas] 
+
 Lista con todas las personas que se atendieron. Permite ver individualmente los datos de cada persona y una lista que muestra todas las veces que fue atendida, los síntomas presentados y el tipo de atención recibida.
+\end{description}

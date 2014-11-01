@@ -1,38 +1,55 @@
 \section{Diseño e implementación}
 \subsection{Tecnologías}
-Todas las tecnologías que utilizamos en el desarrollo de la aplicación son de código abierto. Para desarrollar el front-end (interfaz de usuario) elegimos AngularJS\footnote{https://angularjs.org/}. Para el back-end (lógica del negocio e interacción con la base de datos) elegimos Grails\footnote{https://grails.org/}.\\
-Cabe aclarar que ambos frameworks cubrieron ampliamente todo lo que nosotros necesitabamos de ellos para hacer este trabajo, por ello sólo utilizamos una pequeña parte de los mismos. Por ejemplo, de Grails casi no utilizamos las vistas ya que las mismas las desarrollamos del lado del cliente en AngularJS.\\
+Todas las tecnologías que utilizamos en el desarrollo de la aplicación son de código abierto. Para desarrollar el front-end (interfaz de usuario) elegimos AngularJS\footnote{https://angularjs.org/}. Para el back-end (lógica del negocio e interacción con la base de datos) elegimos Grails\footnote{https://grails.org/}.
+
+Cabe aclarar que ambos frameworks cubrieron ampliamente todo lo que nosotros necesitabamos de ellos para hacer este trabajo, por ello sólo utilizamos una pequeña parte de los mismos. Por ejemplo, de Grails casi no utilizamos las vistas ya que las mismas las desarrollamos del lado del cliente en AngularJS.
+
 Otra tecnología que utilizamos fue Bootstrap\footnote{http://getbootstrap.com/}. Con esta herramienta pudimos atenuar nuestras carencias en diseño web y además pudimos hacer una aplicación responsive que se adapta a cualquier tamaño de pantalla, incluso de teléfonos celulares.
+
 \subsubsection{AngularJS}
-AngularJS es un framework de aplicaciones web de código abierto escrito en JavaScript. Es desarrollado y mantenido por Google. La primer versión fue lanzada en el año 2010 y desde ese momento viene ganando espacio en la industria.\\
-HTML es suficiente para hacer páginas web estáticas. Pero no alcanza para desarrollar vistas dinámicas en aplicaciones web. AngularJS es un conjunto de herramientas para la creación de aplicaciones web de una sola página (single-page applications). Este framework maneja contenido dinámico y permite extender el vocabulario HTML obteniendo un entorno más expresivo, legible y práctico para el programador. La filosofía de AngularJS es que la programación declarativa es la que debe utilizarse para generar interfaces de usuario.\\
+AngularJS es un framework de aplicaciones web de código abierto escrito en JavaScript. Es desarrollado y mantenido por Google. La primer versión fue lanzada en el año 2010 y desde ese momento viene ganando espacio en la industria.
+
+HTML es suficiente para hacer páginas web estáticas. Pero no alcanza para desarrollar vistas dinámicas en aplicaciones web. AngularJS es un conjunto de herramientas para la creación de aplicaciones web de una sola página (single-page applications). Este framework maneja contenido dinámico y permite extender el vocabulario HTML obteniendo un entorno más expresivo, legible y práctico para el programador. La filosofía de AngularJS es que la programación declarativa es la que debe utilizarse para generar interfaces de usuario.
+
 Si bien nosotros no conociamos AngularJS, habiamos escuchado buenos comentarios sobre este framework moderno y novedoso, entonces decidimos aprenderlo utilizandolo en este TIP.
 \subsubsection{Grails}
-Grails es un framework de aplicaciones web de código abierto, full stack (contiene todo lo necesario para desarrollar una aplicación web), para la máquina virtual de Java (JVM).\\
-Está escrito en Groovy, un lenguaje de programación que a su vez está desarrollado en Java. Uno de sus principios es la convención sobre la configuración (convention over configuration) que busca decrementar el número de decisiones que un desarrollador necesita tomar, ganando así en simplicidad pero no perdiendo flexibilidad por ello. La primer versión fue lanzada en el año 2006.\\
-Como está desarrollado en Java, Grails es multiplataforma. Además toma de su lenguaje padre tecnologías ampliamente utilizadas en la industria como Hibernate y Spring.\\
+Grails es un framework de aplicaciones web de código abierto, full stack (contiene todo lo necesario para desarrollar una aplicación web), para la máquina virtual de Java (JVM).
+
+Está escrito en Groovy, un lenguaje de programación que a su vez está desarrollado en Java. Uno de sus principios es la convención sobre la configuración (convention over configuration) que busca decrementar el número de decisiones que un desarrollador necesita tomar, ganando así en simplicidad pero no perdiendo flexibilidad por ello. La primer versión fue lanzada en el año 2006.
+
+Como está desarrollado en Java, Grails es multiplataforma. Además toma de su lenguaje padre tecnologías ampliamente utilizadas en la industria como Hibernate y Spring.
+
 Al igual que con AngularJS, nosotros no conociamos Grails de antemano. Tuvimos que aprender a utilizarlo en el desarrollo de este TIP.
+
 \subsubsection{Bases de datos}
-Durante todo el desarrollo de la aplicación utilizamos una base de datos H2 que viene embebida en Grails. También utilizamos H2 en la instalación de prueba en el hospital. Pero para la instalación final utilizamos Postgres\footnote{http://www.postgresql.org.es/}.\\
+Durante todo el desarrollo de la aplicación utilizamos una base de datos H2 que viene embebida en Grails. También utilizamos H2 en la instalación de prueba en el hospital. Pero para la instalación final utilizamos Postgres\footnote{http://www.postgresql.org.es/}.
+
 Elegimos Postgres porque es lo que recomienda Heroku\footnote{https://www.heroku.com/} para utilizar con Grails\footnote{https://devcenter.heroku.com/articles/getting-started-with-grails}. Heroku es una plataforma de la nube que soporta varios lenguajes de programación y ofrece un servicio de hosting básico gratuito. Nuestra idea original era instalar la aplicación en dicha plataforma, pero el límite de memoria que ofrece el servicio gratuito nos obligó a buscar otra alternativa. Finalmente decidimos hacer la instalación en una máquina del hospital.
+
 \subsection{Metodología de trabajo}
 Desde el primer momento el director del TIP nos indujo a darle al desarrollo un enfoque ágil\cite{Shore}. Así dar visibilidad constante a todos los interesados fue uno de los principios transversales a todo el proyecto. La comunicación fue muy fluida, tanto por mail, como a través de reuniones presenciales o virtuales (en forma remota). Otro de los pilares del enfoque ágil fue trabajar en forma iterativa e incremental. Es decir que trabajamos con iteraciones de tiempo fijo de una semana de duración. Al final de cada iteración los avances eran validados por el ''cliente''.
+
 \subsubsection{Resumen del itinerario del proyecto}
-Lo primero que hicimos fue varias reuniones entre todos los interesados en el proyecto: los desarrolladores, los directores y el ''cliente''. De esas reuniones y de una visita al hospital obtuvimos los requerimientos.\\
-El segundo paso fue la elección de las tecnologías. Entre el basto abanico de posibilidades NodeJS\footnote{http://nodejs.org/} y Grails aparecían como las predilectas aunque nunca habiamos trabajado con ninguna de las dos. Por ello, para obtener una impresión general de cada una y así resolver la elección, desarrollamos un conversor de Farenheit a Celcius muy simple. Finalmente optamos por usar Grails ya que se asemeja más que NodeJS a las tecnologías que veníamos utilizando en las distintas materias a lo largo de la carrera.\\
+Lo primero que hicimos fue varias reuniones entre todos los interesados en el proyecto: los desarrolladores, los directores y el ''cliente''. De esas reuniones y de una visita al hospital obtuvimos los requerimientos.
+
+El segundo paso fue la elección de las tecnologías. Entre el basto abanico de posibilidades NodeJS\footnote{http://nodejs.org/} y Grails aparecían como las predilectas aunque nunca habiamos trabajado con ninguna de las dos. Por ello, para obtener una impresión general de cada una y así resolver la elección, desarrollamos un conversor de Farenheit a Celcius muy simple. Finalmente optamos por usar Grails ya que se asemeja más que NodeJS a las tecnologías que veníamos utilizando en las distintas materias a lo largo de la carrera.
+
 Si bien Grails es full stack, el director del TIP quería que la aplicación sea más moderna. Entonces nos recomendó utilizar una tecnología que resuelva las vistas del lado del cliente, se comunique con el back-end mediante una API(Application Programming Interface) REST\footnote{http://es.wikipedia.org/wiki/Representational\_State\_Transfer} 
-y sea responsive\footnote{http://es.wikipedia.org/wiki/Diseño\_web\_adaptable}. Así surgio la idea de utilizar AngularJS que cubre ampliamente todos esos requisitos.\\
-En tercer lugar hicimos una estimación relativa a grandes rasgos. Allí calculamos cuanto tiempo nos iba a demandar cada funcionalidad requerida y la fecha de cierre del proyecto. Luego hicimos una planificación en donde ordenamos los requerimientos dentro de las iteraciones según las prioridades del ''cliente''.\\
+y sea responsive\footnote{http://es.wikipedia.org/wiki/Diseño\_web\_adaptable}. Así surgio la idea de utilizar AngularJS que cubre ampliamente todos esos requisitos.
+
+En tercer lugar hicimos una estimación relativa a grandes rasgos. Allí calculamos cuanto tiempo nos iba a demandar cada funcionalidad requerida y la fecha de cierre del proyecto. Luego hicimos una planificación en donde ordenamos los requerimientos dentro de las iteraciones según las prioridades del ''cliente''.
 
 \begin{figure}[h]
   \centerline{\includegraphics[width=1.2\textwidth]{planificacion.png}}
   \caption{Planificación}
 \end{figure}
 
-A partir de ahí comenzamos con el desarrollo recorriendo las iteraciones planificadas. Al promediar el proyecto hicimos una instalación de prueba en el hospital. La idea era que los usuarios se familiaricen con el producto, nos den un feedback y propongan modificaciones de creerlo necesario.\\
+A partir de ahí comenzamos con el desarrollo recorriendo las iteraciones planificadas. Al promediar el proyecto hicimos una instalación de prueba en el hospital. La idea era que los usuarios se familiaricen con el producto, nos den un feedback y propongan modificaciones de creerlo necesario.
+
 Por último hicimos la instalación definitiva del producto terminado en una máquina del hospital.
+
 \subsubsection{Flujo de trabajo en una iteración}
-Al inicio de cada iteración estimabamos cuanto tiempo nos iba a llevar cada tarea y enviabamos un email con los detalles sobre lo que ibamos a hacer durante esa semana. También haciamos prototipos de las pantallas a realizar que eran validados por el ''cliente''. Además dejamos sentado en una hoja de cálculo los detalles de cada tarea: el tiempo de realización estimado, la fecha de realización y el tiempo real insumido. Al finalizar la iteración enviabamos otro email con los detalles de lo realizado.\\
+Al inicio de cada iteración estimabamos cuanto tiempo nos iba a llevar cada tarea y enviabamos un email con los detalles sobre lo que ibamos a hacer durante esa semana. También haciamos prototipos de las pantallas a realizar que eran validados por el ''cliente''. Además dejamos sentado en una hoja de cálculo los detalles de cada tarea: el tiempo de realización estimado, la fecha de realización y el tiempo real insumido. Al finalizar la iteración enviabamos otro email con los detalles de lo realizado.
 
 \begin{figure}[h]
   \centerline{\includegraphics[width=1.2\textwidth]{tracking.png}}
@@ -42,10 +59,13 @@ Al inicio de cada iteración estimabamos cuanto tiempo nos iba a llevar cada tar
 \subsubsection{Herramientas que utilizamos}
 Para la comunicación via email creamos un grupo en Google Groups\footnote{https://groups.google.com}.
 Para toda la documentación compartida utilizamos Google Drive\footnote{https://drive.google.com/}. Para hacer reuniones remotas utilizamos Skype\footnote{http://www.skype.com.ar/es/} y Google Hangouts\footnote{https://plus.google.com/hangouts}. Utilizamos Balsamiq\footnote{https://balsamiq.com/} para hacer los prototipos de pantallas. Utilizamos Git\footnote{http://git-scm.com/} y Github\footnote{https://github.com/} para versionar el código. Y utilizamos Travis\footnote{https://travis-ci.org/} como servidor de integración continua\footnote{http://es.wikipedia.org/wiki/Integración\_continua}.
+
 \subsection{Arquitectura}
-Utilizamos una arquitectura cliente-servidor\footnote{http://es.wikipedia.org/wiki/Cliente-servidor} con AngularJS del lado del cliente y Grails del lado del servidor. 
+Utilizamos una arquitectura cliente-servidor\footnote{http://es.wikipedia.org/wiki/Cliente-servidor} con AngularJS del lado del cliente y Grails del lado del servidor.
+
 \subsubsection{Comunicación entre el cliente y el servidor}
-La comunicación se da mediante peticiones HTTP\footnote{http://es.wikipedia.org/wiki/Hypertext\_Transfer\_Protocol} desde el cliente (AngularJS) al servidor (Grails). La información viaja en formato JSON\footnote{http://es.wikipedia.org/wiki/JSON}. Ejemplo de petición HTTP desde AngularJS:\\
+La comunicación se da mediante peticiones HTTP\footnote{http://es.wikipedia.org/wiki/Hypertext\_Transfer\_Protocol} desde el cliente (AngularJS) al servidor (Grails). La información viaja en formato JSON\footnote{http://es.wikipedia.org/wiki/JSON}. Ejemplo de petición HTTP desde AngularJS:
+
 \begin{verbatim}
 $http.post('usuario/login',{
   usuario: $scope.nombre,
@@ -56,20 +76,27 @@ $http.post('usuario/login',{
   //hago algo cuando la peticion falló
 });		
 \end{verbatim}
+
 En este ejemplo, se hace una petición HTTP de tipo POST con un JSON como parámetro. Del lado de Grails quien recibe la petición es el controlador de la clase de dominio Usuario que ejecutara el método login.
+
 \subsubsection{Arquitectura en AngularJS}
-Cada pantalla esta definida dentro de un archivo HTML. A cada HTML le corresponde un controlador. Todos los controladores están definidos en un módulo de AngularJS dentro de un archivo JavaScript.\\
+Cada pantalla esta definida dentro de un archivo HTML. A cada HTML le corresponde un controlador. Todos los controladores están definidos en un módulo de AngularJS dentro de un archivo JavaScript.
+
 Al ser una aplicación de una sóla página, hay un único HTML principal que va cambiando parte de su contenido de manera dinámica a medida que el usuario navega. De esta manera también hay partes de la aplicación que están presentes en todas las pantallas, como el menú principal y el pie de página.
+
 \subsubsection{Arquitectura en Grails}
 Grails está dividido en vistas, controladores y clases del dominio. Como se trata de una aplicación de una sola página entonces tenemos una única vista. Hay un controlador por cada clase de dominio. Los controladores son los que procesan y responden las peticiones HTTP. Las clases del dominio son las que interactúan con los controladores y la base de datos.
+
 \begin{figure}[h]
 \centerline{\includegraphics[width=1.2\textwidth]{triage.png}}
 \caption{Diagrama de clases del dominio}
 \end{figure}
 
 \subsection{Testing}
-Desarrollamos la aplicación realizando testing unitario y de integración de cada clase de dominio así como también testing funcional de cada pantalla.\\
+Desarrollamos la aplicación realizando testing unitario y de integración de cada clase de dominio así como también testing funcional de cada pantalla.
+
 Cada funcionalidad desarrollada tiene su testing correspondiente. Algunas de las ventajas de usar testing automatizado son las siguientes:
+
 \begin{itemize}
 \item Se robustece la aplicación.
 \item Se genera confianza en el programador al hacer modificaciones.
@@ -84,8 +111,10 @@ Para los tests unitarios utilizamos la herramienta nativa de Grails\footnote{htt
 Realizamos los tests de integración con la herramienta nativa de Grails\footnote{http://grails.org/doc/latest/guide/testing.html\#integrationTesting}. Con ello cubrimos el comportamiento de los controladores definidos en Grails que tiene repercución en la base de datos.
 
 \subsubsection{Testing funcional}
-Para testear el correcto funcionamiento de cada pantalla emulamos al usuario final usando dos herramientas de testing funcional: CasperJS\footnote{http://casperjs.org/} y Protractor\footnote{https://github.com/angular/protractor}.\\
-En un primer momento utilizamos CasperJS pero tuvimos muchos problemas para hacerlo funcionar correctamente con AngularJS. Por eso dejamos de usarlo y lo reemplazamos por Protractor.\\
+Para testear el correcto funcionamiento de cada pantalla emulamos al usuario final usando dos herramientas de testing funcional: CasperJS\footnote{http://casperjs.org/} y Protractor\footnote{https://github.com/angular/protractor}.
+
+En un primer momento utilizamos CasperJS pero tuvimos muchos problemas para hacerlo funcionar correctamente con AngularJS. Por eso dejamos de usarlo y lo reemplazamos por Protractor.
+
 Para utilizar Protractor necesitamos usar Selenium\footnote{http://www.seleniumhq.org/}, un entorno de pruebas de software para aplicaciones basadas en la web, con un driver para el navegador  Chrome\footnote{http://www.google.com/intl/es-419/chrome/}.
 
 \subsubsection{Problemas que tuvimos con el testing}
@@ -94,11 +123,8 @@ Para utilizar Protractor necesitamos usar Selenium\footnote{http://www.seleniumh
 \item Tuvimos problemas con Protractor al testear pantallas con ventanas modales. Éstas últimas son elementos que al aparecer bloquean la ventana principal de la aplicación. Para poder realizar los casos de prueba con modales nos vimos obligados a dormir la ejecución del test durante un segundo. Así el modal tiene tiempo para desaparecer y la ventana principal de desbloquearse. Si no hacíamos esto el test no pasaba ya que la ejecución del mismo, luego de cerrar el modal, intentaba interactuar con elementos de la ventana principal pero estos aun permanecían bloqueados.
 \end{itemize}
 \subsection{Deploy e Instalación}
-La idea original fue tener la aplicación en línea corriendo en Heroku\footnote{https://www.heroku.com/}. Pero tuvimos que descartar esa posibilidad ya que la cantidad de memoria que la aplicación necesita para funcionar es mayor a la que ofrece el servicio gratuito. Entonces acordamos hacer la instalación en una máquina del hospital. Como las computadoras están en una misma red entonces la aplicación se encuentra accesible desde cualquier punto del lugar.\\
-Para la instalación de prueba usamos un servidor Tomcat\footnote{http://tomcat.apache.org/} al cual le insertamos el WAR\footnote{http://es.wikipedia.org/wiki/WAR\_(archivo)} de nuestra aplicación que contiene a su vez una base de datos H2\footnote{http://www.h2database.com} embebida.\\
+La idea original fue tener la aplicación en línea corriendo en Heroku\footnote{https://www.heroku.com/}. Pero tuvimos que descartar esa posibilidad ya que la cantidad de memoria que la aplicación necesita para funcionar es mayor a la que ofrece el servicio gratuito. Entonces acordamos hacer la instalación en una máquina del hospital. Como las computadoras están en una misma red entonces la aplicación se encuentra accesible desde cualquier punto del lugar.
+
+Para la instalación de prueba usamos un servidor Tomcat\footnote{http://tomcat.apache.org/} al cual le insertamos el WAR\footnote{http://es.wikipedia.org/wiki/WAR\_(archivo)} de nuestra aplicación que contiene a su vez una base de datos H2\footnote{http://www.h2database.com} embebida.
+
 La instalación final es igual a la de prueba pero no utilizamos la base de datos H2 y en su lugar instalamos una base de datos Postgres.
-\subsubsection{Manual de usuario}
-\newpage 
-\input{manual_ABMs}
-\subsubsection{Aprendizaje del usuario}
-Cuánto tiempo llevó explicar el sistema, si fue fácil de entender..
