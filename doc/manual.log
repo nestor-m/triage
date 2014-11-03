@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  31 OCT 2014 15:31
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  2 NOV 2014 21:36
 entering extended mode
  %&-line parsing enabled.
 **manual.tex
@@ -493,28 +493,15 @@ File: menu_configuracion_visible.png Graphic file (type png)
 File: menu_configuracion_oculto.png Graphic file (type png)
 
 <use menu_configuracion_oculto.png>
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
-
- []
-
 <menu_sintomas.png, id=43, 508.90125pt x 154.5775pt>
 File: menu_sintomas.png Graphic file (type png)
  <use menu_sintomas.png>
-Underfull \hbox (badness 10000) in paragraph at lines 21--22
-
- []
-
 <sintomas_listado.png, id=44, 914.41624pt x 325.215pt>
 File: sintomas_listado.png Graphic file (type png)
 
 <use sintomas_listado.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
-
- []
 
 <sintomas_listado_filtro.png, id=46, 914.41624pt x 273.02pt>
 File: sintomas_listado_filtro.png Graphic file (type png)
@@ -533,7 +520,7 @@ Here is how much of TeX's memory you used:
  8205 multiletter control sequences out of 15000+50000
  8849 words of font info for 31 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,8n,36p,585b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,36p,583b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10
 .pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
 share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-
@@ -544,7 +531,7 @@ cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb><
 /usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
 xmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/f
 onts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on manual.pdf (5 pages, 190208 bytes).
+Output written on manual.pdf (5 pages, 190544 bytes).
 PDF statistics:
  109 PDF objects out of 1000 (max. 8388607)
  16 named destinations out of 1000 (max. 500000)
