@@ -19,16 +19,19 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Comunicaci\IeC {\'o}n entre el cliente y el servidor}{11}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Arquitectura del \textit {front-end}}{12}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Arquitectura del \textit {back-end}}{12}{subsubsection.3.3.3}
-\contentsline {section}{\numberline {4}Pruebas e instalaci\IeC {\'o}n}{12}{section.4}
+\contentsline {section}{\numberline {4}Pruebas e instalaci\IeC {\'o}n}{13}{section.4}
 \contentsline {subsection}{\numberline {4.1}Pruebas}{13}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}Pruebas unitarias}{13}{subsubsection.4.1.1}
 \contentsline {subsubsection}{\numberline {4.1.2}Pruebas de integraci\IeC {\'o}n}{13}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}Pruebas funcionales}{13}{subsubsection.4.1.3}
+\contentsline {subsubsection}{\numberline {4.1.3}Pruebas funcionales}{14}{subsubsection.4.1.3}
 \contentsline {subsubsection}{\numberline {4.1.4}Problemas que tuvimos con el desarrollo de las pruebas}{14}{subsubsection.4.1.4}
 \contentsline {subsection}{\numberline {4.2}Instalaci\IeC {\'o}n}{14}{subsection.4.2}
-\contentsline {section}{\numberline {5}Conclusiones}{14}{section.5}
-\contentsline {paragraph}{}{14}{section*.2}
-\contentsline {section}{\numberline {A}Manual del Usuario}{16}{appendix.A}
-\contentsline {subsection}{\numberline {A.1}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{16}{subsection.A.1}
-\contentsline {subsection}{\numberline {A.2}ABM de s\IeC {\'\i }ntomas}{16}{subsection.A.2}
-\contentsline {subsection}{\numberline {A.3}Filtrado del listado}{16}{subsection.A.3}
+\contentsline {section}{\numberline {5}Conclusiones}{15}{section.5}
+\contentsline {paragraph}{}{15}{section*.2}
+\contentsline {paragraph}{}{15}{section*.3}
+\contentsline {paragraph}{}{15}{section*.4}
+\contentsline {paragraph}{}{15}{section*.5}
+\contentsline {section}{\numberline {A}Manual del Usuario}{17}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{17}{subsection.A.1}
+\contentsline {subsection}{\numberline {A.2}ABM de s\IeC {\'\i }ntomas}{17}{subsection.A.2}
+\contentsline {subsection}{\numberline {A.3}Filtrado del listado}{17}{subsection.A.3}
