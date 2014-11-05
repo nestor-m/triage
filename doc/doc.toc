@@ -1,33 +1,36 @@
 \select@language {spanish}
 \contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{4}{section.1}
 \contentsline {subsection}{\numberline {1.1}Sumario}{5}{subsection.1.1}
-\contentsline {section}{\numberline {2}Planteo}{6}{section.2}
+\contentsline {section}{\numberline {2}Planteo}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Din\IeC {\'a}mica de trabajo en el hospital}{6}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Requerimientos del cliente}{6}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Pantallas y din\IeC {\'a}mica de uso}{7}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.3}Pantallas y din\IeC {\'a}mica de uso}{6}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Informes}{7}{subsection.2.4}
-\contentsline {section}{\numberline {3}Metodolog\IeC {\'\i }a de trabajo e implementaci\IeC {\'o}n}{8}{section.3}
+\contentsline {section}{\numberline {3}Metodolog\IeC {\'\i }a de trabajo e implementaci\IeC {\'o}n}{7}{section.3}
 \contentsline {subsection}{\numberline {3.1}Metodolog\IeC {\'\i }a de trabajo}{8}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Resumen del itinerario del proyecto}{8}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Flujo de trabajo en una iteraci\IeC {\'o}n}{9}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.2}Flujo de trabajo en una iteraci\IeC {\'o}n}{8}{subsubsection.3.1.2}
 \contentsline {subsubsection}{\numberline {3.1.3}Herramientas que utilizamos}{9}{subsubsection.3.1.3}
-\contentsline {subsection}{\numberline {3.2}Tecnolog\IeC {\'\i }as}{10}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.2}Tecnolog\IeC {\'\i }as}{9}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Sobre el \textit {front-end}}{10}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Sobre el \textit {back-end}}{11}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2}Sobre el \textit {back-end}}{10}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Sobre la base de datos}{11}{subsubsection.3.2.3}
 \contentsline {subsection}{\numberline {3.3}Arquitectura}{11}{subsection.3.3}
 \contentsline {subsubsection}{\numberline {3.3.1}Comunicaci\IeC {\'o}n entre el cliente y el servidor}{11}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Arquitectura del \textit {front-end}}{12}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Arquitectura del \textit {back-end}}{12}{subsubsection.3.3.3}
-\contentsline {section}{\numberline {4}Pruebas e instalaci\IeC {\'o}n}{13}{section.4}
+\contentsline {section}{\numberline {4}Pruebas e instalaci\IeC {\'o}n}{12}{section.4}
 \contentsline {subsection}{\numberline {4.1}Pruebas}{13}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}Pruebas unitarias}{13}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Pruebas de integraci\IeC {\'o}n}{14}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}Pruebas funcionales}{14}{subsubsection.4.1.3}
+\contentsline {subsubsection}{\numberline {4.1.2}Pruebas de integraci\IeC {\'o}n}{13}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}Pruebas funcionales}{13}{subsubsection.4.1.3}
 \contentsline {subsubsection}{\numberline {4.1.4}Problemas que tuvimos con el desarrollo de las pruebas}{14}{subsubsection.4.1.4}
-\contentsline {subsection}{\numberline {4.2}Instalaci\IeC {\'o}n}{15}{subsection.4.2}
-\contentsline {section}{\numberline {5}Conclusiones}{16}{section.5}
-\contentsline {paragraph}{}{16}{section*.2}
-\contentsline {paragraph}{}{16}{section*.3}
-\contentsline {paragraph}{}{16}{section*.4}
-\contentsline {paragraph}{}{16}{section*.5}
+\contentsline {subsection}{\numberline {4.2}Instalaci\IeC {\'o}n}{14}{subsection.4.2}
+\contentsline {section}{\numberline {5}Conclusiones}{14}{section.5}
+\contentsline {paragraph}{}{14}{section*.2}
+\contentsline {paragraph}{}{15}{section*.3}
+\contentsline {paragraph}{}{15}{section*.4}
+\contentsline {paragraph}{}{15}{section*.5}
+\contentsline {section}{\numberline {A}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{16}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}ABM de s\IeC {\'\i }ntomas}{16}{subsection.A.1}
+\contentsline {subsubsection}{\numberline {A.1.1}Filtrado del listado}{16}{subsubsection.A.1.1}
