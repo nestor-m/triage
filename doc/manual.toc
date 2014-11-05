@@ -1,5 +1,4 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}Alta, baja y modificaci\IeC {\'o}n}{4}{section.1}
-\contentsline {subsection}{\numberline {1.1}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{4}{subsection.1.1}
-\contentsline {subsubsection}{\numberline {1.1.1}ABM de s\IeC {\'\i }ntomas}{4}{subsubsection.1.1.1}
-\contentsline {subsubsection}{\numberline {1.1.2}Filtrado del listado}{4}{subsubsection.1.1.2}
+\contentsline {section}{\numberline {1}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}ABM de s\IeC {\'\i }ntomas}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Filtrado del listado}{4}{subsection.1.2}
