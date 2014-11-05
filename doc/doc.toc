@@ -31,6 +31,7 @@
 \contentsline {paragraph}{}{15}{section*.3}
 \contentsline {paragraph}{}{15}{section*.4}
 \contentsline {paragraph}{}{15}{section*.5}
-\contentsline {section}{\numberline {A}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{16}{appendix.A}
-\contentsline {subsection}{\numberline {A.1}ABM de s\IeC {\'\i }ntomas}{16}{subsection.A.1}
-\contentsline {subsubsection}{\numberline {A.1.1}Filtrado del listado}{16}{subsubsection.A.1.1}
+\contentsline {section}{\numberline {A}Manual del Usuario}{16}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{16}{subsection.A.1}
+\contentsline {subsubsection}{\numberline {A.1.1}ABM de s\IeC {\'\i }ntomas}{16}{subsubsection.A.1.1}
+\contentsline {subsubsection}{\numberline {A.1.2}Filtrado del listado}{16}{subsubsection.A.1.2}
