@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  5 NOV 2014 01:32
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  6 NOV 2014 00:26
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -481,24 +481,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 [3] (./introduccion.tex [4]) (./planteo.tex [5] [6]) (./implementacion.tex
-[7] <planificacion.png, id=215, 1064.97874pt x 548.0475pt>
+[7] <planificacion.png, id=211, 1064.97874pt x 548.0475pt>
 File: planificacion.png Graphic file (type png)
 
-<use planificacion.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[8] <tracking.png, id=230, 1213.53375pt x 546.04pt>
+<use planificacion.png> <tracking.png, id=213, 1213.53375pt x 546.04pt>
 File: tracking.png Graphic file (type png)
- <use tracking.png>
+
+<use tracking.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <./planificacion.png (PNG copy)>] [10 <./tracking.png (PNG copy)>] [11]
-<triage.png, id=289, 780.9175pt x 468.75125pt>
+[8] [9 <./planificacion.png (PNG copy)>] [10 <./tracking.png (PNG copy)>]
+[11]
+Overfull \hbox (25.33292pt too wide) in paragraph at lines 76--77
+[]\OT1/cmr/m/n/10 El fra-me-work An-gu-larJS si-gue el patr^^Son de ar-qui-tec-
+tu-ra Modelo-Vista-Controlador
+ []
+
+<triage.png, id=288, 780.9175pt x 468.75125pt>
 File: triage.png Graphic file (type png)
  <use triage.png>)
-(./testeo_instalacion.tex [12 <./triage.png (PNG copy)>] [13]) [14]
+(./testeo_instalacion.tex [12] [13 <./triage.png (PNG copy)>] [14])
 (./conclusiones.tex) [15] [16] (./intro_manual.tex) (./manual_ABMs.tex
 <menu_configuracion_visible.png, id=339, 508.90125pt x 56.21pt>
 File: menu_configuracion_visible.png Graphic file (type png)
@@ -525,13 +528,13 @@ File: sintomas_listado_filtro.png Graphic file (type png)
 u_configuracion_oculto.png> <./menu_sintomas.png>]) [18 <./sintomas_listado.png
 > <./sintomas_listado_filtro.png>] (./doc.aux) ) 
 Here is how much of TeX's memory you used:
- 5182 strings out of 493848
- 72893 string characters out of 1152823
+ 5183 strings out of 493848
+ 72947 string characters out of 1152823
  151615 words of memory out of 3000000
- 8255 multiletter control sequences out of 15000+50000
- 9727 words of font info for 34 fonts, out of 3000000 for 9000
+ 8259 multiletter control sequences out of 15000+50000
+ 9559 words of font info for 33 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,8n,36p,819b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,36p,812b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts
 /type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
@@ -543,11 +546,10 @@ exlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts
 /amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
 cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
 r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on doc.pdf (18 pages, 506057 bytes).
+mf-texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on doc.pdf (18 pages, 492669 bytes).
 PDF statistics:
- 433 PDF objects out of 1000 (max. 8388607)
- 107 named destinations out of 1000 (max. 500000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 105 named destinations out of 1000 (max. 500000)
  297 words of extra memory for PDF output out of 10000 (max. 10000000)
 
