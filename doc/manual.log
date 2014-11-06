@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  6 NOV 2014 00:19
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  6 NOV 2014 01:02
 entering extended mode
  %&-line parsing enabled.
 **manual.tex
@@ -485,67 +485,69 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout4 = `manual.toc'.
 
  [3] (./manual_inicio.tex
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 3.
-
-<inicio.png, id=51, 1187.43625pt x 567.11874pt>
+<inicio.png, id=56, 1187.43625pt x 567.11874pt>
 File: inicio.png Graphic file (type png)
- <use inicio.png>)
-(./manual_ABMs.tex
-<menu_configuracion_visible.png, id=52, 508.90125pt x 56.21pt>
+ <use inicio.png>
+<inicio_nuevo.png, id=58, 1177.39874pt x 550.055pt>
+File: inicio_nuevo.png Graphic file (type png)
+ <use inicio_nuevo.png>
+<inicio_busqueda.png, id=60, 1137.24875pt x 543.02875pt>
+File: inicio_busqueda.png Graphic file (type png)
+
+<use inicio_busqueda.png>) (./manual_ABMs.tex
+<menu_configuracion_visible.png, id=61, 508.90125pt x 56.21pt>
 File: menu_configuracion_visible.png Graphic file (type png)
 
-<use menu_configuracion_visible.png>
-<menu_configuracion_oculto.png, id=54, 381.425pt x 49.18375pt>
+<use menu_configuracion_visible.png> [4 <./inicio.png (PNG copy)> <./inicio_nue
+vo.png (PNG copy)>]
+<menu_configuracion_oculto.png, id=70, 381.425pt x 49.18375pt>
 File: menu_configuracion_oculto.png Graphic file (type png)
 
 <use menu_configuracion_oculto.png>
-<menu_sintomas.png, id=55, 508.90125pt x 154.5775pt>
+<menu_sintomas.png, id=71, 508.90125pt x 154.5775pt>
 File: menu_sintomas.png Graphic file (type png)
  <use menu_sintomas.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<sintomas_listado.png, id=56, 914.41624pt x 325.215pt>
+<sintomas_listado.png, id=72, 914.41624pt x 325.215pt>
 File: sintomas_listado.png Graphic file (type png)
 
 <use sintomas_listado.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <./inicio.png (PNG copy)> <./menu_configuracion_visible.png> <./menu_configu
-racion_oculto.png>]
-<sintomas_listado_filtro.png, id=68, 914.41624pt x 273.02pt>
+<sintomas_listado_filtro.png, id=74, 914.41624pt x 273.02pt>
 File: sintomas_listado_filtro.png Graphic file (type png)
 
-<use sintomas_listado_filtro.png>) [5 <./menu_sintomas.png> <./sintomas_listado
-.png> <./sintomas_listado_filtro.png>] (./manual.aux) ) 
+<use sintomas_listado_filtro.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [5 <./inicio_busqueda.png (PNG copy)> <./menu_configuracion_visible.png> <./m
+enu_configuracion_oculto.png>] [6 <./menu_sintomas.png> <./sintomas_listado.png
+> <./sintomas_listado_filtro.png>] (./manual.aux) ) 
 Here is how much of TeX's memory you used:
- 5032 strings out of 493848
- 70897 string characters out of 1152823
- 144615 words of memory out of 3000000
- 8212 multiletter control sequences out of 15000+50000
+ 5048 strings out of 493848
+ 71182 string characters out of 1152823
+ 145615 words of memory out of 3000000
+ 8223 multiletter control sequences out of 15000+50000
  8849 words of font info for 31 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,8n,36p,583b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): n
-ame{subsection.1.1} has been referenced but does not exist, replaced by a fixed
- one
-
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
-r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmti12.pfb>
-Output written on manual.pdf (5 pages, 224543 bytes).
+ 38i,8n,36p,583b,349s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on manual.pdf (6 pages, 302196 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 138 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 

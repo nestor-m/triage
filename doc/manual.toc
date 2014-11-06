@@ -1,6 +1,7 @@
 \select@language {spanish}
 \contentsline {section}{\numberline {1}Pantalla Inicial}{4}{section.1}
-\contentsline {subsubsection}{\numberline {1.0.1}Ingreso de un nuevo paciente}{4}{subsubsection.1.0.1}
-\contentsline {section}{\numberline {2}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{4}{section.2}
-\contentsline {subsection}{\numberline {2.1}ABM de s\IeC {\'\i }ntomas}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {1.1}Ingreso de un nuevo paciente}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}B\IeC {\'u}squda e ingreso de un paciente cargado en sistema}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}ABM de s\IeC {\'\i }ntomas}{5}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Filtrado del listado}{5}{subsection.2.2}

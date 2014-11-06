@@ -34,7 +34,7 @@
 \contentsline {section}{\numberline {A}Manual del Usuario}{17}{appendix.A}
 \contentsline {section}{\numberline {B}Pantalla Inicial}{17}{appendix.B}
 \contentsline {subsection}{\numberline {B.1}Ingreso de un nuevo paciente}{17}{subsection.B.1}
-\contentsline {subsection}{\numberline {B.2}B\IeC {\'u}squda e ingreso de un paciente cargado en sistema}{18}{subsection.B.2}
-\contentsline {section}{\numberline {C}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{18}{appendix.C}
-\contentsline {subsection}{\numberline {C.1}ABM de s\IeC {\'\i }ntomas}{18}{subsection.C.1}
+\contentsline {subsection}{\numberline {B.2}B\IeC {\'u}squda e ingreso de un paciente cargado en sistema}{17}{subsection.B.2}
+\contentsline {section}{\numberline {C}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{19}{appendix.C}
+\contentsline {subsection}{\numberline {C.1}ABM de s\IeC {\'\i }ntomas}{19}{subsection.C.1}
 \contentsline {subsection}{\numberline {C.2}Filtrado del listado}{19}{subsection.C.2}
