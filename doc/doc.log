@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  6 NOV 2014 00:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  6 NOV 2014 00:57
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -481,21 +481,21 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 [3] (./introduccion.tex [4]) (./planteo.tex [5] [6]) (./implementacion.tex
-[7] <planificacion.png, id=225, 1064.97874pt x 548.0475pt>
+[7] <planificacion.png, id=230, 1064.97874pt x 548.0475pt>
 File: planificacion.png Graphic file (type png)
 
 <use planificacion.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8] <tracking.png, id=240, 1213.53375pt x 546.04pt>
+[8] <tracking.png, id=245, 1213.53375pt x 546.04pt>
 File: tracking.png Graphic file (type png)
  <use tracking.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [9 <./planificacion.png (PNG copy)>] [10 <./tracking.png (PNG copy)>] [11]
-<triage.png, id=299, 780.9175pt x 468.75125pt>
+<triage.png, id=304, 780.9175pt x 468.75125pt>
 File: triage.png Graphic file (type png)
  <use triage.png>
 
@@ -503,59 +503,69 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 ) (./testeo_instalacion.tex [12] [13 <./triage.png (PNG copy)>]) [14]
 (./conclusiones.tex) [15] [16] (./intro_manual.tex) (./manual_inicio.tex
-<inicio.png, id=350, 1187.43625pt x 567.11874pt>
+<inicio.png, id=355, 1187.43625pt x 567.11874pt>
 File: inicio.png Graphic file (type png)
- <use inicio.png>)
-(./manual_ABMs.tex
-<menu_configuracion_visible.png, id=351, 508.90125pt x 56.21pt>
+ <use inicio.png>
+<inicio_nuevo.png, id=357, 1177.39874pt x 550.055pt>
+File: inicio_nuevo.png Graphic file (type png)
+ <use inicio_nuevo.png>
+<inicio_busqueda.png, id=359, 1137.24875pt x 543.02875pt>
+File: inicio_busqueda.png Graphic file (type png)
+
+<use inicio_busqueda.png>) [17 <./inicio.png (PNG copy)> <./inicio_nuevo.png (P
+NG copy)>] (./manual_ABMs.tex
+<menu_configuracion_visible.png, id=366, 508.90125pt x 56.21pt>
 File: menu_configuracion_visible.png Graphic file (type png)
 
 <use menu_configuracion_visible.png>
-<menu_configuracion_oculto.png, id=353, 381.425pt x 49.18375pt>
+<menu_configuracion_oculto.png, id=368, 381.425pt x 49.18375pt>
 File: menu_configuracion_oculto.png Graphic file (type png)
 
 <use menu_configuracion_oculto.png>
-<menu_sintomas.png, id=354, 508.90125pt x 154.5775pt>
+<menu_sintomas.png, id=369, 508.90125pt x 154.5775pt>
 File: menu_sintomas.png Graphic file (type png)
  <use menu_sintomas.png>
-[17 <./inicio.png (PNG copy)> <./menu_configuracion_visible.png> <./menu_config
-uracion_oculto.png>] <sintomas_listado.png, id=364, 914.41624pt x 325.215pt>
-File: sintomas_listado.png Graphic file (type png)
-
-<use sintomas_listado.png>
-<sintomas_listado_filtro.png, id=366, 914.41624pt x 273.02pt>
-File: sintomas_listado_filtro.png Graphic file (type png)
-
-<use sintomas_listado_filtro.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [18 <./menu_sintomas.png> <./sintomas_listado.png>] [19 <./sintomas_listado_f
-iltro.png>] (./doc.aux) ) 
+<sintomas_listado.png, id=370, 914.41624pt x 325.215pt>
+File: sintomas_listado.png Graphic file (type png)
+
+<use sintomas_listado.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[18 <./inicio_busqueda.png (PNG copy)> <./menu_configuracion_visible.png> <./me
+nu_configuracion_oculto.png>]
+<sintomas_listado_filtro.png, id=381, 914.41624pt x 273.02pt>
+File: sintomas_listado_filtro.png Graphic file (type png)
+
+<use sintomas_listado_filtro.png>) [19 <./menu_sintomas.png> <./sintomas_listad
+o.png> <./sintomas_listado_filtro.png>] (./doc.aux) ) 
 Here is how much of TeX's memory you used:
- 5197 strings out of 493848
- 73082 string characters out of 1152823
+ 5213 strings out of 493848
+ 73382 string characters out of 1152823
  151615 words of memory out of 3000000
- 8262 multiletter control sequences out of 15000+50000
+ 8273 multiletter control sequences out of 15000+50000
  9727 words of font info for 34 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,8n,36p,819b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb><
-/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/cm/cmtt10.pfb>
-Output written on doc.pdf (19 pages, 538891 bytes).
+</usr/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmb
+xti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on doc.pdf (19 pages, 615048 bytes).
 PDF statistics:
- 453 PDF objects out of 1000 (max. 8388607)
- 111 named destinations out of 1000 (max. 500000)
- 318 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 464 PDF objects out of 1000 (max. 8388607)
+ 114 named destinations out of 1000 (max. 500000)
+ 336 words of extra memory for PDF output out of 10000 (max. 10000000)
 

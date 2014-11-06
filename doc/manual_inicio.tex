@@ -2,9 +2,22 @@
 En esta sección del manual explicaremos cómo ingresar nuevas personas al sistema o cómo buscarlas en el caso de que ya hayan sido atendidas.
 
 \subsection{Ingreso de un nuevo paciente}
-En la pantalla de Inicio del sistema (figura \ref{fig:inicio})
-
+En la pantalla de Inicio del sistema (figura \ref{fig:inicio}) 
 \begin{figure}
 \centerline{\includegraphics[width=0.7\textwidth]{inicio.png}}
 \caption{Pantalla inicial} \label{fig:inicio}
 \end{figure}
+se pueden ver los campos identitificatorios de las personas. El botón ``Ingresar nuevo paciente'' aparecerá deshabilitado hasta completar los campos obligatorios: DNI, nombre, apellido y fecha de nacimiento (como puede verse en la figura \ref{fig:inicio_nuevo}).
+\begin{figure}
+\centerline{\includegraphics[width=0.7\textwidth]{inicio_nuevo.png}}
+\caption{Botón habilitado para poder cargar nuevo paciente} \label{fig:inicio_nuevo}
+\end{figure}
+Al presionar dicho botón, el sistema guardará los datos de esa persona y redigirá la aplicación a la ventana de Triage para comenzar con la carga de síntomas.
+
+\subsection{Búsquda e ingreso de un paciente cargado en sistema}
+En el caso de que el paciente ya haya recibido atención en la guardia, es posible buscarlo en la aplicación. El botón ``buscar'' apacerá deshabilitado hasta que se complete alguno de los campos (figura \ref{fig:inicio_busqueda}).
+\begin{figure}
+\centerline{\includegraphics[width=0.7\textwidth]{inicio_busqueda.png}}
+\caption{Botón habilitado para poder buscar un paciente y botón para ingresar al paciente a Triage} \label{fig:inicio_busqueda}
+\end{figure}
+Una vez presionado el botón para buscar, el sistema muestra, en el listado inferior la lista de personas que coinciden con los criterios de búsqueda ingresados. En el caso de ver a la persona que se está buscando, en la lista aparece el botón ``Ingresar''. Al presionarlo, el sistema redirige la aplicación a la ventana de Triage para comenzar con la carga de síntomas.
