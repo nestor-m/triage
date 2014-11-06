@@ -32,6 +32,8 @@
 \contentsline {paragraph}{}{15}{section*.4}
 \contentsline {paragraph}{}{15}{section*.5}
 \contentsline {section}{\numberline {A}Manual del Usuario}{17}{appendix.A}
-\contentsline {subsection}{\numberline {A.1}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{17}{subsection.A.1}
-\contentsline {subsection}{\numberline {A.2}ABM de s\IeC {\'\i }ntomas}{17}{subsection.A.2}
-\contentsline {subsection}{\numberline {A.3}Filtrado del listado}{17}{subsection.A.3}
+\contentsline {section}{\numberline {B}Pantalla Inicial}{17}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}Ingreso de un nuevo paciente}{17}{subsection.B.1}
+\contentsline {section}{\numberline {C}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{17}{appendix.C}
+\contentsline {subsection}{\numberline {C.1}ABM de s\IeC {\'\i }ntomas}{18}{subsection.C.1}
+\contentsline {subsection}{\numberline {C.2}Filtrado del listado}{18}{subsection.C.2}
