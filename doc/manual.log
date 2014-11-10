@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  6 NOV 2014 01:02
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  10 NOV 2014 00:51
 entering extended mode
  %&-line parsing enabled.
 **manual.tex
@@ -485,69 +485,123 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout4 = `manual.toc'.
 
  [3] (./manual_inicio.tex
-<inicio.png, id=56, 1187.43625pt x 567.11874pt>
+<inicio.png, id=91, 1187.43625pt x 567.11874pt>
 File: inicio.png Graphic file (type png)
  <use inicio.png>
-<inicio_nuevo.png, id=58, 1177.39874pt x 550.055pt>
+<inicio_nuevo.png, id=93, 1177.39874pt x 550.055pt>
 File: inicio_nuevo.png Graphic file (type png)
  <use inicio_nuevo.png>
-<inicio_busqueda.png, id=60, 1137.24875pt x 543.02875pt>
+<inicio_busqueda.png, id=95, 1137.24875pt x 543.02875pt>
 File: inicio_busqueda.png Graphic file (type png)
 
-<use inicio_busqueda.png>) (./manual_ABMs.tex
-<menu_configuracion_visible.png, id=61, 508.90125pt x 56.21pt>
+<use inicio_busqueda.png> [4 <./inicio.png (PNG copy)> <./inicio_nuevo.png (PNG
+ copy)>]) (./manual_triage.tex
+<impresion_visual.png, id=103, 1340.00626pt x 537.00626pt>
+File: impresion_visual.png Graphic file (type png)
+
+<use impresion_visual.png>
+<impresion_visual_p1.png, id=106, 1150.2975pt x 553.06625pt>
+File: impresion_visual_p1.png Graphic file (type png)
+
+<use impresion_visual_p1.png>
+<prioridad_uno.png, id=108, 1225.57875pt x 444.66125pt>
+File: prioridad_uno.png Graphic file (type png)
+
+<use prioridad_uno.png> [5 <./inicio_busqueda.png (PNG copy)>] [6 <./impresion_
+visual.png (PNG copy)> <./impresion_visual_p1.png (PNG copy)>]
+<sintomas.png, id=121, 1289.81876pt x 545.03625pt>
+File: sintomas.png Graphic file (type png)
+ <use sintomas.png>
+<sintomas_buscar.png, id=123, 1311.90125pt x 544.0325pt>
+File: sintomas_buscar.png Graphic file (type png)
+
+<use sintomas_buscar.png>
+<sintomas_agregar.png, id=125, 1293.83376pt x 529.98pt>
+File: sintomas_agregar.png Graphic file (type png)
+
+<use sintomas_agregar.png> [7 <./prioridad_uno.png (PNG copy)> <./sintomas.png 
+(PNG copy)>] [8 <./sintomas_buscar.png (PNG copy)> <./sintomas_agregar.png (PNG
+ copy)>] <signos_vitales.png, id=141, 1121.18875pt x 553.06625pt>
+File: signos_vitales.png Graphic file (type png)
+
+<use signos_vitales.png>
+<signos_vitales_guardar.png, id=144, 1113.15875pt x 552.0625pt>
+File: signos_vitales_guardar.png Graphic file (type png)
+
+<use signos_vitales_guardar.png> [9 <./signos_vitales.png (PNG copy)> <./signos
+_vitales_guardar.png (PNG copy)>]
+
+LaTeX Warning: Reference `fin_triage' on page 10 undefined on input line 69.
+
+<fin_triage.png, id=151, 1147.28625pt x 521.95pt>
+File: fin_triage.png Graphic file (type png)
+ <use fin_triage.png>
+<prioridad_dos.png, id=153, 1163.34625pt x 353.32pt>
+File: prioridad_dos.png Graphic file (type png)
+ <use prioridad_dos.png>
+<prioridad_tres.png, id=155, 1188.44pt x 355.3275pt>
+File: prioridad_tres.png Graphic file (type png)
+ <use prioridad_tres.png>
+
+LaTeX Warning: Reference `fin' on page 10 undefined on input line 90.
+
+<fin.png, id=156, 1121.18875pt x 553.06625pt>
+File: fin.png Graphic file (type png)
+ <use fin.png>) (./manual_ABMs.tex <menu_configuracion_visible.png, id=157, 508
+.90125pt x 56.21pt>
 File: menu_configuracion_visible.png Graphic file (type png)
 
-<use menu_configuracion_visible.png> [4 <./inicio.png (PNG copy)> <./inicio_nue
-vo.png (PNG copy)>]
-<menu_configuracion_oculto.png, id=70, 381.425pt x 49.18375pt>
+<use menu_configuracion_visible.png> [10 <./fin_triage.png (PNG copy)> <./prior
+idad_dos.png (PNG copy)>] [11 <./prioridad_tres.png (PNG copy)> <./fin.png (PNG
+ copy)>] <menu_configuracion_oculto.png, id=171, 381.425pt x 49.18375pt>
 File: menu_configuracion_oculto.png Graphic file (type png)
 
 <use menu_configuracion_oculto.png>
-<menu_sintomas.png, id=71, 508.90125pt x 154.5775pt>
+<menu_sintomas.png, id=172, 508.90125pt x 154.5775pt>
 File: menu_sintomas.png Graphic file (type png)
  <use menu_sintomas.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<sintomas_listado.png, id=72, 914.41624pt x 325.215pt>
+<sintomas_listado.png, id=173, 914.41624pt x 325.215pt>
 File: sintomas_listado.png Graphic file (type png)
 
 <use sintomas_listado.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<sintomas_listado_filtro.png, id=74, 914.41624pt x 273.02pt>
+<sintomas_listado_filtro.png, id=175, 914.41624pt x 273.02pt>
 File: sintomas_listado_filtro.png Graphic file (type png)
 
 <use sintomas_listado_filtro.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [5 <./inicio_busqueda.png (PNG copy)> <./menu_configuracion_visible.png> <./m
-enu_configuracion_oculto.png>] [6 <./menu_sintomas.png> <./sintomas_listado.png
-> <./sintomas_listado_filtro.png>] (./manual.aux) ) 
+) [12 <./menu_configuracion_visible.png> <./menu_configuracion_oculto.png> <./m
+enu_sintomas.png>] [13 <./sintomas_listado.png> <./sintomas_listado_filtro.png>
+] (./manual.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5048 strings out of 493848
- 71182 string characters out of 1152823
+ 5159 strings out of 493848
+ 73126 string characters out of 1152823
  145615 words of memory out of 3000000
- 8223 multiletter control sequences out of 15000+50000
+ 8293 multiletter control sequences out of 15000+50000
  8849 words of font info for 31 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,8n,36p,583b,349s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on manual.pdf (6 pages, 302196 bytes).
+ 38i,8n,36p,583b,377s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
+/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmti12.pfb>
+Output written on manual.pdf (13 pages, 768405 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 248 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 

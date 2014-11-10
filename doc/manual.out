@@ -1,6 +1,13 @@
 \BOOKMARK [1][-]{section.1}{Pantalla Inicial}{}
 \BOOKMARK [2][-]{subsection.1.1}{Ingreso de un nuevo paciente}{section.1}
 \BOOKMARK [2][-]{subsection.1.2}{B\372squda e ingreso de un paciente cargado en sistema}{section.1}
-\BOOKMARK [1][-]{section.2}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
-\BOOKMARK [2][-]{subsection.2.1}{ABM de s\355ntomas}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Filtrado del listado}{section.2}
+\BOOKMARK [2][-]{subsection.1.3}{Lista de espera}{section.1}
+\BOOKMARK [1][-]{section.2}{Triage}{}
+\BOOKMARK [2][-]{subsection.2.1}{Pantalla inicial de Triage}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Impresi\363n Visual}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{S\355ntomas}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Signos Vitales}{section.2}
+\BOOKMARK [2][-]{subsection.2.5}{Fin de la carga}{section.2}
+\BOOKMARK [1][-]{section.3}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
+\BOOKMARK [2][-]{subsection.3.1}{ABM de s\355ntomas}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Filtrado del listado}{section.3}

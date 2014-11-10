@@ -35,6 +35,11 @@
 \contentsline {section}{\numberline {B}Pantalla Inicial}{17}{appendix.B}
 \contentsline {subsection}{\numberline {B.1}Ingreso de un nuevo paciente}{17}{subsection.B.1}
 \contentsline {subsection}{\numberline {B.2}B\IeC {\'u}squda e ingreso de un paciente cargado en sistema}{17}{subsection.B.2}
-\contentsline {section}{\numberline {C}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{19}{appendix.C}
-\contentsline {subsection}{\numberline {C.1}ABM de s\IeC {\'\i }ntomas}{19}{subsection.C.1}
-\contentsline {subsection}{\numberline {C.2}Filtrado del listado}{19}{subsection.C.2}
+\contentsline {section}{\numberline {C}Triage}{19}{appendix.C}
+\contentsline {subsection}{\numberline {C.1}Pantalla inicial de Triage}{19}{subsection.C.1}
+\contentsline {subsection}{\numberline {C.2}Impresi\IeC {\'o}n Visual}{19}{subsection.C.2}
+\contentsline {subsection}{\numberline {C.3}S\IeC {\'\i }ntomas}{19}{subsection.C.3}
+\contentsline {subsection}{\numberline {C.4}Signos Vitales}{22}{subsection.C.4}
+\contentsline {section}{\numberline {D}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{22}{appendix.D}
+\contentsline {subsection}{\numberline {D.1}ABM de s\IeC {\'\i }ntomas}{22}{subsection.D.1}
+\contentsline {subsection}{\numberline {D.2}Filtrado del listado}{22}{subsection.D.2}
