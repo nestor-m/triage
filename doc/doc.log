@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  8 NOV 2014 02:30
+=======
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  10 NOV 2014 01:00
+>>>>>>> 9b1f61a9c82b32d70c877479441101e8c6628b23
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -481,28 +485,45 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 [3] (./introduccion.tex [4]) (./planteo.tex [5] [6]) (./implementacion.tex
+<<<<<<< HEAD
 [7] <planificacion.png, id=241, 1064.97874pt x 548.0475pt>
 File: planificacion.png Graphic file (type png)
 
 <use planificacion.png> <tracking.png, id=243, 1213.53375pt x 546.04pt>
+=======
+[7] <planificacion.png, id=252, 1064.97874pt x 548.0475pt>
+File: planificacion.png Graphic file (type png)
+
+<use planificacion.png> [8] <tracking.png, id=265, 1213.53375pt x 546.04pt>
+>>>>>>> 9b1f61a9c82b32d70c877479441101e8c6628b23
 File: tracking.png Graphic file (type png)
 
 <use tracking.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8] [9 <./planificacion.png (PNG copy)>] [10 <./tracking.png (PNG copy)>]
-[11]
-Overfull \hbox (25.33292pt too wide) in paragraph at lines 76--77
+
+Overfull \hbox (5.6673pt too wide) in paragraph at lines 43--44
+[]\OT1/cmr/m/n/10 El c^^Sodi-go fuen-te de la apli-ca-ci^^Son est^^Sa dis-po-ni
+-ble en https://github.com/nestor-
+ []
+
+[9 <./planificacion.png (PNG copy)>] [10 <./tracking.png (PNG copy)>] [11]
+Overfull \hbox (25.33292pt too wide) in paragraph at lines 79--80
 []\OT1/cmr/m/n/10 El fra-me-work An-gu-larJS si-gue el patr^^Son de ar-qui-tec-
 tu-ra Modelo-Vista-Controlador
  []
 
+<<<<<<< HEAD
 <triage.png, id=318, 780.9175pt x 468.75125pt>
+=======
+<triage.png, id=330, 780.9175pt x 468.75125pt>
+>>>>>>> 9b1f61a9c82b32d70c877479441101e8c6628b23
 File: triage.png Graphic file (type png)
  <use triage.png>)
 (./testeo_instalacion.tex [12] [13 <./triage.png (PNG copy)>] [14])
 (./conclusiones.tex) [15] [16] (./intro_manual.tex) (./manual_inicio.tex
+<<<<<<< HEAD
 <inicio.png, id=370, 1187.43625pt x 567.11874pt>
 File: inicio.png Graphic file (type png)
  <use inicio.png>
@@ -620,4 +641,86 @@ PDF statistics:
  511 PDF objects out of 1000 (max. 8388607)
  127 named destinations out of 1000 (max. 500000)
  390 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+<inicio.png, id=384, 1187.43625pt x 567.11874pt>
+File: inicio.png Graphic file (type png)
+ <use inicio.png>
+<inicio_nuevo.png, id=386, 1177.39874pt x 550.055pt>
+File: inicio_nuevo.png Graphic file (type png)
+ <use inicio_nuevo.png>
+<inicio_busqueda.png, id=388, 1137.24875pt x 543.02875pt>
+File: inicio_busqueda.png Graphic file (type png)
+
+<use inicio_busqueda.png>) (./manual_ABMs.tex [17 <./inicio.png (PNG copy)>]
+[18 <./inicio_nuevo.png (PNG copy)> <./inicio_busqueda.png (PNG copy)>]
+<menu_configuracion_visible.png, id=402, 508.90125pt x 56.21pt>
+File: menu_configuracion_visible.png Graphic file (type png)
+
+<use menu_configuracion_visible.png>
+<menu_configuracion_oculto.png, id=404, 381.425pt x 49.18375pt>
+File: menu_configuracion_oculto.png Graphic file (type png)
+
+<use menu_configuracion_oculto.png>
+<menu_sintomas.png, id=406, 508.90125pt x 154.5775pt>
+File: menu_sintomas.png Graphic file (type png)
+ <use menu_sintomas.png>
+<listado_sintomas.png, id=408, 963.6pt x 360.34625pt>
+File: listado_sintomas.png Graphic file (type png)
+
+<use listado_sintomas.png>
+<detalle_sintoma.png, id=410, 761.84625pt x 315.1775pt>
+File: detalle_sintoma.png Graphic file (type png)
+
+<use detalle_sintoma.png>
+<sintoma_cargado_con_exito.png, id=413, 753.81625pt x 381.425pt>
+File: sintoma_cargado_con_exito.png Graphic file (type png)
+
+<use sintoma_cargado_con_exito.png>
+<sintomas_listado_buscar.png, id=416, 914.41624pt x 273.02pt>
+File: sintomas_listado_buscar.png Graphic file (type png)
+
+<use sintomas_listado_buscar.png>
+<sintoma_actualizado_con_exito.png, id=418, 751.80875pt x 378.41376pt>
+File: sintoma_actualizado_con_exito.png Graphic file (type png)
+
+<use sintoma_actualizado_con_exito.png> [19 <./menu_configuracion_visible.png> 
+<./menu_configuracion_oculto.png> <./menu_sintomas.png>] [20 <./listado_sintoma
+s.png> <./detalle_sintoma.png> <./sintoma_cargado_con_exito.png>] [21 <./sintom
+as_listado_buscar.png> <./sintoma_actualizado_con_exito.png>]
+<menu_discriminantes.png, id=450, 488.82625pt x 141.52875pt>
+File: menu_discriminantes.png Graphic file (type png)
+
+<use menu_discriminantes.png>
+<listado_discriminantes.png, id=452, 751.80875pt x 249.93375pt>
+File: listado_discriminantes.png Graphic file (type png)
+
+<use listado_discriminantes.png>) [22 <./menu_discriminantes.png> <./listado_di
+scriminantes.png>] (./doc.aux) ) 
+Here is how much of TeX's memory you used:
+ 5270 strings out of 493848
+ 74726 string characters out of 1152823
+ 153615 words of memory out of 3000000
+ 8314 multiletter control sequences out of 15000+50000
+ 9559 words of font info for 33 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 38i,8n,36p,911b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/am
+sfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
+r6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmti8.pfb>
+Output written on doc.pdf (22 pages, 713637 bytes).
+PDF statistics:
+ 533 PDF objects out of 1000 (max. 8388607)
+ 126 named destinations out of 1000 (max. 500000)
+ 401 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> 9b1f61a9c82b32d70c877479441101e8c6628b23
 
