@@ -30,22 +30,24 @@
 \BOOKMARK [1][-]{appendix.A}{Manual del Usuario}{}
 \BOOKMARK [1][-]{appendix.B}{Pantalla Inicial}{}
 \BOOKMARK [2][-]{subsection.B.1}{Ingreso de un nuevo paciente}{appendix.B}
-\BOOKMARK [2][-]{subsection.B.2}{B\372squda e ingreso de un paciente cargado en sistema}{appendix.B}
-<<<<<<< HEAD
+\BOOKMARK [2][-]{subsection.B.2}{B\372squeda e ingreso de un paciente cargado en sistema}{appendix.B}
+\BOOKMARK [2][-]{subsection.B.3}{Filtrado de un listado}{appendix.B}
 \BOOKMARK [1][-]{appendix.C}{Triage}{}
 \BOOKMARK [2][-]{subsection.C.1}{Pantalla inicial de Triage}{appendix.C}
 \BOOKMARK [2][-]{subsection.C.2}{Impresi\363n Visual}{appendix.C}
 \BOOKMARK [2][-]{subsection.C.3}{S\355ntomas}{appendix.C}
 \BOOKMARK [2][-]{subsection.C.4}{Signos Vitales}{appendix.C}
-\BOOKMARK [1][-]{appendix.D}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
-\BOOKMARK [2][-]{subsection.D.1}{ABM de s\355ntomas}{appendix.D}
-\BOOKMARK [2][-]{subsection.D.2}{Filtrado del listado}{appendix.D}
-=======
-\BOOKMARK [1][-]{appendix.C}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
-\BOOKMARK [2][-]{subsection.C.1}{Acceso al men\372 de configuraci\363n}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.2}{ABM de s\355ntomas}{appendix.C}
-\BOOKMARK [3][-]{subsubsection.C.2.1}{Alta de s\355ntoma}{subsection.C.2}
-\BOOKMARK [3][-]{subsubsection.C.2.2}{Modificaci\363n de s\355ntoma}{subsection.C.2}
-\BOOKMARK [3][-]{subsubsection.C.2.3}{Baja de s\355ntoma}{subsection.C.2}
-\BOOKMARK [2][-]{subsection.C.3}{ABM de discriminantes de s\355ntomas}{appendix.C}
->>>>>>> 9b1f61a9c82b32d70c877479441101e8c6628b23
+\BOOKMARK [2][-]{subsection.C.5}{Fin de la carga}{appendix.C}
+\BOOKMARK [1][-]{appendix.D}{Pacientes en espera}{}
+\BOOKMARK [2][-]{subsection.D.1}{Continuar el Triage}{appendix.D}
+\BOOKMARK [2][-]{subsection.D.2}{Finalizar}{appendix.D}
+\BOOKMARK [1][-]{appendix.E}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
+\BOOKMARK [2][-]{subsection.E.1}{Acceso al men\372 de configuraci\363n}{appendix.E}
+\BOOKMARK [2][-]{subsection.E.2}{ABM de s\355ntomas}{appendix.E}
+\BOOKMARK [3][-]{subsubsection.E.2.1}{Alta de s\355ntoma}{subsection.E.2}
+\BOOKMARK [3][-]{subsubsection.E.2.2}{Modificaci\363n de s\355ntoma}{subsection.E.2}
+\BOOKMARK [3][-]{subsubsection.E.2.3}{Baja de s\355ntoma}{subsection.E.2}
+\BOOKMARK [2][-]{subsection.E.3}{ABM de discriminantes de s\355ntomas}{appendix.E}
+\BOOKMARK [3][-]{subsubsection.E.3.1}{Alta de discriminante de s\355ntoma}{subsection.E.3}
+\BOOKMARK [3][-]{subsubsection.E.3.2}{Modificaci\363n de un discriminante de s\355ntoma}{subsection.E.3}
+\BOOKMARK [3][-]{subsubsection.E.3.3}{Baja de discriminante de s\355ntoma}{subsection.E.3}
