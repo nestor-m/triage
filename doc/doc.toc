@@ -56,3 +56,7 @@
 \contentsline {subsubsection}{\numberline {E.3.1}Alta de discriminante de s\IeC {\'\i }ntoma}{32}{subsubsection.E.3.1}
 \contentsline {subsubsection}{\numberline {E.3.2}Modificaci\IeC {\'o}n de un discriminante de s\IeC {\'\i }ntoma}{32}{subsubsection.E.3.2}
 \contentsline {subsubsection}{\numberline {E.3.3}Baja de discriminante de s\IeC {\'\i }ntoma}{33}{subsubsection.E.3.3}
+\contentsline {subsection}{\numberline {E.4}ABM de usuarios}{33}{subsection.E.4}
+\contentsline {subsubsection}{\numberline {E.4.1}Alta de discriminante de s\IeC {\'\i }ntoma}{33}{subsubsection.E.4.1}
+\contentsline {subsubsection}{\numberline {E.4.2}Modificaci\IeC {\'o}n de un discriminante de s\IeC {\'\i }ntoma}{34}{subsubsection.E.4.2}
+\contentsline {subsubsection}{\numberline {E.4.3}Baja de discriminante de s\IeC {\'\i }ntoma}{35}{subsubsection.E.4.3}

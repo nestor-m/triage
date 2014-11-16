@@ -1560,7 +1560,7 @@ app.controller('usuariosListadoController',function($scope, $location, $cookieSt
 			$scope.pagingOptions.currentPage);
 
 	$scope.botonVerDetalle = '<a id="verDetalle" ng-click="verDetalle(row)"> <i class="fa fa-search fa-2x" title="Ver detalle"/> </a>';
-	$scope.botonEliminar = '<a id="eliminar" style="color:red" ng-click="eliminarUsuario(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar" ng-hide="usuario.nombre==row.entity.nombre"/> </a>';
+	$scope.botonEliminar = '<a id="eliminar" style="color:red" ng-click="eliminarUsuario(row)"> <i class="fa fa-times-circle fa-2x" title="Eliminar"/> </a>';
 
 	$scope.verDetalle = function(row){
 		$cookieStore.put('detalleUsuario',row.entity);
@@ -1579,9 +1579,11 @@ app.controller('usuariosListadoController',function($scope, $location, $cookieSt
 					$http.post("usuario/eliminarUsuario",{
 						id:row.entity.id
 					}).success(function(data) {
-							$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
-							quitarUsuarioDelListado(row.entity.id);
-						});
+						$('#alert').delay(200).fadeIn().delay(2000).fadeOut();//mensaje de sintoma eliminado con exito
+						quitarUsuarioDelListado(row.entity.id);
+					}).error(function(data){
+						bootbox.alert(data);
+					});
 				}
 			});
 	}
@@ -1623,7 +1625,11 @@ app.controller('usuariosListadoController',function($scope, $location, $cookieSt
 		}, {
 			field : 'nombre',
 			displayName : 'Usuario',
-			width : '90%'
+			width : '70%'
+		}, {
+			field : 'rol.name',
+			displayName : 'Rol',
+			width : '20%'
 		}, {
 			cellTemplate : $scope.botonVerDetalle,
 			width : '5%'
@@ -1655,6 +1661,8 @@ app.controller('usuariosFormController',function($scope, $location, $cookieStore
 		}).success(function(data){
 			bootbox.alert(data);			
 			$scope.usuario = null;//limpio el formulario
+		}).error(function(data){
+			bootbox.alert(data);
 		});
 	};
 
