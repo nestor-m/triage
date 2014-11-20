@@ -13,11 +13,16 @@ class UsuarioController {
 
     // defined with private scope, so it's not considered an action
     private auth() {
-        if (!session.user || session.user.rol != Rol.ADMINISTRADOR) {
+        if (!session.user || session.user.rol != Rol.ADMINISTRADOR || !usuarioExiste()) {
             response.status = 401
             render 'Usted no tiene permisos de administrador' //respondo algo para que no me tire error 404
             return false
         }
+    }
+
+    Boolean usuarioExiste(){
+        def usuario = Usuario.findWhere(nombre:session.user.nombre,rol:session.user.rol)//si me eliminaron o me modificaron me tiene que desloguear
+        return usuario != null
     }
 
     def login(){    	
@@ -41,8 +46,14 @@ class UsuarioController {
     @Transactional
     def eliminarUsuario(){
         def usuario = Usuario.get(request.JSON.id)
-        usuario.delete()
-        render 'Usuario ' + usuario.nombre + ' eliminado con exito =)'//es necesario que responda algo para que se ejecute el success del lado del cliente
+        if(usuario.rol == Rol.ADMINISTRADOR && Usuario.countByRol(Rol.ADMINISTRADOR) == 1){//valido que quede al menos un usuario con rol Administrador
+            response.status = 500
+            render 'No se puede eliminar este usuario ya que no quedarian administradores en la aplicación'
+        }else{
+            usuario.delete()
+            render 'Usuario ' + usuario.nombre + ' eliminado con exito =)'//es necesario que responda algo para que se ejecute el success del lado del cliente
+        }
+
     }
 
     /**
@@ -82,11 +93,16 @@ class UsuarioController {
 
             render 'Usuario ' + nombre + ' creado con éxito'
         }else{//si me llega el id es porque es un update
-            def usuario = Usuario.get(id)
-            usuario.nombre = nombre
-            usuario.rol = rol
-            usuario.save(failOnError : true)
-            render 'Usuario ' + nombre + ' actualizado con éxito'
+            if(rol == 'USUARIO' && Usuario.countByRol(Rol.ADMINISTRADOR) == 1){//valido que quede al menos un usuario con rol Administrador
+                response.status = 500
+                render 'No se le puede poner rol USUARIO al usuario ya que no quedarian administradores en la aplicación'
+            }else{
+                def usuario = Usuario.get(id)
+                usuario.nombre = nombre
+                usuario.rol = rol
+                usuario.save(failOnError : true)
+                render 'Usuario ' + nombre + ' actualizado con éxito'
+            }
         }               
    }
 

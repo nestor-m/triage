@@ -29,7 +29,7 @@ En la pestaña de síntomas (figura \ref{fig:sintomas})
 \end{figure}
 van a ser cargados los síntomas que el paciente informe. 
 
-En el cuadro central se pueden ver todos los síntomas cargados en sistema, indicando cuál es su discriminante. Aquí se puede filtrar también por síntoma o discriminante (tal como se explica en la sección 'Filtrado del listado') (Ver figura \ref{fig:sintomas_filtrar}).
+En el cuadro central se pueden ver todos los síntomas cargados en sistema, indicando cuál es su discriminante. Aquí se puede filtrar también por síntoma o discriminante (tal como se explica en la sección \ref{cap:filtrado_listado}) (Ver figura \ref{fig:sintomas_filtrar}).
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{sintomas_buscar.png}}
 \caption{Filtrado en el cuadro de síntomas} \label{fig:sintomas_filtrar}
@@ -54,7 +54,7 @@ La tercer pestaña del Triage es para completar los signos vitales del paciente 
 \end{figure}
 Cada signo vital está definido para ser seleccionado de una lista acotada. En el caso de seleccionar algún valor que corresponda a una Prioridad UNO, el sistema mostrará un mensaje de confirmación. Si el usuario confirma la acción, se corta toda interacción mostrando la pantalla que indica atención inmediata (figura \ref{fig:prioridad_uno}).
 
-Al finalizar de cargar los signos vitales, se debe presionar el botón ``Guardar'' (figura \ref{fig:signos_vitales_guardar})
+Al finalizar de cargar los signos vitales, se debe presionar el botón ``Aceptar'' (figura \ref{fig:signos_vitales_guardar})
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{signos_vitales_guardar.png}}
 \caption{Signos Vitales} \label{fig:signos_vitales_guardar}
@@ -69,7 +69,7 @@ Al terminar de cargar los síntomas hay dos caminos:
 Para finalizar el Triage, se debe presionar el botón sobre la pestaña izquieda llamado ``Fin Triage'' (figura \ref{fig:fin_triage}).
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{fin_triage.png}}
-\caption{Signos Vitales} \label{fig:fin_triage}
+\caption{Fin Triage} \label{fig:fin_triage}
 \end{figure}
  Al hacer esto, el sistema calcula la prioridad del paciente, indicando todos los síntomas cargados y sus datos personales. 
 
@@ -81,7 +81,7 @@ Esta acción sólo puede mostrar las pantallas de Prioridad DOS (figura \ref{fig
 y Prioridad TRES (figura \ref{fig:prioridad_tres}), 
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{prioridad_tres.png}}
-\caption{Signos Vitales} \label{fig:prioridad_tres}
+\caption{Prioridad TRES} \label{fig:prioridad_tres}
 \end{figure}
 ya que la pantalla de Prioridad UNO sólo se presenta al seleccionar un síntoma de Prioridad UNO y corta toda interacción con el usuario.
 Finalizar el Triage no quita al paciente de la lista de espera, simplemente calcula su prioridad. 
@@ -90,7 +90,7 @@ Finalizar el Triage no quita al paciente de la lista de espera, simplemente calc
 En el caso de querer abandonar la carga de síntomas para poder retomarla más tarde, el sistema provee la acción ``Salir'' (figura \ref{fig:fin}),
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{fin.png}}
-\caption{Signos Vitales} \label{fig:fin}
+\caption{Salir de la carga} \label{fig:fin}
 \end{figure}
 que permite guardar los síntomas ingresados hasta el momento y poder recuperarlos si se carga el paciente desde la lista de espera.
 

@@ -16,11 +16,11 @@
 \contentsline {subsubsection}{\numberline {3.2.1}Sobre la elecci\IeC {\'o}n de las tecnolog\IeC {\'\i }as}{11}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Sobre el \textit {front-end}}{12}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Sobre el \textit {back-end}}{12}{subsubsection.3.2.3}
-\contentsline {subsubsection}{\numberline {3.2.4}Sobre la base de datos}{13}{subsubsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4}Sobre la base de datos}{12}{subsubsection.3.2.4}
 \contentsline {subsection}{\numberline {3.3}Arquitectura}{13}{subsection.3.3}
 \contentsline {subsubsection}{\numberline {3.3.1}Arquitectura del \textit {front-end}}{13}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Arquitectura del \textit {back-end}}{13}{subsubsection.3.3.2}
-\contentsline {section}{\numberline {4}Pruebas e instalaci\IeC {\'o}n}{14}{section.4}
+\contentsline {section}{\numberline {4}Pruebas e instalaci\IeC {\'o}n}{13}{section.4}
 \contentsline {subsection}{\numberline {4.1}Pruebas}{14}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}Pruebas unitarias}{14}{subsubsection.4.1.1}
 \contentsline {subsubsection}{\numberline {4.1.2}Pruebas de integraci\IeC {\'o}n}{15}{subsubsection.4.1.2}
@@ -28,27 +28,32 @@
 \contentsline {subsubsection}{\numberline {4.1.4}Problemas que tuvimos con el desarrollo de las pruebas}{15}{subsubsection.4.1.4}
 \contentsline {subsection}{\numberline {4.2}Instalaci\IeC {\'o}n}{16}{subsection.4.2}
 \contentsline {section}{\numberline {5}Conclusiones}{16}{section.5}
-\contentsline {paragraph}{}{16}{section*.2}
-\contentsline {paragraph}{}{16}{section*.3}
-\contentsline {paragraph}{}{16}{section*.4}
-\contentsline {paragraph}{}{16}{section*.5}
 \contentsline {section}{\numberline {A}Manual del Usuario}{18}{appendix.A}
 \contentsline {section}{\numberline {B}Pantalla Inicial}{18}{appendix.B}
 \contentsline {subsection}{\numberline {B.1}Ingreso de un nuevo paciente}{18}{subsection.B.1}
-\contentsline {subsection}{\numberline {B.2}B\IeC {\'u}squda e ingreso de un paciente cargado en sistema}{18}{subsection.B.2}
+\contentsline {subsection}{\numberline {B.2}B\IeC {\'u}squeda e ingreso de un paciente cargado en sistema}{18}{subsection.B.2}
+\contentsline {subsection}{\numberline {B.3}Filtrado de un listado}{20}{subsection.B.3}
 \contentsline {section}{\numberline {C}Triage}{20}{appendix.C}
 \contentsline {subsection}{\numberline {C.1}Pantalla inicial de Triage}{20}{subsection.C.1}
 \contentsline {subsection}{\numberline {C.2}Impresi\IeC {\'o}n Visual}{20}{subsection.C.2}
-\contentsline {subsection}{\numberline {C.3}S\IeC {\'\i }ntomas}{20}{subsection.C.3}
+\contentsline {subsection}{\numberline {C.3}S\IeC {\'\i }ntomas}{21}{subsection.C.3}
 \contentsline {subsection}{\numberline {C.4}Signos Vitales}{23}{subsection.C.4}
-\contentsline {subsection}{\numberline {C.5}Fin de la carga}{23}{subsection.C.5}
-\contentsline {section}{\numberline {D}Pacientes en espera}{25}{appendix.D}
+\contentsline {subsection}{\numberline {C.5}Fin de la carga}{24}{subsection.C.5}
+\contentsline {section}{\numberline {D}Pacientes en espera}{26}{appendix.D}
 \contentsline {subsection}{\numberline {D.1}Continuar el Triage}{26}{subsection.D.1}
 \contentsline {subsection}{\numberline {D.2}Finalizar}{26}{subsection.D.2}
-\contentsline {section}{\numberline {E}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{27}{appendix.E}
+\contentsline {section}{\numberline {E}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{28}{appendix.E}
 \contentsline {subsection}{\numberline {E.1}Acceso al men\IeC {\'u} de configuraci\IeC {\'o}n}{28}{subsection.E.1}
 \contentsline {subsection}{\numberline {E.2}ABM de s\IeC {\'\i }ntomas}{28}{subsection.E.2}
-\contentsline {subsubsection}{\numberline {E.2.1}Alta de s\IeC {\'\i }ntoma}{28}{subsubsection.E.2.1}
-\contentsline {subsubsection}{\numberline {E.2.2}Modificaci\IeC {\'o}n de s\IeC {\'\i }ntoma}{28}{subsubsection.E.2.2}
-\contentsline {subsubsection}{\numberline {E.2.3}Baja de s\IeC {\'\i }ntoma}{30}{subsubsection.E.2.3}
+\contentsline {subsubsection}{\numberline {E.2.1}Alta de s\IeC {\'\i }ntoma}{30}{subsubsection.E.2.1}
+\contentsline {subsubsection}{\numberline {E.2.2}Modificaci\IeC {\'o}n de s\IeC {\'\i }ntoma}{30}{subsubsection.E.2.2}
+\contentsline {subsubsection}{\numberline {E.2.3}Baja de s\IeC {\'\i }ntoma}{31}{subsubsection.E.2.3}
 \contentsline {subsection}{\numberline {E.3}ABM de discriminantes de s\IeC {\'\i }ntomas}{31}{subsection.E.3}
+\contentsline {subsubsection}{\numberline {E.3.1}Alta de discriminante de s\IeC {\'\i }ntoma}{31}{subsubsection.E.3.1}
+\contentsline {subsubsection}{\numberline {E.3.2}Modificaci\IeC {\'o}n de un discriminante de s\IeC {\'\i }ntoma}{32}{subsubsection.E.3.2}
+\contentsline {subsubsection}{\numberline {E.3.3}Baja de discriminante de s\IeC {\'\i }ntoma}{33}{subsubsection.E.3.3}
+\contentsline {subsection}{\numberline {E.4}ABM de usuarios}{33}{subsection.E.4}
+\contentsline {subsubsection}{\numberline {E.4.1}Alta de usuario}{33}{subsubsection.E.4.1}
+\contentsline {subsubsection}{\numberline {E.4.2}Roles}{34}{subsubsection.E.4.2}
+\contentsline {subsubsection}{\numberline {E.4.3}Modificaci\IeC {\'o}n de un usuario}{34}{subsubsection.E.4.3}
+\contentsline {subsubsection}{\numberline {E.4.4}Baja de discriminante de s\IeC {\'\i }ntoma}{34}{subsubsection.E.4.4}

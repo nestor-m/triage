@@ -30,7 +30,8 @@
 \BOOKMARK [1][-]{appendix.A}{Manual del Usuario}{}
 \BOOKMARK [1][-]{appendix.B}{Pantalla Inicial}{}
 \BOOKMARK [2][-]{subsection.B.1}{Ingreso de un nuevo paciente}{appendix.B}
-\BOOKMARK [2][-]{subsection.B.2}{B\372squda e ingreso de un paciente cargado en sistema}{appendix.B}
+\BOOKMARK [2][-]{subsection.B.2}{B\372squeda e ingreso de un paciente cargado en sistema}{appendix.B}
+\BOOKMARK [2][-]{subsection.B.3}{Filtrado de un listado}{appendix.B}
 \BOOKMARK [1][-]{appendix.C}{Triage}{}
 \BOOKMARK [2][-]{subsection.C.1}{Pantalla inicial de Triage}{appendix.C}
 \BOOKMARK [2][-]{subsection.C.2}{Impresi\363n Visual}{appendix.C}
@@ -47,3 +48,11 @@
 \BOOKMARK [3][-]{subsubsection.E.2.2}{Modificaci\363n de s\355ntoma}{subsection.E.2}
 \BOOKMARK [3][-]{subsubsection.E.2.3}{Baja de s\355ntoma}{subsection.E.2}
 \BOOKMARK [2][-]{subsection.E.3}{ABM de discriminantes de s\355ntomas}{appendix.E}
+\BOOKMARK [3][-]{subsubsection.E.3.1}{Alta de discriminante de s\355ntoma}{subsection.E.3}
+\BOOKMARK [3][-]{subsubsection.E.3.2}{Modificaci\363n de un discriminante de s\355ntoma}{subsection.E.3}
+\BOOKMARK [3][-]{subsubsection.E.3.3}{Baja de discriminante de s\355ntoma}{subsection.E.3}
+\BOOKMARK [2][-]{subsection.E.4}{ABM de usuarios}{appendix.E}
+\BOOKMARK [3][-]{subsubsection.E.4.1}{Alta de usuario}{subsection.E.4}
+\BOOKMARK [3][-]{subsubsection.E.4.2}{Roles}{subsection.E.4}
+\BOOKMARK [3][-]{subsubsection.E.4.3}{Modificaci\363n de un usuario}{subsection.E.4}
+\BOOKMARK [3][-]{subsubsection.E.4.4}{Baja de discriminante de s\355ntoma}{subsection.E.4}
