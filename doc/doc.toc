@@ -11,7 +11,7 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Resumen del itinerario del proyecto}{9}{subsubsection.3.1.1}
 \contentsline {subsubsection}{\numberline {3.1.2}Flujo de trabajo en una iteraci\IeC {\'o}n}{9}{subsubsection.3.1.2}
 \contentsline {subsubsection}{\numberline {3.1.3}Herramientas que utilizamos}{10}{subsubsection.3.1.3}
-\contentsline {subsubsection}{\numberline {3.1.4}Repositorio remoto del c\IeC {\'o}digo fuente de la aplicaci\IeC {\'o}n}{11}{subsubsection.3.1.4}
+\contentsline {subsubsection}{\numberline {3.1.4}Repositorio remoto del c\IeC {\'o}digo fuente de la aplicaci\IeC {\'o}n}{10}{subsubsection.3.1.4}
 \contentsline {subsection}{\numberline {3.2}Tecnolog\IeC {\'\i }as}{11}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Sobre la elecci\IeC {\'o}n de las tecnolog\IeC {\'\i }as}{11}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Sobre el \textit {front-end}}{12}{subsubsection.3.2.2}
@@ -28,32 +28,23 @@
 \contentsline {subsubsection}{\numberline {4.1.4}Problemas que tuvimos con el desarrollo de las pruebas}{15}{subsubsection.4.1.4}
 \contentsline {subsection}{\numberline {4.2}Instalaci\IeC {\'o}n}{16}{subsection.4.2}
 \contentsline {section}{\numberline {5}Conclusiones}{16}{section.5}
-\contentsline {section}{\numberline {A}Manual del Usuario}{18}{appendix.A}
-\contentsline {section}{\numberline {B}Pantalla Inicial}{18}{appendix.B}
-\contentsline {subsection}{\numberline {B.1}Ingreso de un nuevo paciente}{18}{subsection.B.1}
-\contentsline {subsection}{\numberline {B.2}B\IeC {\'u}squeda e ingreso de un paciente cargado en sistema}{18}{subsection.B.2}
-\contentsline {subsection}{\numberline {B.3}Filtrado de un listado}{20}{subsection.B.3}
-\contentsline {section}{\numberline {C}Triage}{20}{appendix.C}
-\contentsline {subsection}{\numberline {C.1}Pantalla inicial de Triage}{20}{subsection.C.1}
-\contentsline {subsection}{\numberline {C.2}Impresi\IeC {\'o}n Visual}{20}{subsection.C.2}
-\contentsline {subsection}{\numberline {C.3}S\IeC {\'\i }ntomas}{21}{subsection.C.3}
-\contentsline {subsection}{\numberline {C.4}Signos Vitales}{23}{subsection.C.4}
-\contentsline {subsection}{\numberline {C.5}Fin de la carga}{24}{subsection.C.5}
-\contentsline {section}{\numberline {D}Pacientes en espera}{26}{appendix.D}
-\contentsline {subsection}{\numberline {D.1}Continuar el Triage}{26}{subsection.D.1}
-\contentsline {subsection}{\numberline {D.2}Finalizar}{26}{subsection.D.2}
-\contentsline {section}{\numberline {E}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{28}{appendix.E}
-\contentsline {subsection}{\numberline {E.1}Acceso al men\IeC {\'u} de configuraci\IeC {\'o}n}{28}{subsection.E.1}
-\contentsline {subsection}{\numberline {E.2}ABM de s\IeC {\'\i }ntomas}{28}{subsection.E.2}
-\contentsline {subsubsection}{\numberline {E.2.1}Alta de s\IeC {\'\i }ntoma}{30}{subsubsection.E.2.1}
-\contentsline {subsubsection}{\numberline {E.2.2}Modificaci\IeC {\'o}n de s\IeC {\'\i }ntoma}{30}{subsubsection.E.2.2}
-\contentsline {subsubsection}{\numberline {E.2.3}Baja de s\IeC {\'\i }ntoma}{31}{subsubsection.E.2.3}
-\contentsline {subsection}{\numberline {E.3}ABM de discriminantes de s\IeC {\'\i }ntomas}{31}{subsection.E.3}
-\contentsline {subsubsection}{\numberline {E.3.1}Alta de discriminante de s\IeC {\'\i }ntoma}{31}{subsubsection.E.3.1}
-\contentsline {subsubsection}{\numberline {E.3.2}Modificaci\IeC {\'o}n de un discriminante de s\IeC {\'\i }ntoma}{32}{subsubsection.E.3.2}
-\contentsline {subsubsection}{\numberline {E.3.3}Baja de discriminante de s\IeC {\'\i }ntoma}{33}{subsubsection.E.3.3}
-\contentsline {subsection}{\numberline {E.4}ABM de usuarios}{33}{subsection.E.4}
-\contentsline {subsubsection}{\numberline {E.4.1}Alta de usuario}{33}{subsubsection.E.4.1}
-\contentsline {subsubsection}{\numberline {E.4.2}Roles}{34}{subsubsection.E.4.2}
-\contentsline {subsubsection}{\numberline {E.4.3}Modificaci\IeC {\'o}n de un usuario}{34}{subsubsection.E.4.3}
-\contentsline {subsubsection}{\numberline {E.4.4}Baja de discriminante de s\IeC {\'\i }ntoma}{34}{subsubsection.E.4.4}
+\contentsline {section}{\numberline {A}Manual de Usuario}{18}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Introducci\IeC {\'o}n}{18}{subsection.A.1}
+\contentsline {subsection}{\numberline {A.2}Pantalla Inicial}{18}{subsection.A.2}
+\contentsline {subsubsection}{\numberline {A.2.1}Ingreso de un nuevo paciente}{18}{subsubsection.A.2.1}
+\contentsline {subsubsection}{\numberline {A.2.2}B\IeC {\'u}squeda e ingreso de un paciente cargado en sistema}{18}{subsubsection.A.2.2}
+\contentsline {subsubsection}{\numberline {A.2.3}Filtrado de un listado}{20}{subsubsection.A.2.3}
+\contentsline {subsection}{\numberline {A.3}Triage}{20}{subsection.A.3}
+\contentsline {subsubsection}{\numberline {A.3.1}Pantalla inicial de Triage}{20}{subsubsection.A.3.1}
+\contentsline {subsubsection}{\numberline {A.3.2}Impresi\IeC {\'o}n Visual}{20}{subsubsection.A.3.2}
+\contentsline {subsubsection}{\numberline {A.3.3}S\IeC {\'\i }ntomas}{22}{subsubsection.A.3.3}
+\contentsline {subsubsection}{\numberline {A.3.4}Signos Vitales}{23}{subsubsection.A.3.4}
+\contentsline {subsubsection}{\numberline {A.3.5}Fin de la carga}{23}{subsubsection.A.3.5}
+\contentsline {subsection}{\numberline {A.4}Pacientes en espera}{25}{subsection.A.4}
+\contentsline {subsubsection}{\numberline {A.4.1}Continuar el Triage}{27}{subsubsection.A.4.1}
+\contentsline {subsubsection}{\numberline {A.4.2}Finalizar}{27}{subsubsection.A.4.2}
+\contentsline {subsection}{\numberline {A.5}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{27}{subsection.A.5}
+\contentsline {subsubsection}{\numberline {A.5.1}Acceso al men\IeC {\'u} de configuraci\IeC {\'o}n}{29}{subsubsection.A.5.1}
+\contentsline {subsubsection}{\numberline {A.5.2}ABM de s\IeC {\'\i }ntomas}{29}{subsubsection.A.5.2}
+\contentsline {subsubsection}{\numberline {A.5.3}ABM de discriminantes de s\IeC {\'\i }ntomas}{31}{subsubsection.A.5.3}
+\contentsline {subsubsection}{\numberline {A.5.4}ABM de usuarios}{33}{subsubsection.A.5.4}

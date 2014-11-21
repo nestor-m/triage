@@ -27,32 +27,23 @@
 \BOOKMARK [3][-]{subsubsection.4.1.4}{Problemas que tuvimos con el desarrollo de las pruebas}{subsection.4.1}
 \BOOKMARK [2][-]{subsection.4.2}{Instalaci\363n}{section.4}
 \BOOKMARK [1][-]{section.5}{Conclusiones}{}
-\BOOKMARK [1][-]{appendix.A}{Manual del Usuario}{}
-\BOOKMARK [1][-]{appendix.B}{Pantalla Inicial}{}
-\BOOKMARK [2][-]{subsection.B.1}{Ingreso de un nuevo paciente}{appendix.B}
-\BOOKMARK [2][-]{subsection.B.2}{B\372squeda e ingreso de un paciente cargado en sistema}{appendix.B}
-\BOOKMARK [2][-]{subsection.B.3}{Filtrado de un listado}{appendix.B}
-\BOOKMARK [1][-]{appendix.C}{Triage}{}
-\BOOKMARK [2][-]{subsection.C.1}{Pantalla inicial de Triage}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.2}{Impresi\363n Visual}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.3}{S\355ntomas}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.4}{Signos Vitales}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.5}{Fin de la carga}{appendix.C}
-\BOOKMARK [1][-]{appendix.D}{Pacientes en espera}{}
-\BOOKMARK [2][-]{subsection.D.1}{Continuar el Triage}{appendix.D}
-\BOOKMARK [2][-]{subsection.D.2}{Finalizar}{appendix.D}
-\BOOKMARK [1][-]{appendix.E}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
-\BOOKMARK [2][-]{subsection.E.1}{Acceso al men\372 de configuraci\363n}{appendix.E}
-\BOOKMARK [2][-]{subsection.E.2}{ABM de s\355ntomas}{appendix.E}
-\BOOKMARK [3][-]{subsubsection.E.2.1}{Alta de s\355ntoma}{subsection.E.2}
-\BOOKMARK [3][-]{subsubsection.E.2.2}{Modificaci\363n de s\355ntoma}{subsection.E.2}
-\BOOKMARK [3][-]{subsubsection.E.2.3}{Baja de s\355ntoma}{subsection.E.2}
-\BOOKMARK [2][-]{subsection.E.3}{ABM de discriminantes de s\355ntomas}{appendix.E}
-\BOOKMARK [3][-]{subsubsection.E.3.1}{Alta de discriminante de s\355ntoma}{subsection.E.3}
-\BOOKMARK [3][-]{subsubsection.E.3.2}{Modificaci\363n de un discriminante de s\355ntoma}{subsection.E.3}
-\BOOKMARK [3][-]{subsubsection.E.3.3}{Baja de discriminante de s\355ntoma}{subsection.E.3}
-\BOOKMARK [2][-]{subsection.E.4}{ABM de usuarios}{appendix.E}
-\BOOKMARK [3][-]{subsubsection.E.4.1}{Alta de usuario}{subsection.E.4}
-\BOOKMARK [3][-]{subsubsection.E.4.2}{Roles}{subsection.E.4}
-\BOOKMARK [3][-]{subsubsection.E.4.3}{Modificaci\363n de un usuario}{subsection.E.4}
-\BOOKMARK [3][-]{subsubsection.E.4.4}{Baja de discriminante de s\355ntoma}{subsection.E.4}
+\BOOKMARK [1][-]{appendix.A}{Manual de Usuario}{}
+\BOOKMARK [2][-]{subsection.A.1}{Introducci\363n}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.2}{Pantalla Inicial}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.2.1}{Ingreso de un nuevo paciente}{subsection.A.2}
+\BOOKMARK [3][-]{subsubsection.A.2.2}{B\372squeda e ingreso de un paciente cargado en sistema}{subsection.A.2}
+\BOOKMARK [3][-]{subsubsection.A.2.3}{Filtrado de un listado}{subsection.A.2}
+\BOOKMARK [2][-]{subsection.A.3}{Triage}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.3.1}{Pantalla inicial de Triage}{subsection.A.3}
+\BOOKMARK [3][-]{subsubsection.A.3.2}{Impresi\363n Visual}{subsection.A.3}
+\BOOKMARK [3][-]{subsubsection.A.3.3}{S\355ntomas}{subsection.A.3}
+\BOOKMARK [3][-]{subsubsection.A.3.4}{Signos Vitales}{subsection.A.3}
+\BOOKMARK [3][-]{subsubsection.A.3.5}{Fin de la carga}{subsection.A.3}
+\BOOKMARK [2][-]{subsection.A.4}{Pacientes en espera}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.4.1}{Continuar el Triage}{subsection.A.4}
+\BOOKMARK [3][-]{subsubsection.A.4.2}{Finalizar}{subsection.A.4}
+\BOOKMARK [2][-]{subsection.A.5}{Alta, baja y modificaci\363n de datos \(ABMs\)}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.5.1}{Acceso al men\372 de configuraci\363n}{subsection.A.5}
+\BOOKMARK [3][-]{subsubsection.A.5.2}{ABM de s\355ntomas}{subsection.A.5}
+\BOOKMARK [3][-]{subsubsection.A.5.3}{ABM de discriminantes de s\355ntomas}{subsection.A.5}
+\BOOKMARK [3][-]{subsubsection.A.5.4}{ABM de usuarios}{subsection.A.5}

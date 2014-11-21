@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  19 NOV 2014 21:29
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  20 NOV 2014 22:55
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -412,20 +412,20 @@ LaTeX Warning: Label `fig:detalle_discriminante' multiply defined.
 )
 \openout1 = `doc.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
  (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
@@ -434,7 +434,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-Package hyperref Info: Link coloring ON on input line 16.
+Package hyperref Info: Link coloring ON on input line 18.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -444,8 +444,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count98
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
+LaTeX Info: Redefining \ref on input line 18.
+LaTeX Info: Redefining \pageref on input line 18.
  (./doc.out)
 (./doc.out)
 \@outlinefile=\write3
@@ -466,11 +466,11 @@ LaTeX Info: Redefining \pageref on input line 16.
 \everyMPtoPDFconversion=\toks20
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 21.
+(Font)              <12> on input line 23.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 21.
+(Font)              <8> on input line 23.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 21.
+(Font)              <6> on input line 23.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./doc.toc
@@ -484,172 +484,180 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout4 = `doc.toc'.
 
  [4] (./introduccion.tex [5]) (./planteo.tex [6] [7]) (./implementacion.tex [8]
- <planificacion.png, id=346, 907.39pt x 440.64626pt>
+ <planificacion.png, id=301, 907.39pt x 440.64626pt>
 File: planificacion.png Graphic file (type png)
 
-<use planificacion.png> [9] <tracking.png, id=359, 1105.12875pt x 441.65pt>
+<use planificacion.png> [9] <tracking.png, id=314, 1105.12875pt x 441.65pt>
 File: tracking.png Graphic file (type png)
 
-<use tracking.png> [10 <./planificacion.png (PNG copy)> <./tracking.png (PNG co
-py)>]
-Overfull \hbox (67.91548pt too wide) in paragraph at lines 43--44
-[]\OT1/cmr/m/n/10 El c^^Sodi-go fuen-te de la apli-ca-ci^^Son est^^Sa dis-po-ni
--ble en \OT1/cmtt/m/n/10 https://github.com/nestor-m/triage\OT1/cmr/m/n/10 . 
- []
-
-[11] [12]
-Overfull \hbox (25.33292pt too wide) in paragraph at lines 79--80
-[]\OT1/cmr/m/n/10 El fra-me-work An-gu-larJS si-gue el patr^^Son de ar-qui-tec-
-tu-ra Modelo-Vista-Controlador
- []
-
-<triage.png, id=429, 780.9175pt x 468.75125pt>
+<use tracking.png> [10 <./planificacion.png (PNG copy)>] [11 <./tracking.png (P
+NG copy)>] [12] <triage.png, id=384, 780.9175pt x 468.75125pt>
 File: triage.png Graphic file (type png)
- <use triage.png>)
-(./testeo_instalacion.tex [13] [14 <./triage.png (PNG copy)>] [15])
-(./conclusiones.tex) [16] [17] (./intro_manual.tex) (./manual_inicio.tex
-<inicio.png, id=481, 1187.43625pt x 567.11874pt>
+
+<use triage.png>) (./testeo_instalacion.tex [13] [14 <./triage.png (PNG copy)>]
+[15]) (./conclusiones.tex) [16] [17] (./intro_manual.tex) (./manual_inicio.tex
+<inicio.png, id=436, 1187.43625pt x 567.11874pt>
 File: inicio.png Graphic file (type png)
  <use inicio.png>
-<inicio_nuevo.png, id=483, 1177.39874pt x 550.055pt>
+<inicio_nuevo.png, id=438, 1177.39874pt x 550.055pt>
 File: inicio_nuevo.png Graphic file (type png)
  <use inicio_nuevo.png>
-<inicio_busqueda.png, id=485, 1137.24875pt x 543.02875pt>
+<inicio_busqueda.png, id=440, 1137.24875pt x 543.02875pt>
 File: inicio_busqueda.png Graphic file (type png)
 
 <use inicio_busqueda.png> [18] [19 <./inicio.png (PNG copy)> <./inicio_nuevo.pn
 g (PNG copy)> <./inicio_busqueda.png (PNG copy)>]) (./manual_triage.tex
-<impresion_visual.png, id=500, 1340.00626pt x 537.00626pt>
+<impresion_visual.png, id=455, 1340.00626pt x 537.00626pt>
 File: impresion_visual.png Graphic file (type png)
 
 <use impresion_visual.png>
-<impresion_visual_p1.png, id=503, 1150.2975pt x 553.06625pt>
+<impresion_visual_p1.png, id=458, 1150.2975pt x 553.06625pt>
 File: impresion_visual_p1.png Graphic file (type png)
 
 <use impresion_visual_p1.png>
-<prioridad_uno.png, id=505, 1225.57875pt x 444.66125pt>
+<prioridad_uno.png, id=460, 1225.57875pt x 444.66125pt>
 File: prioridad_uno.png Graphic file (type png)
 
-<use prioridad_uno.png> [20 <./impresion_visual.png (PNG copy)>]
-<sintomas.png, id=514, 1289.81876pt x 545.03625pt>
+<use prioridad_uno.png> <sintomas.png, id=462, 1289.81876pt x 545.03625pt>
 File: sintomas.png Graphic file (type png)
- <use sintomas.png>
-<sintomas_buscar.png, id=517, 1311.90125pt x 544.0325pt>
+
+<use sintomas.png> [20 <./impresion_visual.png (PNG copy)>] [21 <./impresion_vi
+sual_p1.png (PNG copy)> <./prioridad_uno.png (PNG copy)>]
+<sintomas_buscar.png, id=478, 1311.90125pt x 544.0325pt>
 File: sintomas_buscar.png Graphic file (type png)
 
 <use sintomas_buscar.png>
-<sintomas_agregar.png, id=519, 1293.83376pt x 529.98pt>
+<sintomas_agregar.png, id=480, 1293.83376pt x 529.98pt>
 File: sintomas_agregar.png Graphic file (type png)
 
-<use sintomas_agregar.png> [21 <./impresion_visual_p1.png (PNG copy)> <./priori
-dad_uno.png (PNG copy)>] [22 <./sintomas.png (PNG copy)> <./sintomas_buscar.png
- (PNG copy)> <./sintomas_agregar.png (PNG copy)>]
-<signos_vitales.png, id=535, 1121.18875pt x 553.06625pt>
+<use sintomas_agregar.png>
+<signos_vitales.png, id=483, 1121.18875pt x 553.06625pt>
 File: signos_vitales.png Graphic file (type png)
 
-<use signos_vitales.png>
-<signos_vitales_guardar.png, id=538, 1113.15875pt x 552.0625pt>
+<use signos_vitales.png> [22 <./sintomas.png (PNG copy)> <./sintomas_buscar.png
+ (PNG copy)>] <signos_vitales_guardar.png, id=493, 1113.15875pt x 552.0625pt>
 File: signos_vitales_guardar.png Graphic file (type png)
 
-<use signos_vitales_guardar.png> [23 <./signos_vitales.png (PNG copy)> <./signo
-s_vitales_guardar.png (PNG copy)>]
-<fin_triage.png, id=546, 1147.28625pt x 521.95pt>
+<use signos_vitales_guardar.png>
+<fin_triage.png, id=495, 1147.28625pt x 521.95pt>
 File: fin_triage.png Graphic file (type png)
- <use fin_triage.png>
-<prioridad_dos.png, id=548, 1163.34625pt x 353.32pt>
+ <use fin_triage.png> [23 <./sintomas_agregar.png (PNG copy)> <./signos_vitales
+.png (PNG copy)>] [24 <./signos_vitales_guardar.png (PNG copy)> <./fin_triage.p
+ng (PNG copy)>]
+<prioridad_dos.png, id=508, 1163.34625pt x 353.32pt>
 File: prioridad_dos.png Graphic file (type png)
  <use prioridad_dos.png>
-<prioridad_tres.png, id=550, 1188.44pt x 355.3275pt>
+<prioridad_tres.png, id=510, 1188.44pt x 355.3275pt>
 File: prioridad_tres.png Graphic file (type png)
  <use prioridad_tres.png>
-<fin.png, id=552, 1121.18875pt x 553.06625pt>
+<fin.png, id=512, 1121.18875pt x 553.06625pt>
 File: fin.png Graphic file (type png)
  <use fin.png>)
-(./manual_espera.tex [24 <./fin_triage.png (PNG copy)> <./prioridad_dos.png (PN
-G copy)>] [25 <./prioridad_tres.png (PNG copy)> <./fin.png (PNG copy)>]
-<espera.png, id=567, 1137.24875pt x 571.13374pt>
+(./manual_espera.tex <espera.png, id=514, 1137.24875pt x 571.13374pt>
 File: espera.png Graphic file (type png)
- <use espera.png>
-<espera1.png, id=569, 1137.24875pt x 571.13374pt>
+
+<use espera.png> [25 <./prioridad_dos.png (PNG copy)> <./prioridad_tres.png (PN
+G copy)>] [26 <./fin.png (PNG copy)> <./espera.png (PNG copy)>]
+<espera1.png, id=529, 1137.24875pt x 571.13374pt>
 File: espera1.png Graphic file (type png)
  <use espera1.png>
-<espera2.png, id=571, 1137.24875pt x 571.13374pt>
+<espera2.png, id=531, 1137.24875pt x 571.13374pt>
 File: espera2.png Graphic file (type png)
  <use espera2.png>
-<fin_atencion.png, id=573, 1184.425pt x 439.6425pt>
+<fin_atencion.png, id=533, 1184.425pt x 439.6425pt>
 File: fin_atencion.png Graphic file (type png)
- <use fin_atencion.png>
-[26 <./espera.png (PNG copy)>] [27 <./espera1.png (PNG copy)> <./espera2.png (P
-NG copy)> <./fin_atencion.png (PNG copy)>]) (./manual_ABMs.tex
-<menu_configuracion_visible.png, id=588, 508.90125pt x 56.21pt>
+ <use fin_atencion.png>)
+(./manual_ABMs.tex [27 <./espera1.png (PNG copy)>] [28 <./espera2.png (PNG copy
+)> <./fin_atencion.png (PNG copy)>]
+<menu_configuracion_visible.png, id=547, 508.90125pt x 56.21pt>
 File: menu_configuracion_visible.png Graphic file (type png)
 
 <use menu_configuracion_visible.png>
-<menu_configuracion_oculto.png, id=590, 381.425pt x 49.18375pt>
+<menu_configuracion_oculto.png, id=549, 381.425pt x 49.18375pt>
 File: menu_configuracion_oculto.png Graphic file (type png)
 
 <use menu_configuracion_oculto.png>
-<menu_sintomas.png, id=592, 508.90125pt x 154.5775pt>
+<menu_sintomas.png, id=551, 508.90125pt x 154.5775pt>
 File: menu_sintomas.png Graphic file (type png)
  <use menu_sintomas.png>
-<listado_sintomas.png, id=594, 963.6pt x 360.34625pt>
+<listado_sintomas.png, id=553, 963.6pt x 360.34625pt>
 File: listado_sintomas.png Graphic file (type png)
 
 <use listado_sintomas.png>
-<detalle_sintoma.png, id=596, 761.84625pt x 315.1775pt>
+<detalle_sintoma.png, id=555, 761.84625pt x 315.1775pt>
 File: detalle_sintoma.png Graphic file (type png)
 
 <use detalle_sintoma.png>
-<sintoma_cargado_con_exito.png, id=599, 753.81625pt x 381.425pt>
+
+LaTeX Warning: Reference `cap:alta_discriminante' on page 29 undefined on input
+ line 44.
+
+<sintoma_cargado_con_exito.png, id=557, 753.81625pt x 381.425pt>
 File: sintoma_cargado_con_exito.png Graphic file (type png)
 
-<use sintoma_cargado_con_exito.png> [28 <./menu_configuracion_visible.png> <./m
-enu_configuracion_oculto.png> <./menu_sintomas.png>] [29 <./listado_sintomas.pn
-g> <./detalle_sintoma.png>]
-<sintomas_listado_buscar.png, id=620, 914.41624pt x 273.02pt>
+<use sintoma_cargado_con_exito.png>
+<sintomas_listado_buscar.png, id=560, 914.41624pt x 273.02pt>
 File: sintomas_listado_buscar.png Graphic file (type png)
 
 <use sintomas_listado_buscar.png>
-<sintoma_actualizado_con_exito.png, id=622, 751.80875pt x 378.41376pt>
+<sintoma_actualizado_con_exito.png, id=562, 751.80875pt x 378.41376pt>
 File: sintoma_actualizado_con_exito.png Graphic file (type png)
 
-<use sintoma_actualizado_con_exito.png> [30 <./sintoma_cargado_con_exito.png> <
-./sintomas_listado_buscar.png>]
-<menu_discriminantes.png, id=633, 482.80376pt x 140.525pt>
+<use sintoma_actualizado_con_exito.png> [29 <./menu_configuracion_visible.png> 
+<./menu_configuracion_oculto.png> <./menu_sintomas.png>] [30 <./listado_sintoma
+s.png> <./detalle_sintoma.png> <./sintoma_cargado_con_exito.png>]
+<menu_discriminantes.png, id=585, 482.80376pt x 140.525pt>
 File: menu_discriminantes.png Graphic file (type png)
 
 <use menu_discriminantes.png>
-<listado_discriminantes.png, id=635, 751.80875pt x 249.93375pt>
+<listado_discriminantes.png, id=587, 751.80875pt x 249.93375pt>
 File: listado_discriminantes.png Graphic file (type png)
 
 <use listado_discriminantes.png>
-<nuevo_discriminante.png, id=637, 723.70375pt x 169.63374pt>
+<nuevo_discriminante.png, id=589, 723.70375pt x 169.63374pt>
 File: nuevo_discriminante.png Graphic file (type png)
 
 <use nuevo_discriminante.png>
-<listado_sintomas_de_discriminante.png, id=642, 951.555pt x 288.07625pt>
+
+LaTeX Warning: Reference `cap:alta_sintoma' on page 31 undefined on input line 
+96.
+
+[31 <./sintomas_listado_buscar.png> <./sintoma_actualizado_con_exito.png>]
+[32 <./menu_discriminantes.png> <./listado_discriminantes.png> <./nuevo_discrim
+inante.png>]
+<listado_sintomas_de_discriminante.png, id=611, 951.555pt x 288.07625pt>
 File: listado_sintomas_de_discriminante.png Graphic file (type png)
 
-<use listado_sintomas_de_discriminante.png> [31 <./sintoma_actualizado_con_exit
-o.png> <./menu_discriminantes.png>] [32 <./listado_discriminantes.png> <./nuevo
-_discriminante.png> <./listado_sintomas_de_discriminante.png>]
-<menu_usuarios.png, id=665, 483.8075pt x 137.51375pt>
+<use listado_sintomas_de_discriminante.png>
+
+LaTeX Warning: Reference `cap:modificacion_sintoma' on page 33 undefined on inp
+ut line 105.
+
+<menu_usuarios.png, id=613, 483.8075pt x 137.51375pt>
 File: menu_usuarios.png Graphic file (type png)
  <use menu_usuarios.png>
-<listado_usuarios.png, id=667, 769.87625pt x 210.7875pt>
+<listado_usuarios.png, id=615, 769.87625pt x 210.7875pt>
 File: listado_usuarios.png Graphic file (type png)
 
-<use listado_usuarios.png> <nuevo_usuario.png, id=669, 720.6925pt x 212.795pt>
+<use listado_usuarios.png> <nuevo_usuario.png, id=617, 720.6925pt x 212.795pt>
 File: nuevo_usuario.png Graphic file (type png)
 
 <use nuevo_usuario.png>
 
-LaTeX Warning: Reference `cambio_pass' on page 33 undefined on input line 121.
+LaTeX Warning: Reference `cap:roles' on page 33 undefined on input line 135.
 
-[33 <./menu_usuarios.png> <./listado_usuarios.png> <./nuevo_usuario.png>]
+
+LaTeX Warning: Reference `cambio_pass' on page 33 undefined on input line 135.
+
+[33 <./listado_sintomas_de_discriminante.png> <./menu_usuarios.png>]
 File: listado_sintomas_de_discriminante.png Graphic file (type png)
 
-<use listado_sintomas_de_discriminante.png>) [34] (./doc.aux)
+<use listado_sintomas_de_discriminante.png>
+
+LaTeX Warning: Reference `cap:modificacion_sintoma' on page 34 undefined on inp
+ut line 149.
+
+[34 <./listado_usuarios.png> <./nuevo_usuario.png>]) [35] (./doc.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -658,10 +666,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5493 strings out of 493848
- 78653 string characters out of 1152823
- 153615 words of memory out of 3000000
- 8454 multiletter control sequences out of 15000+50000
+ 5477 strings out of 493848
+ 78465 string characters out of 1152823
+ 154615 words of memory out of 3000000
+ 8446 multiletter control sequences out of 15000+50000
  10204 words of font info for 36 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,8n,36p,912b,514s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -680,9 +688,9 @@ fonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9
 share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fon
 ts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on doc.pdf (34 pages, 1361947 bytes).
+Output written on doc.pdf (35 pages, 1354076 bytes).
 PDF statistics:
- 781 PDF objects out of 1000 (max. 8388607)
- 179 named destinations out of 1000 (max. 500000)
- 650 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 734 PDF objects out of 1000 (max. 8388607)
+ 171 named destinations out of 1000 (max. 500000)
+ 578 words of extra memory for PDF output out of 10000 (max. 10000000)
 

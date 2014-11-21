@@ -22,7 +22,7 @@ A partir de ahí comenzamos con el desarrollo recorriendo las iteraciones planif
 \subsubsection{Flujo de trabajo en una iteración}
 Al inicio de cada iteración estimamos cuanto tiempo nos llevaría cada tarea y enviamos un email con los detalles sobre lo que haríamos durante esa semana. Hacíamos prototipos de las pantallas a realizar que eran validados por el Dr. Reggiani. Dejamos sentado en una hoja de cálculo los detalles de cada tarea: el tiempo de realización estimado, la fecha de realización y el tiempo real insumido (ver figura \ref{fig:tracking}). Luego de cada avance enviamos un reporte por email informando lo realizado y si habían surgido contratiempos. Al finalizar la iteración, enviamos otro email con los detalles de las tareas finalizadas, las que estaban en progreso y las que habían quedado pendientes.
 
-\begin{figure}[h]
+\begin{figure}
   \centerline{\includegraphics[width=1.2\textwidth]{tracking.png}}
   \caption{\textit{Tracking} de tareas}
   \label{fig:tracking}
@@ -40,7 +40,10 @@ Detallamos a continuación las herramientas que utilizamos durante el trabajo.
 \end{itemize}
 
 \subsubsection{Repositorio remoto del código fuente de la aplicación}\label{cap:repo}
-El código fuente de la aplicación está disponible en \texttt{https://github.com/nestor-m/triage}.
+El código fuente de la aplicación está disponible en 
+\begin{center}
+\texttt{https://github.com/nestor-m/triage}
+\end{center}
 
 \subsection{Tecnologías}
 Todas las tecnologías que utilizamos en el desarrollo de la aplicación son de código abierto. Para desarrollar el \textit{front-end} elegimos AngularJS\footnote{\texttt{https://angularjs.org/}} y para el \textit{back-end} elegimos Grails\footnote{\texttt{https://grails.org/}}.
@@ -76,7 +79,7 @@ Debido a que teníamos que desarrollar una aplicación web capaz de accederse co
 
 
 \subsubsection{Arquitectura del \textit{front-end}}
-El framework AngularJS sigue el patrón de arquitectura Modelo-Vista-Controlador (MVC  \footnote{\texttt{http://es.wikipedia.org/wiki/Modelo\_vista\_controlador}}) de ingeniería de software y alienta la articulación flexible entre la presentación, los datos y los componentes lógicos. Con el uso de la inyección de dependencias, AngularJS lleva servicios tradicionales del lado del servidor, tales como controladores dependientes de la vista, a las aplicaciones web del lado del cliente. En consecuencia, gran parte de la carga en el \textit{backend} se reduce, lo que lleva a aplicaciones web mucho más ligeras.
+El framework AngularJS sigue el patrón de arquitectura Modelo - Vista - Controlador (MVC  \footnote{\texttt{http://es.wikipedia.org/wiki/Modelo\_vista\_controlador}}) de ingeniería de software y alienta la articulación flexible entre la presentación, los datos y los componentes lógicos. Con el uso de la inyección de dependencias, AngularJS lleva servicios tradicionales del lado del servidor, tales como controladores dependientes de la vista, a las aplicaciones web del lado del cliente. En consecuencia, gran parte de la carga en el \textit{backend} se reduce, lo que lleva a aplicaciones web mucho más ligeras.
 
 \subsubsection{Arquitectura del \textit{back-end}}
 El framework Grails, al igual que AngularJS, también sigue el patrón de arquitectura MVC. En lo que se refiere a la vista, como en este caso desarrollamos una aplicación de una sola página, entonces tenemos una única pantalla. Por el lado de los controladores tenemos uno por cada clase de dominio. La función principal de los controladores es procesar y responder las peticiones HTTP que llegan desde el lado del cliente. Para hacer esto el controlador se apoya en su clase de dominio (ver figura \ref{fig:diagrama_de_clases}) correspondiente y ésta, a su vez, es la que se encarga de interactuar con la base de datos.
