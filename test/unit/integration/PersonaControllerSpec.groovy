@@ -256,7 +256,7 @@ class PersonaControllerSpec extends Specification {
 			dni : "652987"
 		)
 		persona4.save()
-		request.JSON.fechaDeNacimiento = "1987-02-02"
+		request.JSON.fechaDeNacimiento = "02/02/1987"
 		
 		then: "busco por fecha de nacimiento y encuentro dos personas"
 			
