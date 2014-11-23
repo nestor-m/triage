@@ -1,8 +1,8 @@
-\mySection{Alta, baja y modificación de datos (ABMs)}
+\mySection{Alta, baja y modificación (ABM) de datos del sistema}
 En esta sección explicamos como realizar el alta, baja y modificación de datos del sistema, es decir, síntomas, discriminantes y usuarios.
 
 \mySubSection{Acceso al menú de configuración}
-Para acceder al menú de configuración de datos, el usuario actual debe tener el rol de administrador. En caso contrario dicho menú permanecerá oculto (ver figuras \ref{fig:menu_conf_visible} y \ref{fig:menu_conf_oculto}).
+Para acceder al menú de configuración de datos, el usuario actual debe tener el rol de administrador (explicaremos la asignación de roles en la sección \ref{ABM_usuarios}). En caso contrario dicho menú permanecerá oculto (ver figuras \ref{fig:menu_conf_visible} y \ref{fig:menu_conf_oculto}).
 
 \begin{figure}
 \centerline{\includegraphics[width=0.7\textwidth]{menu_configuracion_visible.png}}
@@ -16,7 +16,7 @@ Para acceder al menú de configuración de datos, el usuario actual debe tener e
 \label{fig:menu_conf_oculto}
 \end{figure}
 
-\mySubSection{ABM de síntomas}
+\mySubSection{ABM de síntomas}\label{cap:ABM_sintomas}
 Para acceder a la pantalla de administración de síntomas nos dirigimos hacia ``Configuración'' y luego a ``Síntomas'' (ver figura \ref{fig:menu_sintomas}).
 \begin{figure}
 \centerline{\includegraphics[width=0.7\textwidth]{menu_sintomas.png}}
@@ -31,7 +31,6 @@ Allí se nos muestra el listado de todos los síntomas cargados en el sistema (f
 \label{fig:listado_sintomas}
 \end{figure}
 
-
 \begin{description}
 \item[Alta de síntoma] \mbox{} \\
 %\subsubsection{Alta de síntoma}\label{cap:alta_sintoma}
@@ -41,7 +40,7 @@ En la pantalla del listado de síntomas hacemos click en el botón ``Nuevo'' que
 \caption{Detalle de síntoma}
 \label{fig:detalle_sintoma}
 \end{figure}
-Allí debemos ingresar el nombre, el discriminante, la prioridad para adultos y la prioridad para pediátricos. Tener en cuenta que si el discriminante que deseamos no aparece en el listado desplegable entonces primero debemos darle de alta (ver sección \ref{cap:alta_discriminante}). Luego de llenar todos los campos, el botón ``Aceptar'' se desbloquea y si le hacemos click aparece un mensaje que confirma que el síntoma fue ingresado con éxito (figura \ref{fig:sintoma_cargado_con_exito}).
+Allí debemos ingresar el nombre, el discriminante, la prioridad para adultos y la prioridad para pediátricos. Tener en cuenta que si el discriminante que deseamos no aparece en el listado desplegable entonces primero debemos darle de alta (ver sección \ref{cap:ABM_discriminantes}). Luego de llenar todos los campos, el botón ``Aceptar'' se desbloquea y si le hacemos click aparece un mensaje que confirma que el síntoma fue ingresado con éxito (figura \ref{fig:sintoma_cargado_con_exito}).
 \begin{figure}
 \centerline{\includegraphics[width=1\textwidth]{sintoma_cargado_con_exito.png}}
 \caption{Mensaje de síntoma cargado con éxito}
@@ -70,7 +69,7 @@ Una vez creados, los síntomas no se pueden eliminar. Solo se pueden modificar c
 
 \end{description}
 
-\mySubSection{ABM de discriminantes de síntomas}\label{ABM_discriminantes}
+\mySubSection{ABM de discriminantes de síntomas}\label{cap:ABM_discriminantes}
 Para acceder a la pantalla de administración de discriminantes de síntomas nos dirigimos hacia ``Configuración'' y luego a ``Discriminantes'' (ver figura \ref{fig:menu_discriminantes}).
 \begin{figure}
 \centerline{\includegraphics[width=0.7\textwidth]{menu_discriminantes.png}}
@@ -87,13 +86,13 @@ Allí se nos muestra el listado de todos los discriminantes de síntomas cargado
 \begin{description}
 \item[Alta de discriminante de síntoma] \mbox{} \\
 %\subsubsection{Alta de discriminante de síntoma}\label{cap:alta_discriminante}
-En la pantalla del listado de discriminantes hacemos click en el botón ``Nuevo'' que nos dirige a la pantalla del detalle del discriminante(figura \ref{fig:nuevo_discriminante}).
+En la pantalla del listado de discriminantes hacemos click en el botón ``Nuevo'' que nos dirige a la pantalla del detalle del discriminante (figura \ref{fig:nuevo_discriminante}).
 \begin{figure}
 \centerline{\includegraphics[width=1\textwidth]{nuevo_discriminante.png}}
 \caption{Alta de discriminante de síntoma}
 \label{fig:nuevo_discriminante}
 \end{figure}
-Allí debemos ingresar el nombre del discriminante, lo que desbloquea el botón ``Aceptar'' y si le hacemos click aparece un mensaje que confirma que el discrimnante fue ingresado con éxito. Una vez cargado el discriminante podremos ingresar nuevos síntomas de ese discriminante, como explicamos anteriormente en la sección \ref{cap:alta_sintoma}.
+Allí debemos ingresar el nombre del discriminante, lo que desbloquea el botón ``Aceptar'' y si le hacemos click aparece un mensaje que confirma que el discrimnante fue ingresado con éxito. Una vez cargado el discriminante podremos ingresar nuevos síntomas de ese discriminante, como explicamos anteriormente en la sección \ref{cap:ABM_sintomas}.
 \item[Modificación de un discriminante de síntoma] \mbox{} \\
 %\subsubsection{Modificación de un discriminante de síntoma}
 Para modificar el nombre de un discriminante de síntoma debemos seleccionarlo del listado de discriminantes\footnote{Por cuestiones de lógica del Triage podemos modificar cualquier discriminante a excepción de ``IMPRESIÓN INICIAL''.}. Para facilitar la búsqueda del mismo podemos filtrar el listado llenando el campo ``Discriminante'' (ver sección \ref{cap:filtrado_listado}). Si encontramos el discriminante buscado hacemos click en el botón ``Ver detalle'' que nos lleva a la pantalla de ``Detalle de discriminante'' con el campo ``Nombre'' cargado y con un listado que nos muestra todos los síntomas de ese discriminante (ver figura \ref{fig:detalle_discriminante}).
@@ -102,7 +101,7 @@ Para modificar el nombre de un discriminante de síntoma debemos seleccionarlo d
 \caption{Detalle del discriminante con listado de síntomas}
 \label{fig:detalle_discriminante}
 \end{figure}
-En esa pantalla podemos modificar el nombre del discriminante y al apretar ``Aceptar'' aparece el mensaje de confirmación de discriminante actualizado con éxito. También podemos hacer click en el botón ``Ver detalle'' de algún síntoma del listado para ir a la pantalla de ``Detalle de síntoma'' y modificarlo como mostramos anteriormente en la sección \ref{cap:modificacion_sintoma}.
+En esa pantalla podemos modificar el nombre del discriminante y al apretar ``Aceptar'' aparece el mensaje de confirmación de discriminante actualizado con éxito. También podemos hacer click en el botón ``Ver detalle'' de algún síntoma del listado para ir a la pantalla de ``Detalle de síntoma'' y modificarlo como mostramos anteriormente en la sección \ref{cap:ABM_sintomas}.
 
 \item[Baja de discriminante de síntoma] \mbox{} \\
 %\subsubsection{Baja de discriminante de síntoma}
@@ -124,19 +123,19 @@ Allí se nos muestra el listado de todos los usuarios cargados en el sistema (fi
 \end{figure}
 
 \begin{description}
+\item[Roles] \mbox{} \\
+%\subsubsection{Roles}\label{cap:roles}
+Hay dos roles: ``administrador'' y ``usuario''. El usuario con rol ``administrador'' puede ingresar en todas las pantallas de la aplicación. En cambio el usuario con rol ``usuario'' puede ingresar en todas las pantallas excepto en la de configuración.
+
 \item[Alta de usuario] \mbox{} \\
 %\subsubsection{Alta de usuario}\label{cap:alta_usuario}
-En la pantalla del listado de usuarios hacemos click en el botón ``Nuevo'' que nos dirige a la pantalla del detalle del usuario(figura \ref{fig:nuevo_usuario}).
+En la pantalla del listado de usuarios hacemos click en el botón ``Nuevo'' que nos dirige a la pantalla del detalle del usuario (figura \ref{fig:nuevo_usuario}).
 \begin{figure}
 \centerline{\includegraphics[width=1\textwidth]{nuevo_usuario.png}}
 \caption{Alta de usuario}
 \label{fig:nuevo_usuario}
 \end{figure}
-Allí ingresamos el nombre y el rol (ver sección \ref{cap:roles}), y luego presionamos el botón ``Aceptar'' (que desbloqueamos al llenar todos los campos). Nos debería aparecer un mensaje que confirma que el usuario fue ingresado con éxito. Una vez cargado podremos ingresar a la aplicación con ese usuario. Tener en cuenta que todos los usuarios son creados con la contraseña "triage" (explicaremos como cambiarla en la seccion \ref{cambio_pass}).
-
-\item[Roles] \mbox{} \\
-%\subsubsection{Roles}\label{cap:roles}
-Hay dos roles: ``administrador'' y ``usuario''. El usuario con rol ``administrador'' puede ingresar en todas las pantallas de la aplicación. En cambio el usuario con rol ``usuario'' puede ingresar en todas las pantallas excepto en la de configuración.
+Allí ingresamos el nombre y el rol, y luego presionamos el botón ``Aceptar'' (que desbloqueamos al llenar todos los campos). Nos debería aparecer un mensaje que confirma que el usuario fue ingresado con éxito. Una vez cargado podremos ingresar a la aplicación con ese usuario. Tener en cuenta que todos los usuarios son creados con la contraseña "triage" (explicaremos como cambiarla en la seccion \ref{cambio_pass}).
 
 \item[Modificación de usuario] \mbox{} \\
 %\subsubsection{Modificación de un usuario}
@@ -146,6 +145,6 @@ Para modificar el nombre de un discriminante de síntoma debemos seleccionarlo d
 \caption{Detalle del discriminante con listado de síntomas}
 \label{fig:detalle_discriminante}
 \end{figure}
-En esa pantalla podemos modificar el nombre del discriminante y al apretar ``Aceptar'' aparece el mensaje de confirmación de discriminante actualizado con éxito. También podemos hacer click en el botón ``Ver detalle'' de algún síntoma del listado para ir a la pantalla de ``Detalle de síntoma'' y modificarlo como mostramos anteriormente en la sección \ref{cap:modificacion_sintoma}.
+En esa pantalla podemos modificar el nombre del discriminante y al apretar ``Aceptar'' aparece el mensaje de confirmación de discriminante actualizado con éxito. También podemos hacer click en el botón ``Ver detalle'' de algún síntoma del listado para ir a la pantalla de ``Detalle de síntoma'' y modificarlo como mostramos anteriormente en la sección \ref{cap:ABM_sintomas}.
 
 \end{description}

@@ -94,7 +94,7 @@ class PacienteController extends LoginController{
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
 				"' and finalizado = true group by prioridad"
-		println sql
+		//println sql
 //		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
 //				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
 //				"FROM Paciente	"+ 

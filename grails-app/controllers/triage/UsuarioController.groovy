@@ -84,20 +84,28 @@ class UsuarioController {
         }
 
         if(id == null){//si el id esta en null es un sintoma nuevo
+            if(nombre.size() < 3){
+                response.status = 500
+                render 'Error. El nombre ' + nombre + ' es demasiado corto. Ingrese uno de al menos 3 caracteres'
+                return
+            }
             try {
                 new Usuario(nombre: nombre, rol: rol,password: 'triage').save(failOnError : true)//triage es la pass para todos los nuevos usuarios
             }catch(ValidationException ve) {
+                response.status = 500
                 render 'Error. Ya existe un usuario con el nombre ' + nombre
                 return
             }
 
             render 'Usuario ' + nombre + ' creado con éxito'
         }else{//si me llega el id es porque es un update
-            if(rol == 'USUARIO' && Usuario.countByRol(Rol.ADMINISTRADOR) == 1){//valido que quede al menos un usuario con rol Administrador
+            def usuario = Usuario.get(id)
+            if(usuario.rol ==  Rol.ADMINISTRADOR //el usuario que estoy actualizando era ADMINISTRADOR
+                && rol == 'USUARIO' //y el rol nuevo es USUARIO
+                && Usuario.countByRol(Rol.ADMINISTRADOR) == 1){//y es el unico ADMINISTRADOR entonces no lo puedo actualizar xq no quedarian administradores
                 response.status = 500
                 render 'No se le puede poner rol USUARIO al usuario ya que no quedarian administradores en la aplicación'
-            }else{
-                def usuario = Usuario.get(id)
+            }else{                
                 usuario.nombre = nombre
                 usuario.rol = rol
                 usuario.save(failOnError : true)
@@ -113,13 +121,13 @@ class UsuarioController {
    def cambiarPass(){
         def usuario = Usuario.get(request.JSON.usuario.id)
         if(usuario.password == request.JSON.pass.anterior){
-            if(request.JSON.pass.nueva.size() >= 6){//valido que la nueva pass tenga al menos 6 caracteres, esta validacion tmbien se hace en angular
+            if(request.JSON.pass.nueva.size() >= 4){//valido que la nueva pass tenga al menos 6 caracteres, esta validacion tmbien se hace en angular
                 usuario.password = request.JSON.pass.nueva
                 usuario.save(failOnError : true)
                 render 'Contraseña actualizada con éxito'
             }else{
                 response.status = 500
-                render 'Error. La contraseña nueva es demasiado corta. Ingrese al menos 6 caracteres'
+                render 'Error. La contraseña nueva es demasiado corta. Ingrese al menos 4 caracteres'
             }
         }else{
             response.status = 500
