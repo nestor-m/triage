@@ -16,11 +16,11 @@
             <div class="controls form-inline" >
                 <label class="col-sm-4 control-label" style="font-size:small">DNI</label>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" name="dni" ng-model="dni" ng-blur="buscarPersona()" style="height: 30px;"/>
+                  <input type="text" class="form-control" name="dni" ng-model="dni" style="height: 30px;"/>
                 </div>
                 <label class="col-sm-1 control-label" style="font-size:small">Apellido</label>
                 <div class="col-sm-2" ng-class="{'has-error': busqueda_form.apellido.$invalid}">
-                  <input type="text" class="form-control" name="apellido" ng-model="apellido" ng-blur="buscarPersona()" style="height: 30px;"/>
+                  <input type="text" class="form-control" name="apellido" ng-model="apellido" style="height: 30px;"/>
                 </div>
                 <span ng-show="busqueda_form.apellido.$invalid" style="float:left; color:red;">*</span> 
             </div>
@@ -30,13 +30,13 @@
                 <label class="col-sm-4 control-label" style="font-size:small">Fecha de nacimiento</label>
                 <div class="col-sm-2" ng-class="{'has-error': busqueda_form.fechaDeNacimiento.$invalid}">
                   <!-- <div fecha-con-maximo></div> -->
-                  <input type="text" class="form-control" id="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento" ng-blur="buscarPersona()" style="height: 30px;"/>
+                  <input type="text" class="form-control" id="fechaDeNacimiento" class="form-control" ng-model="fechaDeNacimiento" style="height: 30px;"/>
                 </div>                
                 <span ng-show="busqueda_form.fechaDeNacimiento.$invalid" style="color:red; float:left">*</span>                
 
                 <label class="col-sm-1 control-label" style="font-size:small">Nombre</label>
                 <div class="col-sm-2" ng-class="{'has-error': busqueda_form.nombre.$invalid}">
-                  <input type="text" class="form-control" name="nombre" ng-model="nombre" ng-blur="buscarPersona()" style="height: 30px;"/>                  
+                  <input type="text" class="form-control" name="nombre" ng-model="nombre" style="height: 30px;"/>                  
                 </div>                
                 <span ng-show="busqueda_form.nombre.$invalid" style="float:left; color:red;">*</span>            
             </div>

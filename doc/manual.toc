@@ -1,19 +1,27 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}Pantalla Inicial}{4}{section.1}
-\contentsline {subsection}{\numberline {1.1}Ingreso de un nuevo paciente}{4}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}B\IeC {\'u}squeda e ingreso de un paciente cargado en sistema}{5}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Filtrado de un listado}{5}{subsection.1.3}
-\contentsline {section}{\numberline {2}Triage}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}Pantalla inicial de Triage}{6}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Impresi\IeC {\'o}n Visual}{6}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}S\IeC {\'\i }ntomas}{7}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Signos Vitales}{9}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Fin de la carga}{9}{subsection.2.5}
-\contentsline {section}{\numberline {3}Pacientes en espera}{10}{section.3}
-\contentsline {subsection}{\numberline {3.1}Continuar el Triage}{12}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Finalizar}{12}{subsection.3.2}
-\contentsline {section}{\numberline {4}Alta, baja y modificaci\IeC {\'o}n de datos (ABMs)}{14}{section.4}
-\contentsline {subsection}{\numberline {4.1}Acceso al men\IeC {\'u} de configuraci\IeC {\'o}n}{14}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}ABM de s\IeC {\'\i }ntomas}{14}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}ABM de discriminantes de s\IeC {\'\i }ntomas}{16}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}ABM de usuarios}{18}{subsection.4.4}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{4}{section.1}
+\contentsline {section}{\numberline {2}Ingreso al sistema (\textit {login}) y cambio de contrase\IeC {\~n}a}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Ingreso al sistema (\textit {login})}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Cambio de contrase\IeC {\~n}a}{4}{subsection.2.2}
+\contentsline {section}{\numberline {3}Pantalla Inicial}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Ingreso de un nuevo paciente}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}B\IeC {\'u}squeda e ingreso de un paciente cargado en sistema}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Filtrado de un listado}{7}{subsection.3.3}
+\contentsline {section}{\numberline {4}Triage}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Pantalla inicial de Triage}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Impresi\IeC {\'o}n Visual}{7}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}S\IeC {\'\i }ntomas}{8}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Signos Vitales}{10}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Fin de la carga}{11}{subsection.4.5}
+\contentsline {section}{\numberline {5}Pacientes en espera}{12}{section.5}
+\contentsline {subsection}{\numberline {5.1}Continuar el Triage}{14}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Finalizar}{14}{subsection.5.2}
+\contentsline {section}{\numberline {6}Reportes}{15}{section.6}
+\contentsline {subsection}{\numberline {6.1}Reporte de cantidad de consultas seg\IeC {\'u}n prioridad}{15}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Reporte de promedio de tiempos de espera seg\IeC {\'u}n prioridad}{16}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Reporte de historial de atenciones por paciente}{16}{subsection.6.3}
+\contentsline {section}{\numberline {7}Alta, baja y modificaci\IeC {\'o}n (ABM) de datos del sistema}{18}{section.7}
+\contentsline {subsection}{\numberline {7.1}Acceso al men\IeC {\'u} de configuraci\IeC {\'o}n}{18}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}ABM de s\IeC {\'\i }ntomas}{18}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}ABM de discriminantes de s\IeC {\'\i }ntomas}{20}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}ABM de usuarios}{22}{subsection.7.4}
