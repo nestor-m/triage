@@ -1,12 +1,14 @@
 \section{Planteo}
 
-El presente trabajo comenzó con el relevamiento de información mediante reuniones con el Dr. Reggiani, con quien hubo contacto constante durante todo el desarrollo. Las primeras reuniones fueron para describir el problema y las necesidades reales. Luego, durante la etapa de desarrollo, cada pantalla y funcionalidad fue validada por el usuario, con el propósito de llegar a un producto que fuera útil y consistente. A medida que avanzamos con el producto, se fue negociando el alcance; agregando o quitando funcionalidades dependiendo del tiempo disponible y consultando con el Dr. la prioridad para cada tarea.
+Comenzamos el presente trabajo con el relevamiento de información mediante reuniones con el Dr.\ Reggiani, con quien tuvimos contacto constante durante todo el desarrollo. Las primeras reuniones fueron para describir el problema y las necesidades reales. Luego, durante la etapa de desarrollo, cada pantalla y funcionalidad fue validada por el usuario, con el propósito de llegar a un producto que fuera útil y consistente. A medida que avanzamos con el producto, se fue negociando el alcance agregando o quitando funcionalidades dependiendo del tiempo disponible y consultando con el Dr.\ la prioridad para cada tarea.
+
+En esta sección iremos presentando los resultados de estos encuentros.
 
 
 \subsection{Dinámica de trabajo en el hospital}
-La guardia del H.Z.G.A ``Dr. Arturo Oñativia'' opera recibiendo a los pacientes en dos sectores: Pediatría y Adultos. Cada sector tiene definidos sus parámetros de evaluación de pacientes, pudiendo un síntoma tener una prioridad para los adultos y otra para los pacientes pediátricos. Hay una división entre los pacientes pediátricos también dependiendo de la edad, diferenciando bebés de meses y niños más grandes.
+La guardia del H.Z.G.A ``Dr.\ Arturo Oñativia'' opera recibiendo a los pacientes en dos sectores: Pediatría y Adultos. Cada sector tiene definidos sus parámetros de evaluación de pacientes, pudiendo un síntoma tener una prioridad para los adultos y otra para los pacientes pediátricos. Hay una división entre los pacientes pediátricos también dependiendo de la edad, diferenciando bebés de meses y niños más grandes.
 
-Al llegar a la guardia, los pacientes son recibidos por el enfermero de guardia, quién utilizando el sistema desarrollado, toma una impresión visual del paciente. Luego se pasa a la sala de toma de signos vitales donde otro enfermero controla la presión, glucosa en sangre ,entre otros, y graba en el sistema los síntomas que presenta el paciente. En caso de encontrar algún síntoma de prioridad UNO en alguna de las tres instancias mencionadas antes (Impresión Visual, Signos Vitales o Síntomas), el sistema deriva al paciente de inmediato a la sala de Shock.  
+Al llegar a la guardia los pacientes son recibidos por el enfermero de guardia, quién utilizando el sistema desarrollado toma una impresión visual del paciente. Luego se pasa a la sala de toma de signos vitales donde otro enfermero controla la presión, glucosa en sangre, entre otros, y graba en el sistema los síntomas que presenta el paciente. En caso de encontrar algún síntoma de prioridad UNO (peligro de muerte o daño permanente) en alguna de las tres instancias mencionadas antes (Impresión Visual, Signos Vitales o Síntomas), el sistema deriva al paciente de inmediato a la sala de Shock.  
 
 Una vez conocida la prioridad del paciente ingresado, hay tres caminos: 
 \begin{itemize}
@@ -19,15 +21,15 @@ Una vez atendido el paciente, se termina el ciclo dentro del sistema; esto es, e
 
 
 \subsection{Requerimientos del cliente}
-La característica más mencionada por el Dr. fue, en las primeras entrevistas, registrar adecuadamente a los pacientes que ingresan. Para ello, se decidió guardar todos los datos de las personas (tal como Nombre, Apellido, Teléfono, DNI, Dirección, entre otros) para poder contar con una base de datos de todas las personas atendidas en caso de necesitarla. 
+La característica más mencionada por el Dr.\ fue, en las primeras entrevistas, registrar adecuadamente a los pacientes que ingresan. Para ello, decidimos guardar todos los datos de los pacientes (tal como Nombre, Apellido, Teléfono, DNI, Dirección, entre otros) para poder contar con una base de datos de todas las personas atendidas en caso de necesitarla. 
 
-Otra de las prioridades detectadas fue la necesidad de completar el Triage de forma eficiente y con una respuesta rápida ante casos de urgencias. El cliente solicitó de manera excluyente que el sistema debia cortar cualquier interacción en el momento de detectar un caso de Prioridad UNO, para poder actuar con el apremio necesario.
+Otra de las prioridades que detectamos fue la necesidad de completar el Triage de forma eficiente y con una respuesta rápida ante casos de urgencias. El cliente solicitó de manera excluyente que el sistema debía cortar cualquier interacción en el momento de detectar un caso de Prioridad UNO, para poder actuar con el apremio necesario.
 
-Se detallan en secciones futuras los reportes que el cliente requerió.
+Detallamos en secciones futuras los reportes que el cliente requerió.
 
 
 \subsection{Pantallas y dinámica de uso}
-Las pantallas, como fue mencionado se fueron diseñando y validando con el cliente en las reuniones periódicas.
+Las pantallas, como ya mecionamos, se fueron diseñando y validando con el cliente en las reuniones periódicas.
 
 La pantalla inicial (y principal) del sistema permite buscar a los pacientes por nombre, apellido, DNI o fecha de nacimiento. En el caso de que ya hayan sido atendidos en algún momento en la guardia, serán encontrados por el buscador y se podrá proceder a completar los datos del Triage. En caso de no encontrarlos, la misma pantalla permite ingresarlos al sistema en el momento generando un nuevo registro de una persona. 
 
@@ -51,15 +53,13 @@ permitiendo crear nuevos registros o modificar los existentes. En el caso de los
 El cliente pidió pantallas con los informes detallados a continuación.
 
 \begin{description}
-\item[Tiempo de espera para cada prioridad] 
-
+\item[Tiempo de espera para cada prioridad]  \mbox{} \\
 Reporte que muestra el tiempo de espera medio para cada prioridad en un rango de tiempo dado por dos fechas. 
 
 
-\item[Cantidad de atenciones para cada prioridad] 
-
+\item[Cantidad de atenciones para cada prioridad]\mbox{} \\
 Reporte que muestra la cantidad de atenciones para cada prioridad en un rango de tiempo dado por dos fechas.
-\item[Reporte de Personas] 
 
+\item[Reporte de Personas] \mbox{} \\
 Lista con todas las personas que se atendieron. Permite ver individualmente los datos de cada persona y una lista que muestra todas las veces que fue atendida, los síntomas presentados y el tipo de atención recibida.
 \end{description}
