@@ -10,25 +10,12 @@
 \contentsline {subsection}{\numberline {3.1}Metodolog\IeC {\'\i }a de trabajo}{9}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Resumen del itinerario del proyecto}{9}{subsubsection.3.1.1}
 \contentsline {subsubsection}{\numberline {3.1.2}Flujo de trabajo en una iteraci\IeC {\'o}n}{9}{subsubsection.3.1.2}
-<<<<<<< HEAD
 \contentsline {subsubsection}{\numberline {3.1.3}Herramientas que utilizamos}{11}{subsubsection.3.1.3}
-\contentsline {subsubsection}{\numberline {3.1.4}Repositorio remoto del c\IeC {\'o}digo fuente de la aplicaci\IeC {\'o}n}{11}{subsubsection.3.1.4}
-\contentsline {subsection}{\numberline {3.2}Tecnolog\IeC {\'\i }as}{11}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Sobre la elecci\IeC {\'o}n de las tecnolog\IeC {\'\i }as}{12}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Sobre el \textit {front-end}}{12}{subsubsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.3}Sobre el \textit {back-end}}{12}{subsubsection.3.2.3}
-\contentsline {subsubsection}{\numberline {3.2.4}Sobre la base de datos}{13}{subsubsection.3.2.4}
-\contentsline {subsection}{\numberline {3.3}Arquitectura}{13}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Arquitectura del \textit {front-end}}{13}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}Arquitectura del \textit {back-end}}{13}{subsubsection.3.3.2}
-=======
-\contentsline {subsubsection}{\numberline {3.1.3}Herramientas que utilizamos}{10}{subsubsection.3.1.3}
 \contentsline {subsubsection}{\numberline {3.1.4}Repositorio remoto del c\IeC {\'o}digo fuente de la aplicaci\IeC {\'o}n}{11}{subsubsection.3.1.4}
 \contentsline {subsection}{\numberline {3.2}Arquitectura y tecnolog\IeC {\'\i }as}{11}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Sobre el \textit {front-end}}{12}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Sobre el \textit {back-end}}{12}{subsubsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.3}Sobre la base de datos}{13}{subsubsection.3.2.3}
->>>>>>> efd758558b55362510fb4692bea035591f1f98ef
+\contentsline {subsubsection}{\numberline {3.2.3}Sobre la base de datos}{14}{subsubsection.3.2.3}
 \contentsline {section}{\numberline {4}Pruebas e instalaci\IeC {\'o}n}{14}{section.4}
 \contentsline {subsection}{\numberline {4.1}Pruebas}{14}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}Pruebas unitarias}{14}{subsubsection.4.1.1}
@@ -44,23 +31,23 @@
 \contentsline {subsubsection}{\numberline {A.2.2}Cambio de contrase\IeC {\~n}a}{19}{subsubsection.A.2.2}
 \contentsline {subsection}{\numberline {A.3}Pantalla Inicial}{19}{subsection.A.3}
 \contentsline {subsubsection}{\numberline {A.3.1}Ingreso de un nuevo paciente}{20}{subsubsection.A.3.1}
-\contentsline {subsubsection}{\numberline {A.3.2}B\IeC {\'u}squeda e ingreso de un paciente cargado en sistema}{20}{subsubsection.A.3.2}
+\contentsline {subsubsection}{\numberline {A.3.2}B\IeC {\'u}squeda e ingreso de un paciente cargado en sistema}{21}{subsubsection.A.3.2}
 \contentsline {subsubsection}{\numberline {A.3.3}Filtrado de un listado}{21}{subsubsection.A.3.3}
 \contentsline {subsection}{\numberline {A.4}Triage}{21}{subsection.A.4}
 \contentsline {subsubsection}{\numberline {A.4.1}Pantalla inicial de Triage}{21}{subsubsection.A.4.1}
-\contentsline {subsubsection}{\numberline {A.4.2}Impresi\IeC {\'o}n Visual}{21}{subsubsection.A.4.2}
-\contentsline {subsubsection}{\numberline {A.4.3}S\IeC {\'\i }ntomas}{23}{subsubsection.A.4.3}
-\contentsline {subsubsection}{\numberline {A.4.4}Signos Vitales}{25}{subsubsection.A.4.4}
-\contentsline {subsubsection}{\numberline {A.4.5}Fin de la carga}{26}{subsubsection.A.4.5}
-\contentsline {subsection}{\numberline {A.5}Pacientes en espera}{28}{subsection.A.5}
+\contentsline {subsubsection}{\numberline {A.4.2}Impresi\IeC {\'o}n Visual}{22}{subsubsection.A.4.2}
+\contentsline {subsubsection}{\numberline {A.4.3}S\IeC {\'\i }ntomas}{22}{subsubsection.A.4.3}
+\contentsline {subsubsection}{\numberline {A.4.4}Signos Vitales}{24}{subsubsection.A.4.4}
+\contentsline {subsubsection}{\numberline {A.4.5}Fin de la carga}{25}{subsubsection.A.4.5}
+\contentsline {subsection}{\numberline {A.5}Pacientes en espera}{26}{subsection.A.5}
 \contentsline {subsubsection}{\numberline {A.5.1}Continuar el Triage}{28}{subsubsection.A.5.1}
 \contentsline {subsubsection}{\numberline {A.5.2}Finalizar}{28}{subsubsection.A.5.2}
-\contentsline {subsection}{\numberline {A.6}Reportes}{30}{subsection.A.6}
-\contentsline {subsubsection}{\numberline {A.6.1}Reporte de cantidad de consultas seg\IeC {\'u}n prioridad}{30}{subsubsection.A.6.1}
-\contentsline {subsubsection}{\numberline {A.6.2}Reporte de promedio de tiempos de espera seg\IeC {\'u}n prioridad}{30}{subsubsection.A.6.2}
-\contentsline {subsubsection}{\numberline {A.6.3}Reporte de historial de atenciones por paciente}{31}{subsubsection.A.6.3}
-\contentsline {subsection}{\numberline {A.7}Alta, baja y modificaci\IeC {\'o}n (ABM) de datos del sistema}{32}{subsection.A.7}
+\contentsline {subsection}{\numberline {A.6}Reportes}{29}{subsection.A.6}
+\contentsline {subsubsection}{\numberline {A.6.1}Reporte de cantidad de consultas seg\IeC {\'u}n prioridad}{29}{subsubsection.A.6.1}
+\contentsline {subsubsection}{\numberline {A.6.2}Reporte de promedio de tiempos de espera seg\IeC {\'u}n prioridad}{29}{subsubsection.A.6.2}
+\contentsline {subsubsection}{\numberline {A.6.3}Reporte de historial de atenciones por paciente}{30}{subsubsection.A.6.3}
+\contentsline {subsection}{\numberline {A.7}Alta, baja y modificaci\IeC {\'o}n (ABM) de datos del sistema}{30}{subsection.A.7}
 \contentsline {subsubsection}{\numberline {A.7.1}Acceso al men\IeC {\'u} de configuraci\IeC {\'o}n}{32}{subsubsection.A.7.1}
 \contentsline {subsubsection}{\numberline {A.7.2}ABM de s\IeC {\'\i }ntomas}{32}{subsubsection.A.7.2}
-\contentsline {subsubsection}{\numberline {A.7.3}ABM de discriminantes de s\IeC {\'\i }ntomas}{35}{subsubsection.A.7.3}
-\contentsline {subsubsection}{\numberline {A.7.4}ABM de usuarios}{36}{subsubsection.A.7.4}
+\contentsline {subsubsection}{\numberline {A.7.3}ABM de discriminantes de s\IeC {\'\i }ntomas}{34}{subsubsection.A.7.3}
+\contentsline {subsubsection}{\numberline {A.7.4}ABM de usuarios}{35}{subsubsection.A.7.4}
