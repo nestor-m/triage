@@ -1,18 +1,26 @@
-\BOOKMARK [1][-]{section.1}{Pantalla Inicial}{}
-\BOOKMARK [2][-]{subsection.1.1}{Ingreso de un nuevo paciente}{section.1}
-\BOOKMARK [2][-]{subsection.1.2}{B\372squeda e ingreso de un paciente cargado en sistema}{section.1}
-\BOOKMARK [2][-]{subsection.1.3}{Filtrado de un listado}{section.1}
-\BOOKMARK [1][-]{section.2}{Triage}{}
-\BOOKMARK [2][-]{subsection.2.1}{Pantalla inicial de Triage}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Impresi\363n Visual}{section.2}
-\BOOKMARK [2][-]{subsection.2.3}{S\355ntomas}{section.2}
-\BOOKMARK [2][-]{subsection.2.4}{Signos Vitales}{section.2}
-\BOOKMARK [2][-]{subsection.2.5}{Fin de la carga}{section.2}
-\BOOKMARK [1][-]{section.3}{Pacientes en espera}{}
-\BOOKMARK [2][-]{subsection.3.1}{Continuar el Triage}{section.3}
-\BOOKMARK [2][-]{subsection.3.2}{Finalizar}{section.3}
-\BOOKMARK [1][-]{section.4}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
-\BOOKMARK [2][-]{subsection.4.1}{Acceso al men\372 de configuraci\363n}{section.4}
-\BOOKMARK [2][-]{subsection.4.2}{ABM de s\355ntomas}{section.4}
-\BOOKMARK [2][-]{subsection.4.3}{ABM de discriminantes de s\355ntomas}{section.4}
-\BOOKMARK [2][-]{subsection.4.4}{ABM de usuarios}{section.4}
+\BOOKMARK [1][-]{section.1}{Introducci\363n}{}
+\BOOKMARK [1][-]{section.2}{Ingreso al sistema \(login\) y cambio de contrase\361a}{}
+\BOOKMARK [2][-]{subsection.2.1}{Ingreso al sistema \(login\)}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Cambio de contrase\361a}{section.2}
+\BOOKMARK [1][-]{section.3}{Pantalla Inicial}{}
+\BOOKMARK [2][-]{subsection.3.1}{Ingreso de un nuevo paciente}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{B\372squeda e ingreso de un paciente cargado en sistema}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Filtrado de un listado}{section.3}
+\BOOKMARK [1][-]{section.4}{Triage}{}
+\BOOKMARK [2][-]{subsection.4.1}{Pantalla inicial de Triage}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Impresi\363n Visual}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{S\355ntomas}{section.4}
+\BOOKMARK [2][-]{subsection.4.4}{Signos Vitales}{section.4}
+\BOOKMARK [2][-]{subsection.4.5}{Fin de la carga}{section.4}
+\BOOKMARK [1][-]{section.5}{Pacientes en espera}{}
+\BOOKMARK [2][-]{subsection.5.1}{Continuar el Triage}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{Finalizar}{section.5}
+\BOOKMARK [1][-]{section.6}{Reportes}{}
+\BOOKMARK [2][-]{subsection.6.1}{Reporte de cantidad de consultas seg\372n prioridad}{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{Reporte de promedio de tiempos de espera seg\372n prioridad}{section.6}
+\BOOKMARK [2][-]{subsection.6.3}{Reporte de historial de atenciones por paciente}{section.6}
+\BOOKMARK [1][-]{section.7}{Alta, baja y modificaci\363n \(ABM\) de datos del sistema}{}
+\BOOKMARK [2][-]{subsection.7.1}{Acceso al men\372 de configuraci\363n}{section.7}
+\BOOKMARK [2][-]{subsection.7.2}{ABM de s\355ntomas}{section.7}
+\BOOKMARK [2][-]{subsection.7.3}{ABM de discriminantes de s\355ntomas}{section.7}
+\BOOKMARK [2][-]{subsection.7.4}{ABM de usuarios}{section.7}
