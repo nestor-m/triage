@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  11 NOV 2014 23:26
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  23 NOV 2014 16:00
 entering extended mode
  %&-line parsing enabled.
 **manual_triage.tex
@@ -13,8 +13,8 @@ orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
 , estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
 rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
 ! Undefined control sequence.
-l.1 \section
-            {Triage}
+l.1 \mySection
+              {Triage}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -28,8 +28,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1 \section{T
-              riage}
+l.1 \mySection{T
+                riage}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -139,8 +139,8 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 1--3
  []
 
 ! Undefined control sequence.
-l.4 \subsection
-               {Pantalla inicial de Triage}
+l.4 \mySubSection
+                 {Pantalla inicial de Triage}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -154,8 +154,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4 \subsection{P
-                 antalla inicial de Triage}
+l.4 \mySubSection{P
+                   antalla inicial de Triage}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -356,7 +356,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.8 \caption
-            {Pantalla inicial de Triage} \label{fig:triage_inicial}
+            {Pantalla de impresi√≥n visual} \label{fig:triage_inicial}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -384,6 +384,8 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
+Missing character: There is no √ in font cmr10!
+Missing character: There is no ≥ in font cmr10!
 ! Missing } inserted.
 <inserted text> 
                 }
@@ -563,8 +565,8 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 4--11
  []
 
 ! Undefined control sequence.
-l.12 \subsection
-                {Impresi√≥n Visual}
+l.12 \mySubSection
+                  {Impresi√≥n Visual}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -578,8 +580,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.12 \subsection{I
-                  mpresi√≥n Visual}
+l.12 \mySubSection{I
+                    mpresi√≥n Visual}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -1066,7 +1068,8 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.16 \caption
-             {Pantalla inicial de Triage} \label{fig:impresion_visual_p1}
+             {Pantalla de impresi√≥n visual con mensaje de confirmaci√≥n} \l...
+
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -1094,6 +1097,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
+Missing character: There is no √ in font cmr10!
+Missing character: There is no ≥ in font cmr10!
+Missing character: There is no √ in font cmr10!
+Missing character: There is no ≥ in font cmr10!
 ! Missing } inserted.
 <inserted text> 
                 }
@@ -1435,8 +1442,8 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 12--23
  []
 
 ! Undefined control sequence.
-l.24 \subsection
-                {S√≠ntomas}
+l.24 \mySubSection
+                  {S√≠ntomas}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1450,8 +1457,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.24 \subsection{S
-                  √≠ntomas}
+l.24 \mySubSection{S
+                    √≠ntomas}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -1869,26 +1876,21 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no √ in font nullfont!
 Missing character: There is no ≥ in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no ' in font nullfont!
-Missing character: There is no F in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no ' in font nullfont!
+! Undefined control sequence.
+<write> ...cap:filtrado_listado' on page \thepage 
+                                                  \space undefined\on@line .
+l.32 ... en la secci√≥n \ref{cap:filtrado_listado}
+                                                  ) (Ver figura \ref{fig:sin...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `cap:filtrado_listado' on page  undefined on input lin
+e 32.
+
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ( in font nullfont!
 Missing character: There is no V in font nullfont!
@@ -1903,7 +1905,7 @@ Missing character: There is no a in font nullfont!
 ! Undefined control sequence.
 <write> ...fig:sintomas_filtrar' on page \thepage 
                                                   \space undefined\on@line .
-l.32 ...o') (Ver figura \ref{fig:sintomas_filtrar}
+l.32 ...o}) (Ver figura \ref{fig:sintomas_filtrar}
                                                   ).
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2595,6 +2597,11 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 32--43
  []
 
 
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 32--43
+[]
+ []
+
+
 ! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -3022,8 +3029,8 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 46--47
  []
 
 ! Undefined control sequence.
-l.49 \subsection
-                {Signos Vitales}
+l.49 \mySubSection
+                  {Signos Vitales}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3037,8 +3044,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.49 \subsection{S
-                  ignos Vitales}
+l.49 \mySubSection{S
+                    ignos Vitales}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -3811,7 +3818,8 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.60 \caption
-             {Signos Vitales} \label{fig:signos_vitales_guardar}
+             {Signos Vitales cargados con √©xito} \label{fig:signos_vitales_...
+
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -3839,6 +3847,8 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
+Missing character: There is no √ in font cmr10!
+Missing character: There is no © in font cmr10!
 ! Missing } inserted.
 <inserted text> 
                 }
@@ -3926,8 +3936,8 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 57--63
  []
 
 ! Undefined control sequence.
-l.65 \subsection
-                {Fin de la carga}
+l.65 \mySubSection
+                  {Fin de la carga}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -3941,8 +3951,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.65 \subsection{F
-                  in de la carga}
+l.65 \mySubSection{F
+                    in de la carga}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -4241,7 +4251,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.72 \caption
-             {Signos Vitales} \label{fig:fin_triage}
+             {Fin Triage} \label{fig:fin_triage}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -5416,10 +5426,10 @@ or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 27 strings out of 493848
- 499 string characters out of 1152823
+ 28 strings out of 493848
+ 521 string characters out of 1152823
  50808 words of memory out of 3000000
- 3402 multiletter control sequences out of 15000+50000
+ 3403 multiletter control sequences out of 15000+50000
  3948 words of font info for 15 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  20i,3n,19p,494b,89s stack positions out of 5000i,500n,10000p,200000b,50000s

@@ -83,7 +83,9 @@ class PersonaController extends LoginController{
 				ilike("nombre",request.JSON.nombre+"%")
 			}
 			if (request.JSON.fechaDeNacimiento  != '' && request.JSON.fechaDeNacimiento  != null){
-				eq("fechaDeNacimiento",new Date(request.JSON.fechaDeNacimiento.replaceAll("-","/")))
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				Date fechaDeNacimiento = dateFormat.parse(request.JSON.fechaDeNacimiento);
+				eq("fechaDeNacimiento",fechaDeNacimiento)
 			}
 		}		
 		render resultado as JSON		

@@ -1,19 +1,19 @@
-\section{Triage}
+\mySection{Triage}
 En esta sección daremos a conocer el camino que recorre la aplicación para cargar los síntomas del paciente.
 
-\subsection{Pantalla inicial de Triage}
+\mySubSection{Pantalla inicial de Triage}
 La pantalla inicial de Triage (como podemos ver en la figura \ref{fig:triage_inicial}) 
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{impresion_visual.png}}
-\caption{Pantalla inicial de Triage} \label{fig:triage_inicial}
+\caption{Pantalla de impresión visual} \label{fig:triage_inicial}
 \end{figure}
 tiene una navegación definida por pestañas (que se pueden ver en la parte izquierda de la pantalla). Las pestañas permiten cambiar de pantalla de manera rápida y simple.
 
-\subsection{Impresión Visual}
+\mySubSection{Impresión Visual}
 En la pestaña de impresión visual (figura \ref{fig:triage_inicial}) se cargan los síntomas que el enfermero/administrativo ve en el paciente que está siendo atendido. Una vez seleccionados los síntomas visuales, el usuario debe presionar el botón ``Aceptar''. En el caso de que un síntoma de Prioridad UNO sea seleccionado el sistema corta la interacción con el usuario con un cartel de confirmación (figura \ref{fig:impresion_visual_p1}).
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{impresion_visual_p1.png}}
-\caption{Pantalla inicial de Triage} \label{fig:impresion_visual_p1}
+\caption{Pantalla de impresión visual con mensaje de confirmación} \label{fig:impresion_visual_p1}
 \end{figure}
 Si el usuario confirma, el sistema deriva directamente a la pantalla de Prioridad UNO, mostrando los datos y síntomas del paciente ingresado (figura \ref{fig:prioridad_uno}).
 \begin{figure}
@@ -21,7 +21,7 @@ Si el usuario confirma, el sistema deriva directamente a la pantalla de Priorida
 \caption{Prioridad UNO} \label{fig:prioridad_uno}
 \end{figure}
 
-\subsection{Síntomas}
+\mySubSection{Síntomas}
 En la pestaña de síntomas (figura \ref{fig:sintomas})
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{sintomas.png}}
@@ -29,7 +29,7 @@ En la pestaña de síntomas (figura \ref{fig:sintomas})
 \end{figure}
 van a ser cargados los síntomas que el paciente informe. 
 
-En el cuadro central se pueden ver todos los síntomas cargados en sistema, indicando cuál es su discriminante. Aquí se puede filtrar también por síntoma o discriminante (tal como se explica en la sección \ref{cap:filtrado_listado}) (Ver figura \ref{fig:sintomas_filtrar}).
+En el cuadro central se pueden ver todos los síntomas cargados en sistema, indicando cuál es su discriminante. Aquí se puede filtrar también por síntoma o discriminante (tal como se explica en la sección \ref{cap:filtrado_listado}) (ver figura \ref{fig:sintomas_filtrar}).
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{sintomas_buscar.png}}
 \caption{Filtrado en el cuadro de síntomas} \label{fig:sintomas_filtrar}
@@ -46,7 +46,7 @@ En el caso de ingresar un síntoma con Prioridad UNO,  el sistema corta la inter
 Al finalizar con la carga, se debe presionar el botón ``Aceptar'' para grabar los síntomas seleccionados.
 
 
-\subsection{Signos Vitales}
+\mySubSection{Signos Vitales}
 La tercer pestaña del Triage es para completar los signos vitales del paciente (figura \ref{fig:signos_vitales}).
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{signos_vitales.png}}
@@ -57,12 +57,12 @@ Cada signo vital está definido para ser seleccionado de una lista acotada. En e
 Al finalizar de cargar los signos vitales, se debe presionar el botón ``Aceptar'' (figura \ref{fig:signos_vitales_guardar})
 \begin{figure}
 \centerline{\includegraphics[width=0.99\textwidth]{signos_vitales_guardar.png}}
-\caption{Signos Vitales} \label{fig:signos_vitales_guardar}
+\caption{Signos Vitales cargados con éxito} \label{fig:signos_vitales_guardar}
 \end{figure}
 y el sistema informará que los datos se han guardado con éxito.
 
 
-\subsection{Fin de la carga}
+\mySubSection{Fin de la carga}
 Al terminar de cargar los síntomas hay dos caminos:
 \begin{description}
 \item[Finalizar Triage]  \mbox{} \\

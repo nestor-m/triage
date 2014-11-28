@@ -1,0 +1,62 @@
+%% 
+%% Para utilizar, definir los comandos
+%%  \myTIPTitle, \myTIPSubtitle
+%%  \myTIPFirstAuthor\ y \myTIPSecondAuthor
+%%  \myTIPSubject (el tema que se trata)
+%%  \myTIPDirector
+%%
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+
+\hypersetup{
+pdftitle={\myTIPTitle. \myTIPSubtitle},
+pdfauthor={\textcopyright\ \myTIPFirstAuthor\ y \myTIPSecondAuthor},
+pdfsubject={\myTIPSubject}
+}
+\newcommand{\UNQlogo}[1][]{%
+   \includegraphics[#1]{UNQ-logo.jpg}%
+}
+
+\newcommand{\makeCaratulaTIP}
+{
+                                                  \setcounter{page}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The first page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                                  \phantomsection\label{portada}
+                                                  \thispagestyle{empty}
+                                                  \parindent=0cm 
+                                                  \par\vspace{-2cm}
+          \UNQlogo[scale=0.5]
+                                                \begin{center}
+                                                  {\large
+                                                   \par\vspace{1cm}
+      \textbf{Departamento de Ciencia y Tecnolog\'ia}\\ 
+      \textbf{Tecnicatura Universitaria en Programaci\'on Inform\'atica}\\
+												  }   
+                                                \end{center}
+                                                \begin{center}
+                                                  \par\vspace{2cm}
+                                                  \noindent%
+                                                  
+                                                  {\Huge\bf 
+             \myTIPTitle 
+                                                  \vskip 0.5cm\Large 
+            \myTIPSubtitle
+                                                  }{\par\vspace{1cm}
+                                                  \Large\textit{ 
+           \myTIPFirstAuthor                       }\par\textit{
+                                                  \vskip 0.2cm\Large 
+           \myTIPSecondAuthor                      }
+                                                  }
+                                                \end{center}
+                                                  \par\vspace{2cm}
+                                                \begin{center}
+                                                  {\large\noindent%
+                                                  \begin{tabular}{l@{\hspace{2cm}}}
+      \textbf{Trabajo de Inserci\'on Profesional} \\                                                  
+      \textbf{Director:} \myTIPDirector             
+                                                  \end{tabular}
+                                                  }\vfill\noindent%
+                                                \end{center}%
+}

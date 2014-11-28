@@ -11,14 +11,10 @@
 \BOOKMARK [3][-]{subsubsection.3.1.2}{Flujo de trabajo en una iteraci\363n}{subsection.3.1}
 \BOOKMARK [3][-]{subsubsection.3.1.3}{Herramientas que utilizamos}{subsection.3.1}
 \BOOKMARK [3][-]{subsubsection.3.1.4}{Repositorio remoto del c\363digo fuente de la aplicaci\363n}{subsection.3.1}
-\BOOKMARK [2][-]{subsection.3.2}{Tecnolog\355as}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Sobre la elecci\363n de las tecnolog\355as}{subsection.3.2}
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Sobre el front-end}{subsection.3.2}
-\BOOKMARK [3][-]{subsubsection.3.2.3}{Sobre el back-end}{subsection.3.2}
-\BOOKMARK [3][-]{subsubsection.3.2.4}{Sobre la base de datos}{subsection.3.2}
-\BOOKMARK [2][-]{subsection.3.3}{Arquitectura}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Arquitectura del front-end}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Arquitectura del back-end}{subsection.3.3}
+\BOOKMARK [2][-]{subsection.3.2}{Arquitectura y tecnolog\355as}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Sobre el front-end}{subsection.3.2}
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Sobre el back-end}{subsection.3.2}
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Sobre la base de datos}{subsection.3.2}
 \BOOKMARK [1][-]{section.4}{Pruebas e instalaci\363n}{}
 \BOOKMARK [2][-]{subsection.4.1}{Pruebas}{section.4}
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Pruebas unitarias}{subsection.4.1}
@@ -27,37 +23,30 @@
 \BOOKMARK [3][-]{subsubsection.4.1.4}{Problemas que tuvimos con el desarrollo de las pruebas}{subsection.4.1}
 \BOOKMARK [2][-]{subsection.4.2}{Instalaci\363n}{section.4}
 \BOOKMARK [1][-]{section.5}{Conclusiones}{}
-\BOOKMARK [1][-]{appendix.A}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
-\BOOKMARK [2][-]{subsection.A.1}{Acceso al men\372 de configuraci\363n}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.2}{ABM de s\355ntomas}{appendix.A}
-\BOOKMARK [3][-]{subsubsection.A.2.1}{Alta de s\355ntoma}{subsection.A.2}
-\BOOKMARK [3][-]{subsubsection.A.2.2}{Modificaci\363n de s\355ntoma}{subsection.A.2}
-\BOOKMARK [3][-]{subsubsection.A.2.3}{Baja de s\355ntoma}{subsection.A.2}
-\BOOKMARK [2][-]{subsection.A.3}{ABM de discriminantes de s\355ntomas}{appendix.A}
-\BOOKMARK [3][-]{subsubsection.A.3.1}{Alta de discriminante de s\355ntoma}{subsection.A.3}
-\BOOKMARK [3][-]{subsubsection.A.3.2}{Modificaci\363n de un discriminante de s\355ntoma}{subsection.A.3}
-\BOOKMARK [3][-]{subsubsection.A.3.3}{Baja de discriminante de s\355ntoma}{subsection.A.3}
-\BOOKMARK [1][-]{appendix.A}{Manual del Usuario}{}
-\BOOKMARK [1][-]{appendix.B}{Pantalla Inicial}{}
-\BOOKMARK [2][-]{subsection.B.1}{Ingreso de un nuevo paciente}{appendix.B}
-\BOOKMARK [2][-]{subsection.B.2}{B\372squeda e ingreso de un paciente cargado en sistema}{appendix.B}
-\BOOKMARK [2][-]{subsection.B.3}{Filtrado de un listado}{appendix.B}
-\BOOKMARK [1][-]{appendix.C}{Triage}{}
-\BOOKMARK [2][-]{subsection.C.1}{Pantalla inicial de Triage}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.2}{Impresi\363n Visual}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.3}{S\355ntomas}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.4}{Signos Vitales}{appendix.C}
-\BOOKMARK [2][-]{subsection.C.5}{Fin de la carga}{appendix.C}
-\BOOKMARK [1][-]{appendix.D}{Pacientes en espera}{}
-\BOOKMARK [2][-]{subsection.D.1}{Continuar el Triage}{appendix.D}
-\BOOKMARK [2][-]{subsection.D.2}{Finalizar}{appendix.D}
-\BOOKMARK [1][-]{appendix.E}{Alta, baja y modificaci\363n de datos \(ABMs\)}{}
-\BOOKMARK [2][-]{subsection.E.1}{Acceso al men\372 de configuraci\363n}{appendix.E}
-\BOOKMARK [2][-]{subsection.E.2}{ABM de s\355ntomas}{appendix.E}
-\BOOKMARK [3][-]{subsubsection.E.2.1}{Alta de s\355ntoma}{subsection.E.2}
-\BOOKMARK [3][-]{subsubsection.E.2.2}{Modificaci\363n de s\355ntoma}{subsection.E.2}
-\BOOKMARK [3][-]{subsubsection.E.2.3}{Baja de s\355ntoma}{subsection.E.2}
-\BOOKMARK [2][-]{subsection.E.3}{ABM de discriminantes de s\355ntomas}{appendix.E}
-\BOOKMARK [3][-]{subsubsection.E.3.1}{Alta de discriminante de s\355ntoma}{subsection.E.3}
-\BOOKMARK [3][-]{subsubsection.E.3.2}{Modificaci\363n de un discriminante de s\355ntoma}{subsection.E.3}
-\BOOKMARK [3][-]{subsubsection.E.3.3}{Baja de discriminante de s\355ntoma}{subsection.E.3}
+\BOOKMARK [1][-]{appendix.A}{Manual de Usuario}{}
+\BOOKMARK [2][-]{subsection.A.1}{Introducci\363n}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.2}{Ingreso al sistema \(login\) y cambio de contrase\361a}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.2.1}{Ingreso al sistema \(login\)}{subsection.A.2}
+\BOOKMARK [3][-]{subsubsection.A.2.2}{Cambio de contrase\361a}{subsection.A.2}
+\BOOKMARK [2][-]{subsection.A.3}{Pantalla Inicial}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.3.1}{Ingreso de un nuevo paciente}{subsection.A.3}
+\BOOKMARK [3][-]{subsubsection.A.3.2}{B\372squeda e ingreso de un paciente cargado en sistema}{subsection.A.3}
+\BOOKMARK [3][-]{subsubsection.A.3.3}{Filtrado de un listado}{subsection.A.3}
+\BOOKMARK [2][-]{subsection.A.4}{Triage}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.4.1}{Pantalla inicial de Triage}{subsection.A.4}
+\BOOKMARK [3][-]{subsubsection.A.4.2}{Impresi\363n Visual}{subsection.A.4}
+\BOOKMARK [3][-]{subsubsection.A.4.3}{S\355ntomas}{subsection.A.4}
+\BOOKMARK [3][-]{subsubsection.A.4.4}{Signos Vitales}{subsection.A.4}
+\BOOKMARK [3][-]{subsubsection.A.4.5}{Fin de la carga}{subsection.A.4}
+\BOOKMARK [2][-]{subsection.A.5}{Pacientes en espera}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.5.1}{Continuar el Triage}{subsection.A.5}
+\BOOKMARK [3][-]{subsubsection.A.5.2}{Finalizar}{subsection.A.5}
+\BOOKMARK [2][-]{subsection.A.6}{Reportes}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.6.1}{Reporte de cantidad de consultas seg\372n prioridad}{subsection.A.6}
+\BOOKMARK [3][-]{subsubsection.A.6.2}{Reporte de promedio de tiempos de espera seg\372n prioridad}{subsection.A.6}
+\BOOKMARK [3][-]{subsubsection.A.6.3}{Reporte de historial de atenciones por paciente}{subsection.A.6}
+\BOOKMARK [2][-]{subsection.A.7}{Alta, baja y modificaci\363n \(ABM\) de datos del sistema}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.7.1}{Acceso al men\372 de configuraci\363n}{subsection.A.7}
+\BOOKMARK [3][-]{subsubsection.A.7.2}{ABM de s\355ntomas}{subsection.A.7}
+\BOOKMARK [3][-]{subsubsection.A.7.3}{ABM de discriminantes de s\355ntomas}{subsection.A.7}
+\BOOKMARK [3][-]{subsubsection.A.7.4}{ABM de usuarios}{subsection.A.7}
