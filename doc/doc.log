@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.8)  28 NOV 2014 16:14
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  29 NOV 2014 01:03
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -500,34 +500,14 @@ File: tracking.png Graphic file (type png)
 [11] [12] <triage.png, id=400, 780.9175pt x 468.75125pt>
 File: triage.png Graphic file (type png)
  <use triage.png>
-[13 <./triage.png (PNG copy)>]) (./testeo_instalacion.tex [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
-
- []
-
-) (./conclusiones.tex [16]) [17] [18] (./intro_manual.tex)
-(./login_cambio_pass.tex <login.png, id=461, 701.62125pt x 153.57375pt>
+[13 <./triage.png (PNG copy)>]) (./testeo_instalacion.tex [14] [15] [16])
+(./conclusiones.tex) [17] [18] (./intro_manual.tex) (./login_cambio_pass.tex
+<login.png, id=461, 701.62125pt x 153.57375pt>
 File: login.png Graphic file (type png)
-
-<use login.png> <login_fallido.png, id=463, 700.6175pt x 177.66376pt>
+ <use login.png>
+<login_fallido.png, id=463, 700.6175pt x 177.66376pt>
 File: login_fallido.png Graphic file (type png)
-
-<use login_fallido.png>
+ <use login_fallido.png>
 <menu_cambio_pass.png, id=465, 463.7325pt x 122.4575pt>
 File: menu_cambio_pass.png Graphic file (type png)
 
@@ -722,7 +702,7 @@ type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/publi
 c/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
 m/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb
 >
-Output written on doc.pdf (39 pages, 1605409 bytes).
+Output written on doc.pdf (39 pages, 1606289 bytes).
 PDF statistics:
  818 PDF objects out of 1000 (max. 8388607)
  187 named destinations out of 1000 (max. 500000)
