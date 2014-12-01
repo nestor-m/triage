@@ -52,26 +52,26 @@ environments {
 
     //H2 + TOMCAT
     //fuente: http://sporcic.org/2012/09/using-h2-with-grails-and-tomcat/   NOTA:crear directorio db, como dice en el link y hacerle $chown tomcat7:tomcat7
-    production {
-    dataSource {
-        dbdir = "${System.properties['catalina.base']}/db/baseH2"
- 
-        dbCreate = "update"
-        url = "jdbc:h2:file:${dbdir};MVCC=TRUE;LOCK_TIMEOUT=10000"
-        pooled = true
- 
-        properties {
-            maxActive = -1
-            minEvictableIdleTimeMillis=1800000
-            timeBetweenEvictionRunsMillis=1800000
-            numTestsPerEvictionRun=3
-            testOnBorrow=true
-            testWhileIdle=true
-            testOnReturn=true
-            validationQuery="SELECT 1"
+/*    production {
+        dataSource {
+            dbdir = "${System.properties['catalina.base']}/db/baseH2"
+     
+            dbCreate = "update"
+            url = "jdbc:h2:file:${dbdir};MVCC=TRUE;LOCK_TIMEOUT=10000"
+            pooled = true
+     
+            properties {
+                maxActive = -1
+                minEvictableIdleTimeMillis=1800000
+                timeBetweenEvictionRunsMillis=1800000
+                numTestsPerEvictionRun=3
+                testOnBorrow=true
+                testWhileIdle=true
+                testOnReturn=true
+                validationQuery="SELECT 1"
+            }
         }
-    }
-}
+    }*/
 
 
 
@@ -89,5 +89,17 @@ environments {
             username = uri.userInfo.split(":")[0]
             password = uri.userInfo.split(":")[1]
         }
-}*/
+    }*/
+
+    //POSTGRES, nombre de la base: triage_prod
+    production{
+        dataSource {
+            dbCreate = "update"
+            dialect = org.hibernate.dialect.PostgreSQLDialect
+            url = "jdbc:postgresql://localhost:5432/triage_prod"
+            driverClassName = "org.postgresql.Driver"
+            username = "postgres"
+            password = "postgres"   
+        }
+    }
 }

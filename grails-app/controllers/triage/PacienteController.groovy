@@ -13,6 +13,8 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 import org.hibernate.criterion.CriteriaSpecification
 import org.hibernate.criterion.Projection
 
+import java.lang.Exception
+
 @Transactional //(readOnly = true)
 class PacienteController extends LoginController{
 
@@ -78,37 +80,27 @@ class PacienteController extends LoginController{
 		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd")
 		String formattedFechaDesde = output.format(fechaDesde)
 		String formattedFechaHasta = output.format(fechaHasta)
-		/**
-		 * SELECT  sum (fecha_hora_atencio - fecha_hora_ingreso)
-		 FROM PACIENTE p
-		 SELECT  sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60 
-		 FROM PACIENTE p
-		 SELECT  (((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) / 60)/count(*)), prioridad
-		 FROM PACIENTE 
-		 group by prioridad
-		 */
 
-		String sql = "SELECT  prioridad, "+
-				"coalesce(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*),0)  as tiempo "+	
+
+		List prioridades;
+		try{			
+			//POSTGRES
+			prioridades = Paciente.executeQuery("SELECT  prioridad, "+
+				"coalesce(((sum(DATE_PART('hour', fecha_hora_atencion - fecha_hora_ingreso) * 60 + "+
+                                "DATE_PART('minute', fecha_hora_atencion - fecha_hora_ingreso) ) ) )/count(*),0) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
-				"' and finalizado = true group by prioridad"
-		//println sql
-//		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
-//				"((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*) as tiempo "+	
-//				"FROM Paciente	"+ 
-//				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
-//				"' and '" + formattedFechaHasta + 
-//				"' group by prioridad")
-		
-		
-		List prioridades = Paciente.executeQuery("SELECT  prioridad, "+
+				"'and finalizado = true group by prioridad")
+		}catch(Exception e){//si tira excepcion porque no conoce la funcion DATE_PART
+			//H2
+			prioridades = Paciente.executeQuery("SELECT  prioridad, "+
 				"coalesce(((sum(datediff(ss, fecha_hora_ingreso, fecha_hora_atencion)) / 60) )/count(*),0) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
 				"'and finalizado = true group by prioridad")
+		}
 		
 		List resultado = new ArrayList()
 		for (p in prioridades){
