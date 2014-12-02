@@ -86,8 +86,9 @@ class PacienteController extends LoginController{
 		try{			
 			//POSTGRES
 			prioridades = Paciente.executeQuery("SELECT  prioridad, "+
-				"coalesce(((sum(DATE_PART('hour', fecha_hora_atencion - fecha_hora_ingreso) * 60 + "+
-                                "DATE_PART('minute', fecha_hora_atencion - fecha_hora_ingreso) ) ) )/count(*),0) as tiempo "+	
+				"coalesce(((sum( (DATE_PART('day', fecha_hora_atencion - fecha_hora_ingreso) * 24 + "+
+				   "DATE_PART('hour', fecha_hora_atencion - fecha_hora_ingreso)) * 60 + "+
+                   "DATE_PART('minute', fecha_hora_atencion - fecha_hora_ingreso) ) ) )/count(*),0) as tiempo "+	
 				"FROM Paciente	"+ 
 				"WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
 				"' and '" + formattedFechaHasta + 
