@@ -356,7 +356,7 @@ app.controller(
 /**PACIENTE INGRESADO****************************************************************************************** */
 app.controller(
 				'pacienteIngresadoController',
-				function($scope, $cookieStore, $http, $location) {
+				function($scope, $cookieStore, $http, $location, $timeout) {
 
 					$scope.esPrioridadUno = false;
 					$scope.pacienteActual = $cookieStore.get('pacienteActual');
@@ -418,11 +418,6 @@ app.controller(
 								function(data) {
 									$scope.sintomasImpresionVisual = data;
 								});
-						/*$http.post("paciente/getSintomasVisuales", {//ya no se usa, ahora trae todo recuperarSintomas
-							id : $scope.pacienteActual.id
-						}).success(function(data) {
-							$scope.paciente.sintomas = data;
-						});*/
 					};
 
 					$scope.cargarImpresionVisual = function() {
@@ -448,10 +443,8 @@ app.controller(
 
 					$scope.checkImpresionVisual = function(event, sintoma) {
 						if (!event.currentTarget.checked){//si se deschequeo
-							$scope.borrarSintoma(sintoma);							
-						}else{//si se checkeo
-
-							$scope.sintomas.push(sintoma);
+							$scope.borrarSintoma(sintoma);//							
+						}else{//si se checkeo							
 
 							if (($scope.pacienteActual.esAdulto && sintoma.prioridadAdulto.name == "UNO")
 									|| 
@@ -469,6 +462,8 @@ app.controller(
 														$scope.paciente.sintomas.splice(i, 1);
 													}
 												});
+							}else{
+								$scope.sintomas.push(sintoma);//agrego el sintoma en la pantalla de carga de sintomas
 							}
 						}
 					};
@@ -481,28 +476,36 @@ app.controller(
 							id : $scope.pacienteActual.id,
 						}).success(function(data) {
 							$scope.sintomas = data;
-							for(var i = 0; i < data.length; i++){
-								if(data[i].tipoDeSintoma.id==1)//si es sintoma de IMPRESION INICIAL
-									$scope.paciente.sintomas.push(data[i]);
-							}							
+
+							$timeout(function(){
+								//comparo uno a uno los sintomas q traigo con los sintomas de impresion visual
+								for(var i = 0; i < data.length; i++){//recorro los sintomas que habia cargado anteriormente
+									for(var ii=0; ii < $scope.sintomasImpresionVisual.length; ii++){//recorro los sintomas de impresion visual
+										if(data[i].id == $scope.sintomasImpresionVisual[ii].id){
+											$scope.paciente.sintomas.push($scope.sintomasImpresionVisual[ii]);//chequeo el sintoma de impresion visual
+										} 
+									}
+								}//TODO: este doble for no seria necesario si el JSON de los sintomas y el de los sintomas de impresion visual tuvieran el mismo formato
+								 //ahora se diferencian en que el JSON de sintomas tiene el nombre del tipo de sintoma
+							},500);//lo hago esperar medio segundo porque a veces se ejecuta antes que los sintomas de impresion visual esten cargados
+								   //entonces no me marca ningun sintoma en la pantalla de impresion visual							
 						});
 					}
 
 					$scope.recuperarSintomas();
 
+					//borra el sintoma de las pantallas de sintomas y de impresion visual
 					$scope.borrarSintoma = function(sintoma) {						
-						for (var i = 0; i < $scope.sintomas.length; i++){//lo elimino de los sintomas q no son de impresion visual
+						for (var i = 0; i < $scope.sintomas.length; i++){//lo elimino de los sintomas q no son de impresion visual si corresponde
 							if($scope.sintomas[i].id == sintoma.id){
 								$scope.sintomas.splice(i, 1);
 								break;
 							}
 						}
-						if(sintoma.tipoDeSintoma.id == 1 || sintoma.tipoDeSintoma == 'IMPRESION INICIAL'){//si es sintoma de IMPRESION INICIAL
-							for (var i = 0; i < $scope.paciente.sintomas.length; i++){//lo elimino de los sintomas de impresion visual
-								if($scope.paciente.sintomas[i].id == sintoma.id){
-									$scope.paciente.sintomas.splice(i, 1);
-									break;
-								}
+						for (var i = 0; i < $scope.paciente.sintomas.length; i++){//lo elimino de los sintomas de impresion visual si corresponde
+							if($scope.paciente.sintomas[i].id == sintoma.id){
+								$scope.paciente.sintomas.splice(i, 1);
+								break;
 							}
 						}
 					};

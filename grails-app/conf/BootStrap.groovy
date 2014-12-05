@@ -9,6 +9,7 @@ import triage.Rol
 
 class BootStrap {
 
+	//AGREGAR UN USUARIO ADMINISTRADOR Y EL TIPO DE SINTOMA IMPRESION INICIAL
     def init = { servletContext ->
     	if(Usuario.count() == 0){
     		new Usuario(nombre:"ADMIN",password:"admin",rol:Rol.ADMINISTRADOR).save()
