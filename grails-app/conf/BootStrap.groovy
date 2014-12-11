@@ -9,13 +9,14 @@ import triage.Rol
 
 class BootStrap {
 
+	//AGREGAR UN USUARIO ADMINISTRADOR Y EL TIPO DE SINTOMA IMPRESION INICIAL
     def init = { servletContext ->
     	if(Usuario.count() == 0){
-    		new Usuario(nombre:"ADMIN",password:"admin",rol:Rol.ADMINISTRADOR).save()
-    		new Usuario(nombre:"USER",password:"user",rol:Rol.USUARIO).save()
+    		new Usuario(nombre:"LUIS",password:"triage",rol:Rol.ADMINISTRADOR).save()//creo el usuario administrador luis
+    		new TipoDeSintoma(nombre:"IMPRESION INICIAL").save()//creo el tipo de sintoma IMPRESION INICIAL
     	}
 
-    	if(Persona.count() == 0){//para que solo lo haga cuando la base esta vacia, sino tira error al iniciar
+    	/*if(Persona.count() == 0){//para que solo lo haga cuando la base esta vacia, sino tira error al iniciar
     		new Persona(nombre:"NESTOR",apellido:"MUÑOZ",fechaDeNacimiento:new Date("1987/03/21"),dni:33688677).save()
 			new Persona(nombre:"MARCIA",apellido:"TEJEDA",fechaDeNacimiento:new Date("1987/01/01"),dni:12345678).save()
 			
@@ -31,7 +32,7 @@ class BootStrap {
 			new Sintoma(nombre:"DOLOR SEVERO (p1-p3)",prioridadAdulto: Prioridad.UNO,prioridadPediatrico: Prioridad.TRES,tipoDeSintoma: impresionInicial).save()
 			new Sintoma(nombre:"DESHIDRATACION (p2-p1)",prioridadAdulto: Prioridad.DOS,prioridadPediatrico: Prioridad.UNO,tipoDeSintoma: impresionInicial).save()
 			new Sintoma(nombre:"CONTRACTURA (p3-p2)", prioridadAdulto: Prioridad.TRES,prioridadPediatrico: Prioridad.DOS, tipoDeSintoma: muscular).save()
-    	}
+    	}*/
 		
     }
 	
