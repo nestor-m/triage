@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.3)  30 NOV 2014 23:58
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.8)  1 DEC 2014 17:49
 entering extended mode
  %&-line parsing enabled.
 **doc.tex
@@ -412,20 +412,20 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 (./TIP-Caratula.tex) (./doc.aux)
 \openout1 = `doc.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
 
 (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -435,7 +435,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-Package hyperref Info: Link coloring ON on input line 24.
+Package hyperref Info: Link coloring ON on input line 25.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -445,8 +445,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count98
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
+LaTeX Info: Redefining \ref on input line 25.
+LaTeX Info: Redefining \pageref on input line 25.
  (./doc.out)
 (./doc.out)
 \@outlinefile=\write3
@@ -469,11 +469,11 @@ LaTeX Info: Redefining \pageref on input line 24.
 File: UNQ-logo.jpg Graphic file (type jpg)
  <use UNQ-logo.jpg>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 25.
+(Font)              <12> on input line 26.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 25.
+(Font)              <8> on input line 26.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 25.
+(Font)              <6> on input line 26.
  [1
 
 
@@ -493,15 +493,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  <planificacion.png, id=323, 905.3825pt x 503.8825pt>
 File: planificacion.png Graphic file (type png)
 
-<use planificacion.png> <tracking.png, id=326, 1105.12875pt x 441.65pt>
+<use planificacion.png> [9] <tracking.png, id=337, 1105.12875pt x 441.65pt>
 File: tracking.png Graphic file (type png)
 
-<use tracking.png> [9] [10 <./planificacion.png> <./tracking.png (PNG copy)>]
-[11] [12] <triage.png, id=400, 780.9175pt x 468.75125pt>
+<use tracking.png> [10 <./planificacion.png>] [11 <./tracking.png (PNG copy)>]
+[12] <triage.png, id=402, 780.9175pt x 468.75125pt>
 File: triage.png Graphic file (type png)
- <use triage.png>
-[13 <./triage.png (PNG copy)>]) (./testeo_instalacion.tex [14] [15] [16])
-(./conclusiones.tex) [17] [18] (./intro_manual.tex) (./login_cambio_pass.tex
+ <use triage.png> [13 <./triage.png (PNG copy)>]) (./testeo_instalacion.tex [14
+] [15]) (./conclusiones.tex
+[16]) [17] [18] (./intro_manual.tex) (./login_cambio_pass.tex
 <login.png, id=461, 701.62125pt x 153.57375pt>
 File: login.png Graphic file (type png)
  <use login.png>
@@ -679,10 +679,10 @@ File: eliminar_usuario.png Graphic file (type png)
 <use eliminar_usuario.png> [38 <./listado_usuarios.png> <./nuevo_usuario.png>])
 [39 <./eliminar_usuario.png>] (./doc.aux) ) 
 Here is how much of TeX's memory you used:
- 5582 strings out of 493848
- 80431 string characters out of 1152823
- 155651 words of memory out of 3000000
- 8513 multiletter control sequences out of 15000+50000
+ 5583 strings out of 493848
+ 80446 string characters out of 1152823
+ 156702 words of memory out of 3000000
+ 8514 multiletter control sequences out of 15000+50000
  11823 words of font info for 41 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,8n,36p,912b,514s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -701,7 +701,6 @@ live/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/publi
 c/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
 m/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb
->
 Output written on doc.pdf (39 pages, 1606283 bytes).
 PDF statistics:
  818 PDF objects out of 1000 (max. 8388607)

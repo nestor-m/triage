@@ -35,7 +35,7 @@ class SintomaController extends LoginController{
 		}
 		
 		render resultado as JSON
-		return resultado
+		return resultado//TODO: unificar el formato del JSON con el que retorna el metodo ajaxListVisuales
 
 		//render Sintoma.findAll( "from Sintoma p" ) as JSON
 	}
@@ -44,16 +44,7 @@ class SintomaController extends LoginController{
 	* Recupera los sintomas ingresados anteriormente
 	*/
 	def recuperarSintomas(){
-		Paciente paciente = Paciente.get(request.JSON.id)		
-/*		List resultado = new ArrayList()
-		for(s in paciente.sintomas){
-			Prioridad prioridad = paciente.esAdulto() ? s.prioridadAdulto : s.prioridadPediatrico			
-			resultado.add(new JSONObject('{"id":' + s.id +
-				                         ',"nombre":"' + s.nombre + '"' +
-										 ',"tipoDeSintoma":"' + s.tipoDeSintoma + '"' +
-										 ',"prioridad":"' + prioridad + '"}'))			
-		}*/
-		
+		Paciente paciente = Paciente.get(request.JSON.id)				
 		render paciente.sintomas as JSON
 		return paciente.sintomas
 	}
@@ -63,15 +54,15 @@ class SintomaController extends LoginController{
 		   tipoDeSintoma.nombre == "IMPRESION INICIAL"
 	   }
    
-	   //CON CRITERIA
-//	   def criteria = Sintoma.createCriteria()
-//	   def results = criteria.list {
-//		   tipoDeSintoma {
-//			   eq('nombre', 'IMPRESION INICIAL')
-//		   }
-//	   }
+	   /*CON CRITERIA
+	   def criteria = Sintoma.createCriteria()
+	   def results = criteria.list {
+		   tipoDeSintoma {
+			   eq('nombre', 'IMPRESION INICIAL')
+		   }
+	   }*/
 
-	   render query.list() as JSON
+	   render query.list() as JSON //TODO: unificar el formato del JSON con el que retorna el metodo sintomasListado
    }
 
    /**
