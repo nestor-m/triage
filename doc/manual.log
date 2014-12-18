@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.8)  14 NOV 2014 11:34
-=======
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  23 NOV 2014 16:09
->>>>>>> f246045890aa5bcdf21e1da29d9b418a5708e7c6
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.10.4)  16 DEC 2014 20:34
 entering extended mode
  %&-line parsing enabled.
 **manual.tex
@@ -498,378 +494,196 @@ File: menu_cambio_pass.png Graphic file (type png)
 <cambio_pass.png, id=165, 814.04124pt x 268.00125pt>
 File: cambio_pass.png Graphic file (type png)
  <use cambio_pass.png>
-[4 <./login.png>]) (./manual_inicio.tex
-<inicio.png, id=175, 1187.43625pt x 567.11874pt>
+[4]) (./manual_inicio.tex <inicio.png, id=174, 1187.43625pt x 567.11874pt>
 File: inicio.png Graphic file (type png)
- <use inicio.png>
-<inicio_nuevo.png, id=177, 1177.39874pt x 550.055pt>
+
+<use inicio.png> <inicio_nuevo.png, id=176, 1177.39874pt x 550.055pt>
 File: inicio_nuevo.png Graphic file (type png)
- <use inicio_nuevo.png>
-[5 <./login_fallido.png> <./menu_cambio_pass.png> <./cambio_pass.png>]
-<inicio_busqueda.png, id=187, 1137.24875pt x 543.02875pt>
+
+<use inicio_nuevo.png> [5 <./login.png> <./login_fallido.png> <./menu_cambio_pa
+ss.png>] <inicio_busqueda.png, id=186, 1137.24875pt x 543.02875pt>
 File: inicio_busqueda.png Graphic file (type png)
 
-<<<<<<< HEAD
-<use inicio_busqueda.png>
-
-LaTeX Warning: Reference `cap:filtrado_listado' on page 4 undefined on input li
-ne 23.
-
-[4 <./inicio.png (PNG copy)> <./inicio_nuevo.png (PNG copy)>])
+<use inicio_busqueda.png> [6 <./cambio_pass.png> <./inicio.png (PNG copy)>]
+[7 <./inicio_nuevo.png (PNG copy)> <./inicio_busqueda.png (PNG copy)>])
 (./manual_triage.tex
-<impresion_visual.png, id=133, 1340.00626pt x 537.00626pt>
+<impresion_visual.png, id=202, 1340.00626pt x 537.00626pt>
 File: impresion_visual.png Graphic file (type png)
 
-<use impresion_visual.png> [5 <./inicio_busqueda.png (PNG copy)>]
-<impresion_visual_p1.png, id=145, 1150.2975pt x 553.06625pt>
+<use impresion_visual.png>
+<impresion_visual_p1.png, id=205, 1150.2975pt x 553.06625pt>
 File: impresion_visual_p1.png Graphic file (type png)
 
 <use impresion_visual_p1.png>
-<prioridad_uno.png, id=147, 1225.57875pt x 444.66125pt>
+<prioridad_uno.png, id=207, 1225.57875pt x 444.66125pt>
 File: prioridad_uno.png Graphic file (type png)
 
-<use prioridad_uno.png> <sintomas.png, id=149, 1289.81876pt x 545.03625pt>
+<use prioridad_uno.png> <sintomas.png, id=209, 1289.81876pt x 545.03625pt>
 File: sintomas.png Graphic file (type png)
 
-<use sintomas.png>
-
-LaTeX Warning: Reference `cap:filtrado_listado' on page 6 undefined on input li
-ne 32.
-
-<sintomas_buscar.png, id=151, 1311.90125pt x 544.0325pt>
+<use sintomas.png> [8 <./impresion_visual.png (PNG copy)>] [9 <./impresion_visu
+al_p1.png (PNG copy)> <./prioridad_uno.png (PNG copy)>]
+<sintomas_buscar.png, id=225, 1311.90125pt x 544.0325pt>
 File: sintomas_buscar.png Graphic file (type png)
 
 <use sintomas_buscar.png>
-<sintomas_agregar.png, id=153, 1293.83376pt x 529.98pt>
+<sintomas_agregar.png, id=227, 1293.83376pt x 529.98pt>
 File: sintomas_agregar.png Graphic file (type png)
 
-<use sintomas_agregar.png> [6 <./impresion_visual.png (PNG copy)> <./impresion_
-visual_p1.png (PNG copy)>] [7 <./prioridad_uno.png (PNG copy)> <./sintomas.png 
-(PNG copy)>] <signos_vitales.png, id=168, 1121.18875pt x 553.06625pt>
+<use sintomas_agregar.png>
+<signos_vitales.png, id=230, 1121.18875pt x 553.06625pt>
 File: signos_vitales.png Graphic file (type png)
 
-<use signos_vitales.png> [8 <./sintomas_buscar.png (PNG copy)> <./sintomas_agre
-gar.png (PNG copy)>]
-<signos_vitales_guardar.png, id=178, 1113.15875pt x 552.0625pt>
+<use signos_vitales.png> [10 <./sintomas.png (PNG copy)> <./sintomas_buscar.png
+ (PNG copy)>] <signos_vitales_guardar.png, id=240, 1113.15875pt x 552.0625pt>
 File: signos_vitales_guardar.png Graphic file (type png)
 
 <use signos_vitales_guardar.png>
-<fin_triage.png, id=180, 1147.28625pt x 521.95pt>
+<fin_triage.png, id=242, 1147.28625pt x 521.95pt>
 File: fin_triage.png Graphic file (type png)
- <use fin_triage.png>
-<prioridad_dos.png, id=182, 1163.34625pt x 353.32pt>
+ <use fin_triage.png> [11 <./sintomas_agregar.png (PNG copy)> <./signos_vitales
+.png (PNG copy)>] [12 <./signos_vitales_guardar.png (PNG copy)> <./fin_triage.p
+ng (PNG copy)>]
+<prioridad_dos.png, id=255, 1163.34625pt x 353.32pt>
 File: prioridad_dos.png Graphic file (type png)
  <use prioridad_dos.png>
-<prioridad_tres.png, id=184, 1188.44pt x 355.3275pt>
+<prioridad_tres.png, id=257, 1188.44pt x 355.3275pt>
 File: prioridad_tres.png Graphic file (type png)
  <use prioridad_tres.png>
-[9 <./signos_vitales.png (PNG copy)> <./signos_vitales_guardar.png (PNG copy)>]
-<fin.png, id=192, 1121.18875pt x 553.06625pt>
+<fin.png, id=259, 1121.18875pt x 553.06625pt>
 File: fin.png Graphic file (type png)
  <use fin.png>)
-(./manual_espera.tex <espera.png, id=194, 1137.24875pt x 571.13374pt>
+(./manual_espera.tex <espera.png, id=261, 1137.24875pt x 571.13374pt>
 File: espera.png Graphic file (type png)
 
-<use espera.png> [10 <./fin_triage.png (PNG copy)> <./prioridad_dos.png (PNG co
-py)>] [11 <./prioridad_tres.png (PNG copy)> <./fin.png (PNG copy)> <./espera.pn
-g (PNG copy)>] <espera1.png, id=208, 1137.24875pt x 571.13374pt>
+<use espera.png> [13 <./prioridad_dos.png (PNG copy)> <./prioridad_tres.png (PN
+G copy)>] [14 <./fin.png (PNG copy)> <./espera.png (PNG copy)>]
+<espera1.png, id=276, 1137.24875pt x 571.13374pt>
 File: espera1.png Graphic file (type png)
-
-<use espera1.png> <espera2.png, id=210, 1137.24875pt x 571.13374pt>
+ <use espera1.png>
+<espera2.png, id=278, 1137.24875pt x 571.13374pt>
 File: espera2.png Graphic file (type png)
-
-<use espera2.png> <fin_atencion.png, id=212, 1184.425pt x 439.6425pt>
+ <use espera2.png>
+<fin_atencion.png, id=280, 1184.425pt x 439.6425pt>
 File: fin_atencion.png Graphic file (type png)
+ <use fin_atencion.png>)
+(./reportes.tex [15 <./espera1.png (PNG copy)>] [16 <./espera2.png (PNG copy)> 
+<./fin_atencion.png (PNG copy)>]
+<menu_reporte_prioridades.png, id=293, 389.455pt x 146.5475pt>
+File: menu_reporte_prioridades.png Graphic file (type png)
 
-<use fin_atencion.png>) (./manual_ABMs.tex [12 <./espera1.png (PNG copy)>]
-[13 <./espera2.png (PNG copy)> <./fin_atencion.png (PNG copy)>]
-<menu_configuracion_visible.png, id=227, 508.90125pt x 56.21pt>
+<use menu_reporte_prioridades.png>
+<reporte_prioridades.png, id=295, 746.79pt x 333.245pt>
+File: reporte_prioridades.png Graphic file (type png)
+
+<use reporte_prioridades.png>
+<menu_reporte_tiempos_espera.png, id=297, 388.45125pt x 149.55875pt>
+File: menu_reporte_tiempos_espera.png Graphic file (type png)
+
+<use menu_reporte_tiempos_espera.png>
+<reporte_tiempos_espera.png, id=299, 913.4125pt x 351.3125pt>
+File: reporte_tiempos_espera.png Graphic file (type png)
+
+<use reporte_tiempos_espera.png>
+<menu_reporte_pacientes.png, id=301, 389.455pt x 149.55875pt>
+File: menu_reporte_pacientes.png Graphic file (type png)
+
+<use menu_reporte_pacientes.png>
+<listado_pacientes.png, id=303, 994.71625pt x 316.18124pt>
+File: listado_pacientes.png Graphic file (type png)
+
+<use listado_pacientes.png>
+<historial_paciente.png, id=305, 1129.21875pt x 391.4625pt>
+File: historial_paciente.png Graphic file (type png)
+
+<use historial_paciente.png>) [17 <./menu_reporte_prioridades.png> <./reporte_p
+rioridades.png>] (./manual_ABMs.tex [18 <./menu_reporte_tiempos_espera.png> <./
+reporte_tiempos_espera.png> <./menu_reporte_pacientes.png>]
+<menu_configuracion_visible.png, id=329, 508.90125pt x 56.21pt>
 File: menu_configuracion_visible.png Graphic file (type png)
 
 <use menu_configuracion_visible.png>
-<menu_configuracion_oculto.png, id=229, 381.425pt x 49.18375pt>
+<menu_configuracion_oculto.png, id=330, 381.425pt x 49.18375pt>
 File: menu_configuracion_oculto.png Graphic file (type png)
 
 <use menu_configuracion_oculto.png>
-<menu_sintomas.png, id=231, 508.90125pt x 154.5775pt>
+<menu_sintomas.png, id=332, 508.90125pt x 154.5775pt>
 File: menu_sintomas.png Graphic file (type png)
  <use menu_sintomas.png>
-<listado_sintomas.png, id=233, 963.6pt x 360.34625pt>
+<listado_sintomas.png, id=334, 963.6pt x 360.34625pt>
 File: listado_sintomas.png Graphic file (type png)
 
 <use listado_sintomas.png>
-<detalle_sintoma.png, id=235, 761.84625pt x 315.1775pt>
+<detalle_sintoma.png, id=336, 761.84625pt x 315.1775pt>
 File: detalle_sintoma.png Graphic file (type png)
 
-<use detalle_sintoma.png>
-
-LaTeX Warning: Reference `cap:alta_discriminante' on page 14 undefined on input
- line 41.
-
-<sintoma_cargado_con_exito.png, id=237, 753.81625pt x 381.425pt>
-File: sintoma_cargado_con_exito.png Graphic file (type png)
-
-<use sintoma_cargado_con_exito.png>
-
-LaTeX Warning: Reference `cap:filtrado_listado' on page 14 undefined on input l
-ine 49.
-
-<sintomas_listado_buscar.png, id=239, 914.41624pt x 273.02pt>
+<use detalle_sintoma.png> [19 <./listado_pacientes.png> <./historial_paciente.p
+ng> <./menu_configuracion_visible.png>] [20 <./menu_configuracion_oculto.png> <
+./menu_sintomas.png> <./listado_sintomas.png>]
+<sintomas_listado_buscar.png, id=359, 914.41624pt x 273.02pt>
 File: sintomas_listado_buscar.png Graphic file (type png)
 
-<use sintomas_listado_buscar.png>
-<sintoma_actualizado_con_exito.png, id=241, 751.80875pt x 378.41376pt>
-File: sintoma_actualizado_con_exito.png Graphic file (type png)
-
-<use sintoma_actualizado_con_exito.png> [14 <./menu_configuracion_visible.png> 
-<./menu_configuracion_oculto.png> <./menu_sintomas.png>] [15 <./listado_sintoma
-s.png> <./detalle_sintoma.png> <./sintoma_cargado_con_exito.png>]
-<menu_discriminantes.png, id=263, 482.80376pt x 140.525pt>
+<use sintomas_listado_buscar.png> [21 <./detalle_sintoma.png> <./sintomas_lista
+do_buscar.png>] <menu_discriminantes.png, id=369, 482.80376pt x 140.525pt>
 File: menu_discriminantes.png Graphic file (type png)
 
 <use menu_discriminantes.png>
-<listado_discriminantes.png, id=265, 751.80875pt x 249.93375pt>
+<listado_discriminantes.png, id=371, 751.80875pt x 249.93375pt>
 File: listado_discriminantes.png Graphic file (type png)
 
-<use listado_discriminantes.png> [16 <./sintomas_listado_buscar.png> <./sintoma
-_actualizado_con_exito.png>]
-
-LaTeX Warning: Reference `fig:nuevo_discriminante' on page 17 undefined on inpu
-t line 80.
-
-<nuevo_discriminante.png, id=274, 723.70375pt x 169.63374pt>
+<use listado_discriminantes.png>
+<nuevo_discriminante.png, id=373, 723.70375pt x 169.63374pt>
 File: nuevo_discriminante.png Graphic file (type png)
 
 <use nuevo_discriminante.png>
-
-LaTeX Warning: Reference `cap:alta_sintoma' on page 17 undefined on input line 
-86.
-
-
-LaTeX Warning: Reference `cap:filtrado_listado' on page 17 undefined on input l
-ine 89.
-
-
-LaTeX Warning: Reference `fig:detalle_discriminante' on page 17 undefined on in
-put line 89.
-
-<listado_sintomas_de_discriminante.png, id=276, 951.555pt x 288.07625pt>
+<listado_sintomas_de_discriminante.png, id=378, 951.555pt x 288.07625pt>
 File: listado_sintomas_de_discriminante.png Graphic file (type png)
 
-<use listado_sintomas_de_discriminante.png>
+<use listado_sintomas_de_discriminante.png> [22 <./menu_discriminantes.png> <./
+listado_discriminantes.png> <./nuevo_discriminante.png>]
+<menu_usuarios.png, id=391, 483.8075pt x 137.51375pt>
+File: menu_usuarios.png Graphic file (type png)
+ <use menu_usuarios.png>
+<listado_usuarios.png, id=393, 918.43124pt x 215.80624pt>
+File: listado_usuarios.png Graphic file (type png)
 
-LaTeX Warning: Reference `cap:modificacion_sintoma' on page 17 undefined on inp
-ut line 95.
+<use listado_usuarios.png> [23 <./listado_sintomas_de_discriminante.png> <./men
+u_usuarios.png>] <nuevo_usuario.png, id=408, 720.6925pt x 212.795pt>
+File: nuevo_usuario.png Graphic file (type png)
 
-[17 <./menu_discriminantes.png> <./listado_discriminantes.png> <./nuevo_discrim
-inante.png>]) [18 <./listado_sintomas_de_discriminante.png>] (./manual.aux)
+<use nuevo_usuario.png>
+<eliminar_usuario.png, id=412, 976.64874pt x 249.93375pt>
+File: eliminar_usuario.png Graphic file (type png)
 
-LaTeX Warning: There were undefined references.
-
+<use eliminar_usuario.png>) [24 <./listado_usuarios.png> <./nuevo_usuario.png>]
+[25 <./eliminar_usuario.png>] (./manual.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 5272 strings out of 493848
- 75452 string characters out of 1152823
- 148615 words of memory out of 3000000
- 8364 multiletter control sequences out of 15000+50000
- 8849 words of font info for 31 fonts, out of 3000000 for 9000
+ 5401 strings out of 493848
+ 77747 string characters out of 1152823
+ 147615 words of memory out of 3000000
+ 8446 multiletter control sequences out of 15000+50000
+ 10272 words of font info for 35 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,8n,36p,738b,395s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,36p,727b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public
-/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmti12.pfb>
-Output written on manual.pdf (18 pages, 1028571 bytes).
+type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti
+12.pfb>
+Output written on manual.pdf (25 pages, 1174271 bytes).
 PDF statistics:
- 354 PDF objects out of 1000 (max. 8388607)
- 77 named destinations out of 1000 (max. 500000)
- 308 words of extra memory for PDF output out of 10000 (max. 10000000)
-=======
-<use inicio_busqueda.png> [6 <./inicio.png (PNG copy)> <./inicio_nuevo.png (PNG
- copy)>]) (./manual_triage.tex
-<impresion_visual.png, id=197, 1340.00626pt x 537.00626pt>
-File: impresion_visual.png Graphic file (type png)
-
-<use impresion_visual.png>
-<impresion_visual_p1.png, id=200, 1150.2975pt x 553.06625pt>
-File: impresion_visual_p1.png Graphic file (type png)
-
-<use impresion_visual_p1.png>
-<prioridad_uno.png, id=202, 1225.57875pt x 444.66125pt>
-File: prioridad_uno.png Graphic file (type png)
-
-<use prioridad_uno.png> [7 <./inicio_busqueda.png (PNG copy)>]
-<sintomas.png, id=212, 1289.81876pt x 545.03625pt>
-File: sintomas.png Graphic file (type png)
- <use sintomas.png>
-<sintomas_buscar.png, id=215, 1311.90125pt x 544.0325pt>
-File: sintomas_buscar.png Graphic file (type png)
-
-<use sintomas_buscar.png>
-<sintomas_agregar.png, id=217, 1293.83376pt x 529.98pt>
-File: sintomas_agregar.png Graphic file (type png)
-
-<use sintomas_agregar.png> [8 <./impresion_visual.png (PNG copy)> <./impresion_
-visual_p1.png (PNG copy)>] [9 <./prioridad_uno.png (PNG copy)> <./sintomas.png 
-(PNG copy)> <./sintomas_buscar.png (PNG copy)>]
-<signos_vitales.png, id=233, 1121.18875pt x 553.06625pt>
-File: signos_vitales.png Graphic file (type png)
-
-<use signos_vitales.png>
-<signos_vitales_guardar.png, id=236, 1113.15875pt x 552.0625pt>
-File: signos_vitales_guardar.png Graphic file (type png)
-
-<use signos_vitales_guardar.png> [10 <./sintomas_agregar.png (PNG copy)> <./sig
-nos_vitales.png (PNG copy)>] <fin_triage.png, id=243, 1147.28625pt x 521.95pt>
-File: fin_triage.png Graphic file (type png)
-
-<use fin_triage.png> <prioridad_dos.png, id=245, 1163.34625pt x 353.32pt>
-File: prioridad_dos.png Graphic file (type png)
-
-<use prioridad_dos.png> <prioridad_tres.png, id=247, 1188.44pt x 355.3275pt>
-File: prioridad_tres.png Graphic file (type png)
-
-<use prioridad_tres.png> <fin.png, id=249, 1121.18875pt x 553.06625pt>
-File: fin.png Graphic file (type png)
-
-<use fin.png> [11 <./signos_vitales_guardar.png (PNG copy)> <./fin_triage.png (
-PNG copy)>]) (./manual_espera.tex
-<espera.png, id=259, 1137.24875pt x 571.13374pt>
-File: espera.png Graphic file (type png)
- <use espera.png>
-<espera1.png, id=261, 1137.24875pt x 571.13374pt>
-File: espera1.png Graphic file (type png)
- <use espera1.png> [12 <./prioridad_dos.png (PNG copy)> <./prioridad_tres.png (
-PNG copy)>] [13 <./fin.png (PNG copy)> <./espera.png (PNG copy)>]
-<espera2.png, id=274, 1137.24875pt x 571.13374pt>
-File: espera2.png Graphic file (type png)
- <use espera2.png>
-<fin_atencion.png, id=276, 1184.425pt x 439.6425pt>
-File: fin_atencion.png Graphic file (type png)
- <use fin_atencion.png>
-[14 <./espera1.png (PNG copy)> <./espera2.png (PNG copy)>]) (./reportes.tex
-<menu_reporte_prioridades.png, id=285, 389.455pt x 146.5475pt>
-File: menu_reporte_prioridades.png Graphic file (type png)
-
-<use menu_reporte_prioridades.png>
-<reporte_prioridades.png, id=287, 746.79pt x 333.245pt>
-File: reporte_prioridades.png Graphic file (type png)
-
-<use reporte_prioridades.png>
-<menu_reporte_tiempos_espera.png, id=289, 388.45125pt x 149.55875pt>
-File: menu_reporte_tiempos_espera.png Graphic file (type png)
-
-<use menu_reporte_tiempos_espera.png>
-<reporte_tiempos_espera.png, id=291, 913.4125pt x 351.3125pt>
-File: reporte_tiempos_espera.png Graphic file (type png)
-
-<use reporte_tiempos_espera.png> [15 <./fin_atencion.png (PNG copy)> <./menu_re
-porte_prioridades.png>]
-<menu_reporte_pacientes.png, id=300, 389.455pt x 149.55875pt>
-File: menu_reporte_pacientes.png Graphic file (type png)
-
-<use menu_reporte_pacientes.png>
-<listado_pacientes.png, id=302, 994.71625pt x 316.18124pt>
-File: listado_pacientes.png Graphic file (type png)
-
-<use listado_pacientes.png>
-<historial_paciente.png, id=304, 1129.21875pt x 391.4625pt>
-File: historial_paciente.png Graphic file (type png)
-
-<use historial_paciente.png>) (./manual_ABMs.tex [16 <./reporte_prioridades.png
-> <./menu_reporte_tiempos_espera.png>] [17 <./reporte_tiempos_espera.png> <./me
-nu_reporte_pacientes.png> <./listado_pacientes.png> <./historial_paciente.png>]
-<menu_configuracion_visible.png, id=327, 508.90125pt x 56.21pt>
-File: menu_configuracion_visible.png Graphic file (type png)
-
-<use menu_configuracion_visible.png>
-<menu_configuracion_oculto.png, id=328, 381.425pt x 49.18375pt>
-File: menu_configuracion_oculto.png Graphic file (type png)
-
-<use menu_configuracion_oculto.png>
-<menu_sintomas.png, id=330, 508.90125pt x 154.5775pt>
-File: menu_sintomas.png Graphic file (type png)
- <use menu_sintomas.png>
-<listado_sintomas.png, id=332, 963.6pt x 360.34625pt>
-File: listado_sintomas.png Graphic file (type png)
-
-<use listado_sintomas.png>
-<detalle_sintoma.png, id=334, 761.84625pt x 315.1775pt>
-File: detalle_sintoma.png Graphic file (type png)
-
-<use detalle_sintoma.png>
-<sintomas_listado_buscar.png, id=338, 914.41624pt x 273.02pt>
-File: sintomas_listado_buscar.png Graphic file (type png)
-
-<use sintomas_listado_buscar.png> [18 <./menu_configuracion_visible.png> <./men
-u_configuracion_oculto.png> <./menu_sintomas.png>] [19 <./listado_sintomas.png>
- <./detalle_sintoma.png>]
-<menu_discriminantes.png, id=359, 482.80376pt x 140.525pt>
-File: menu_discriminantes.png Graphic file (type png)
-
-<use menu_discriminantes.png>
-<listado_discriminantes.png, id=361, 751.80875pt x 249.93375pt>
-File: listado_discriminantes.png Graphic file (type png)
-
-<use listado_discriminantes.png>
-<nuevo_discriminante.png, id=363, 723.70375pt x 169.63374pt>
-File: nuevo_discriminante.png Graphic file (type png)
-
-<use nuevo_discriminante.png> [20 <./sintomas_listado_buscar.png> <./menu_discr
-iminantes.png>]
-<listado_sintomas_de_discriminante.png, id=378, 951.555pt x 288.07625pt>
-File: listado_sintomas_de_discriminante.png Graphic file (type png)
-
-<use listado_sintomas_de_discriminante.png> [21 <./listado_discriminantes.png> 
-<./nuevo_discriminante.png> <./listado_sintomas_de_discriminante.png>]
-<menu_usuarios.png, id=393, 483.8075pt x 137.51375pt>
-File: menu_usuarios.png Graphic file (type png)
- <use menu_usuarios.png>
-<listado_usuarios.png, id=395, 918.43124pt x 215.80624pt>
-File: listado_usuarios.png Graphic file (type png)
-
-<use listado_usuarios.png> <nuevo_usuario.png, id=397, 720.6925pt x 212.795pt>
-File: nuevo_usuario.png Graphic file (type png)
-
-<use nuevo_usuario.png> [22 <./menu_usuarios.png> <./listado_usuarios.png>]
-<eliminar_usuario.png, id=410, 976.64874pt x 249.93375pt>
-File: eliminar_usuario.png Graphic file (type png)
-
-<use eliminar_usuario.png>) [23 <./nuevo_usuario.png> <./eliminar_usuario.png>]
-(./manual.aux) ) 
-Here is how much of TeX's memory you used:
- 5400 strings out of 493848
- 77748 string characters out of 1152823
- 148615 words of memory out of 3000000
- 8447 multiletter control sequences out of 15000+50000
- 10272 words of font info for 35 fonts, out of 3000000 for 9000
- 714 hyphenation exceptions out of 8191
- 38i,8n,36p,727b,400s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10
-.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmti12.pfb>
-Output written on manual.pdf (23 pages, 1174492 bytes).
-PDF statistics:
- 482 PDF objects out of 1000 (max. 8388607)
- 98 named destinations out of 1000 (max. 500000)
+ 491 PDF objects out of 1000 (max. 8388607)
+ 100 named destinations out of 1000 (max. 500000)
  429 words of extra memory for PDF output out of 10000 (max. 10000000)
->>>>>>> f246045890aa5bcdf21e1da29d9b418a5708e7c6
 

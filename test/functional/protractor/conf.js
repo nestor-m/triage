@@ -13,5 +13,10 @@ exports.config = {
   //specs: ['ABMTiposDeSintomasTest.js']
   //specs: ['loginTest.js']
   //specs: ['ABMUsuariosTest.js']
-  specs: ['./*']//corre todos los archivos de la carpeta
+  specs: ['demoUsuariosTest.js'],
+  //specs: ['./*']//corre todos los archivos de la carpeta
+  jasmineNodeOpts: {
+    // Default time to wait in ms before a test fails.
+    defaultTimeoutInterval: 60000*5//5 minutos//30000
+  }
 }
