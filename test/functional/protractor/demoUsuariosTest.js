@@ -1,7 +1,8 @@
 describe('Test ABM de usuarios', function() {
 
-  /*PRECONDICION:  Debe existir el usuario admin/triage y no deben existir los usuarios
+  /*PRECONDICION: Debe existir el usuario admin/triage y no deben existir los usuarios
   nestor ni marcia
+  la url debe ser http://localhost:8080/triage-0.1/
   */
 
   function logout(){
@@ -35,6 +36,7 @@ describe('Test ABM de usuarios', function() {
   
   it('Crear usuario con rol ADMINISTRADOR', function() {
     browser.get('http://localhost:8080/triage-0.1/');
+    browser.sleep(2000);
     loginAdmin();
     browser.sleep(2000);
     voyPantallaUsuarios();
@@ -53,7 +55,6 @@ describe('Test ABM de usuarios', function() {
     browser.sleep(2000);
     browser.waitForAngular();    
     var dialogo = $('.bootbox').$('.modal-dialog').$('.modal-content').$('.modal-body').$('.bootbox-body');
-    browser.sleep(2000);
     expect(dialogo.getText()).toBe('Usuario NESTOR creado con éxito');//aparece el mensaje de carga exitosa
     browser.sleep(2000);
     element(by.buttonText('OK')).click();//presiono OK
@@ -90,9 +91,9 @@ describe('Test ABM de usuarios', function() {
     browser.sleep(2000);
     element(by.id('aceptar')).click();//presiono aceptar
     browser.waitForAngular();    
-    var dialogo = $('.bootbox').$('.modal-dialog').$('.modal-content').$('.modal-body').$('.bootbox-body');
-    browser.sleep(2000);
+    var dialogo = $('.bootbox').$('.modal-dialog').$('.modal-content').$('.modal-body').$('.bootbox-body');    
     expect(dialogo.getText()).toBe('Usuario MARCIA creado con éxito');//aparece el mensaje de carga exitosa
+    browser.sleep(2000);    
     element(by.buttonText('OK')).click();//presiono OK
     browser.sleep(2000);//lo duermo porque el modal tarda en desaparecer
 
@@ -126,6 +127,7 @@ describe('Test ABM de usuarios', function() {
     browser.waitForAngular();    
     var dialogo = $('.bootbox').$('.modal-dialog').$('.modal-content').$('.modal-body').$('.bootbox-body');
     expect(dialogo.getText()).toBe('Contraseña actualizada con éxito');//aparece el mensaje de cambio de password exitoso
+    browser.sleep(2000);
     element(by.buttonText('OK')).click();//presiono OK
     browser.sleep(2000);//lo duermo porque el modal tarda en desaparecer
     //me deslogueo
@@ -200,6 +202,7 @@ describe('Test ABM de usuarios', function() {
     element(by.model('nombre')).sendKeys('mar');//filtro el listado de usuarios
     browser.sleep(2000);
     element(by.id("buscar")).click();
+    browser.sleep(2000);
     browser.waitForAngular();
     element.all(by.id('verDetalle')).then(function(items){
         expect(items.length).toBe(1);//deberia mostrarse solo la fila del usuario marcia
@@ -222,6 +225,7 @@ describe('Test ABM de usuarios', function() {
     browser.waitForAngular();    
     var dialogo = $('.bootbox').$('.modal-dialog').$('.modal-content').$('.modal-body').$('.bootbox-body');
     expect(dialogo.getText()).toBe('Usuario MARCIA actualizado con éxito');//aparece el mensaje de exito
+    browser.sleep(2000);
     element(by.buttonText('OK')).click();//presiono OK
     browser.sleep(2000);//lo duermo porque el modal tarda en desaparecer
     logout();
@@ -276,6 +280,7 @@ describe('Test ABM de usuarios', function() {
     element(by.model('pass.repite')).sendKeys('PASSNUEVA');//no repito la password nueva
     element(by.tagName('h3')).click();//activo el ng-blur
     expect(element(by.id("passNoCoinciden")).isDisplayed()).toBe(true);//se muestra el mensaje de No coinciden las passwords
+    browser.sleep(2000);
   });
 
   it('El nombre del usuario debe tener al menos 3 caracteres', function() {
@@ -283,10 +288,11 @@ describe('Test ABM de usuarios', function() {
     browser.sleep(2000);
     element(by.id("nuevo")).click();//presiono boton nuevo
     browser.sleep(2000);
-    element(by.model('usuario.nombre')).sendKeys('ro');//en campo nombre ingreso ro
+    element(by.model('usuario.nombre')).sendKeys('ro');//en campo nombre ingreso "ro"
     browser.sleep(2000);
-    element(by.select("usuario.rol")).click();//activo el ng-blur
+    element(by.model('usuario.nombre')).sendKeys(protractor.Key.TAB);//presiono TAB para activar el ng-blur
     expect(element(by.id("nombreCorto")).isDisplayed()).toBe(true);//se muestra el mensaje de nombre demasiado corto
+    browser.sleep(2000);
     //me deslogueo logout
     element(by.id("dropdownUsuario")).click();
     browser.sleep(2000);
