@@ -1,4 +1,9 @@
 describe('Test pantalla paciente ingresado', function() {
+
+  /*PRECONDICION: en el sistema estan cargados los síntomas: “DOLOR SEVERO” y “DESHIDRATACION” 
+  del determinante “IMPRESION INICIAL”, y “CONTRACTURA” del determinante “DOLOR MUSCULAR”. 
+  Los pacientes NESTOR MUÑOZ Y MARCIA TEJEDA y los usuarios ADMIN (con rol ADMINISTRADOR) y USER (con rol USUARIO)
+  Si se ingresan nuevos sintomas es probable que los test dejen de funcionar*/
 	
   it('Chequeo el titulo',function() {
   	//ingreso el paciente Nestor Muñoz

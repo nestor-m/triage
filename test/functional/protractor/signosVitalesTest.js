@@ -1,6 +1,6 @@
 describe('Test pantalla de ingreso de signos vitales', function() {
 
-  it('Cheueo que el titulo es Signos Vitales',function() {
+  it('Chequeo que el titulo es Signos Vitales',function() {
       browser.get('http://localhost:8080/triage/');  
 	  element(by.model('nombre')).sendKeys('admin');//me logueo con admin
       element(by.model('password')).sendKeys('admin');

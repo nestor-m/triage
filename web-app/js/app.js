@@ -719,7 +719,7 @@ app.controller(
 										})
 								.success(
 										function(data) {
-											if ($scope.esPrioridadUno) {
+											if ($scope.esPrioridadUno || data.prioridad == 'UNO') {
 												$cookieStore.put(
 														'datosPaciente', data);
 												$location.path("/prioridad1");
@@ -756,18 +756,19 @@ app.controller(
 					};
 
 					$scope.chequearSignosVitalesAdulto = function(modelo, label) {
-						if ($scope.sistole == 'menos de 85'
-								|| $scope.sistole == 'más de 200'
-								|| $scope.diastole == 'menos de 50'
-								|| $scope.diastole == 'más de 110'
-								|| $scope.pulso == 'menos de 60'
-								|| $scope.pulso == 'más de 120'
-								|| $scope.saturacionO2 == 'menos de 95'
-								|| $scope.frecuenciaRespiratoria == 'menos de 12'
-								|| $scope.frecuenciaRespiratoria == 'más de 30'
-								|| $scope.temperatura == 'menos de 35'
-								|| $scope.temperatura == 'más de 41.0'
-								|| $scope.glucosa == 'menos de 50') {
+						if ((modelo == 'sistole' && ($scope.sistole == 'menos de 85' || $scope.sistole == 'más de 200'))
+							||
+						    (modelo == 'diastole' && ($scope.diastole == 'menos de 50' || $scope.diastole == 'más de 110'))
+						    ||
+						    (modelo == 'pulso' && ($scope.pulso == 'menos de 60' || $scope.pulso == 'más de 120'))
+						    ||
+						    (modelo == 'saturacionO2' && $scope.saturacionO2 == 'menos de 95')
+						    ||
+						    (modelo == 'frecuenciaRespiratoria' && ($scope.frecuenciaRespiratoria == 'menos de 12' || $scope.frecuenciaRespiratoria == 'más de 30'))
+						    ||
+						    (modelo == 'temperatura' && ($scope.temperatura == 'menos de 35' || $scope.temperatura == 'más de 41.0'))
+						    ||
+						    (modelo == 'glucosa' && $scope.glucosa == 'menos de 50')){
 
 							$scope.mostrarMensajeDeConfirmacion(modelo, label);
 						}
@@ -792,15 +793,18 @@ app.controller(
 								'menos de 10', '10-15' ],
 								$scope.frecuenciaRespiratoria);
 
-						if ($scope.sistole == 'menos de 60' || sistoleMasDe120
-								|| $scope.diastole == 'menos de 30'
-								|| diastoleMasDe70 || pulsoMenosDe80
-								|| $scope.pulso == 'más de 190'
-								|| $scope.saturacionO2 == 'menos de 95'
-								|| frecRespiratoriaMenosDe15
-								|| $scope.frecuenciaRespiratoria == 'más de 60'
-								|| $scope.glucosa == 'menos de 50'
-								|| $scope.glucosa == 'más de 300') {
+						if ((modelo == 'sistole' && ($scope.sistole == 'menos de 60' || sistoleMasDe120))
+							|| 
+							(modelo == 'diastole' && ($scope.diastole == 'menos de 30' || diastoleMasDe70)) 
+							|| 
+							(modelo == 'pulso' && (pulsoMenosDe80 || $scope.pulso == 'más de 190'))
+							|| 
+							(modelo == 'saturacionO2' && $scope.saturacionO2 == 'menos de 95')
+							|| 
+							(modelo == 'frecuenciaRespiratoria' && (frecRespiratoriaMenosDe15 || $scope.frecuenciaRespiratoria == 'más de 60'))
+							|| 
+							(modelo == 'glucosa' && ($scope.glucosa == 'menos de 50' || $scope.glucosa == 'más de 300'))
+							) {
 
 							$scope.mostrarMensajeDeConfirmacion(modelo, label);
 						}
@@ -824,17 +828,18 @@ app.controller(
 								'56-60', 'más de 60' ],
 								$scope.frecuenciaRespiratoria);
 
-						if (sistoleMenosDe70
-								|| sistoleMasDe150
-								|| diastoleMenosDe40
-								|| diastoleMasDe90
-								|| pulsoMenosDe60
-								|| pulsoMasDe170
-								|| $scope.saturacionO2 == 'menos de 95'
-								|| $scope.frecuenciaRespiratoria == 'menos de 10'
-								|| frecRespiratoriaMasDe50
-								|| $scope.glucosa == 'menos de 50'
-								|| $scope.glucosa == 'más de 300') {
+						if ((modelo == 'sistole' && (sistoleMenosDe70 || sistoleMasDe150))
+							|| 
+							(modelo == 'diastole' && (diastoleMenosDe40 || diastoleMasDe90))
+							||
+							(modelo == 'pulso' && (pulsoMenosDe60 || pulsoMasDe170))
+							||
+							(modelo == 'saturacionO2' && $scope.saturacionO2 == 'menos de 95')
+							|| 
+							(modelo == 'frecuenciaRespiratoria' && ($scope.frecuenciaRespiratoria == 'menos de 10' || frecRespiratoriaMasDe50))
+							|| 
+							(modelo == 'glucosa' && ($scope.glucosa == 'menos de 50' || $scope.glucosa == 'más de 300'))
+							){
 
 							$scope.mostrarMensajeDeConfirmacion(modelo, label);
 						}
@@ -853,17 +858,18 @@ app.controller(
 								'46-50', '51-55', '56-60', 'más de 60' ],
 								$scope.frecuenciaRespiratoria);
 
-						if (sistoleMenosDe85
-								|| $scope.sistole == 'más de 165'
-								|| diastoleMenosDe50
-								|| $scope.diastole == 'más de 100'
-								|| $scope.pulso == 'menos de 50'
-								|| pulsoMasDe160
-								|| $scope.saturacionO2 == 'menos de 95'
-								|| $scope.frecuenciaRespiratoria == 'menos de 10'
-								|| frecRespiratoriaMasDe40
-								|| $scope.glucosa == 'menos de 50'
-								|| $scope.glucosa == 'más de 300') {
+						if ((modelo == 'sistole' && (sistoleMenosDe85 || $scope.sistole == 'más de 165'))
+							|| 
+							(modelo == 'diastole' && (diastoleMenosDe50	|| $scope.diastole == 'más de 100'))
+							|| 
+							(modelo == 'pulso' && ($scope.pulso == 'menos de 50' || pulsoMasDe160))
+							|| 
+							(modelo == 'saturacionO2' && $scope.saturacionO2 == 'menos de 95')
+							||
+							(modelo == 'frecuenciaRespiratoria' && ($scope.frecuenciaRespiratoria == 'menos de 10' || frecRespiratoriaMasDe40))
+							|| 
+							(modelo == 'glucosa' && ($scope.glucosa == 'menos de 50' || $scope.glucosa == 'más de 300'))
+							){
 
 							$scope.mostrarMensajeDeConfirmacion(modelo, label);
 						}
@@ -879,7 +885,7 @@ app.controller(
 										$scope.esPrioridadUno = true;
 										$scope.enviarSignosVitales();
 									} else {
-										$scope[modelo] = '';// vacio el campo
+										$scope[modelo] = null;// vacio el campo
 										$scope.$apply();// actualizo la vista
 									}
 								});

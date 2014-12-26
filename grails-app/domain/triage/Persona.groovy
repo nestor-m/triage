@@ -48,7 +48,7 @@ class Persona { //implements Serializable{
 		if(edad > 5){
 			return 'mayorDe6Anios'
 		}else{
-			if(edad > 0){
+			if(edad > 0 && edad < 6){
 				return 'menorDe6Anios'
 			}else{
 				return 'menorDeUnAnio'
@@ -64,6 +64,18 @@ class Persona { //implements Serializable{
 	Boolean estaEntre3y36Meses(){
 		int meses = (new Date() - fechaDeNacimiento) / 30
 		return meses > 2 && meses < 36
+	}
+
+	Boolean esMayorDe6Anios(){
+		return this.getCategoriaPediatrico() == 'mayorDe6Anios'
+	}
+
+	Boolean esMenorDe6Anios(){
+		return this.getCategoriaPediatrico() == 'menorDe6Anios'
+	}
+
+	Boolean esMenorDeUnAnio(){
+		return this.getCategoriaPediatrico() == 'menorDeUnAnio'
 	}
 
 }

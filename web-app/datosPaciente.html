@@ -1,18 +1,18 @@
-			<p id="nombreYApellido">Nombre y apellido: {{paciente.nombre}} {{paciente.apellido}}</p>
-			<p ng-show="paciente.dni != null">DNI: {{paciente.dni}}</p>
-			<p>Fecha de nacimiento: {{paciente.fechaDeNacimiento}}</p>
-			<p ng-show="paciente.direccion != null">Direcci&oacute;n: {{paciente.direccion}}</p>
-			<p ng-show="paciente.telefono != null">Tel&eacute;fono: {{paciente.telefono}}</p>
-			<p ng-show="paciente.obraSocial != null">Obra social: {{paciente.obraSocial}}</p>
-			<p ng-show="paciente.nroAfiliado != null">Nro afiliado: {{paciente.nroAfiliado}}</p>
-			<p id="sintomas" ng-show="paciente.sintomas != null">Motivo de ingreso: {{paciente.sintomas}}</p>
-			<!--SIGNOS VITALES-->
-			<p ng-show="paciente.sistole != null">S&iacute;stole: {{paciente.sistole}}</p>
-			<p ng-show="paciente.diastole != null">Diastole: {{paciente.diastole}}</p>
-			<p ng-show="paciente.temperatura != null">Temperatura: {{paciente.temperatura}}</p>
-			<p ng-show="paciente.pulso != null">Pulso: {{paciente.pulso}}</p>
-			<p ng-show="paciente.frecuenciaRespiratoria != null">Frecuencia respiratoria: {{paciente.frecuenciaRespiratoria}}</p>
-			<p ng-show="paciente.saturacionO2 != null">Saturaci&oacute;n de O2: {{paciente.saturacionO2}}</p>
-			<p ng-show="paciente.glucosa != null">Glucosa: {{paciente.glucosa}}</p>
-			
-			<p>Fecha y hora: {{paciente.fecha | date:'dd/MM/yyyy HH:mm'}}</p>
+	<p id="nombreYApellido">Nombre y apellido: {{paciente.nombre}} {{paciente.apellido}}</p>
+	<p ng-show="paciente.dni != null">DNI: {{paciente.dni}}</p>
+	<p>Fecha de nacimiento: {{paciente.fechaDeNacimiento}}</p>
+	<p ng-show="paciente.direccion != null">Direcci&oacute;n: {{paciente.direccion}}</p>
+	<p ng-show="paciente.telefono != null">Tel&eacute;fono: {{paciente.telefono}}</p>
+	<p ng-show="paciente.obraSocial != null">Obra social: {{paciente.obraSocial}}</p>
+	<p ng-show="paciente.nroAfiliado != null">Nro afiliado: {{paciente.nroAfiliado}}</p>
+	<p id="sintomas" ng-show="paciente.sintomas != null">Motivo de ingreso: {{paciente.sintomas}}</p>
+	<!--SIGNOS VITALES-->
+	<p ng-show="paciente.sistole != null && paciente.sistole!='null'">S&iacute;stole: {{paciente.sistole}}</p>
+	<p ng-show="paciente.diastole != null &&paciente.diastole != 'null'">Diastole: {{paciente.diastole}}</p>
+	<p ng-show="paciente.temperatura != null && paciente.temperatura != 'null'">Temperatura: {{paciente.temperatura}}</p>
+	<p ng-show="paciente.pulso != null && paciente.pulso != 'null'">Pulso: {{paciente.pulso}}</p>
+	<p ng-show="paciente.frecuenciaRespiratoria != null && paciente.frecuenciaRespiratoria != 'null'">Frecuencia respiratoria: {{paciente.frecuenciaRespiratoria}}</p>
+	<p ng-show="paciente.saturacionO2 != null && paciente.saturacionO2 != 'null'">Saturaci&oacute;n de O2: {{paciente.saturacionO2}}</p>
+	<p ng-show="paciente.glucosa != null && paciente.glucosa != 'null'">Glucosa: {{paciente.glucosa}}</p>
+	
+	<p>Fecha y hora: {{paciente.fecha | date:'dd/MM/yyyy HH:mm'}}</p>

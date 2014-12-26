@@ -52,6 +52,87 @@ class Paciente {
 			}
 		}
 
+		//CHEQUEO SIGNOS VITALES PRIORIDAD UNO, ADULTO
+		if(esAdulto && 
+			(this.sistole == 'menos de 85' || this.sistole == 'más de 200'
+			||
+			this.diastole == 'menos de 50' || this.diastole == 'más de 110'
+			||
+			this.pulso == 'menos de 60' || this.pulso == 'más de 120'
+			||
+			this.saturacionO2 == 'menos de 95'
+			||
+			this.frecuenciaRespiratoria == 'menos de 12' || this.frecuenciaRespiratoria == 'más de 30'
+			||
+			this.temperatura == 'menos de 35' || this.temperatura == 'más de 41.0'
+			||
+			this.glucosa == 'menos de 50'
+			)){
+
+			this.prioridad = Prioridad.UNO
+			this.save()
+			return Prioridad.UNO
+		}else{
+			//CHEQUEO SIGNOS VITALES PRIORIDAD UNO, PEDIATRICOS MENORES DE UN ANIO
+			if(this.esMenorDeUnAnio() && 
+				(['menos de 60','121-130','131-140','141-150','151-165','más de 165'].contains(this.sistole)
+				||
+				['menos de 30','71-75', '76-80','81-85', '86-90', '91-95', '96-100','más de 100'].contains(this.diastole)
+				||
+				['menos de 50','50-60','61-70','71-80','más de 190'].contains(this.pulso)
+				||
+				this.saturacionO2 == 'menos de 95'
+				||
+				['menos de 10','10-15','más de 60'].contains(this.frecuenciaRespiratoria)
+				||
+				this.glucosa == 'menos de 50' || this.glucosa == 'más de 300'
+				)){
+
+				this.prioridad = Prioridad.UNO
+				this.save()
+				return Prioridad.UNO
+			}else{
+				//CHEQUEO SIGNOS VITALES PRIORIDAD UNO, PEDIATRICOS MENORES DE 6 ANIOS
+				if(this.esMenorDe6Anios() && 
+					([ 'menos de 60','60-70','151-165','más de 165'].contains(this.sistole)
+					||
+					['menos de 30','30-35','36-40','91-95','96-100','más de 100'].contains(this.diastole)
+					||
+					['menos de 50','50-60','171-180','181-190','más de 190'].contains(this.pulso)
+					||
+					this.saturacionO2 == 'menos de 95'
+					||
+					['menos de 10','51-55','56-60','más de 60'].contains(this.frecuenciaRespiratoria)
+					||
+					this.glucosa == 'menos de 50' || this.glucosa == 'más de 300'
+					)){
+
+					this.prioridad = Prioridad.UNO
+					this.save()
+					return Prioridad.UNO
+				}else{
+					//CHEQUEO SIGNOS VITALES PRIORIDAD UNO, PEDIATRICOS MAYORES DE 6 ANIOS
+					if(!esAdulto && this.esMayorDe6Anios() && 
+						(['menos de 60','60-70','71-84','más de 165'].contains(this.sistole)
+						||
+						['menos de 30','30-35','36-40','41-45','46-50','más de 100'].contains(this.diastole)
+						||
+						['menos de 50','161-170', '171-180','181-190', 'más de 190'].contains(this.pulso)
+						||
+						this.saturacionO2 == 'menos de 95'
+						||
+						['menos de 10','41-45','46-50','51-55','56-60','más de 60'].contains(this.frecuenciaRespiratoria)
+						||
+						this.glucosa == 'menos de 50' || this.glucosa == 'más de 300'
+						)){
+
+						this.prioridad = Prioridad.UNO
+						this.save()
+						return Prioridad.UNO
+					}
+				}
+			}
+		}
 
 		//CHEQUEO SI ES PRIORIDAD 2
 		for(sintoma in sintomas){
@@ -132,6 +213,18 @@ class Paciente {
 	 */
 	Boolean estaEntre3y36Meses(){
 		return this.persona.estaEntre3y36Meses()
+	}
+
+	Boolean esMayorDe6Anios(){
+		return this.persona.esMayorDe6Anios()
+	}
+
+	Boolean esMenorDe6Anios(){
+		return this.persona.esMenorDe6Anios()
+	}
+
+	Boolean esMenorDeUnAnio(){
+		return this.persona.esMenorDeUnAnio()
 	}
 
 }

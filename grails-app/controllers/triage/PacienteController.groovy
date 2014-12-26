@@ -178,15 +178,8 @@ class PacienteController extends LoginController{
 			paciente = new Paciente(persona: persona).save( failOnError : true )
 		}	
 
-		request.JSON.id = paciente.id
-		request.JSON.nombre = persona.nombre
-		request.JSON.apellido = persona.apellido
-		request.JSON.fechaDeNacimiento = persona.fechaDeNacimiento.getDateString()
-		request.JSON.DNI = persona.dni
-
-		request.JSON.esAdulto = persona.esAdulto()
-
-		render request.JSON //retorna el id del paciente + los datos de la persona
+		request.JSON.id = paciente.id //piso el id de la persona con el id del paciente
+		this.cargarPacienteEnEspera()
 	}
 
 	/**
@@ -202,6 +195,9 @@ class PacienteController extends LoginController{
 		request.JSON.fechaDeNacimiento = paciente.persona.fechaDeNacimiento.getDateString()
 		request.JSON.DNI = paciente.persona.dni
 		request.JSON.esAdulto = paciente.esAdulto()
+		if(!request.JSON.esAdulto){//es pediatrico
+			request.JSON.categoriaPediatrico = paciente.persona.getCategoriaPediatrico()
+		}
 
 		render request.JSON
 	}
