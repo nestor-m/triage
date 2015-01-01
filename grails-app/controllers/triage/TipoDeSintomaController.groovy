@@ -27,9 +27,9 @@ private auth() {
 	*/
 	def traerTiposDeSintomas(){
 		if(request.JSON.tipoDeSintoma != null && request.JSON.tipoDeSintoma !=''){
-			render TipoDeSintoma.findAll("from TipoDeSintoma as t where t.nombre like ?", [request.JSON.tipoDeSintoma.toUpperCase()+'%']) as JSON
+			render TipoDeSintoma.findAll("from TipoDeSintoma as t where t.nombre like ? order by nombre", [request.JSON.tipoDeSintoma.toUpperCase()+'%']) as JSON
 		}else{
-			render TipoDeSintoma.findAll() as JSON
+			render TipoDeSintoma.findAll("from TipoDeSintoma order by nombre") as JSON
 		}		
 	}
 	

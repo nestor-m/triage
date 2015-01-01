@@ -308,25 +308,28 @@ app.controller(
 							visible : false
 						}, {
 							field : 'nombre',
-							displayName : 'Nombre'
+							displayName : 'Nombre',
+							width : '20%'
 						}, {
 							field : 'apellido',
-							displayName : 'Apellido'
+							displayName : 'Apellido',
+							width : '20%'
 						}, {
 							field : 'dni',
 							displayName : 'DNI',
-							width: 130
+							width : '15%'							
 						}, {
 							field : 'fechaDeNacimiento',
 							displayName : 'Fecha de nacimiento',
 							cellFilter : 'date:\'dd/MM/yyyy\'',
-							width: 130
+							width : '15%'							
 						}, {
 							field : 'direccion',
-							displayName : 'Dirección'
+							displayName : 'Dirección',
+							width : '20%'
 						}, {
 							cellTemplate : $scope.botonIngresar,
-							width : 70
+							width : '10%'							
 						} ]
 					};
 
@@ -1286,10 +1289,10 @@ app.controller('tiposDeSintomaListController',function($scope, $location, $cooki
 		}, {
 			field : 'nombre',
 			displayName : 'Discriminante',
-			width : '95%'
+			width : '90%'
 		}, {
 			cellTemplate : $scope.botonDetalleTipoDeSintoma,
-			width : '5%'
+			width : '10%'
 		} ]
 	};
 
@@ -1311,7 +1314,10 @@ app.controller('tiposDeSintomaFormController',function($scope, $location, $cooki
 			id : $scope.tipoDeSintoma.id,
 			nombre : $scope.tipoDeSintoma.nombre
 		}).success(function(data){
-			bootbox.alert(data);
+			bootbox.alert(data);									
+			if($scope.tipoDeSintoma.id != null){//si es una actualizacion vuelvo al listado
+				$location.path("/discriminantesListado");
+			}
 			$scope.tipoDeSintoma = null;//limpio el formulario
 		}).error(function(data){
 			bootbox.alert(data);
@@ -1496,25 +1502,28 @@ app.controller('busquedaPersonasController',function($scope, $location, $cookieS
 			visible : false
 		}, {
 			field : 'nombre',
-			displayName : 'Nombre'
+			displayName : 'Nombre',
+			width : '20%'
 		}, {
 			field : 'apellido',
-			displayName : 'Apellido'
+			displayName : 'Apellido',
+			width : '20%'
 		}, {
 			field : 'dni',
 			displayName : 'DNI',
-			width: 130
+			width : '15%'
 		}, {
 			field : 'fechaDeNacimiento',
 			displayName : 'Fecha de nacimiento',
 			cellFilter : 'date:\'dd/MM/yyyy\'',
-			width: 130
+			width : '15%'
 		}, {
 			field : 'direccion',
-			displayName : 'Dirección'
+			displayName : 'Dirección',
+			width : '20%'
 		}, {
 			cellTemplate : $scope.botonIngresar,
-			width : 70
+			width : '10%'
 		} ]
 	};
 	
@@ -1634,17 +1643,17 @@ app.controller('usuariosListadoController',function($scope, $location, $cookieSt
 		}, {
 			field : 'nombre',
 			displayName : 'Usuario',
-			width : '70%'
+			width : '55%'
 		}, {
 			field : 'rol.name',
 			displayName : 'Rol',
-			width : '20%'
+			width : '25%'
 		}, {
 			cellTemplate : $scope.botonVerDetalle,
-			width : '5%'
+			width : '10%'
 		}, {
 			cellTemplate : $scope.botonEliminar,
-			width : '5%'
+			width : '10%'
 		} ]
 	};
 

@@ -51,10 +51,10 @@ class PacienteController extends LoginController{
 		String formattedFechaDesde = output.format(fechaDesde)
 		String formattedFechaHasta = output.format(fechaHasta)
 
-		List prioridades = Paciente.executeQuery("SELECT  prioridad, count(*) "+
+		List prioridades = Paciente.executeQuery("select prioridad,count(*) as cantidad "+
 				"FROM Paciente  "+
 				" WHERE fecha_hora_ingreso between '" + formattedFechaDesde +
-				"' and '" + formattedFechaHasta + "' group by prioridad")
+				"' and '" + formattedFechaHasta + "' and prioridad is not null group by prioridad order by cantidad")
 		List resultado = new ArrayList()
 		for (p in prioridades){
 			resultado.add(new JSONObject('{"prioridad":' + p[0] +
