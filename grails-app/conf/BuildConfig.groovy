@@ -51,8 +51,8 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.24'
 
         //CONFIGURACION POSTGRES PARA HEROKU. https://devcenter.heroku.com/articles/getting-started-with-grails
-        runtime 'postgresql:postgresql:8.4-702.jdbc3'
-        //runtime 'postgresql:postgresql:9.0-801.jdbc4'
+        //runtime 'postgresql:postgresql:8.4-702.jdbc3'
+        runtime 'postgresql:postgresql:9.0-801.jdbc4'
     }
 
     plugins {
@@ -62,6 +62,7 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.0.1"
         compile ':cache:1.1.1'
+        compile ":standalone:1.3"
 //		compile ":selenium-rc:1.0.2"
 //		compile ":selenium:0.8"
 
