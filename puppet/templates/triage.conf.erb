@@ -1,0 +1,25 @@
+# /etc/init/triage.conf - Triage config
+
+description "Triage App"
+
+# no "start on", we don't want to automatically start
+stop on (stopping workers or runlevel [06])
+
+# change to match your deployment user
+setuid triage
+setgid triage
+
+respawn
+respawn limit 3 30
+
+# normal exit codes, it just respawns.
+normal exit 0 TERM
+
+script
+# this script runs in /bin/sh by default
+# respawn as bash so we can source in rbenv
+exec /bin/bash <<'EOT'
+  cd /var/www/triage
+  java -jar triage.jar
+EOT
+end script
