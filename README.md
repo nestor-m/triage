@@ -1,3 +1,8 @@
+Triage
+===
+
+[![Build Status](https://travis-ci.org/nestor-m/triage.svg?branch=master)](https://travis-ci.org/nestor-m/triage)
+
 Para Instalar Grails:
 
 Seguir las instrucciones en:  http://www.youtube.com/watch?v=zshNRKytyFk
