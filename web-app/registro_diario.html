@@ -1,0 +1,75 @@
+<!-- 
+Copyright (C) 2015  Nestor Muñoz. nestorgabriel2008@gmail.com; Marcia Tejeda. tejedamarcia@gmail.com
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+<title>Registro diario</title>
+<script> 
+    $(function() {  
+        var anioActual = new Date().getFullYear();
+      $( "#fecha" ).datepicker({  changeMonth: true,changeYear: true,maxDate: new Date(),yearRange: "1900:"+anioActual });
+      $( "#fecha" ).datepicker( $.datepicker.regional[ "es" ] );
+    });
+</script>
+<body>
+	<h4 style="font-weight:bold;text-align:center;">Registro diario de pacientes ingresados</h4>
+    <hr/>
+
+      <form name="busqueda_form" class="form-horizontal" style="text-align:center" role="form">
+        <div class="form-group">
+            <div class="controls form-inline" >
+                <label class="col-sm-4 control-label" style="font-size:small">Fecha</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="fecha" id="fecha" ng-model="fecha" style="height: 30px;"/>
+                </div>
+                <div class="col-sm-1">
+				<input type="button" name="botonBuscar" class="btn btn-primary"
+					value="Buscar" id="botonBuscar" ng-click="getRegistroDiario()"
+					ng-disabled="fecha==null || fecha==''"/>
+			    </div>
+            </div>
+        </div>
+     </form>
+
+    <br/>
+
+	<table class="table table-hover">
+		<tr>
+			<td>Nombre</td>
+			<td>DNI</td>
+			<td>Edad</td>			
+			<td>Prioridad</td>
+			<td>Tipo atenci&oacute;n</td>
+			<td>S&iacute;ntomas</td>
+		</tr>
+		<tr
+			ng-repeat="paciente in pacientes track by paciente.id">
+
+			<td><label for="{{ paciente.nombre }}">{{
+					paciente.nombre }}</label></td>
+			<td><label for="{{ paciente.dni }}">{{
+					paciente.dni }}</label></td>
+			<td><label for="{{ paciente.edad }}">{{
+					paciente.edad }}</label></td>
+			<td><label for="{{ paciente.prioridad }}">{{
+					paciente.prioridad }}</label></td>
+			<td><label for="{{ paciente.tipoAtencion }}">{{
+					paciente.tipoAtencion }}</label></td>
+			<td><label for="{{ paciente.sintomas }}">{{
+					paciente.sintomas }}</label></td>
+		</tr>
+	</table>
+</body>

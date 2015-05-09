@@ -50,7 +50,8 @@ class PacienteController extends LoginController{
 		,cantidadDeConsultasSegunPrioridad: "POST"
 		,cargarPacienteEnEspera: "POST"
 		,tiempoEsperaSegunPrioridad: "POST"
-		,traerDatosPaciente: "POST"]
+		,traerDatosPaciente: "POST"
+		,getRegistroDiario: "POST"]
 
 
 	/**
@@ -444,6 +445,25 @@ class PacienteController extends LoginController{
 		}
 		//Regresa la edad en base a la fecha de nacimiento
 		return año
+	}
+
+	def getRegistroDiario(){		
+		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(request.JSON.fecha)
+		List pacientes = Paciente.findAllByFechaHoraIngresoBetween(date,date+1)				
+		List resultado = new ArrayList()
+		for (paciente in pacientes){
+			String prioridad = paciente.prioridad==null?" ":paciente.prioridad
+			String dni = paciente.persona.dni==null?" ":paciente.persona.dni
+
+			resultado.add(new JSONObject('{"id":"' + paciente.id + '"' +
+			',"nombre":"' + paciente.persona.nombre + " " + paciente.persona.apellido + '"' +
+			',"dni":"' + dni + '"' +
+			',"edad":"' + paciente.persona.getDescripcionEdad() + '"' +					
+			',"prioridad":"' + prioridad + '"' +
+			',"tipoAtencion":"' + paciente.getStringTipoAtencion() + '"' +
+			',"sintomas":"' + paciente.getStringSintomas() + '"}'))
+		}
+		render resultado as JSON	
 	}
 
 

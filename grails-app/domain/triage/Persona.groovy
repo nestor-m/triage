@@ -58,6 +58,19 @@ class Persona { //implements Serializable{
 		return edad
 	}
 
+	String getDescripcionEdad(){
+		int dias = new Date() - this.fechaDeNacimiento//retorna la diferencia en dias
+		if(dias < 30){
+			return dias + " dias"
+		}else{
+			if(dias < 365){
+				return ((int) dias / 30) + " meses"
+			}else{
+				return (int) dias / 365
+			}			
+		}
+	}
+
 	/**
 	* Este metodo se utiliza para la logica de los signos vitales y las prioridades en pediatricos
 	*/

@@ -152,7 +152,7 @@ class PersonaController extends LoginController{
 		render request.JSON as JSON
 	}
 	
-	def traerTipoAtencion(Long nta){
+	def traerTipoAtencion(int nta){
 		switch(nta){
 			 case 1:
 			 	return "Ingresa"

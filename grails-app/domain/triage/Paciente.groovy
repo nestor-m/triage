@@ -245,4 +245,25 @@ class Paciente {
 		return this.persona.esMenorDeUnAnio()
 	}
 
+	String getStringTipoAtencion(){
+		switch(this.tipoAtencion){
+		 case 1:
+		 	return "Ingresa"
+		 case 2:
+		 	return "Consultorio externo"
+		 case 3:
+		 	return "Retira sin atención"
+		 default:
+		    return ""
+	    }
+	}
+
+	String getStringSintomas(){
+		String resultado = ""
+		for(sintoma in this.sintomas){
+			resultado += sintoma.nombre +"; "
+		}
+		return resultado
+	}
+
 }
