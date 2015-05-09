@@ -479,14 +479,16 @@ app.controller(
 								bootbox.confirm("¿Está seguro que desea ingresar el síntoma?",
 												function(confirma) {
 													if (confirma ) {
+														//parche para error raro. Si se chequeaba un sintoma de prioridad 1, se cancelaba, 
+														//y se volvia a chequear entonces automaticamente se deschequeaba solo cuando aparecia la ventana de confirmacion
+														//entonces si poniamos OK, aparecia el cartel de Prioridad 1 pero sin el sintoma cargado
 														for(var i=0; i < $scope.sintomasImpresionVisual.length; i++){//recorro los sintomas de impresion visual
 															if(sintoma.id == $scope.sintomasImpresionVisual[i].id){
 																$scope.paciente.sintomas.push($scope.sintomasImpresionVisual[i]);//chequeo el sintoma de impresion visual
 															} 
 														}
-														//event.currentTarget.checked = true;//parche para error raro. Si se chequeaba un sintoma de prioridad 1, se cancelaba, 
-														//y se volvia a chequear entonces automaticamente se deschequeaba solo cuando aparecia la ventana de confirmacion
-														//entonces si poniamos OK, aparecia el cartel de Prioridad 1 pero sin el sintoma cargado
+														//fin parche
+
 														$scope.esPrioridadUno = true;
 														$scope.cargarImpresionVisual();
 													} else {
@@ -1581,7 +1583,6 @@ app.controller('registroDiarioController',function($scope, $location, $cookieSto
 		$http.post('paciente/getRegistroDiario',{
 			fecha: $scope.fecha
 		}).success(function(pacientes){
-			//$cookieStore.put('usuario',usuario);
 			$scope.pacientes = pacientes;
 		});		
 	}
