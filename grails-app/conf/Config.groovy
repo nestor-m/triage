@@ -90,6 +90,8 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
+         println "target external prod config: file:${userHome}/.grails/${appName}/${appName}-config.groovy"
+         grails.config.locations = ["file:${userHome}/.grails/${appName}/${appName}-config.groovy"]
     }
 }
 

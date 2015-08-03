@@ -109,15 +109,5 @@ environments {
         }
     }*/
 
-    //POSTGRES, nombre de la base: triage_prod
-    production{
-        dataSource {
-            dbCreate = "update"
-            dialect = org.hibernate.dialect.PostgreSQLDialect
-            url = "jdbc:postgresql://localhost:5432/triage_prod"
-            driverClassName = "org.postgresql.Driver"
-            username = "postgres"
-            password = "postgres"   
-        }
-    }
+
 }
