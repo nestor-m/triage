@@ -109,7 +109,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
   
   
   <footer class="text-center">
-    TIP Muñoz-Tejeda
+    <a href="https://github.com/nestor-m/triage">Triage</a>  | v<g:meta name="app.version"/>
   </footer>
 </body>
 
